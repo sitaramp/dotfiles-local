@@ -13,7 +13,7 @@ nmap \7 :e #7<CR>
 nmap \8 :e #8<CR>
 nmap \9 :e #9<CR>
 "close quickfix window
-nmap \x :cclose<CR> 
+nmap \x :cclose<CR>
 
 " Single key access to files fzf and tags
 nmap <leader>b :Buffers<CR>
