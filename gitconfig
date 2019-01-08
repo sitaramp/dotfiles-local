@@ -1,0 +1,97 @@
+[include]
+  path = ~/.gitconfig.user
+[hub]
+  protocol = https
+[pretty]
+  colored = format:%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset
+[format]
+  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
+[core]
+  editor = vim
+  pager = less -FRX
+  excludesfile = ~/.gitignore
+  autocrlf = false
+[gist]
+  private = yes
+[branch "master"]
+  remote = origin
+  merge = refs/heads/master
+[log]
+  decorate = short
+[push]
+  default = current
+[difftool]
+  prompt = false
+  keepBackup = false
+[diff]
+  tool = vimdiff
+  mnemonicprefix = true
+  algorithm = patience
+[mergetool]
+  prompt = false
+  keepBackup = false
+[merge]
+  summary = true
+  verbosity = 1
+  tool = vimdiff
+[pull]
+  default = simple
+[rerere]
+  enabled = true
+[alias]
+  am = commit --amend --no-edit
+  ama = commit --amend --no-edit -a
+  b = branch
+  bnew = checkout -b
+  ci = commit
+  cia = commit --amend
+  cim = commit -m
+  civ = commit -v
+  co = checkout
+  cp = cherry-pick
+  config-to-push-all-branches = config --add remote.origin.push '+refs/heads/*:refs/heads/*'
+  config-to-push-all-tags = config --add remote.origin.push '+refs/tags/*:refs/tags/*'
+  d = diff
+  dc = diff --cached
+  diffc = diff --cached
+  forkup = pull --rebase upstream
+  h = stash
+  hs = stash save
+  last = log -1
+  latest = for-each-ref --sort=committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)'
+  newb = checkout -b
+  quicklog = log --oneline --decorate -10 --pretty=format:'%C(yellow)%h%C(reset)%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  quicklog-long = log --oneline --decorate --pretty=format:'%C(yellow)%h%C(reset)%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  r = remote
+  rb = rebase
+  rl = reflog
+  rewind-one = reset --hard HEAD^
+  st = status
+  sta = stash
+  svnci = svn dcommit
+  svnprep = rebase -i git-svn
+  svnup = svn rebase
+  today = diff --stat 'HEAD@{midnight}'
+  tree = log --graph --oneline --all
+  undo = reset --mixed HEAD^
+  unstage = reset HEAD
+  up = pull --rebase origin
+  yesterday = diff --stat 'HEAD@{yesterday}' 'HEAD@{midnight}'
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  ui = true
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red
+  new = green
+[color "status"]
+  added = green
+  changed = yellow
+  untracked = cyan
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green

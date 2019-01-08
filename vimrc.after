@@ -1,0 +1,206 @@
+" single key acess to Buffers
+nmap <C-e> :e#<CR>
+"nmap [b   :bprev<CR>
+"nmap ]b   :bnext<CR>
+nmap \0 :buffers<CR>
+nmap \1 :e #1<CR>
+nmap \2 :e #2<CR>
+nmap \3 :e #3<CR>
+nmap \4 :e #4<CR>
+nmap \5 :e #5<CR>
+nmap \6 :e #6<CR>
+nmap \7 :e #7<CR>
+nmap \8 :e #8<CR>
+nmap \9 :e #9<CR>
+"close quickfix window
+nmap \x :cclose<CR> 
+
+" Single key access to files fzf and tags
+nmap <leader>b :Buffers<CR>
+nmap <leader>t :Files<CR>
+nmap <leader>r :Tags<CR>
+nmap <leader>a :Rg!<CR>
+nmap <leader>c :Colors<CR>
+
+" Search for word under the cursor in the current directory
+nmap <leader>k    mo:Ack! "\b<cword>\b" <CR>
+nmap <C-S-k>  mo:Ggrep! "\b<cword>\b" <CR>
+"nmap <leader>k :Rg!<CR>
+
+let $FZF_DEFAULT_COMMAND = 'rg --files --follow -g "!{.git,node_modules}/*" 2>/dev/null'
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -g "!{*.lock,*-lock.json}" '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:40%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+" Tell ack.vim to use ripgrep instead
+let g:ackprg = 'rg --vimgrep --no-heading'
+
+" SuperTab
+let g:SuperTabLongestEnhanced = 1
+let g:SuperTabLongestHighlight = 1
+au Filetype typescript let b:SuperTabDefaultCompletionType = "<C-x><C-o>"
+
+" Change j,k to act more visually in presence of wrapped lines
+" wrapparound line movement
+nmap     j gj
+nmap     k gk
+nnoremap ' `
+nnoremap Y y$
+
+set noswapfile
+set autowrite
+
+"Always use vertical diffs
+set diffopt+=vertical
+
+" Emacs-like bindings in insert mode
+imap <C-e> <C-o>$
+imap <C-a> <C-o>0
+
+" These are things that I mistype and want ignored.
+"nmap Q  <silent>
+"nmap q: <silent>
+"nmap K  <silent>
+command! Q q
+command! W w
+
+" Trim spaces at EOL and retab. I run `:CLEAN` a lot to clean up files.
+command! TEOL %s/\s\+$//
+command! CLEAN retab | TEOL
+
+"" highlight whitespace errors
+""set listchars=tab:▸\ ,eol:¬
+""set listchars=tab:▸\ ,trail:·
+"highlight NonText guibg=#060606
+"highlight Folded  guibg=#0A0A0A guifg=#9090D0
+set colorcolumn=80
+highlight ColorColumn ctermbg=darkgray
+"match ExtraWhitespace /\s\+\%#\@<!$/
+"highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
+"highlight WhiteSpaceEOL ctermbg=white guibg=white
+"let c_space_errors = 1
+
+" enable mouse in normal and visual mode. See help using-mouse
+set mouse=nv
+set clipboard=unamedplus
+" Use Shift + Drag shift + Right Click to copy paste
+" Use Shift + Cntrl + v to insert
+" To enable Rgiht to paster disable mousr
+" set mouse-=a
+
+" Numbers
+set number
+set numberwidth=5
+set relativenumber
+set number
+nmap <leader>n0 :set relativenumber!<CR>
+nmap <leader>nn :set number!<CR>
+set ruler
+
+" windows movement
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+"Colors
+if &term =~ "xterm"
+  " 256 colors
+  let &t_Co = 256
+  " restore screen after quitting
+  let &t_ti = "\<Esc>7\<Esc>[r\<Esc>[?47h"
+  let &t_te = "\<Esc>[?47l\<Esc>8"
+  if has("terminfo")
+    let &t_Sf = "\<Esc>[3%p1%dm"
+    let &t_Sb = "\<Esc>[4%p1%dm"
+  else
+    let &t_Sf = "\<Esc>[3%dm"
+    let &t_Sb = "\<Esc>[4%dm"
+  endif
+endif
+
+set background=dark
+"colorscheme molokai
+colorscheme default
+syntax on
+
+"set cursorline
+"set cursorcolumn
+"hi CursorLine   cterm=NONE ctermbg=237 ctermfg=NONE guibg=darkred guifg=white
+"hi CursorColumn cterm=NONE ctermbg=235 ctermfg=NONE guibg=darkred guifg=white
+"
+"" use login Shell instead of interactive shell
+if executable('zsh')
+  set shell=/usr/bin/zsh\ -l
+endif
+
+" fugitive
+nmap <leader>gs :Gstatus<CR>
+nmap <leader>gd :Gsdiff<CR>
+nmap <leader>gc :Gcommit<CR>
+nmap <leader>gb :Gblame<CR>
+nmap <leader>gl :Glog<CR>
+nmap <leader>gp :Gpush<CR>
+nmap <leader>gw :Gwrite<CR>
+
+" janus status line
+if janus#is_plugin_enabled('fugitive')
+  set statusline+=%{fugitive#statusline()}
+endif
+
+" GitGutter
+nmap [g  :GitGutterPrevHunk<CR>
+nmap ]g  :GitGutterNextHunk<CR>
+augroup VimDiff
+    autocmd!
+    autocmd VimEnter,FilterWritePre * if &diff | GitGutterDisable | endif
+augroup END
+
+
+" ALE settings
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
+nmap ]w :ALENextWrap<CR>
+nmap [w :ALEPreviousWrap<CR>
+nmap <Leader>f <Plug>(ale_fix)
+augroup VimDiff
+    autocmd!
+    autocmd VimEnter,FilterWritePre * if &diff | ALEDisable | endif
+augroup END
+" Set this. Airline will handle the rest.
+let g:airline#extensions#ale#enabled = 1
+" Write this in your vimrc file
+let g:ale_lint_on_text_changed = 'never'
+" You can disable this option too
+" if you don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
+" Disable ale
+"let g:ale_lint_on_save = 0
+
+" SuperTab
+let g:SuperTabLongestEnhanced = 1
+let g:SuperTabLongestHighlight = 1
+au Filetype typescript let b:SuperTabDefaultCompletionType = "<C-x><C-o>"
+
+
+" symtastic
+if janus#is_plugin_enabled('syntastic')
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+endif
+
+if janus#is_plugin_enabled('ale')
+  " run linter when files is saved
+  let g:ale_lint_on_text_changed = 'never'
+  " don't want linters to run on opening a file
+  let g:ale_lint_on_enter = 0
+  " enable status line
+  let g:airline#extensions#ale#enabled = 1
+endif
