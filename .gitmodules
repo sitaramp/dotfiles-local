@@ -1,0 +1,12 @@
+[submodule "janus/ale"]
+	path = janus/ale
+	url = https://github.com/w0rp/ale.git
+[submodule "janus/fzf.vim"]
+	path = janus/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
+[submodule "janus/vim-tmux-navigator"]
+	path = janus/vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator
+[submodule "janus/vim-airline"]
+	path = janus/vim-airline
+	url = https://github.com/vim-airline/vim-airline
