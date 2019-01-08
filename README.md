@@ -10,53 +10,98 @@ Installation
 1. Launch Zsh:
 'zsh
 
-2. Clone the repository:
-'git clone --recursive https://github.com/sitaramp/dotfiles
+1. Install the  required packages and dependencies
+ - fzf
+ - enhancd
+ - colorls
+ - tldr
+ - thefuck
+ - cht.sh
+ - zsh prezto
+ - vim janus
+ - ripgrep
+2. Clone the repository to you home directory:
+
+`git clone --recursive https://github.com/sitaramp/dotfiles-local ~/dotfiles-local
 
 3. Create a new Zsh configuration
 
 4. Set Zsh as you default shell:
-'chsh - /bin/zsh
-
+```
+chsh - /bin/zsh
+```
 5. Open a new Zsh terminal window or tab
 
-6. Make symlink to files from $HOME directory or source from correspodning files in $HOME
+6. Follow more customization below
 
 Updating:
-'''
+
+```
 cd $DOTFILES_DIR
 git pull
 git submodule update --init --recursive
-
+```
 
 
 ZSH
 =====
-1. Install prezto
+1. Ensure zprezto is installed
 
 2. Edit ~/.zshrc to:
-  - source ~/.zpretzo/runcoms/zshrc
-  - source ~/dotfiles/zshrc.local
-  - source ~/dotfiles/aliases.local
 
-3. Edit ~/.zpretzorc to enable modules:
-  'syntax-highlighting'
-  'autosuggestions'
-  'git'
-  'fasd'
-  'prompt'
+```
+  source ~/.zpretzo/runcoms/zshrc
+  source ~/dotfiles-local/zshrc.local
+  source ~/dotfiles-local/aliases.local
+```
 
- 4 Set the prompt theme to load.
-  Auto set to 'off' on dumb terminals.
-+zstyle ':prezto:module:prompt' theme 'powerlevel9k'
+3. Edit `~/.zpretzorc` :
+
+  - Enable modules:
+```
+'syntax-highlighting'
+'autosuggestions'
+'git'
+'fasd'
+'prompt'
+```
+  - Choose prompt theme to load:
+
+```
+   +zstyle ':prezto:module:prompt' theme 'powerlevel9k'
+```
+4. Some keyboard shortcuts to know:
+```
+Ctrl + R : reverse command history chooser
+Ctrl + T : fuzy directory chooser
+cd -     : directory matches down the current directory hirarchy
+cd ..    : directory matches up the current directory hirarchy
+```
 
 TMUX
 ====
-1. Install TPM
- a) mkdir -p ~/.tmux/plugins/tpm
- b) git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
- c) prefix + I to fetch the plugins
- c) prefix + U to update the plugins
+Prefixc is set to "`" backquote
+1. Install TPM :
+```
+  mkdir -p ~/.tmux/plugins
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```  
+2. Create symlink to tmux.conf
+```
+ln -s ~/dotfiles-local/tmux.conf ~/.tmux.conf 
+```
+3. Load tmux do the following:
+ - prefix + I to fetch the plugins
+ - prefix + U to update the plugins
+
+Some shortcuts to know:
+```
+` - prefix key
+`prefix + c`      : crete window 
+`prefix + #`      : switch to numbered window 
+`prefix + Escape` : switch to vi mode
+'prefix + d'      : disconnect the session without lossing session 
+```
 
 VIM
 ===
@@ -69,8 +114,8 @@ VIM
 
 `git submodule add https://github.com/login-name/repo.vim repo.vim`
 
-The <leader> key is set to <Space>, it can be changed in file 'vimrvc.before'.
-Some handy shortcut to know:
+The \<leader> key is set to \<Space>, it can be changed in file 'vimrvc.before'.
+Some handy keyboard shortcut to know:
 ```
  <F-4>       Toggle paste mode
  <C-e>       toggle buffer
@@ -95,7 +140,7 @@ Some handy shortcut to know:
 
 GIT
 ===
-1. Add  ~/.gitconfig.user
-2. ln -s  ~/dotfiles-local/gitconfig ~/.gitconfig
-3. ln -s ~/dotfiles-local/gitignore ~/.gitignore
+1. Create  ~/.gitconfig.user to store personal inforation like Name and Email
+2. ``` ln -s  ~/dotfiles-local/gitconfig ~/.gitconfig```
+3. ``` ln -s ~/dotfiles-local/gitignore ~/.gitignore```
 
