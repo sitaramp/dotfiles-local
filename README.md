@@ -35,9 +35,9 @@ ZSH
 1. Install prezto
 
 2. Edit ~/.zshrc to:
-  a) source ~/.zpretzo/runcoms/zshrc
-	b) source ~/dotfiles/zsh/zshrc.local
-	c) source ~/dotfiles/zsh/aliases.local
+  - source ~/.zpretzo/runcoms/zshrc
+  - source ~/dotfiles/zshrc.local
+  - source ~/dotfiles/aliases.local
 
 3. Edit ~/.zpretzorc to enable modules:
   'syntax-highlighting'
@@ -49,13 +49,14 @@ ZSH
  4 Set the prompt theme to load.
   Auto set to 'off' on dumb terminals.
 +zstyle ':prezto:module:prompt' theme 'powerlevel9k'
- 
+
 TMUX
 ====
 1. Install TPM
  a) mkdir -p ~/.tmux/plugins/tpm
  b) git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
  c) prefix + I to fetch the plugins
+ c) prefix + U to update the plugins
 
 VIM
 ===
@@ -63,17 +64,17 @@ VIM
 2. Comments out unused modules in vimrc.before
 3. Edit ~/dotfiles-local/vim.after
 4. Create symlink ~/.janus to ~/dotfiles-local/janus
-5. Install modules not covered by Janus under ~/.janus or
+5. Install modules not covered by Janus to ~/.janus or
 /dotfiles-local/janus using command:
 
 `git submodule add https://github.com/login-name/repo.vim repo.vim`
 
+The <leader> key is set to <Space>, it can be changed in file 'vimrvc.before'.
 Some handy shortcut to know:
 ```
  <F-4>       Toggle paste mode
  <C-e>       toggle buffer
  <C-w>       close all buffers
- <F4>        toggle paste mode
  <leader>hs  toggle highlight seach
  <leader>k   grep current directgory
  <leader>n   toggle NERDTree

@@ -99,6 +99,7 @@ set number
 nmap <leader>n0 :set relativenumber!<CR>
 nmap <leader>nn :set number!<CR>
 set ruler
+set scrolloff=2
 
 " windows movement
 " Quicker window movement
@@ -124,8 +125,8 @@ if &term =~ "xterm"
 endif
 
 set background=dark
-"colorscheme molokai
-colorscheme default
+colorscheme molokai
+"colorscheme default
 syntax on
 
 "set cursorline
@@ -203,4 +204,13 @@ if janus#is_plugin_enabled('ale')
   let g:ale_lint_on_enter = 0
   " enable status line
   let g:airline#extensions#ale#enabled = 1
+endif
+
+if &diff
+"  set cursorline
+"  map ] ]c
+"  map [ [c
+"  hi DiffChange ctermbg=white                                  guibg=#ececec gui=none cterm=none
+"  hi DiffText   ctermfg=233   ctermbg=yellow     guifg=#000033 guibg=#DDDDFF gui=none cterm=none
+"  hi DiffAdd    ctermfg=233   ctermbg=LightGreen guifg=#003300 guibg=#DDFFDD gui=none cterm=none
 endif
