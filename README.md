@@ -70,6 +70,7 @@ VIM
 
 Some handy shortcut to know:
 ```
+ <F-4>       Toggle paste mode
  <C-e>       toggle buffer
  <C-w>       close all buffers
  <F4>        toggle paste mode
@@ -86,7 +87,9 @@ Some handy shortcut to know:
  do          vimdiff diff obtain
  dp          vimdiff diff put
  <leader>gb  gitblame
- <leader>gd gitdiff
+ <leader>gd  gitdiff
+ [on ]on     on/off number
+ [or ]or     on/off relativenumber
 ```
 
 GIT

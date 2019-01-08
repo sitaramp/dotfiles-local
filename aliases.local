@@ -1,0 +1,76 @@
+# Productivity
+alias todo='$EDITOR ~/.todo'
+alias vi=vim
+
+alias df='df -h'
+#alias du='du -sh -d 2'
+alias du='du -h --max-depth=1 "$@" | sort -n -r'
+
+# show me files matching "ls grep"
+unalias ls
+function ls() { /bin/ls --color=auto "$@"; }
+unalias ll
+function ll()  { /bin/ls -alhrt --color=auto -F "$@"; }
+function ls1()  { /bin/ls -alhrt --color=auto | grep -i "$1" | grep -v grep; }
+function llt() { /bin/ls -alhrt --color=auto -F "$@"; }
+function llS() { /bin/ls -alhrS --color=auto -F "$@"; }
+
+# colorls
+source $(dirname $(gem which colorls))/tab_complete.sh
+alias lc='colorls -lA --sd'
+alias lct='colorls -lAtr'
+alias lcs='colorls -lASr'
+# A quick grep-for-processes.
+ps1() { ps auxww | grep -i $1 | grep -v grep; }
+
+# Zippin
+function gz() { tar -zcvf "$@"; }
+function rm() { /bin/rm -vi "$@"; }
+function cp() { /bin/cp -i "$@"; }
+function mv() { /bin/mv -vi "$@" ; }
+function cls() { clear; /bin/ls; /bin/pwd; }
+function grep() { /bin/grep -d skip --color "$@"; }
+function grepp() { /bin/grep -P --color "$@"; }
+function atmux() { tmux new-session -A -s "$USERNAME"; }
+
+# check if command exists
+_has() {
+  return $( whence $1 > /dev/null 2>&1 )
+}
+
+# prefer ripgrep over ack and ag
+if _has rg; then
+  alias ag=rg
+  alias ack=rg
+  alias rg='rg --colors path:fg:green --colors match:fg:red'
+  export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+elif _has ag; then
+  alias ack=ag
+  alias ag='ag --color-path 1\;31 --color-match 1\;32 --color'
+elif _has ack; then
+  if ! _color; then
+    alias ack='ack --nocolor'
+  fi
+fi
+
+
+# then edit all of the files containng the pattern
+if _has rg; then
+  vack() {
+    vim `rg --color=never -l $@`
+  }
+elif _has ag; then
+  vack() {
+    vim `ag --nocolor -l $@`
+  }
+else
+  vack() {
+    vim `ack -l $@`
+  }
+fi
+
+# A quick grep for one process
+psl() {
+    ps auxww | grep -i $1 | grep -v grep
+}
+

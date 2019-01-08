@@ -39,6 +39,7 @@
 [rerere]
   enabled = true
 [alias]
+  aa = add --all
   am = commit --amend --no-edit
   ama = commit --amend --no-edit -a
   b = branch
