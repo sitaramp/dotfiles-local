@@ -83,10 +83,10 @@ Prefixc is set to "`" backquote
 ```
   mkdir -p ~/.tmux/plugins
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-```  
+```
 2. Create symlink to tmux.conf
 ```
-ln -s ~/dotfiles-local/tmux.conf ~/.tmux.conf 
+ln -s ~/dotfiles-local/tmux.conf ~/.tmux.conf
 ```
 3. Load tmux do the following:
  - prefix + I to fetch the plugins
@@ -95,10 +95,10 @@ ln -s ~/dotfiles-local/tmux.conf ~/.tmux.conf
 Some shortcuts to know:
 ```
 ` - prefix key
-`prefix + c`      : crete window 
-`prefix + #`      : switch to numbered window 
+`prefix + c`      : crete window
+`prefix + #`      : switch to numbered window
 `prefix + Escape` : switch to vi mode
-'prefix + d'      : disconnect the session without lossing session 
+'prefix + d'      : disconnect the session without lossing session
 ```
 
 ### VIM
@@ -129,11 +129,13 @@ Some handy keyboard shortcut to know:
  <leader>k        grep current directgory
  <leader>n        toggle NERDTree
  <leader>cd       change path to active buffer file
+ <leader>cc       comment out line or visual selection block
+ <leader>cu       comment out line
  
- [b ]b       prev and next buffer
- [g ]g       prev and next git change hulk
- [q ]q       prev and next quick window
- [w ]w       prev and next ALE errors
+ [b and ]b       prev and next buffer
+ [g and ]g       prev and next git change hulk
+ [q and ]q       prev and next quick window
+ [w and ]w       prev and next ALE errors
  :SudoWrite   write buffer
  
  [c ]c       vimdiff prev and next conflict in change
@@ -142,13 +144,40 @@ Some handy keyboard shortcut to know:
  
  <leader>gb  gitblame
  <leader>gd  gitdiff
- [on ]on     on/off number
- [or ]or     on/off relativenumber
+ [on and ]on     on/off number
+ [or and ]or     on/off relativenumber
+ :CLEAN      cleanup trailing white spaces
 ```
 
 ### GIT
 
 1. Create  ~/.gitconfig.user to store personal inforation like Name and Email
-2. ``` ln -s  ~/dotfiles-local/gitconfig ~/.gitconfig```
-3. ``` ln -s ~/dotfiles-local/gitignore ~/.gitignore```
+```
+[user]
+    email = someuser@example.com
+    name = someusername lastname
+```
+2. Create symlinks and configure other settings
 
+```
+ ln -s  ~/dotfiles-local/gitconfig ~/.gitconfig
+ ln -s ~/dotfiles-local/gitignore ~/.gitignore
+```
+If you get merge conflict during pull or rebase:
+```
+git mergetool
+```
+Use the following vim commands to merge or edit conflicts:
+```
+:diffg RE  # get from REMOTE
+:diffg BA  # get from BASE
+:diffg LO  # get from LOCAL
+:wqa       # qrite and close all the splits
+```
+Then forward-port local commit to the update upstream HEAD:
+```
+git commit -add/rm <conflicted-files>
+git rebase --continue
+```
+For more information on how to configure settings see:
+ https://www.git-scm.com/book/en/v2/Customizing-Git-Git-Configuration

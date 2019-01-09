@@ -1,5 +1,11 @@
 [include]
   path = ~/.gitconfig.user
+[commit]
+  template = ~/.gitmessage
+[fetch]
+  prune = true
+[rebase]
+  autosquash = true
 [hub]
   protocol = https
 [pretty]
@@ -9,8 +15,8 @@
 [core]
   editor = vim
   pager = less -FRX
+  autocrlf = input
   excludesfile = ~/.gitignore
-  autocrlf = false
 [gist]
   private = yes
 [branch "master"]
@@ -25,30 +31,33 @@
   keepBackup = false
 [diff]
   tool = vimdiff
-  mnemonicprefix = true
+  colorMoved = zebra
   algorithm = patience
+  mnemonicprefix = true
 [mergetool]
   prompt = false
   keepBackup = false
 [merge]
-  summary = true
-  verbosity = 1
   tool = vimdiff
+  summary = true
+  ff = only
+  verbosity = 1
+  conflictstyle = diff3
 [pull]
   default = simple
 [rerere]
   enabled = true
 [alias]
   aa = add --all
-  am = commit --amend --no-edit
-  ama = commit --amend --no-edit -a
+  ap = add --patch
+  branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
+  ci = commit -v
+  co = checkout
+  pf = push --force-with-lease
+  st = status
+  cia = commit --amend
   b = branch
   bnew = checkout -b
-  ci = commit
-  cia = commit --amend
-  cim = commit -m
-  civ = commit -v
-  co = checkout
   cp = cherry-pick
   config-to-push-all-branches = config --add remote.origin.push '+refs/heads/*:refs/heads/*'
   config-to-push-all-tags = config --add remote.origin.push '+refs/tags/*:refs/tags/*'
@@ -56,7 +65,6 @@
   dc = diff --cached
   diffc = diff --cached
   forkup = pull --rebase upstream
-  h = stash
   hs = stash save
   last = log -1
   latest = for-each-ref --sort=committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)'
@@ -67,7 +75,6 @@
   rb = rebase
   rl = reflog
   rewind-one = reset --hard HEAD^
-  st = status
   sta = stash
   svnci = svn dcommit
   svnprep = rebase -i git-svn
@@ -84,10 +91,10 @@
   branch = auto
   ui = true
 [color "diff"]
-  meta = yellow bold
-  frag = magenta bold
   old = red
   new = green
+  meta = yellow bold
+  frag = magenta bold
 [color "status"]
   added = green
   changed = yellow

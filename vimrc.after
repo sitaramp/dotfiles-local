@@ -1,7 +1,13 @@
-" single key acess to Buffers
-nmap <C-e> :e#<CR>
+" Mnemonic
+" b - buffer; p = project; s = search; h = help
+"
+"
+" Switch between the last two files
+nnoremap <Leader><Leader> <C-^>
+"nmap <C-e> :e#<CR>
 "nmap [b   :bprev<CR>
 "nmap ]b   :bnext<CR>
+" single key acess to Buffers
 nmap \0 :buffers<CR>
 nmap \1 :e #1<CR>
 nmap \2 :e #2<CR>
@@ -88,7 +94,7 @@ set mouse=nv
 set clipboard=unamedplus
 " Use Shift + Drag shift + Right Click to copy paste
 " Use Shift + Cntrl + v to insert
-" To enable Rgiht to paster disable mousr
+" To enable Right to paste disable mouse
 " set mouse-=a
 
 " Numbers
@@ -112,6 +118,7 @@ nnoremap <C-l> <C-w>l
 if &term =~ "xterm"
   " 256 colors
   let &t_Co = 256
+  set termguicolors
   " restore screen after quitting
   let &t_ti = "\<Esc>7\<Esc>[r\<Esc>[?47h"
   let &t_te = "\<Esc>[?47l\<Esc>8"
@@ -138,6 +145,20 @@ syntax on
 if executable('zsh')
   set shell=/usr/bin/zsh\ -l
 endif
+
+""NERDTree
+"Open NERDTree if no file is specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Open NERDTree if directory is specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" don't show these fil types
+let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
+
+"Close vim if NERDTree is the last pane
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " fugitive
 nmap <leader>gs :Gstatus<CR>
@@ -207,10 +228,16 @@ if janus#is_plugin_enabled('ale')
 endif
 
 if &diff
-"  set cursorline
-"  map ] ]c
-"  map [ [c
+  set cursorline
+  map <leader>1 :diffget LOCAL<CR>
+  map <leader>2 :diffget BASE<CR>
+  map <leader>3 :diffget REMOTE<CR>
 "  hi DiffChange ctermbg=white                                  guibg=#ececec gui=none cterm=none
 "  hi DiffText   ctermfg=233   ctermbg=yellow     guifg=#000033 guibg=#DDDDFF gui=none cterm=none
 "  hi DiffAdd    ctermfg=233   ctermbg=LightGreen guifg=#003300 guibg=#DDFFDD gui=none cterm=none
 endif
+
+" Local config
+"if filereadable($HOME . "/.vimrc.project")
+  "source ~/.vimrc.project
+"endif

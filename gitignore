@@ -35,7 +35,6 @@ node_modules
 *_flymake.*
 *~
 .#*
-.DS_Store
 .docker/daemon.json
 .gvimlocal
 .postinstall
@@ -44,3 +43,19 @@ node_modules
 .vim/janus/vim/*/doc/tags
 .vim/janus/vim/*/doc/tags-??
 .vimlocal
+
+!tags/
+.bundle
+.byebug_history
+.env
+.git/
+/log
+/node_modules/
+/tmp
+/vendor
+db/*.sqlite3
+log/*.log
+rerun.txt
+tags
+tmp/**/*
+
