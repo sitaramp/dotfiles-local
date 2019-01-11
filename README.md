@@ -108,25 +108,27 @@ Some shortcuts to know:
 3. Edit ~/dotfiles-local/vim.after
 4. Create symlink ~/.janus to ~/dotfiles-local/janus
 5. Install modules not covered by Janus to ~/.janus or
-/dotfiles-local/janus using command:
-
-`git submodule add https://github.com/login-name/repo.vim repo.vim`
-
+```
+cd ~/dotfiles-local/janus
+git submodule add https://github.com/login-name/repo.vim repo.vim
+```
 The \<leader> key is set to \<Space>, it can be changed in file 'vimrvc.before'.
 Some handy keyboard shortcut to know:
 ```
  <F-4>       Toggle paste mode
  <C-e>       toggle buffer
  <C-w>       close all buffers
+
  <C-]>       Tag function definition
  :tn         nextfunction definition
  <C-t>       pop back from tag
  <C-n>       word compltion
  
- <leader>hs  toggle highlight seach
- <leader>k   grep current directgory
- <leader>n   toggle NERDTree
- <leader>cd  change path to active buffer file
+ <leader><leader> toggle buffer
+ <leader>hs       toggle highlight seach
+ <leader>k        grep current directgory
+ <leader>n        toggle NERDTree
+ <leader>cd       change path to active buffer file
  
  [b ]b       prev and next buffer
  [g ]g       prev and next git change hulk
