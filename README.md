@@ -1,16 +1,15 @@
-Intro
+### Intro
 
 Quick terminal setup to get started.
 Use off the self components and keep tweaks to minimum to reduce maintenance.
 These files are modeled after https://github.com/statico/dotfiles
 
-Installation
-============
+### Installation
 
 1. Launch Zsh:
 'zsh
 
-1. Install the  required packages and dependencies
+2. Install the  required packages and dependencies
  - fzf
  - enhancd
  - colorls
@@ -20,21 +19,21 @@ Installation
  - zsh prezto
  - vim janus
  - ripgrep
-2. Clone the repository to you home directory:
+3. Clone the repository to you home directory:
 
 `git clone --recursive https://github.com/sitaramp/dotfiles-local ~/dotfiles-local
 
-3. Create a new Zsh configuration
+4. Create a new Zsh configuration
 
-4. Set Zsh as you default shell:
+5. Set Zsh as you default shell:
 ```
 chsh - /bin/zsh
 ```
-5. Open a new Zsh terminal window or tab
+6. Open a new Zsh terminal window or tab
 
-6. Follow more customization below
+7. Follow more customization below
 
-Updating:
+### Updating:
 
 ```
 cd $DOTFILES_DIR
@@ -42,9 +41,8 @@ git pull
 git submodule update --init --recursive
 ```
 
+### ZSH
 
-ZSH
-=====
 1. Ensure zprezto is installed
 
 2. Edit ~/.zshrc to:
@@ -78,8 +76,8 @@ cd -     : directory matches down the current directory hirarchy
 cd ..    : directory matches up the current directory hirarchy
 ```
 
-TMUX
-====
+### TMUX
+
 Prefixc is set to "`" backquote
 1. Install TPM :
 ```
@@ -103,8 +101,8 @@ Some shortcuts to know:
 'prefix + d'      : disconnect the session without lossing session 
 ```
 
-VIM
-===
+### VIM
+
 1. Install Janus
 2. Comments out unused modules in vimrc.before
 3. Edit ~/dotfiles-local/vim.after
@@ -120,26 +118,34 @@ Some handy keyboard shortcut to know:
  <F-4>       Toggle paste mode
  <C-e>       toggle buffer
  <C-w>       close all buffers
+ <C-]>       Tag function definition
+ :tn         nextfunction definition
+ <C-t>       pop back from tag
+ <C-n>       word compltion
+ 
  <leader>hs  toggle highlight seach
  <leader>k   grep current directgory
  <leader>n   toggle NERDTree
  <leader>cd  change path to active buffer file
+ 
  [b ]b       prev and next buffer
  [g ]g       prev and next git change hulk
  [q ]q       prev and next quick window
  [w ]w       prev and next ALE errors
  :SudoWrite   write buffer
+ 
  [c ]c       vimdiff prev and next conflict in change
  do          vimdiff diff obtain
  dp          vimdiff diff put
+ 
  <leader>gb  gitblame
  <leader>gd  gitdiff
  [on ]on     on/off number
  [or ]or     on/off relativenumber
 ```
 
-GIT
-===
+### GIT
+
 1. Create  ~/.gitconfig.user to store personal inforation like Name and Email
 2. ``` ln -s  ~/dotfiles-local/gitconfig ~/.gitconfig```
 3. ``` ln -s ~/dotfiles-local/gitignore ~/.gitignore```
