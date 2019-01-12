@@ -1,8 +1,8 @@
-### Intro
+### Introduction
 
 Quick terminal setup to get started.
-Use off the self components and keep tweaks to minimum to reduce maintenance.
-These files are modeled after https://github.com/statico/dotfiles
+Use off-the-shelve components and keep local changes to a minimum thus reducing maintenance.
+These files are modeled after https://github.com/statico/dotfiles and thoughbot.
 
 ### Installation
 
@@ -25,7 +25,7 @@ These files are modeled after https://github.com/statico/dotfiles
 
 4. Create a new Zsh configuration
 
-5. Set Zsh as you default shell:
+5. Set Zsh as your default shell:
 ```
 chsh - /bin/zsh
 ```
@@ -63,7 +63,7 @@ git submodule update --init --recursive
 'fasd'
 'prompt'
 ```
-  - Choose prompt theme to load:
+  - Choose a prompt theme to load:
 
 ```
    +zstyle ':prezto:module:prompt' theme 'powerlevel9k'
@@ -71,14 +71,14 @@ git submodule update --init --recursive
 4. Some keyboard shortcuts to know:
 ```
 Ctrl + R : reverse command history chooser
-Ctrl + T : fuzy directory chooser
-cd -     : directory matches down the current directory hirarchy
-cd ..    : directory matches up the current directory hirarchy
+Ctrl + T : fuzzy directory chooser
+cd -     : directory matches down the current directory hierarchy
+cd ..    : directory matches up the current directory hierarchy
 ```
 
 ### TMUX
 
-Prefixc is set to "`" backquote
+Prefix is set to "`" backquote
 1. Install TPM :
 ```
   mkdir -p ~/.tmux/plugins
@@ -100,6 +100,7 @@ Some shortcuts to know:
 `prefix + Escape` : switch to vi mode
 'prefix + d'      : disconnect the session without lossing session
 ```
+For more information see: https://learnxinyminutes.com/docs/tmux/
 
 ### VIM
 
@@ -131,27 +132,29 @@ Some handy keyboard shortcut to know:
  <leader>cd       change path to active buffer file
  <leader>cc       comment out line or visual selection block
  <leader>cu       comment out line
+ <leader>gb       gitblame
+ <leader>gd       gitdiff
  
  [b and ]b       prev and next buffer
  [g and ]g       prev and next git change hulk
  [q and ]q       prev and next quick window
  [w and ]w       prev and next ALE errors
- :SudoWrite   write buffer
+ [on and ]on     on/off the numbers
+ [or and ]or     on/off the relative numbers
  
- [c ]c       vimdiff prev and next conflict in change
+ 
+ [c and ]c   vimdiff prev and next conflict in change
  do          vimdiff diff obtain
  dp          vimdiff diff put
  
- <leader>gb  gitblame
- <leader>gd  gitdiff
- [on and ]on     on/off number
- [or and ]or     on/off relativenumber
  :CLEAN      cleanup trailing white spaces
+ :SudoWrite  write buffer
 ```
+For more information see: https://learnxinyminutes.com/docs/vim/
 
 ### GIT
 
-1. Create  ~/.gitconfig.user to store personal inforation like Name and Email
+1. Create  ~/.gitconfig.user to store personal information like Name and Email
 ```
 [user]
     email = someuser@example.com
@@ -172,12 +175,11 @@ Use the following vim commands to merge or edit conflicts:
 :diffg RE  # get from REMOTE
 :diffg BA  # get from BASE
 :diffg LO  # get from LOCAL
-:wqa       # qrite and close all the splits
+:wqa       # write and close all the splits
 ```
 Then forward-port local commit to the update upstream HEAD:
 ```
 git commit -add/rm <conflicted-files>
 git rebase --continue
 ```
-For more information on how to configure settings see:
- https://www.git-scm.com/book/en/v2/Customizing-Git-Git-Configuration
+For more information on how to configure settings see: https://learnxinyminutes.com/docs/git/
