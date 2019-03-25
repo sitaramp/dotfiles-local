@@ -7,7 +7,7 @@
 [rebase]
   autosquash = true
 [hub]
-  protocol = https
+  protocol = ssh
 [pretty]
   colored = format:%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset
 [format]

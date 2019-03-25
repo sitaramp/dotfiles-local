@@ -91,7 +91,7 @@ highlight ColorColumn ctermbg=darkgray
 
 " enable mouse in normal and visual mode. See help using-mouse
 set mouse=nv
-set clipboard=unamedplus
+"set clipboard=unamed
 " Use Shift + Drag shift + Right Click to copy paste
 " Use Shift + Cntrl + v to insert
 " To enable Right to paste disable mouse
@@ -132,8 +132,8 @@ if &term =~ "xterm"
 endif
 
 set background=dark
-colorscheme molokai
-"colorscheme default
+"colorscheme molokai
+colorscheme solarized
 syntax on
 
 "set cursorline
@@ -195,9 +195,15 @@ augroup VimDiff
     autocmd!
     autocmd VimEnter,FilterWritePre * if &diff | ALEDisable | endif
 augroup END
-" Set this. Airline will handle the rest.
+
+" Airline status line  settings
+set laststatus=2
+let g:airline_detect_paste=1
+let g:airline_theme='solarized'
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#ale#enabled = 1
-" Write this in your vimrc file
+
+" ALE settings
 let g:ale_lint_on_text_changed = 'never'
 " You can disable this option too
 " if you don't want linters to run on opening a file
@@ -223,8 +229,6 @@ if janus#is_plugin_enabled('ale')
   let g:ale_lint_on_text_changed = 'never'
   " don't want linters to run on opening a file
   let g:ale_lint_on_enter = 0
-  " enable status line
-  let g:airline#extensions#ale#enabled = 1
 endif
 
 if &diff
@@ -241,3 +245,34 @@ endif
 "if filereadable($HOME . "/.vimrc.project")
   "source ~/.vimrc.project
 "endif
+augroup vimbettersml
+  au!
+
+  " ----- Keybindings -----
+
+  au FileType sml nnoremap <silent> <buffer> <leader>t :SMLTypeQuery<CR>
+  au FileType sml nnoremap <silent> <buffer> gd :SMLJumpToDef<CR>
+
+  " open the REPL terminal buffer
+  au FileType sml nnoremap <silent> <buffer> <leader>is :SMLReplStart<CR>
+  " close the REPL (mnemonic: k -> kill)
+  au FileType sml nnoremap <silent> <buffer> <leader>ik :SMLReplStop<CR>
+  " build the project (using CM if possible)
+  au FileType sml nnoremap <silent> <buffer> <leader>ib :SMLReplBuild<CR>
+  " for opening a structure, not a file
+  au FileType sml nnoremap <silent> <buffer> <leader>io :SMLReplOpen<CR>
+  " use the current file into the REPL (even if using CM)
+  au FileType sml nnoremap <silent> <buffer> <leader>iu :SMLReplUse<CR>
+  " clear the REPL screen
+  au FileType sml nnoremap <silent> <buffer> <leader>ic :SMLReplClear<CR>
+  " set the print depth to 100
+  au FileType sml nnoremap <silent> <buffer> <leader>ip :SMLReplPrintDepth<CR>
+
+  " ----- Other settings -----
+
+  " Uncomment to try out conceal characters
+  "au FileType sml setlocal conceallevel=2
+
+  " Uncomment to try out same-width conceal characters
+  "let g:sml_greek_tyvar_show_tick = 1
+augroup END

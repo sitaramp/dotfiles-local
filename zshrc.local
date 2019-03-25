@@ -23,7 +23,7 @@ setopt auto_cd                  # if command os a path, cd into it.
 setopt chase_links              # resolve symlink
 setopt correct                  # try to correct spelling of commands
 
-export TZ='America/New_Yourk'   # data command output
+export TZ='America/New_York'    # data command output
 export GCC_COLORS=1
 
 print -Pn "\e]0; %n@%M: %~\a"   # terminal title
