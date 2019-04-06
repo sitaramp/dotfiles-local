@@ -52,12 +52,19 @@
   ap = add --patch
   branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
   ci = commit -v
+  cim = commit -m
+  civ = commit -v
+  cia = commit --amend
+  am = commit --amend --no-edit
+  ama = commit --amend --no-edit -a
   co = checkout
   pf = push --force-with-lease
   st = status
   cia = commit --amend
   b = branch
   bnew = checkout -b
+  ap = add --patch
+  branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
   cp = cherry-pick
   config-to-push-all-branches = config --add remote.origin.push '+refs/heads/*:refs/heads/*'
   config-to-push-all-tags = config --add remote.origin.push '+refs/tags/*:refs/tags/*'
@@ -103,3 +110,5 @@
   current = yellow reverse
   local = yellow
   remote = green
+[help]
+  autocorrect = 5
