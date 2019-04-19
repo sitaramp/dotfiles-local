@@ -11,7 +11,7 @@ unalias ls
 function ls() { /bin/ls --color=auto "$@"; }
 unalias ll
 function ll()  { /bin/ls -alhrt --color=auto -F "$@"; }
-function ls1()  { /bin/ls -alhrt --color=auto | grep -i "$1" | grep -v grep; }
+function ls1()  { /bin/ls -alhrt --color=auto | ack -i "$1" | ack -v ack; }
 function llt() { /bin/ls -alhrt --color=auto -F "$@"; }
 function llS() { /bin/ls -alhrS --color=auto -F "$@"; }
 
@@ -21,7 +21,7 @@ alias lc='colorls -lA --sd'
 alias lct='colorls -lAtr'
 alias lcs='colorls -lASr'
 # A quick grep-for-processes.
-ps1() { ps auxww | grep -i $1 | grep -v grep; }
+ps1() { ps auxww | ack -i $1 | ack -v ack; }
 
 # Zippin
 function gz() { tar -zcvf "$@"; }
@@ -29,8 +29,8 @@ function rm() { /bin/rm -vi "$@"; }
 function cp() { /bin/cp -i "$@"; }
 function mv() { /bin/mv -vi "$@" ; }
 function cls() { clear; /bin/ls; /bin/pwd; }
-function grep() { /bin/grep -d skip --color "$@"; }
-function grepp() { /bin/grep -P --color "$@"; }
+function grep() { /bin/ack -d skip --color "$@"; }
+function grepp() { /bin/ack -P --color "$@"; }
 function atmux() { tmux new-session -A -s "$USERNAME"; }
 
 # check if command exists
@@ -68,9 +68,4 @@ else
     vim `ack -l $@`
   }
 fi
-
-# A quick grep for one process
-psl() {
-    ps auxww | grep -i $1 | grep -v grep
-}
 
