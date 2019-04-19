@@ -16,10 +16,11 @@ function llt() { /bin/ls -alhrt --color=auto -F "$@"; }
 function llS() { /bin/ls -alhrS --color=auto -F "$@"; }
 
 # colorls
-source $(dirname $(gem which colorls))/tab_complete.sh
-alias lc='colorls -lA --sd'
-alias lct='colorls -lAtr'
-alias lcs='colorls -lASr'
+#source $(dirname $(gem which colorls))/tab_complete.sh
+#alias lc='colorls -lA --sd'
+#alias lct='colorls -lAtr'
+#alias lcs='colorls -lASr'
+
 # A quick grep-for-processes.
 ps1() { ps auxww | ack -i $1 | ack -v ack; }
 
