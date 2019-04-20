@@ -76,9 +76,6 @@ if [[ -f ~/.zprezto/modules/enhancd/init.sh ]]; then
   export ENHANCD_FILTER=fzy:fzf:peco
 fi
 
-## set env parameters
-export EDITOR=vim
-
 # python
 export PATH="$PATH:$HOME/.local/bin"
 if which pyenv &>/dev/null ; then
@@ -95,4 +92,3 @@ if [[ -s "$HOME/.aliases.local" ]]; then
    source "$HOME/.aliases.local"
 fi
 
-eval $(thefuck --alias ff)

@@ -58,6 +58,14 @@ nnoremap Y y$
 
 set noswapfile
 set autowrite
+set autoread
+augroup checktime
+  au!
+  if !has("gui_running")
+    "silent! is necessary,otherwise throws errors when using cmd
+    autocmd BufEnter,CursorHold,CursorHoldI * silent! checktime
+  endif
+augroup END
 
 "Always use vertical diffs
 set diffopt+=vertical
@@ -208,7 +216,7 @@ let g:ale_lint_on_text_changed = 'never'
 " You can disable this option too
 " if you don't want linters to run on opening a file
 let g:ale_lint_on_enter = 0
-" Disable ale
+" let g:ale_lint_on_text_changed = 'never'
 "let g:ale_lint_on_save = 0
 
 " SuperTab
@@ -216,6 +224,9 @@ let g:SuperTabLongestEnhanced = 1
 let g:SuperTabLongestHighlight = 1
 au Filetype typescript let b:SuperTabDefaultCompletionType = "<C-x><C-o>"
 
+" CtrlP
+"let g:ctrlp_map= '<C-p>'
+"let g:ctrlp_cmd = 'CtrlP'
 
 " symtastic
 if janus#is_plugin_enabled('syntastic')

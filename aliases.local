@@ -15,12 +15,6 @@ function ls1()  { /bin/ls -alhrt --color=auto | ack -i "$1" | ack -v ack; }
 function llt() { /bin/ls -alhrt --color=auto -F "$@"; }
 function llS() { /bin/ls -alhrS --color=auto -F "$@"; }
 
-# colorls
-#source $(dirname $(gem which colorls))/tab_complete.sh
-#alias lc='colorls -lA --sd'
-#alias lct='colorls -lAtr'
-#alias lcs='colorls -lASr'
-
 # A quick grep-for-processes.
 ps1() { ps auxww | ack -i $1 | ack -v ack; }
 
@@ -30,14 +24,22 @@ function rm() { /bin/rm -vi "$@"; }
 function cp() { /bin/cp -i "$@"; }
 function mv() { /bin/mv -vi "$@" ; }
 function cls() { clear; /bin/ls; /bin/pwd; }
-function grep() { /bin/ack -d skip --color "$@"; }
-function grepp() { /bin/ack -P --color "$@"; }
+function grep() { ack -d skip --color "$@"; }
+function grepp() { ack -P --color "$@"; }
 function atmux() { tmux new-session -A -s "$USERNAME"; }
 
 # check if command exists
 _has() {
   return $( whence $1 > /dev/null 2>&1 )
 }
+
+# colorls
+if _has colorls; then
+  source $(dirname $(gem which colorls))/tab_complete.sh
+  alias lc='colorls -lA --sd'
+  alias lct='colorls -lAtr'
+  alias lcs='colorls -lASr'
+fi
 
 # prefer ripgrep over ack and ag
 if _has rg; then
@@ -70,3 +72,6 @@ else
   }
 fi
 
+if _has thefuck; then
+  eval $(thefuck --alias ff)
+fi
