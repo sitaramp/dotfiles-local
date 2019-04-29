@@ -15,7 +15,7 @@ let mapleader = "\<Space>"
 set rtp+=~/.fzf
 
 " term supports 24bit truecolor sequences
-set termguicolors
+"set termguicolors
 
 "  Janus uses pathogen
 " To disable plugins

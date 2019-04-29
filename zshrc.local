@@ -51,11 +51,14 @@ export EDITOR=vim VISUAL=vim
 
 # Overridable locale support.
 if [ -z $$LC_ALL ]; then
-  export LC_ALL=C
+  export LC_ALL="en_US.UTF-8"
 fi
 if [ -z $LANG ]; then
   export LANG=en_US
 fi
+export LC_COLLATE=C
+# Speedup ls
+#LS_COLORS='ex=00:su=00:sg=00:ca=00:'
 
 # makes color constants available
 autoload -U colors
@@ -67,28 +70,20 @@ export CLICOLOR=1
 #prompt
 export POWERLEVEL9K_MODE='nerdfont-complete'
 
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # enchancd
 if [[ -f ~/.zprezto/modules/enhancd/init.sh ]]; then
   source ~/.zprezto/modules/enhancd/init.sh
   export ENHANCD_FILTER=fzy:fzf:peco
 fi
 
-# python
-export PATH="$PATH:$HOME/.local/bin"
-if which pyenv &>/dev/null ; then
-   eval "$(pyenv init -)"
-fi
+## set env parameters
+export EDITOR=vim
 
-# rubyrvm
-if [[ -d "$HOME/.rbenv" ]]; then
-    export PATH="$HOME/.rbenv/bin:$PATH"
-    eval "$(rbenv init -)"
-fi
+#eval $(thefuck --alias ff)
 
-if [[ -s "$HOME/.aliases.local" ]]; then
-   source "$HOME/.aliases.local"
+if [[ ! "$PATH" == */$HOME/.local/bin* ]]; then
+  export PATH="${PATH:+${PATH}:}$HOME/.local/bin"
 fi
-
+if [[ ! "$PATH" == */sbin* ]]; then
+  export PATH="${PATH:+${PATH}:}/usr/local/sbin:/sbin:/usr/sbin"
+fi

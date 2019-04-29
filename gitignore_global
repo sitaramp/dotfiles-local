@@ -27,6 +27,8 @@ Thumbs.db
 *.un~
 Session.vim
 .netrwhist
+*~
+*.swp
 
 # yarn errors
 yarn-error.log
@@ -58,4 +60,107 @@ log/*.log
 rerun.txt
 tags
 tmp/**/*
+
+# git ls-files --others --exclude-from=.git/info/exclude
+# Lines that start with '#' are comments.
+# For a project mostly in C, the following would be a good set of
+# exclude patterns (uncomment them if you want to use them):
+# *.[oa]
+# *~
+cscope.files
+cscope.in.out
+cscope.out
+cscope.po.out
+etags
+pytags
+tags
+TAGS
+tmp
+.gitignore
+
+# Packaged Files and Binaries #
+###############################
+*.a
+*.jar
+*.war
+*.ear
+*.bin
+*.exe
+*.dll
+*.EXE
+*.lib
+*.tar
+*.tar.gz
+*.tar.bz2
+*.tgz
+*.zip
+*.deb
+*.rpm
+*.msi
+*.so
+*.so.*
+*.FDF
+*.fdf
+*.fw
+*.db
+*.src
+
+ 
+# Log Files and Crash Dumps #
+#############################
+*.log
+hs_err_pid*
+ 
+# IDE Explicit Files #
+######################
+.idea
+*.iml
+.settings
+.classpath
+.project
+*.vcproj
+.directory
+nb-configuration.xml
+nbactions.xml
+ 
+# Specific Maven Content #
+##########################
+target/
+ 
+# Java #
+########
+*.class
+ 
+# Build Packagaing #
+####################
+packer_cache
+packer-vmware-iso
+ 
+# General Content #
+###################
+Thumbs.db
+desktop.ini
+.DS_Store
+.DS_Store?
+ 
+# Static Files
+################
+*.ico
+*.jpg
+*.png
+*.PNG
+*.ttf
+*.gif
+*.swf
+*.svg
+*.doc
+*.docx
+*.ppt
+*.pptx
+*.pdf
+*.pdb
+*.rtf
+*.vsd
+*.xls
+*.xlsm
 

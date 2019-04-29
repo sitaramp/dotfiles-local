@@ -1,7 +1,3 @@
-[include]
-  path = ~/.gitconfig.user
-[commit]
-  template = ~/.gitmessage
 [fetch]
   prune = true
 [rebase]

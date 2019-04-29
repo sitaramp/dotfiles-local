@@ -154,6 +154,18 @@ if executable('zsh')
   set shell=/usr/bin/zsh\ -l
 endif
 
+if has("cscope")
+  "use both cscope and tag
+  set cscopetag
+  " add any local cscope db
+  if filereadable("cscope.out")
+    cs add cscope.out
+  " else all the db pointed by the env variable
+  elseif $CSCOPE_DB != ""
+    cs add $CSCOPE_DB $PRODUCT_ROOT
+  endif
+endif
+
 ""NERDTree
 "Open NERDTree if no file is specified
 autocmd StdinReadPre * let s:std_in=1
