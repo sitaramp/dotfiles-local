@@ -11,12 +11,12 @@ unalias ls
 function ls() { /bin/ls --color=auto "$@"; }
 unalias ll
 function ll()  { /bin/ls -alhrt --color=auto -F "$@"; }
-function ls1()  { /bin/ls -alhrt --color=auto | ack -i "$1" | ack -v ack; }
+function ls1()  { /bin/ls -alhrt --color=auto | /usr/bin/ack -i "$1" | /usr/bin/ack -v ack; }
 function llt() { /bin/ls -alhrt --color=auto -F "$@"; }
 function llS() { /bin/ls -alhrS --color=auto -F "$@"; }
 
 # A quick grep-for-processes.
-ps1() { ps auxww | ack -i $1 | ack -v ack; }
+ps1() { ps auxww | /usr/bin/ack -i $1 | /usr/bin/ack -v ack; }
 
 # Zippin
 function gz() { tar -zcvf "$@"; }
@@ -24,8 +24,9 @@ function rm() { /bin/rm -vi "$@"; }
 function cp() { /bin/cp -i "$@"; }
 function mv() { /bin/mv -vi "$@" ; }
 function cls() { clear; /bin/ls; /bin/pwd; }
-function grep() { ack -d skip --color "$@"; }
-function grepp() { ack -P --color "$@"; }
+unalias grep
+function grep() { /usr/bin/ack -d skip --color "$@"; }
+function grepp() { /usr/bin/ack -P --color "$@"; }
 function atmux() { tmux new-session -A -s "$USERNAME"; }
 
 # check if command exists
@@ -44,11 +45,9 @@ fi
 # prefer ripgrep over ack and ag
 if _has rg; then
   alias ag=rg
-  alias ack=rg
   alias rg='rg --colors path:fg:green --colors match:fg:red'
   export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 elif _has ag; then
-  alias ack=ag
   alias ag='ag --color-path 1\;31 --color-match 1\;32 --color'
 elif _has ack; then
   if ! _color; then
