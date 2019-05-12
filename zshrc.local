@@ -87,3 +87,9 @@ fi
 if [[ ! "$PATH" == */sbin* ]]; then
   export PATH="${PATH:+${PATH}:}/usr/local/sbin:/sbin:/usr/sbin"
 fi
+
+#prompt
+autoload -Uz promptinit
+promptinit
+prompt sorin
+

@@ -162,7 +162,7 @@ if has("cscope")
     cs add cscope.out
   " else all the db pointed by the env variable
   elseif $CSCOPE_DB != ""
-    cs add $CSCOPE_DB $PRODUCT_ROOT
+    cs add $CSCOPE_DB $CALAVERAS_ROOT
   endif
 endif
 
