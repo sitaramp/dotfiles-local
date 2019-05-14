@@ -1,3 +1,4 @@
+"
 " Mnemonic
 " b - buffer; p = project; s = search; h = help
 "
@@ -56,6 +57,11 @@ nmap     k gk
 nnoremap ' `
 nnoremap Y y$
 
+" The * is the default clipboard + is the selection clipboard
+" paste plus clipboard using using "+p
+"set clipboard=unamed
+set clipboard^=unnamed,unnamedplus
+
 set noswapfile
 set autowrite
 set autoread
@@ -67,8 +73,6 @@ augroup checktime
   endif
 augroup END
 
-"Always use vertical diffs
-set diffopt+=vertical
 
 " Emacs-like bindings in insert mode
 imap <C-e> <C-o>$
@@ -92,6 +96,7 @@ command! CLEAN retab | TEOL
 "highlight Folded  guibg=#0A0A0A guifg=#9090D0
 set colorcolumn=80
 highlight ColorColumn ctermbg=darkgray
+
 "match ExtraWhitespace /\s\+\%#\@<!$/
 "highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
 "highlight WhiteSpaceEOL ctermbg=white guibg=white
@@ -99,7 +104,7 @@ highlight ColorColumn ctermbg=darkgray
 
 " enable mouse in normal and visual mode. See help using-mouse
 set mouse=nv
-"set clipboard=unamed
+
 " Use Shift + Drag shift + Right Click to copy paste
 " Use Shift + Cntrl + v to insert
 " To enable Right to paste disable mouse
@@ -123,11 +128,23 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 "Colors
+" The cterm color numbers refer to XTerm colors in 256 color mode.
+" Map rgb to cterm colors using <URL:https://gist.github.com/719710>.
+" xterm 256 sent using ANSI escape sequence via terminfo file
+" guicolor  ---map---> hi-color i.e. 256-color terminal
+"    use CSApprox or colorsupport.vim
+" Double check color-scheme support hi-color terminal not 16 colors
+"
 if &term =~ "xterm"
   " 256 colors
   let &t_Co = 256
   set termguicolors
-  " restore screen after quitting
+  set termguicolors
+  " true color (i.e. 24bit RGB) escape codes
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+  "restore screen after quitting
   let &t_ti = "\<Esc>7\<Esc>[r\<Esc>[?47h"
   let &t_te = "\<Esc>[?47l\<Esc>8"
   if has("terminfo")
@@ -137,6 +154,7 @@ if &term =~ "xterm"
     let &t_Sf = "\<Esc>[3%dm"
     let &t_Sb = "\<Esc>[4%dm"
   endif
+
 endif
 
 set background=dark
@@ -254,6 +272,8 @@ if janus#is_plugin_enabled('ale')
   let g:ale_lint_on_enter = 0
 endif
 
+"Always use vertical diffs
+set diffopt+=vertical
 if &diff
   set cursorline
   map <leader>1 :diffget LOCAL<CR>
@@ -268,34 +288,6 @@ endif
 "if filereadable($HOME . "/.vimrc.project")
   "source ~/.vimrc.project
 "endif
-augroup vimbettersml
-  au!
+"
 
-  " ----- Keybindings -----
 
-  au FileType sml nnoremap <silent> <buffer> <leader>t :SMLTypeQuery<CR>
-  au FileType sml nnoremap <silent> <buffer> gd :SMLJumpToDef<CR>
-
-  " open the REPL terminal buffer
-  au FileType sml nnoremap <silent> <buffer> <leader>is :SMLReplStart<CR>
-  " close the REPL (mnemonic: k -> kill)
-  au FileType sml nnoremap <silent> <buffer> <leader>ik :SMLReplStop<CR>
-  " build the project (using CM if possible)
-  au FileType sml nnoremap <silent> <buffer> <leader>ib :SMLReplBuild<CR>
-  " for opening a structure, not a file
-  au FileType sml nnoremap <silent> <buffer> <leader>io :SMLReplOpen<CR>
-  " use the current file into the REPL (even if using CM)
-  au FileType sml nnoremap <silent> <buffer> <leader>iu :SMLReplUse<CR>
-  " clear the REPL screen
-  au FileType sml nnoremap <silent> <buffer> <leader>ic :SMLReplClear<CR>
-  " set the print depth to 100
-  au FileType sml nnoremap <silent> <buffer> <leader>ip :SMLReplPrintDepth<CR>
-
-  " ----- Other settings -----
-
-  " Uncomment to try out conceal characters
-  "au FileType sml setlocal conceallevel=2
-
-  " Uncomment to try out same-width conceal characters
-  "let g:sml_greek_tyvar_show_tick = 1
-augroup END
