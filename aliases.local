@@ -8,13 +8,13 @@ alias df='df -h'
 alias du='du -h --max-depth=1 "$@" | sort -n -r'
 
 # show me files matching "ls grep"
-unalias ls
-function ls() { /bin/ls --color=auto "$@"; }
-unalias ll
-function ll()  { /bin/ls -alhrt --color=auto -F "$@"; }
+#unalias ls
+#function ls() { /bin/ls --color=auto "$@"; }
+#unalias ll
+#function ll()  { /bin/ls -alhrt --color=auto -F "$@"; }
 function ls1() { /bin/ls -alhrt --color=auto | /usr/bin/ack -i "$1" | /usr/bin/ack -v ack; }
-function llt() { /bin/ls -alhrt --color=auto -F "$@"; }
-function llS() { /bin/ls -alhrS --color=auto -F "$@"; }
+#function llt() { /bin/ls -alhrt --color=auto -F "$@"; }
+#function llS() { /bin/ls -alhrS --color=auto -F "$@"; }
 
 # A quick grep-for-processes.
 ps1() { ps auxww | /usr/bin/ack -i $1 | /usr/bin/ack -v ack; }
@@ -36,12 +36,12 @@ _has() {
   return $( whence $1 > /dev/null 2>&1 )
 }
 
-# colorls
-if _has colorls; then
-  source $(dirname $(gem which colorls))/tab_complete.sh
-  alias lc='colorls -lA --sd'
-  alias lct='colorls -lAtr'
-  alias lcs='colorls -lASr'
+# lsd https://github.com/Peltoche/lsd
+if _has lsd; then
+  alias ls=lsd
+  alias ll='ls -lrt'
+  alias lla='ls -art'
+  alias lt='ls --tree'
 fi
 
 # prefer ripgrep over ack and ag
