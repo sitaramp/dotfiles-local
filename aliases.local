@@ -2,6 +2,7 @@
 alias todo='$EDITOR ~/.todo'
 alias vi=vim
 
+alias path='echo $PATH'
 alias df='df -h'
 #alias du='du -sh -d 2'
 alias du='du -h --max-depth=1 "$@" | sort -n -r'
@@ -11,7 +12,7 @@ unalias ls
 function ls() { /bin/ls --color=auto "$@"; }
 unalias ll
 function ll()  { /bin/ls -alhrt --color=auto -F "$@"; }
-function ls1()  { /bin/ls -alhrt --color=auto | /usr/bin/ack -i "$1" | /usr/bin/ack -v ack; }
+function ls1() { /bin/ls -alhrt --color=auto | /usr/bin/ack -i "$1" | /usr/bin/ack -v ack; }
 function llt() { /bin/ls -alhrt --color=auto -F "$@"; }
 function llS() { /bin/ls -alhrS --color=auto -F "$@"; }
 
@@ -25,9 +26,10 @@ function cp() { /bin/cp -i "$@"; }
 function mv() { /bin/mv -vi "$@" ; }
 function cls() { clear; /bin/ls; /bin/pwd; }
 unalias grep
-function grep() { /usr/bin/ack -d skip --color "$@"; }
+function grep() { /usr/bin/ack --color "$@"; }
 function grepp() { /usr/bin/ack -P --color "$@"; }
-function atmux() { tmux new-session -A -s "$USERNAME"; }
+function atmux() { tmux new-session -A -s "$USER"; }
+function htmux() { tmux new-session -A -s "$HOST"; }
 
 # check if command exists
 _has() {

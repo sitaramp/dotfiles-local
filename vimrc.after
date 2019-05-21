@@ -34,6 +34,12 @@ nmap <leader>k    mo:Ack! "\b<cword>\b" <CR>
 nmap <C-S-k>  mo:Ggrep! "\b<cword>\b" <CR>
 "nmap <leader>k :Rg!<CR>
 
+"""""""""""""""""""""""""""""""
+" Toggle search highliht on of with F5
+"""""""""""""""""""""""""""""""""
+map <F5> :set hls!<bar> set hls?<CR>
+imap <F5><Esc> :set hls!<bar> set hls?<CR>
+
 let $FZF_DEFAULT_COMMAND = 'rg --files --follow -g "!{.git,node_modules}/*" 2>/dev/null'
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
@@ -128,17 +134,18 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 "Colors
+" Prereq export XTERM=xterm-256color,;  install ncurses-term
 " The cterm color numbers refer to XTerm colors in 256 color mode.
 " Map rgb to cterm colors using <URL:https://gist.github.com/719710>.
 " xterm 256 sent using ANSI escape sequence via terminfo file
 " guicolor  ---map---> hi-color i.e. 256-color terminal
 "    use CSApprox or colorsupport.vim
 " Double check color-scheme support hi-color terminal not 16 colors
+" Prereqs: install ncurses-term6.1+ TERM=xterm-256, tput color
 "
 if &term =~ "xterm"
   " 256 colors
   let &t_Co = 256
-  set termguicolors
   set termguicolors
   " true color (i.e. 24bit RGB) escape codes
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -147,6 +154,8 @@ if &term =~ "xterm"
   "restore screen after quitting
   let &t_ti = "\<Esc>7\<Esc>[r\<Esc>[?47h"
   let &t_te = "\<Esc>[?47l\<Esc>8"
+  let &t_ts = "\<Esc>]2"
+  let &t_fe = "\<Esc>G;"
   if has("terminfo")
     let &t_Sf = "\<Esc>[3%p1%dm"
     let &t_Sb = "\<Esc>[4%p1%dm"
@@ -157,13 +166,17 @@ if &term =~ "xterm"
 
 endif
 
+syntax enable
 set background=dark
-"colorscheme molokai
-colorscheme solarized
-syntax on
 
-"set cursorline
-"set cursorcolumn
+"colorscheme molokai settings
+let g:rehash256=1
+colorscheme molokai
+
+"colorscheme solarized settings
+let g:solarized_termcolors=256
+"colorscheme solarized
+
 "hi CursorLine   cterm=NONE ctermbg=237 ctermfg=NONE guibg=darkred guifg=white
 "hi CursorColumn cterm=NONE ctermbg=235 ctermfg=NONE guibg=darkred guifg=white
 "
@@ -237,7 +250,7 @@ augroup END
 " Airline status line  settings
 set laststatus=2
 let g:airline_detect_paste=1
-let g:airline_theme='solarized'
+let g:airline_theme='molokai'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#ale#enabled = 1
 
@@ -276,12 +289,16 @@ endif
 set diffopt+=vertical
 if &diff
   set cursorline
+  "set cursorcolumn
+  map ] ]c
+  map [ cc
   map <leader>1 :diffget LOCAL<CR>
   map <leader>2 :diffget BASE<CR>
   map <leader>3 :diffget REMOTE<CR>
-"  hi DiffChange ctermbg=white                                  guibg=#ececec gui=none cterm=none
-"  hi DiffText   ctermfg=233   ctermbg=yellow     guifg=#000033 guibg=#DDDDFF gui=none cterm=none
+  syntax off
 "  hi DiffAdd    ctermfg=233   ctermbg=LightGreen guifg=#003300 guibg=#DDFFDD gui=none cterm=none
+"  hi DiffText   ctermfg=233   ctermbg=yellow     guifg=#000033 guibg=#DDDDFF gui=none cterm=none
+"  hi DiffChange               ctermbg=white                    guibg=#ececec gui=none cterm=none
 endif
 
 " Local config

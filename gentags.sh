@@ -6,7 +6,8 @@ if ! [ -f "$CALAVERAS_DIR/DartCommon.mk" ];  then
       echo "$0 failed: Failed to find Project directory Please setup projeuct dir"
       exit 1
 fi
-cd $CALAVERAS_DIR
+
+pushd . ; cd $CALAVERAS_DIR
 
 # Generate ctags
 ctags -R .
@@ -35,3 +36,4 @@ cscope -b -u -C -i "$CSCOPE_DIR/cscope.files"
 
 export CSCOPE_DB="$CALAVERAS_DIR/cscope.out"
 echo "Exported CSCOPE_DB to: '$CSCOPE_DB'"
+popd
