@@ -50,13 +50,10 @@ export HOSTTYPE
 export EDITOR=vim VISUAL=vim
 
 # Overridable locale support.
-if [ -z $$LC_ALL ]; then
-  export LC_ALL="en_US.UTF-8"
-fi
-if [ -z $LANG ]; then
-  export LANG=en_US
-fi
-export LC_COLLATE=C
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+
 # Speedup ls
 #LS_COLORS='ex=00:su=00:sg=00:ca=00:'
 
