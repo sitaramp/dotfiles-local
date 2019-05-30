@@ -1,6 +1,7 @@
 # Productivity
 alias todo='$EDITOR ~/.todo'
 alias vi=vim
+alias dotfiles='cd ~/dotfiles-local'
 
 alias path='echo $PATH'
 alias df='df -h'
