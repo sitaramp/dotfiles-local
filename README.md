@@ -10,15 +10,19 @@ These files are modeled after https://github.com/statico/dotfiles and thoughbot.
 'zsh
 
 2. Install the  required packages and dependencies
+ - prezto
+ - bash-completion
  - fzf
  - enhancd
- - colorls
+ - lsd
  - tldr
  - thefuck
  - cht.sh
- - zsh prezto
+ - cargo
+ - python3
  - vim janus
  - ripgrep
+
 3. Clone the repository to you home directory:
 
 `git clone --recursive https://github.com/sitaramp/dotfiles-local ~/dotfiles-local

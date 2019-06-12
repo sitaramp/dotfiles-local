@@ -1,3 +1,9 @@
+# 
+# include this file from your ~/.gitconfig
+# [core]
+#    excludesfile = ~/dotfiles-local/gitignore_global
+#
+
 # Compiled Python files
 *.pyc
 
