@@ -10,6 +10,7 @@
 
 " SPACE as a Leader
 let mapleader = "\<Space>"
+let maplocalleader = "\<Space>"
 
 " set fzf path before loading fzf.vim
 set rtp+=~/.fzf
@@ -50,11 +51,11 @@ set rtp+=~/.fzf
  call janus#disable_plugin('css-color')
  call janus#disable_plugin('ctrlp') " use fzf
  call janus#disable_plugin('dispatch')
- call janus#disable_plugin('easymotion')
+" call janus#disable_plugin('easymotion')
 " call janus#disable_plugin('endwise')
 " call janus#disable_plugin('eunuch')
 " call janus#disable_plugin('fugitive')
- call janus#disable_plugin('gist')
+" call janus#disable_plugin('gist')
  call janus#disable_plugin('gundo')
  call janus#disable_plugin('indent-object')
 " call janus#disable_plugin('kwbd')
@@ -67,7 +68,7 @@ set rtp+=~/.fzf
 " call janus#disable_plugin('supertab')
 " call janus#disable_plugin('surround')
  call janus#disable_plugin('syntastic') "use ale
- call janus#disable_plugin('tagbar')
+" call janus#disable_plugin('tagbar')
  call janus#disable_plugin('tlib')
 " call janus#disable_plugin('unimpaired')
  call janus#disable_plugin('vim-addon-mw-utils')

@@ -2,25 +2,25 @@
 
 # validate project root
 
-if ! [ -f "$CALAVERAS_DIR/DartCommon.mk" ];  then
+if ! [ -f "$CSCOPE_ROOT/DartCommon.mk" ];  then
       echo "$0 failed: Failed to find Project directory Please setup projeuct dir"
       exit 1
 fi
 
-pushd . ; cd $CALAVERAS_DIR
+pushd . ; cd $CSCOPE_ROOT
 
 # Generate ctags
 ctags -R .
 
 # Generate cscope DB
-CSCOPE_DIR="$CALAVERAS_DIR/cscope"
+CSCOPE_DIR="$CSCOPE_ROOT/cscope"
 
 if [ ! -d "$CSCOPE_DIR" ]; then
 mkdir "$CSCOPE_DIR"
 fi
 
 echo "Finding files ..."
-find "$CALAVERAS_DIR" -name '*.[ch]' \
+find "$CSCOPE_ROOT" -name '*.[ch]' \
 -o -name '*.java' \
 -o -name '*properties' \
 -o -name '*.cpp' \
@@ -31,9 +31,9 @@ find "$CALAVERAS_DIR" -name '*.[ch]' \
 -o -name '*.py' \
 -o -name '*.php' > "$CSCOPE_DIR/cscope.files"
 
-echo "Adding files to cscope db: $CALAVERAS/cscope.db ..."
+echo "Adding files to cscope db: $CSCOPE_ROOT/cscope.db ..."
 cscope -b -u -C -i "$CSCOPE_DIR/cscope.files"
 
-export CSCOPE_DB="$CALAVERAS_DIR/cscope.out"
+export CSCOPE_DB="$CSCOPE_ROOT/cscope.out"
 echo "Exported CSCOPE_DB to: '$CSCOPE_DB'"
 popd

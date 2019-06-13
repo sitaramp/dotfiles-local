@@ -22,8 +22,13 @@ These files are modeled after https://github.com/statico/dotfiles and thoughbot.
  - python3
  - vim janus
  - ripgrep
+ - ack2
+ - bash-completion
 
-3. Clone the repository to you home directory:
+3. On the client install powerline or nerdfonts. Configure terminal to
+   your liking
+
+4. Clone the repository to your home directory:
 
 `git clone --recursive https://github.com/sitaramp/dotfiles-local ~/dotfiles-local
 
@@ -95,6 +100,8 @@ ln -s ~/dotfiles-local/tmux.conf ~/.tmux.conf
 3. Load tmux do the following:
  - prefix + I to fetch the plugins
  - prefix + U to update the plugins
+ - prefix + R to rename window
+ - prefix + Ctl+R  reload config
 
 Some shortcuts to know:
 ```

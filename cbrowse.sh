@@ -1,24 +1,25 @@
-#!/bin/zsh -f
+#!/bin/bash
+
 #
 # Script to browse existing cscope.db
 #
 
 if [[ -e /usr/bin/cscope ]]; then
-      echo "Found Cscope"
+      echo "Found cscope binary"
 else
-      echo "failed to locate cscope DB. please set env using setupcal and symlinks"
-      return 1
+      echo "Failed to local cscope. Please install cscope."
+      exit 1
 fi
 
-     pushd .; cd $CALAVERAS_DIR
-
-if [[ -e $CALAVERAS_DIR/cscope.out ]]; then
+if [[ -e $CSCOPE_ROOT/cscope.out ]]; then
      echo "Found cscope DB"
-     export CSCOPE_DB=$CALAVERAS_DIR
 else
-      echo "failed to locate cscope DB. please set env using setupcal and symlinks"
-      return 1
+      echo "Failed to locate cscope DB. Please setup project env and gentags"
+      exit 1
 fi
+
+pushd . ; cd $CSCOPE_ROOT
+export CSCOPE_DB=$CSCOPE_ROOT
 export CSCOPE_EDITOR=vim
 
 cscope -d -f cscope.out

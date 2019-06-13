@@ -15,7 +15,7 @@
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
 [core]
   editor = vim
-  pager = less -FRX
+	pager = diff-so-fancy | less --tabs=4 -RFX
   autocrlf = input
   excludesfile = ~/.gitignore
 [gist]
@@ -60,7 +60,7 @@
   ama = commit --amend --no-edit -a
   co = checkout
   pf = push --force-with-lease
-  st = status
+  st = status -uno
   cia = commit --amend
   b = branch
   bnew = checkout -b
@@ -83,7 +83,6 @@
   rb = rebase
   rl = reflog
   rewind-one = reset --hard HEAD^
-  sta = stash
   svnci = svn dcommit
   svnprep = rebase -i git-svn
   svnup = svn rebase
@@ -99,10 +98,17 @@
   branch = auto
   ui = true
 [color "diff"]
-  old = red
-  new = green
-  meta = yellow bold
-  frag = magenta bold
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
 [color "status"]
   added = green
   changed = yellow

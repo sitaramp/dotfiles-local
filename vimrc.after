@@ -1,14 +1,45 @@
+" 
+" Credit https://github.com/statico/dotfiles/blob/master/.vim/vimrc
 "
 " Mnemonic
 " b - buffer; p = project; s = search; h = help
-"
-"
+
+" Janus custominzation
+"======================
+"<leader>ul underline
+":sudoW sudoWrite
+"<F4> toggle paste mode
+"<leader>u covert the entire word to lowercase
+"<leader>l covert the entire word to lowercase
+"<leader>tw toggle wrap
+
+" NERDTree
+"<leader>n NERDTreeToggle
+
+" Unimpaired
+"[b go to the prev buffer
+"]b go to the next buffer
+"[n go to the prev conflict
+"]n go to the next confiict
+"[q go to the prev quickix item
+"]q go to the next quickfix item
+
+" Fugitive
+"<leader>gb maps to :Gblame<CR>
+"<leader>gd maps to :Gdiff<CR>
+"<leader>gs maps to :Gstatus<CR>
+"<leader>gl maps to :Glog<CR>
+"<leader>gc maps to :Gcommit<CR>
+"<leader>gp maps to :Gpush<CR>
+
+" vim-trailing-whitespace
+":FixWhitespace
+
 " Switch between the last two files
-nnoremap <Leader><Leader> <C-^>
-"nmap <C-e> :e#<CR>
-"nmap [b   :bprev<CR>
-"nmap ]b   :bnext<CR>
+nmap <C-e> :e#<CR>
+
 " single key acess to Buffers
+nmap ;  :Buffers<CR>
 nmap \0 :buffers<CR>
 nmap \1 :e #1<CR>
 nmap \2 :e #2<CR>
@@ -26,19 +57,12 @@ nmap \x :cclose<CR>
 nmap <leader>b :Buffers<CR>
 nmap <leader>t :Files<CR>
 nmap <leader>r :Tags<CR>
+
 nmap <leader>a :Rg!<CR>
 nmap <leader>c :Colors<CR>
 
-" Search for word under the cursor in the current directory
-nmap <leader>k    mo:Ack! "\b<cword>\b" <CR>
-nmap <C-S-k>  mo:Ggrep! "\b<cword>\b" <CR>
-"nmap <leader>k :Rg!<CR>
-
-"""""""""""""""""""""""""""""""
-" Toggle search highliht on of with F5
-"""""""""""""""""""""""""""""""""
-map <F5> :set hls!<bar> set hls?<CR>
-imap <F5><Esc> :set hls!<bar> set hls?<CR>
+" Tell ack.vim to use ripgrep instead
+let g:ackprg = 'rg --vimgrep --no-heading'
 
 let $FZF_DEFAULT_COMMAND = 'rg --files --follow -g "!{.git,node_modules}/*" 2>/dev/null'
 command! -bang -nargs=* Rg
@@ -48,8 +72,16 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
-" Tell ack.vim to use ripgrep instead
-let g:ackprg = 'rg --vimgrep --no-heading'
+" Search for word under the cursor in the current directory
+nmap <C-k> :Rg!<CR>
+nmap <leader>k    mo:Ack! "\b<cword>\b" <CR>
+nmap <C-S-k>      mo:Ggrep! "\b<cword>\b" <CR>
+
+"""""""""""""""""""""""""""""""
+" Toggle search highlight on off with F5
+"""""""""""""""""""""""""""""""""
+map <F5> :set hls!<bar> set hls?<CR>
+imap <F5><Esc> :set hls!<bar> set hls?<CR>
 
 " SuperTab
 let g:SuperTabLongestEnhanced = 1
@@ -63,10 +95,13 @@ nmap     k gk
 nnoremap ' `
 nnoremap Y y$
 
-" The * is the default clipboard + is the selection clipboard
-" paste plus clipboard using using "+p
-"set clipboard=unamed
-set clipboard^=unnamed,unnamedplus
+"Emac-like binding in the command line
+cnoremap <C-a> <Home>
+cnoremap <Ce> <End>
+
+" Fix annoyances inthe QuickFix window
+autocmd FileType qf setlocal number nolist
+autocmd FileType qf wincmd J " Makes sure it's at the bottom of the vim window
 
 set noswapfile
 set autowrite
@@ -85,9 +120,9 @@ imap <C-e> <C-o>$
 imap <C-a> <C-o>0
 
 " These are things that I mistype and want ignored.
-"nmap Q  <silent>
-"nmap q: <silent>
-"nmap K  <silent>
+nmap Q  <silent>
+nmap q: <silent>
+nmap K  <silent>
 command! Q q
 command! W w
 
@@ -116,6 +151,11 @@ set mouse=nv
 " To enable Right to paste disable mouse
 " set mouse-=a
 
+" The * is the default clipboard + is the selection clipboard
+" paste plus clipboard using using "+p
+"set clipboard=unamed
+set clipboard^=unnamed,unnamedplus
+
 " Numbers
 set number
 set numberwidth=5
@@ -124,7 +164,10 @@ set number
 nmap <leader>n0 :set relativenumber!<CR>
 nmap <leader>nn :set number!<CR>
 set ruler
-set scrolloff=2
+set scroll=4
+set scrolloff=15
+set textwidth=100
+set linebreak
 
 " windows movement
 " Quicker window movement
@@ -154,8 +197,8 @@ if &term =~ "xterm"
   "restore screen after quitting
   let &t_ti = "\<Esc>7\<Esc>[r\<Esc>[?47h"
   let &t_te = "\<Esc>[?47l\<Esc>8"
-  let &t_ts = "\<Esc>]2"
-  let &t_fe = "\<Esc>G;"
+  let &t_ts = "\<Esc>[k"
+  let &t_fe = "\<Esc>G"
   if has("terminfo")
     let &t_Sf = "\<Esc>[3%p1%dm"
     let &t_Sb = "\<Esc>[4%p1%dm"
@@ -163,20 +206,29 @@ if &term =~ "xterm"
     let &t_Sf = "\<Esc>[3%dm"
     let &t_Sb = "\<Esc>[4%dm"
   endif
+  "distable background color erase when within tmux
+  if $TMUX != ""
+    set t_ut=
+  endif
 
 endif
 
-syntax enable
+syntax on
 set background=dark
 
-"colorscheme molokai settings
-let g:rehash256=1
-colorscheme molokai
-
-"colorscheme solarized settings
+"Solarized settings
+" set termcolors=256 for 256color. Comment out for TC
+" putty=default 256, use patch putty for true color
 let g:solarized_termcolors=256
 "colorscheme solarized
 
+"Molokai settings
+" Set the following for 256color. Comment out for TC
+let g:rehash256 = 1
+colorscheme molokai
+
+"set cursorline
+"set cursorcolumn
 "hi CursorLine   cterm=NONE ctermbg=237 ctermfg=NONE guibg=darkred guifg=white
 "hi CursorColumn cterm=NONE ctermbg=235 ctermfg=NONE guibg=darkred guifg=white
 "
@@ -193,7 +245,7 @@ if has("cscope")
     cs add cscope.out
   " else all the db pointed by the env variable
   elseif $CSCOPE_DB != ""
-    cs add $CSCOPE_DB $CALAVERAS_ROOT
+    cs add $CSCOPE_DB $CSCOPE_ROOT
   endif
 endif
 
@@ -210,10 +262,16 @@ let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 
 "Close vim if NERDTree is the last pane
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" More space with NERDTree
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeMarkBookmarks = 0
+let g:NERDTreeAutoDeleteBuffer = 1
+let g:NERDTreeStatusLine = -1
 
-" fugitive
+
+" Fugitive
 nmap <leader>gs :Gstatus<CR>
-nmap <leader>gd :Gsdiff<CR>
+nmap <leader>gd :Gdiff<CR>
 nmap <leader>gc :Gcommit<CR>
 nmap <leader>gb :Gblame<CR>
 nmap <leader>gl :Glog<CR>
@@ -242,6 +300,12 @@ highlight link ALEErrorSign Title
 nmap ]w :ALENextWrap<CR>
 nmap [w :ALEPreviousWrap<CR>
 nmap <Leader>f <Plug>(ale_fix)
+let g:ale_lint_on_text_changed = 'never'
+" You can disable this option too
+" if you don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
+" let g:ale_lint_on_text_changed = 'never'
+"let g:ale_lint_on_save = 0
 augroup VimDiff
     autocmd!
     autocmd VimEnter,FilterWritePre * if &diff | ALEDisable | endif
@@ -254,13 +318,8 @@ let g:airline_theme='molokai'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#ale#enabled = 1
 
-" ALE settings
-let g:ale_lint_on_text_changed = 'never'
-" You can disable this option too
-" if you don't want linters to run on opening a file
-let g:ale_lint_on_enter = 0
-" let g:ale_lint_on_text_changed = 'never'
-"let g:ale_lint_on_save = 0
+" Tagbar C++ class outline viewer
+nmap <F8> :TagbarToggle<CR>
 
 " SuperTab
 let g:SuperTabLongestEnhanced = 1
@@ -287,19 +346,21 @@ endif
 
 "Always use vertical diffs
 set diffopt+=vertical
-if &diff
-  set cursorline
-  "set cursorcolumn
-  map ] ]c
-  map [ cc
-  map <leader>1 :diffget LOCAL<CR>
-  map <leader>2 :diffget BASE<CR>
-  map <leader>3 :diffget REMOTE<CR>
-  syntax off
-"  hi DiffAdd    ctermfg=233   ctermbg=LightGreen guifg=#003300 guibg=#DDFFDD gui=none cterm=none
-"  hi DiffText   ctermfg=233   ctermbg=yellow     guifg=#000033 guibg=#DDDDFF gui=none cterm=none
-"  hi DiffChange               ctermbg=white                    guibg=#ececec gui=none cterm=none
-endif
+augroup VimDiff
+  autocmd!
+  if &diff
+    set cursorline
+    syntax off
+    set norelativenumber
+    map <leader>1 :diffget LOCAL<CR>
+    map <leader>2 :diffget BASE<CR>
+    map <leader>3 :diffget REMOTE<CR>
+    syntax off
+"   hi DiffAdd    ctermfg=233   ctermbg=LightGreen guifg=#003300 guibg=#DDFFDD gui=none cterm=none
+"   hi DiffText   ctermfg=233   ctermbg=yellow     guifg=#000033 guibg=#DDDDFF gui=none cterm=none
+"   hi DiffChange               ctermbg=white                    guibg=#ececec gui=none cterm=none
+  endif
+augroup END
 
 " Local config
 "if filereadable($HOME . "/.vimrc.project")

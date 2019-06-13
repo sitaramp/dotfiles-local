@@ -3,8 +3,17 @@ alias todo='$EDITOR ~/.todo'
 alias vi=vim
 alias dotfiles='cd ~/dotfiles-local'
 
+# Quick access
+alias s=source
+alias dir=ls
 alias path='echo $PATH'
+alias ..='cd ..'
+alias apt-get='sudo apt-get'
+alias apt-get='sudo apt-get'
+#alias path='echo $PATH'
+alias tgrep='ag -U \!*'
 alias df='df -h'
+
 #alias du='du -sh -d 2'
 alias du='du -h --max-depth=1 "$@" | sort -n -r'
 
@@ -18,7 +27,7 @@ function ls1() { /bin/ls -alhrt --color=auto | /usr/bin/ack -i "$1" | /usr/bin/a
 #function llS() { /bin/ls -alhrS --color=auto -F "$@"; }
 
 # A quick grep-for-processes.
-ps1() { ps auxww | /usr/bin/ack -i $1 | /usr/bin/ack -v ack; }
+function ps1() { ps auxww | /usr/bin/ack -i --color "$1" | /usr/bin/ack -v ack; }
 
 # Zippin
 function gz() { tar -zcvf "$@"; }
@@ -39,10 +48,9 @@ _has() {
 
 # lsd https://github.com/Peltoche/lsd
 if _has lsd; then
-  alias ls=lsd
-  alias ll='ls -lrt'
-  alias lla='ls -art'
-  alias lt='ls --tree'
+   alias ll='lsd -l'
+   alias lla='lsd -la'
+   alias llt='lsd -tree'
 fi
 
 # prefer ripgrep over ack and ag
