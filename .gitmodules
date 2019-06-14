@@ -19,3 +19,6 @@
 [submodule "janus/vimux"]
 	path = janus/vimux
 	url = https://github.com/benmills/vimux
+[submodule "janus/fzf"]
+	path = janus/fzf
+	url = https://github.com/junegunn/fzf
