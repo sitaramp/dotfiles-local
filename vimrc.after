@@ -1,4 +1,4 @@
-" 
+"
 " Credit https://github.com/statico/dotfiles/blob/master/.vim/vimrc
 "
 " Mnemonic
@@ -80,7 +80,7 @@ nmap <C-S-k>      mo:Ggrep! "\b<cword>\b" <CR>
 """""""""""""""""""""""""""""""
 " Toggle search highlight on off with F5
 """""""""""""""""""""""""""""""""
-map <F5> :set hls!<bar> set hls?<CR>
+map  <F5>      :set hls!<bar> set hls?<CR>
 imap <F5><Esc> :set hls!<bar> set hls?<CR>
 
 " SuperTab
