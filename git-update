@@ -1,0 +1,8 @@
+#!/bin/bash
+# full update the git repo that you are sitting in..
+
+#First time init submodules
+#git submodules update --init --recursive
+
+# update repo and submodules
+git submodule update --recursive --remote
