@@ -22,6 +22,3 @@
 [submodule "janus/fzf"]
 	path = janus/fzf
 	url = https://github.com/junegunn/fzf
-[submodule "janus/molokai"]
-	path = janus/molokai
-	url = https://github.com/tomasr/molokai
