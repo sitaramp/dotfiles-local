@@ -3,8 +3,12 @@
 
 git pull
 
+# if the fast forward fails-- do a rebase
+# git pull --rebase
+
 #First time or when new submodule are adede
 git submodule update --init --recursive --remote
 
 # update repo and submodules
 #git submodule update --recursive --remote
+

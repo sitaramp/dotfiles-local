@@ -72,6 +72,22 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
+" fzy file filter
+function! FzyCommand(choice_command, vim_command)
+  try
+    let output = system(a:choice_command . " | fzy ")
+  catch /Vim:Interrupt/
+    " Swallow errors from ^C, allow redraw! below
+  endtry
+  redraw!
+  if v:shell_error == 0 && !empty(output)
+    exec a:vim_command . ' ' . output
+  endif
+endfunction
+nnoremap <leader>e :call FzyCommand("fd ''", ":e")<cr>
+nnoremap <leader>v :call FzyCommand("fd ''", ":vs")<cr>
+nnoremap <leader>s :call FzyCommand("fd ''", ":sp")<cr>
+
 " Search for word under the cursor in the current directory
 nmap <C-k> :Rg!<CR>
 nmap <leader>k    mo:Ack! "\b<cword>\b" <CR>
