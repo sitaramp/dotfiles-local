@@ -3,10 +3,12 @@
 
 git pull
 
-# if the fast forward fails-- do a rebase
+# if the fast forward fails--
+# another commit was added to the destination branch that isn't in your branch.
+# do a rebase
 # git pull --rebase
 
-#First time or when new submodule are adede
+#First time or when new submodule are added
 git submodule update --init --recursive --remote
 
 # update repo and submodules
