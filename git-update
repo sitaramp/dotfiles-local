@@ -5,7 +5,8 @@ git pull
 
 # if the fast forward fails--
 # another commit was added to the destination branch that isn't in your branch.
-# do a rebase
+# If you are the sole dev-- use rebase, redo local commit on top of remote
+# If you share the branch with other dev-- do merge, preserve commit log
 # git pull --rebase
 
 #First time or when new submodule are added
