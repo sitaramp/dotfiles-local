@@ -22,7 +22,7 @@ alias du='du -h --max-depth=1 "$@" | sort -n -r'
 #function ls() { /bin/ls --color=auto "$@"; }
 #unalias ll
 #function ll()  { /bin/ls -alhrt --color=auto -F "$@"; }
-function ls1() { /bin/ls -alhrt --color=auto | /usr/bin/ack -i "$1" | /usr/bin/ack -v ack; }
+function ls1()  { /bin/ls -alhrt --color=auto | /usr/bin/ack -i --color "$1" | /usr/bin/ack -v ack; }
 #function llt() { /bin/ls -alhrt --color=auto -F "$@"; }
 #function llS() { /bin/ls -alhrS --color=auto -F "$@"; }
 

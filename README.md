@@ -10,6 +10,7 @@ These files are modeled after https://github.com/statico/dotfiles and thoughbot.
 'zsh
 
 2. Install the  required packages and dependencies
+ - zsh
  - prezto
  - bash-completion
  - fzf
@@ -23,6 +24,8 @@ These files are modeled after https://github.com/statico/dotfiles and thoughbot.
  - vim janus
  - ripgrep
  - ack2
+ - Universal ctags
+ - cscope
  - bash-completion
 
 3. On the client install powerline or nerdfonts. Configure terminal to
@@ -32,7 +35,7 @@ These files are modeled after https://github.com/statico/dotfiles and thoughbot.
 
 `git clone --recursive https://github.com/sitaramp/dotfiles-local ~/dotfiles-local
 
-4. Create a new Zsh configuration
+4. Create a new zsh configuration
 
 5. Set Zsh as your default shell:
 ```
