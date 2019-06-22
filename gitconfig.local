@@ -61,7 +61,6 @@
   co = checkout
   pf = push --force-with-lease
   st = status -uno
-  cia = commit --amend
   b = branch
   bnew = checkout -b
   ap = add --patch
@@ -69,7 +68,7 @@
   cp = cherry-pick
   config-to-push-all-branches = config --add remote.origin.push '+refs/heads/*:refs/heads/*'
   config-to-push-all-tags = config --add remote.origin.push '+refs/tags/*:refs/tags/*'
-  d = diff
+  d = difftool
   dc = diff --cached
   diffc = diff --cached
   forkup = pull --rebase upstream
