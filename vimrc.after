@@ -56,21 +56,21 @@ nmap \x :cclose<CR>
 " Single key access to files fzf and tags
 nmap <leader>b :Buffers<CR>
 nmap <leader>t :Files<CR>
+nnoremap <C-t> :Files<CR>
 nmap <leader>r :Tags<CR>
 
-nmap <leader>a :Rg!<CR>
 nmap <leader>c :Colors<CR>
 
 " Tell ack.vim to use ripgrep instead
 let g:ackprg = 'rg --vimgrep --no-heading'
 
-let $FZF_DEFAULT_COMMAND = 'rg --files --follow -g "!{.git,node_modules}/*" 2>/dev/null'
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case -g "!{*.lock,*-lock.json}" '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:40%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+"let $FZF_DEFAULT_COMMAND = 'rg --files --follow -g "!{.git,node_modules}/*" 2>/dev/null'
+"command! -bang -nargs=* Rg
+  "\ call fzf#vim#grep(
+  "\   'rg --column --line-number --no-heading --color=always --smart-case -g "!{*.lock,*-lock.json}" '.shellescape(<q-args>), 1,
+  "\   <bang>0 ? fzf#vim#with_preview('up:40%')
+  "\           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  "\   <bang>0)
 
 " fzy file filter
 function! FzyCommand(choice_command, vim_command)
@@ -89,9 +89,10 @@ nnoremap <leader>v :call FzyCommand("fd ''", ":vs")<cr>
 nnoremap <leader>s :call FzyCommand("fd ''", ":sp")<cr>
 
 " Search for word under the cursor in the current directory
-nmap <C-k> :Rg!<CR>
-nmap <leader>k    mo:Ack! "\b<cword>\b" <CR>
-nmap <C-S-k>      mo:Ggrep! "\b<cword>\b" <CR>
+nnoremap <C-g> :Rg<CR>
+nnoremap <leader>a :Rg<CR>
+nnoremap <leader>k mo:Ack! "\b<cword>\b" <CR>
+nnoremap <C-S-k>   mo:Ggrep! "\b<cword>\b" <CR>
 
 """""""""""""""""""""""""""""""
 " Toggle search highlight on off with F5

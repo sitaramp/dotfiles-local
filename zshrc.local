@@ -76,6 +76,8 @@ if [[ -f ~/.zprezto/modules/enhancd/init.sh ]]; then
   export ENHANCD_FILTER=fzy:fzf:peco
 fi
 
+# FZF
+export FZF_COMPLETION_TRIGGER=''
 ## set env parameters
 export EDITOR=vim
 export SHELL=/usr/bin/zsh

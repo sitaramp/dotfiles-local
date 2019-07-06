@@ -105,6 +105,9 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
+# fzf
+export FZF_COMPLETION_TRIGGER=''
+
 # Infinite bash history
 export HISTSIZE=
 export HISTFILESIZE=
