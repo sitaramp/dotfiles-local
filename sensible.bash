@@ -117,9 +117,18 @@ export HISTTIMEFORMAT="[%F %T] "
 export HISTFILE=~/.bash_eternal_history
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
+# Prompt
+#\u - user name
+#\h - short hostname
+#\W - current working dir
+#\? - exit status of the command
+#export PS1="{\[\e[32m\]\u\[\e[m\]@\[\e[36m\]\h\[\e[m\]:\W_\$?}$ "
+export PS1="\[$(tput setaf 2)\]\u@\h:\w $ \[$(tput sgr0)\]"
+
 # Examples:
-# export dotfiles="$HOME/dotfiles"
-# export projects="$HOME/projects"
 # export documents="$HOME/Documents"
 # export dropbox="$HOME/Dropbox"
+ export dotfiles="$HOME/dotfiles-local"
+ export projects="/c4_working/"
+ export downloads="$HOME/Downloads"
 
