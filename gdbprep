@@ -1,0 +1,5 @@
+kdir /c4_working
+mount 10.207.148.179:/c4_working /c4_working
+pidof /opt/sdnas/csx_pkg.dir/ubin/csx_ic_sm.x
+
+
