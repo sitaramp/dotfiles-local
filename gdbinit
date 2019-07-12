@@ -1,5 +1,5 @@
 set print pretty on
-set print nostatic
+set print static off
 set output-radix 16
 set pagination off
 set logging off
