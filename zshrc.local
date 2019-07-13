@@ -67,8 +67,15 @@ colors
 # enable colored output from ls, etc. on FreeBSD-based systems
 export CLICOLOR=1
 
-#prompt
-export POWERLEVEL9K_MODE='nerdfont-complete'
+# fzf
+if [[ -f ~/.fzf.bash ]]; then
+#   source ~/.fzf.bash
+#  export FZF_TMUX=1
+#  export FZF_TMUXHEIGHT=50%
+   export FZF_DEFAULT_COMMAND='fd --type file'
+   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+   export FZF_COMPLETION_TRIGGER=''
+fi
 
 # enchancd
 if [[ -f ~/.zprezto/modules/enhancd/init.sh ]]; then
@@ -76,8 +83,6 @@ if [[ -f ~/.zprezto/modules/enhancd/init.sh ]]; then
   export ENHANCD_FILTER=fzy:fzf:peco
 fi
 
-# FZF
-export FZF_COMPLETION_TRIGGER=''
 ## set env parameters
 export EDITOR=vim
 export SHELL=/usr/bin/zsh
@@ -90,4 +95,7 @@ fi
 if [[ ! "$PATH" == */sbin* ]]; then
   export PATH="${PATH:+${PATH}:}/usr/local/sbin:/sbin:/usr/sbin"
 fi
+
+#prompt
+export POWERLEVEL9K_MODE='nerdfont-complete'
 

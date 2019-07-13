@@ -14,7 +14,7 @@ fi
 if [[ -e $CSCOPE_ROOT/cscope.out ]]; then
      echo "Found cscope DB"
 else
-      echo "Failed to locate cscope DB. Please setup project env and gentags"
+      echo "Failed to locate cscope DB. Please setup project env and run gentags"
       exit 1
 fi
 

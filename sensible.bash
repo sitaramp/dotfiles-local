@@ -132,3 +132,12 @@ export PS1="\[$(tput setaf 2)\]\u@\h:\w $ \[$(tput sgr0)\]"
  export projects="/c4_working/"
  export downloads="$HOME/Downloads"
 
+# fzf
+if [[ -f ~/.fzf.bash ]]; then
+#   source ~/.fzf.bash
+#  export FZF_TMUX=1
+#  export FZF_TMUXHEIGHT=50%
+   export FZF_DEFAULT_COMMAND='fd --type file'
+   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+   export FZF_COMPLETION_TRIGGER=''
+fi

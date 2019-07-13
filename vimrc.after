@@ -37,6 +37,9 @@
 
 " Switch between the last two files
 nmap <C-e> :e#<CR>
+nnoremap <Leader><Leader> <C-^>
+"nmap [b   :bprev<CR>
+"nmap ]b   :bnext<CR>
 
 " single key acess to Buffers
 nmap ;  :Buffers<CR>
@@ -56,9 +59,8 @@ nmap \x :cclose<CR>
 " Single key access to files fzf and tags
 nmap <leader>b :Buffers<CR>
 nmap <leader>t :Files<CR>
-nnoremap <C-t> :Files<CR>
+"nnoremap <C-t> :Files<CR>
 nmap <leader>r :Tags<CR>
-
 nmap <leader>c :Colors<CR>
 
 " Tell ack.vim to use ripgrep instead
@@ -88,11 +90,16 @@ nnoremap <leader>e :call FzyCommand("fd ''", ":e")<cr>
 nnoremap <leader>v :call FzyCommand("fd ''", ":vs")<cr>
 nnoremap <leader>s :call FzyCommand("fd ''", ":sp")<cr>
 
+" fuzzy grep
+" ^c to abort
+nnoremap <C-a>     Rg<cr>
+nnoremap <leader>a Rg<cr>
+
 " Search for word under the cursor in the current directory
-nnoremap <C-g> :Rg<CR>
-nnoremap <leader>a :Rg<CR>
+" \x to close quickfix window
+nnoremap <C-k>     mo:Ack! "\b<cword>\b" <CR>
 nnoremap <leader>k mo:Ack! "\b<cword>\b" <CR>
-nnoremap <C-S-k>   mo:Ggrep! "\b<cword>\b" <CR>
+"nnoremap <C-S-k>  mo:Ggrep! "\b<cword>\b" <CR>
 
 """""""""""""""""""""""""""""""
 " Toggle search highlight on off with F5
@@ -112,9 +119,13 @@ nmap     k gk
 nnoremap ' `
 nnoremap Y y$
 
-"Emac-like binding in the command line
+" Emacs-like binding in the command line
 cnoremap <C-a> <Home>
-cnoremap <Ce> <End>
+cnoremap <C-e> <End>
+" Emacs-like bindings in insert mode
+imap <C-e> <C-o>$
+imap <C-a> <C-o>0
+
 
 " Fix annoyances inthe QuickFix window
 autocmd FileType qf setlocal number nolist
@@ -130,11 +141,6 @@ augroup checktime
     autocmd BufEnter,CursorHold,CursorHoldI * silent! checktime
   endif
 augroup END
-
-
-" Emacs-like bindings in insert mode
-imap <C-e> <C-o>$
-imap <C-a> <C-o>0
 
 " These are things that I mistype and want ignored.
 nmap Q  <silent>

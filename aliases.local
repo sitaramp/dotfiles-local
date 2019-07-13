@@ -3,6 +3,17 @@ alias todo='$EDITOR ~/.todo'
 alias vi=vim
 alias dotfiles='cd ~/dotfiles-local'
 
+# Git
+#alias git 'hub'
+alias g='git status -sb'
+alias gf='git fetch'
+alias gpr='git pull --rebase'
+alias grc='git rebase --continue'
+alias gss='git stash save'
+alias gsl='git stash list'
+alias gl='git log --oneline --decorate -10'
+
+
 # Quick access
 alias s=source
 alias dir=ls
@@ -43,7 +54,7 @@ function htmux() { tmux new-session -A -s "$HOST"; }
 
 # check if command exists
 _has() {
-  return $( whence $1 > /dev/null 2>&1 )
+  return $( type "$1" > /dev/null 2>&1 )
 }
 
 # lsd https://github.com/Peltoche/lsd

@@ -64,7 +64,6 @@
   b = branch
   bnew = checkout -b
   ap = add --patch
-  branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
   cp = cherry-pick
   config-to-push-all-branches = config --add remote.origin.push '+refs/heads/*:refs/heads/*'
   config-to-push-all-tags = config --add remote.origin.push '+refs/tags/*:refs/tags/*'
@@ -72,12 +71,14 @@
   dc = diff --cached
   diffc = diff --cached
   forkup = pull --rebase upstream
-  hs = stash save
-  last = log -1
+  #stash-unapply '!git stash show -p | git apply -R'
   latest = for-each-ref --sort=committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)'
   newb = checkout -b
-  quicklog = log --oneline --decorate -10 --pretty=format:'%C(yellow)%h%C(reset)%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-  quicklog-long = log --oneline --decorate --pretty=format:'%C(yellow)%h%C(reset)%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  last = log -1
+  hist = log --color --pretty=format:\"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)\" --relative-date -10 --decorate
+  hist-long = log --color --pretty=format:\"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)\" --relative-date --decorate
+  graph = log --color --graph --pretty=format:\"%h | %ad | %an | %s%d\" --date=short
+  tree = log --graph --oneline --all
   r = remote
   rb = rebase
   rl = reflog
@@ -86,10 +87,10 @@
   svnprep = rebase -i git-svn
   svnup = svn rebase
   today = diff --stat 'HEAD@{midnight}'
-  tree = log --graph --oneline --all
   undo = reset --mixed HEAD^
-  unstage = reset HEAD
-  up = pull --rebase origin
+  update = pull --rebase origin
+  unstage = rest HEAD --
+  restore = checkout --
   yesterday = diff --stat 'HEAD@{yesterday}' 'HEAD@{midnight}'
 [color]
   diff = auto
