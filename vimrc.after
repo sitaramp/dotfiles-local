@@ -90,10 +90,9 @@ nnoremap <leader>e :call FzyCommand("fd ''", ":e")<cr>
 nnoremap <leader>v :call FzyCommand("fd ''", ":vs")<cr>
 nnoremap <leader>s :call FzyCommand("fd ''", ":sp")<cr>
 
-" fuzzy grep
-" ^c to abort
-nnoremap <C-a>     Rg<cr>
-nnoremap <leader>a Rg<cr>
+" fuzzy grep. Use ^c to abort
+nnoremap <C-a>     :Rg<cr>
+nnoremap <leader>a :Rg<cr>
 
 " Search for word under the cursor in the current directory
 " \x to close quickfix window
@@ -384,7 +383,9 @@ augroup VimDiff
 "   hi DiffChange               ctermbg=white                    guibg=#ececec gui=none cterm=none
   endif
 augroup END
-
+if has("patch-8.1.0360")
+	set diffopt+=internal,algorithm:patience
+endif
 " Local config
 "if filereadable($HOME . "/.vimrc.project")
   "source ~/.vimrc.project

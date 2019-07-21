@@ -89,7 +89,7 @@
   today = diff --stat 'HEAD@{midnight}'
   undo = reset --mixed HEAD^
   update = pull --rebase origin
-  unstage = rest HEAD --
+  unstage = reset HEAD --
   restore = checkout --
   yesterday = diff --stat 'HEAD@{yesterday}' 'HEAD@{midnight}'
 [color]

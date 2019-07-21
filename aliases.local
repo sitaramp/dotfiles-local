@@ -46,7 +46,6 @@ function rm() { /bin/rm -vi "$@"; }
 function cp() { /bin/cp -i "$@"; }
 function mv() { /bin/mv -vi "$@" ; }
 function cls() { clear; /bin/ls; /bin/pwd; }
-unalias grep
 function grep() { /usr/bin/ack --color "$@"; }
 function grepp() { /usr/bin/ack -P --color "$@"; }
 function atmux() { tmux new-session -A -s "$USER"; }
@@ -55,6 +54,11 @@ function htmux() { tmux new-session -A -s "$HOST"; }
 # check if command exists
 _has() {
   return $( type "$1" > /dev/null 2>&1 )
+}
+
+# check if colors exist
+_color() {
+  return $( tput colors )
 }
 
 # lsd https://github.com/Peltoche/lsd

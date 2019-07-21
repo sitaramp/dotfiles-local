@@ -13,6 +13,9 @@ then
   echo "sensible.bash: Keep your software up-to-date!"
 fi
 
+# Stop here if this is a non-interactive shell
+[ -z "$PS1" ] && return
+
 ## GENERAL OPTIONS ##
 
 # Prevent file overwrite on stdout redirection
@@ -140,4 +143,13 @@ if [[ -f ~/.fzf.bash ]]; then
    export FZF_DEFAULT_COMMAND='fd --type file'
    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
    export FZF_COMPLETION_TRIGGER=''
+fi
+
+# enhancd
+if [[ -f ~/enhancd/init.sh ]]; then
+#   source ~/enhancd/init.sh
+   export ENHANCD_FILTER=fzy:fzf:peco
+   export ENHANCD_DISABLE_DOT=1
+   export ENHANCD_DISABLE_HYPHEN=1
+   export ENHANCD_COMPLETION_BEHAVIOR=history
 fi
