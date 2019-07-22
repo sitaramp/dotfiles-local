@@ -1,7 +1,7 @@
 #!/bin/bash
 # full update the git repo that you are sitting in..
 
-git pull
+git pull --rebase
 
 # if the fast forward fails--
 # another commit was added to the destination branch that isn't in your branch.
@@ -10,8 +10,10 @@ git pull
 # git pull --rebase
 
 #First time or when new submodule are added
-git submodule update --init --recursive --remote
+#git submodule update --init --recursive --remote
 
 # update repo and submodules
 #git submodule update --recursive --remote
 
+# update repo and submodules from upstream
+#git submodule foreach --recursive git pull origin master
