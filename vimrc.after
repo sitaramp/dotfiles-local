@@ -148,6 +148,15 @@ nmap K  <silent>
 command! Q q
 command! W w
 
+" Quitting
+" quit all, don't force
+map <leader>qq :qa<CR>
+" quit all, losing unsaved changes
+map <leader>qQ :qa!<CR>
+" quit all, after saving all files
+map <leader>qs :wqa!<CR>
+
+
 " Trim spaces at EOL and retab. I run `:CLEAN` a lot to clean up files.
 command! TEOL %s/\s\+$//
 command! CLEAN retab | TEOL
@@ -177,6 +186,9 @@ set mouse=nv
 " paste plus clipboard using using "+p
 "set clipboard=unamed
 set clipboard^=unnamed,unnamedplus
+"copy paste to system cliboard by prefixing with <leader>
+noremap <leader>y "*y
+noremap <leader>p "*p
 
 " Numbers
 set number
@@ -190,6 +202,9 @@ set scroll=4
 set scrolloff=15
 set textwidth=100
 set linebreak
+
+" show command as they are being entered, like in emacs
+set showcmd
 
 " windows movement
 " Quicker window movement
@@ -271,8 +286,11 @@ if has("cscope")
   endif
 endif
 
-""NERDTree
-"Open NERDTree if no file is specified
+" NERDTree
+map <leader>ft :NERDTreeToggle<CR>
+map <leader>fd :cd %p:h<CR>:pwd<CR>
+
+" Open NERDTree if no file is specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
