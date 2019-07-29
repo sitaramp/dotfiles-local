@@ -1,0 +1,17 @@
+#  readline initialization file
+# to reload bind -f ~/.inputrc
+$include /etc/inputrc 
+
+"\C-p":history-search-backward
+"\C-n":history-search-forward
+set colored-stats On
+set completion-ignore-case On
+set completion-prefix-display-length 3
+set mark-symlinked-directories On
+set show-all-if-ambiguous On
+set show-all-if-unmodified On
+set visible-stats On
+set echo-control-characters off
+set match-hiddlen-files off
+set bell-style none
+set editing-mode vi
