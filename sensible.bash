@@ -142,7 +142,7 @@ if [[ -f ~/.fzf.bash ]]; then
 #  export FZF_TMUXHEIGHT=50%
    export FZF_DEFAULT_COMMAND='fd --type file'
    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-   export FZF_COMPLETION_TRIGGER=''
+   export FZF_COMPLETION_TRIGGER='--'
 fi
 
 # enhancd
