@@ -108,9 +108,6 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
-# fzf
-export FZF_COMPLETION_TRIGGER=''
-
 # Infinite bash history
 export HISTSIZE=
 export HISTFILESIZE=
@@ -134,6 +131,9 @@ export PS1="\[$(tput setaf 2)\]\u@\h:\w $ \[$(tput sgr0)\]"
  export dotfiles="$HOME/dotfiles-local"
  export projects="/c4_working/"
  export downloads="$HOME/Downloads"
+ alias setupsade='source ~/dotfiles-local/setupsade'
+ alias dotfiles='cd ~/dotfiles-local/'
+
 
 # fzf
 if [[ -f ~/.fzf.bash ]]; then
@@ -143,6 +143,18 @@ if [[ -f ~/.fzf.bash ]]; then
    export FZF_DEFAULT_COMMAND='fd --type file'
    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
    export FZF_COMPLETION_TRIGGER='--'
+
+# Options to fzf command
+   export FZF_COMPLETION_OPTS='+c -x'
+# Use fd command instead of find
+   _fzf_compgen_path() {
+     fd --hidden --follow --exclude ".git" , "obj", "$1"
+   }
+
+  # USe fs to generate the list for directory completion
+   _fzf_compgen_dir() {
+     fd --type d --hidden --follow --exclude ".git" , "obj", "$1"
+   }
 fi
 
 # enhancd

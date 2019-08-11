@@ -13,20 +13,26 @@ These files are modeled after https://github.com/statico/dotfiles and thoughbot.
  - zsh
  - prezto
  - bash-completion
+ - vim janus
  - fzf
  - enhancd
  - lsd
  - tldr
- - thefuck
  - cht.sh
  - cargo
  - python3
  - vim janus
  - ripgrep
  - ack2
- - Universal ctags
+ - fd-find
+ - enhancd
+ - Universal-ctags
  - cscope
- - bash-completion
+ - git
+ - ruby
+ - rake
+ - ack
+ - cht.sh
 
 3. On the client install powerline or nerdfonts. Configure terminal to
    your liking
