@@ -58,6 +58,18 @@ cd $DOTFILES_DIR
 git pull
 git submodule update --init --recursive
 ```
+### Bash
+1. Create symlink to inputrc for command line completion
+```
+ln -s ~/dotfiles-local/inputrc ~/.inputrc
+
+```
+2. Edit ~/.bashrc to:
+
+```
+  source ~/dotfiles-local/sensible.bash
+  source ~/dotfiles-local/aliases.local
+```
 
 ### ZSH
 
