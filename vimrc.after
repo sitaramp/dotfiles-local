@@ -55,6 +55,9 @@ nmap \8 :e #8<CR>
 nmap \9 :e #9<CR>
 "close quickfix window
 nmap \x :cclose<CR>
+nnoremap <leader>w :w!<CR>
+nnoremap <leader>. :bnext<CR>
+nnoremap <leader>, :bprev<CR>
 
 " Single key access to files fzf and tags
 nmap <leader>b :Buffers<CR>
@@ -168,6 +171,12 @@ map <leader>qQ :qa!<CR>
 " quit all, after saving all files
 map <leader>qs :wqa!<CR>
 
+" tab, spacing, wrapping
+set expandtab
+set shiftwidth=4
+set tabstop=4
+set smarttab
+set nowrap
 
 " Trim spaces at EOL and retab. I run `:CLEAN` a lot to clean up files.
 command! TEOL %s/\s\+$//
