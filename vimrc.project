@@ -1,4 +1,4 @@
 "
 " project specific vimrc
 "
-set makeprg={PRODUCT_ROOT}/sade/buildstandalone_sade.sh
+set makeprg=${PRODUCT_ROOT}/sade/build_standalone_sade.sh

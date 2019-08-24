@@ -1,6 +1,16 @@
+
+################################################################################
+## ~/.inputrc
+##
+## Control the behaviour of the readline library used e.g.
+## by the bash in the interactive mode for line editing.
+##
+################################################################################
+
 #  readline initialization file
 # to reload bind -f ~/.inputrc
-$include /etc/inputrc 
+$include /etc/inputrc
+
 
 "\C-p":history-search-backward
 "\C-n":history-search-forward
@@ -8,10 +18,30 @@ set colored-stats On
 set completion-ignore-case On
 set completion-prefix-display-length 3
 set mark-symlinked-directories On
-set show-all-if-ambiguous On
+#
+# If set to on, words which have more than one possible completion cause the
+# matches to be listed immediately instead of ringing the bell.
+#
+set show-all-if-ambiguous on
+
 set show-all-if-unmodified On
 set visible-stats On
 set echo-control-characters off
 set match-hiddlen-files off
+#
+# The bell style used e.g. on error or tab completion, possible values
+# are `none', `visible', and `audible' the ringing the bell.
+#
 set bell-style none
-set editing-mode vi
+
+#set editing-mode vi
+#
+# If set to on, words which have more than one possible completion without
+# any possible partial completion cause the matches to be listed immediately
+# instead of ringing the bell.
+#
+set show-all-if-unmodified on
+
+#
+# end
+#

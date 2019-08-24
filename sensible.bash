@@ -126,6 +126,8 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export PS1="\[$(tput setaf 2)\]\u@\h:\w $ \[$(tput sgr0)\]"
 
 # Examples:
+# export dotfiles="$HOME/dotfiles"
+# export projects="$HOME/projects"
 # export documents="$HOME/Documents"
 # export dropbox="$HOME/Dropbox"
  export dotfiles="$HOME/dotfiles-local"
