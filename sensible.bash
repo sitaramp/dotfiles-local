@@ -150,12 +150,12 @@ if [[ -f ~/.fzf.bash ]]; then
    export FZF_COMPLETION_OPTS='+c -x'
 # Use fd command instead of find
    _fzf_compgen_path() {
-     fd --hidden --follow --exclude ".git" , "obj", "$1"
+     fd --hidden --follow --exclude ".git"
    }
 
   # USe fs to generate the list for directory completion
    _fzf_compgen_dir() {
-     fd --type d --hidden --follow --exclude ".git" , "obj", "$1"
+     fd --type d --hidden --follow --exclude ".git"
    }
 fi
 

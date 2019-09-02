@@ -42,6 +42,8 @@
 " :vmap for visual mode mapping
 " :imap for inset mode mapping
 " :help map verbose
+" Vim Debug:
+" http://inlehmansterms.net/2014/10/31/debugging-vim/
 
 " Switch between the last two files
 nmap <C-e> :e#<CR>
@@ -64,8 +66,10 @@ nmap \9 :e #9<CR>
 "close quickfix window
 nmap \x :cclose<CR>
 nnoremap <leader>w :w!<CR>
-nnoremap <leader>. :bnext<CR>
-nnoremap <leader>, :bprev<CR>
+" Cycle through  buffers
+nnoremap <Tab>     :bnext<CR>
+nnoremap <S-Tab>   :bprev<CR>
+nnoremap <C-M>     :GitFiles?<CR>
 
 " Single key access to files fzf and tags
 nmap <leader>b :Buffers<CR>
@@ -73,6 +77,13 @@ nmap <leader>o :History<CR>
 "nnoremap <C-t> :Files<CR>
 nmap <leader>t :Tags<CR>
 "nmap <leader>c :Colors<CR>
+
+map <Leader> <Plug>(easymotion-prefix)
+
+:map! <A-LEFT> <S-LEFT>
+:map <A-LEFT> <S-LEFT>
+:map! <A-RIGHT> <S-RIGHT>
+:map <A-RIGHT> <S-RIGHT>
 
 " Tell ack.vim to use ripgrep instead
 let g:ackprg = 'rg --vimgrep --no-heading'
@@ -352,7 +363,7 @@ nnoremap <C-]> g<C-]>
 
 " NERDTree
 "map <leader>ft :NERDTreeToggle<CR>
-"map <leader>fd :cd %:p:h<CR>:pwd<CR>
+"map <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Open NERDTree if no file is specified
 autocmd StdinReadPre * let s:std_in=1
@@ -403,21 +414,13 @@ highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
 nmap ]w :ALENextWrap<CR>
 nmap [w :ALEPreviousWrap<CR>
-nmap <Leader>f <Plug>(ale_fix)
+nmap <Leader>fw <Plug>(ale_fix)
 let g:ale_lint_on_text_changed = 'never'
 " You can disable this option too
 " if you don't want linters to run on opening a file
 let g:ale_lint_on_enter = 0
 " let g:ale_lint_on_text_changed = 'never'
 "let g:ale_lint_on_save = 0
-
-" Only run gcc linter for cxx and hxx
-let g:ale_pattern_options = {
-\ '.cxx$': {'ale_linters': ['sade'], 'ale_fixers': []},
-\ '.hxx$': {'ale_linters': ['sade'], 'ale_fixers': []},
-\}
-" If you configure g:ale_pattern_options outside of vimrc, you need this.
-let g:ale_pattern_options_enabled = 1
 
 augroup VimDiff
     autocmd!
@@ -427,7 +430,7 @@ augroup END
 " Airline status line  settings
 set laststatus=2
 let g:airline_detect_paste=1
-let g:airline_theme='cool'
+let g:airline_theme='molokai' "cool molokai
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#ale#enabled = 1
 
@@ -456,6 +459,9 @@ endif
 
 "Always use vertical diffs
 set diffopt+=vertical
+" ignore whitespace 
+set diffopt+=iwhite
+set diffexpr=""
 augroup VimDiff
   autocmd!
   if &diff
@@ -475,9 +481,9 @@ if has("patch-8.1.0360")
 	set diffopt+=internal,algorithm:patience
 endif
 " Local config
-"if filereadable($HOME . "/.vimrc.project")
-  "source ~/.vimrc.project
-"endif
+if filereadable($HOME . "/.vimrc.project")
+  source ~/.vimrc.project
+endif
 "
 
 
