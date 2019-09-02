@@ -1,5 +1,6 @@
 " Author: geam <mdelage@student.42.fr>
 " Description: gcc linter for ALE sade files
+" copy this files to ~/.janus/ale/ale_linters/cpp
 "
 call ale#Set('cpp_sade_executable', 'mklocal')
 call ale#Set('cpp_sade_options', '')
