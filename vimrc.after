@@ -40,10 +40,14 @@
 "To More keyboard mappings
 " :nmap for normal mode mapping
 " :vmap for visual mode mapping
-" :imap for inset mode mapping
+" :imap for insert mode mapping
 " :help map verbose
 " Vim Debug:
 " http://inlehmansterms.net/2014/10/31/debugging-vim/
+" Vim Keymap Debug:
+" :redir! > vim_keys.txt
+" :silent verbose map
+" :redir END
 
 " Switch between the last two files
 nmap <C-e> :e#<CR>
@@ -69,7 +73,7 @@ nnoremap <leader>w :w!<CR>
 " Cycle through  buffers
 nnoremap <Tab>     :bnext<CR>
 nnoremap <S-Tab>   :bprev<CR>
-nnoremap <C-M>     :GitFiles?<CR>
+"nnoremap <C-M>     :GitFiles?<CR>
 
 " Single key access to files fzf and tags
 nmap <leader>b :Buffers<CR>
@@ -335,15 +339,10 @@ let g:solarized_termcolors=256
 let g:rehash256 = 1
 colorscheme molokai
 
-"set cursorline
-"set cursorcolumn
-"hi CursorLine   cterm=NONE ctermbg=237 ctermfg=NONE guibg=darkred guifg=white
-"hi CursorColumn cterm=NONE ctermbg=235 ctermfg=NONE guibg=darkred guifg=white
-"
 "" use login Shell instead of interactive shell
-"if executable('zsh')
-"  set shell=/usr/bin/zsh\ -l
-"endif
+if executable('zsh')
+  set shell=/usr/bin/zsh\ -l
+endif
 "set shell=/bin/bash\ -l
 
 if has("cscope")
@@ -362,7 +361,7 @@ endif
 nnoremap <C-]> g<C-]>
 
 " NERDTree
-"map <leader>ft :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle<CR>
 "map <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Open NERDTree if no file is specified
@@ -462,24 +461,44 @@ set diffopt+=vertical
 " ignore whitespace 
 set diffopt+=iwhite
 set diffexpr=""
+
 augroup VimDiff
   autocmd!
   if &diff
-    set cursorline
-    syntax off
+
     set norelativenumber
+    set diffopt=filler,context:200 " filler is default and inserts empty lines for sync
+    map ] ]c
+    map [ [c
     map <leader>1 :diffget LOCAL<CR>
     map <leader>2 :diffget BASE<CR>
     map <leader>3 :diffget REMOTE<CR>
-    syntax off
-"   hi DiffAdd    ctermfg=233   ctermbg=LightGreen guifg=#003300 guibg=#DDFFDD gui=none cterm=none
-"   hi DiffText   ctermfg=233   ctermbg=yellow     guifg=#000033 guibg=#DDDDFF gui=none cterm=none
-"   hi DiffChange               ctermbg=white                    guibg=#ececec gui=none cterm=none
+    let g:diff_translations = 0
+    let g:solarized_diffmode="high"
+
+    set background=dark
+    "syntax off
+    "set syntax=diff
+    colorscheme evening
+
+    set cursorline
+    ""set cursorcolumn
+    ""hi CursorColumn cterm=none ctermbg=135 ctermfg=NONE guibg=darkred guifg=white
+    "hi CursorLine   cterm=underline ctermbg=18 ctermfg=white gui=underline guibg=#000087 guifg=white
+
+    "Color code map https://jonasjacek.github.io/colors/
+    ""hi DiffAdd   cterm=none    ctermbg=LightGreen ctermfg=233 gui=none guibg=#DDFFDD guifg=#003300
+    "hi DiffAdd    cterm=none    ctermbg=46         ctermfg=233 gui=none guibg=#00FF00 guifg=#003300 
+    "hi DiffDelete cterm=none    ctermbg=9          ctermfg=233 gui=none guibg=Red guifg=white
+    "hi DiffChange cterm=bold    ctermbg=17         ctermfg=10  gui=none guibg=Red guifg=bg
+    "hi DiffText   cterm=bold    ctermbg=88         ctermfg=10  gui=none guibg=Red guifg=bg
+
+    if has("patch-8.1.0360")
+	    set diffopt+=internal,algorithm:patience
+    endif
   endif
 augroup END
-if has("patch-8.1.0360")
-	set diffopt+=internal,algorithm:patience
-endif
+
 " Local config
 if filereadable($HOME . "/.vimrc.project")
   source ~/.vimrc.project

@@ -5,8 +5,10 @@ set makeprg=${PRODUCT_ROOT}/sade/build_standalone_sade.sh
 
 " Only run gcc linter for cxx and hxx
 let g:ale_pattern_options = {
-\ '.cxx$': {'ale_linters': ['sade'], 'ale_fixers': []},
-\ '.hxx$': {'ale_linters': ['sade'], 'ale_fixers': []},
+\ '.c$': {'ale_linters': ['sade'], 'ale_fixers': ['clangtidy']},
+\ '.h$': {'ale_linters': ['sade'], 'ale_fixers': ['clangtidy']},
+\ '.cxx$': {'ale_linters': ['sade'], 'ale_fixers': ['clangtidy']},
+\ '.hxx$': {'ale_linters': ['sade'], 'ale_fixers': ['clangtidy']}
 \}
 " If you configure g:ale_pattern_options outside of vimrc, you need this.
 let g:ale_pattern_options_enabled = 1
