@@ -71,6 +71,16 @@ export CLICOLOR=1
 export EDITOR=vim
 export SHELL=/usr/bin/zsh
 
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+    source /etc/profile.d/vte.sh
+    function custom_prompt() {
+      __git_ps1 "\[\033[0;31m\]\u \[\033[0;36m\]\h:\w\[\033[00m\]" " \n\[\033[0;31m\]>\[\033[00m\] " " %s"
+      VTE_PWD_THING="$(__vte_osc7)"
+      PS1="$PS1$VTE_PWD_THING"
+    }
+    PROMPT_COMMAND="$PROMPT_COMMNAD; custom_prompt"
+fi
+
 #eval $(thefuck --alias ff)
 
 if [[ ! "$PATH" == */$HOME/.local/bin* ]]; then

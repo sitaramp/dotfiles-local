@@ -115,7 +115,11 @@ export HISTTIMEFORMAT="[%F %T] "
 # Change the file location because certain bash sessions truncate .bash_history file upon close.
 # Force prompt to write history after every command.
 export HISTFILE=~/.bash_eternal_history
-PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+# Record each line as it gets issued
+if [[ ! "PROMPT_COMMAND" == *history* ]]; then
+  export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+fi
+
 
 # Prompt
 #\u - user name
@@ -123,7 +127,11 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 #\W - current working dir
 #\? - exit status of the command
 #export PS1="{\[\e[32m\]\u\[\e[m\]@\[\e[36m\]\h\[\e[m\]:\W_\$?}$ "
-export PS1="\[$(tput setaf 2)\]\u@\h:\w $ \[$(tput sgr0)\]"
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+#export PS1="\[$(tput setaf 2)\]\u@\h:\w $ \[$(tput sgr0)\]"
+export PS1="\[$(tput setab 7)\]\u@\h:\w\$(parse_git_branch) $\[$(tput sgr0)\] "
 
 # Examples:
 # export dotfiles="$HOME/dotfiles"

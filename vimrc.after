@@ -122,7 +122,7 @@ nnoremap <leader>s :call FzyCommand("fd ''", ":sp")<cr>
 nnoremap <leader>a :Rg<cr>
 
 " Search for word under the cursor in the current directory
-" Use \x to close quickfix window 
+" Use \x to close quickfix window
 nnoremap <leader>k mo:Ack! "\b<cword>\b" <CR>
 "nnoremap <C-S-k>  mo:Ggrep! "\b<cword>\b" <CR>
 
@@ -219,7 +219,7 @@ highlight ColorColumn ctermbg=darkgray
 "match ExtraWhitespace /\s\+\%#\@<!$/
 "highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
 "highlight WhiteSpaceEOL ctermbg=white guibg=white
-"let c_space_errors = 1
+let c_space_errors = 1
 
 " enable mouse in normal and visual mode. See help using-mouse
 set mouse=nv
