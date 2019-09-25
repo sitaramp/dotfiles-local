@@ -60,9 +60,6 @@ shopt -s histappend
 # Save multi-line commands as one command
 shopt -s cmdhist
 
-# Record each line as it gets issued
-PROMPT_COMMAND='history -a'
-
 # Huge history. Doesn't appear to slow things down, so why not?
 HISTSIZE=500000
 HISTFILESIZE=100000
@@ -131,7 +128,7 @@ parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 #export PS1="\[$(tput setaf 2)\]\u@\h:\w $ \[$(tput sgr0)\]"
-export PS1="\[$(tput setab 7)\]\u@\h:\w\$(parse_git_branch) $\[$(tput sgr0)\] "
+export PS1="\[$(tput setab 7)\]\u@\h:\w\$(parse_git_branch) >>\[$(tput sgr0)\] "
 
 # Examples:
 # export dotfiles="$HOME/dotfiles"
