@@ -413,7 +413,7 @@ highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
 nmap ]w :ALENextWrap<CR>
 nmap [w :ALEPreviousWrap<CR>
-nmap <Leader>fw <Plug>(ale_fix)
+nmap <Leader>wf <Plug>(ale_fix)
 let g:ale_lint_on_text_changed = 'never'
 " You can disable this option too
 " if you don't want linters to run on opening a file
@@ -489,13 +489,19 @@ augroup VimDiff
     "Color code map https://jonasjacek.github.io/colors/
     ""hi DiffAdd   cterm=none    ctermbg=LightGreen ctermfg=233 gui=none guibg=#DDFFDD guifg=#003300
     "hi DiffAdd    cterm=none    ctermbg=46         ctermfg=233 gui=none guibg=#00FF00 guifg=#003300 
+
     "hi DiffDelete cterm=none    ctermbg=9          ctermfg=233 gui=none guibg=Red guifg=white
+
     "hi DiffChange cterm=bold    ctermbg=17         ctermfg=10  gui=none guibg=Red guifg=bg
+"   hi DiffChange  cterm=none    ctermbg=white                  gui=none guibg=#ececec
+
     "hi DiffText   cterm=bold    ctermbg=88         ctermfg=10  gui=none guibg=Red guifg=bg
+"   hi DiffText    cterm=none    ctermbg=yellow     ctermfg=233 gui=none guibg=#DDDDFF guifg=#000033 
 
     if has("patch-8.1.0360")
 	    set diffopt+=internal,algorithm:patience
     endif
+    set syntax=diff
   endif
 augroup END
 
