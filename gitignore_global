@@ -9,6 +9,7 @@
 
 # Compiled C/C++ files
 *.o
+*.uo
 
 # Folder view configuration files
 .DS_Store

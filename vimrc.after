@@ -468,8 +468,8 @@ augroup VimDiff
 
     set norelativenumber
     set diffopt=filler,context:200 " filler is default and inserts empty lines for sync
-    map ] ]c
-    map [ [c
+    "map ] ]c
+    "map [ [c
     map <leader>1 :diffget LOCAL<CR>
     map <leader>2 :diffget BASE<CR>
     map <leader>3 :diffget REMOTE<CR>
