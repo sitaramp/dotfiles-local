@@ -10,7 +10,9 @@ fi
 pushd . ; cd $CSCOPE_ROOT
 
 # Generate ctags
-ctags -R .
+# vim sttings
+#    set tags+=$CSCOPE_ROOT/tags,tags
+ctags -R --extras=+q .
 
 # Generate cscope DB
 CSCOPE_DIR="$CSCOPE_ROOT/cscope"

@@ -174,6 +174,19 @@ if $VIM_CRONTAB == "true"
     set nowritebackup
 endif
 
+set timeout " Do time out on mappings and others
+set timeoutlen=1000 " Wait {num} ms before timing out a mapping
+" When you’re pressing Escape to leave insert mode in the terminal, it will by
+" default take a second or another keystroke to leave insert mode completely
+" and update the statusline. This fixes that. I got this from:
+" https://powerline.readthedocs.org/en/latest/tipstricks.html#vim
+set ttimeoutlen=10
+augroup FastEscape
+    autocmd!
+    au InsertEnter * set timeoutlen=0
+    au InsertLeave * set timeoutlen=1000
+augroup END
+
 augroup checktime
   au!
   if !has("gui_running")
@@ -351,14 +364,34 @@ if has("cscope")
   " add any local cscope db
   if filereadable("cscope.out")
     cs add cscope.out
-  endif
-  if filereadable ($CSCOPE_DB)
+  elseif filereadable ($CSCOPE_DB)
     cs  add  $CSCOPE_DB $CSCOPE_ROOT
     set tags=$CSCOPE_ROOT/tags
   endif
 endif
 " Show the list for multiple matches
 nnoremap <C-]> g<C-]>
+
+""""""""""""" cscope/vim key mappings
+" The following maps all invoke one of the following cscope search types:
+"
+"   's'   symbol: find all references to the token under cursor
+"   'g'   global: find global definition(s) of the token under cursor
+"   'c'   calls:  find all calls to the function name under cursor
+"   't'   text:   find all instances of the text under cursor
+"   'e'   egrep:  egrep search for the word under cursor
+"   'f'   file:   open the filename under cursor
+"   'i'   includes: find files that include the filename under cursor
+"   'd'   called: find functions that function under cursor calls
+"
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
+nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
 
 " NERDTree
 map <C-n> :NERDTreeToggle<CR>
@@ -489,19 +522,16 @@ augroup VimDiff
     "Color code map https://jonasjacek.github.io/colors/
     ""hi DiffAdd   cterm=none    ctermbg=LightGreen ctermfg=233 gui=none guibg=#DDFFDD guifg=#003300
     "hi DiffAdd    cterm=none    ctermbg=46         ctermfg=233 gui=none guibg=#00FF00 guifg=#003300 
-
     "hi DiffDelete cterm=none    ctermbg=9          ctermfg=233 gui=none guibg=Red guifg=white
-
     "hi DiffChange cterm=bold    ctermbg=17         ctermfg=10  gui=none guibg=Red guifg=bg
 "   hi DiffChange  cterm=none    ctermbg=white                  gui=none guibg=#ececec
-
     "hi DiffText   cterm=bold    ctermbg=88         ctermfg=10  gui=none guibg=Red guifg=bg
 "   hi DiffText    cterm=none    ctermbg=yellow     ctermfg=233 gui=none guibg=#DDDDFF guifg=#000033 
 
     if has("patch-8.1.0360")
 	    set diffopt+=internal,algorithm:patience
     endif
-    set syntax=diff
+    "set syntax=diff
   endif
 augroup END
 

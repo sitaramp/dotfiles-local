@@ -1,13 +1,13 @@
 #!/bin/bash
 # full update the git repo that you are sitting in..
 
-git pull --rebase
+git pull --rebase=preserve
 
 # if the fast forward fails--
 # another commit was added to the destination branch that isn't in your branch.
 # If you are the sole dev-- use rebase, redo local commit on top of remote
 # If you share the branch with other dev-- do merge, preserve commit log
-# git pull --rebase
+# git pull --rebase=preserve
 
 #First time or when new submodule are added
 #git submodule update --init --recursive --remote

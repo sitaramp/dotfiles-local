@@ -5,9 +5,10 @@ alias dotfiles='cd ~/dotfiles-local'
 
 # Git
 #alias git 'hub'
-alias g='git status -sb'
+#alias g='git status -sb'
+alias gs='git status -uno'
 alias gf='git fetch'
-alias gpr='git pull --rebase'
+alias gpr='git pull --rebase=preserve'
 alias grc='git rebase --continue'
 alias gss='git stash save'
 alias gsl='git stash list'

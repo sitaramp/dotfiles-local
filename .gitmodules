@@ -26,3 +26,7 @@
 	path = colorgcc
 	url = https://github.com/colorgcc/colorgcc
 	branch = master
+[submodule "molokai"]
+	path = janus/molokai
+	url = https://github.com/tomasr/molokai
+	branch = master
