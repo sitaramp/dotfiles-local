@@ -1,6 +1,7 @@
 # Productivity
 alias todo='$EDITOR ~/.todo'
-alias vi=vim
+alias vi='vim'
+alias gvim='gvim -v'
 alias dotfiles='cd ~/dotfiles-local'
 
 # Git

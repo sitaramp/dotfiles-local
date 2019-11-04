@@ -384,14 +384,14 @@ nnoremap <C-]> g<C-]>
 "   'i'   includes: find files that include the filename under cursor
 "   'd'   called: find functions that function under cursor calls
 "
-nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 " NERDTree
 map <C-n> :NERDTreeToggle<CR>
@@ -446,12 +446,10 @@ highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
 nmap ]w :ALENextWrap<CR>
 nmap [w :ALEPreviousWrap<CR>
-nmap <Leader>wf <Plug>(ale_fix)
-let g:ale_lint_on_text_changed = 'never'
-" You can disable this option too
+nmap <Leader>fw <Plug>(ale_fix)
 " if you don't want linters to run on opening a file
 let g:ale_lint_on_enter = 0
-" let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_text_changed = 'never'
 "let g:ale_lint_on_save = 0
 
 augroup VimDiff
@@ -491,7 +489,7 @@ endif
 
 "Always use vertical diffs
 set diffopt+=vertical
-" ignore whitespace 
+" ignore whitespace
 set diffopt+=iwhite
 set diffexpr=""
 
@@ -521,17 +519,14 @@ augroup VimDiff
 
     "Color code map https://jonasjacek.github.io/colors/
     ""hi DiffAdd   cterm=none    ctermbg=LightGreen ctermfg=233 gui=none guibg=#DDFFDD guifg=#003300
-    "hi DiffAdd    cterm=none    ctermbg=46         ctermfg=233 gui=none guibg=#00FF00 guifg=#003300 
+    "hi DiffAdd    cterm=none    ctermbg=46         ctermfg=233 gui=none guibg=#00FF00 guifg=#003300
     "hi DiffDelete cterm=none    ctermbg=9          ctermfg=233 gui=none guibg=Red guifg=white
     "hi DiffChange cterm=bold    ctermbg=17         ctermfg=10  gui=none guibg=Red guifg=bg
-"   hi DiffChange  cterm=none    ctermbg=white                  gui=none guibg=#ececec
     "hi DiffText   cterm=bold    ctermbg=88         ctermfg=10  gui=none guibg=Red guifg=bg
-"   hi DiffText    cterm=none    ctermbg=yellow     ctermfg=233 gui=none guibg=#DDDDFF guifg=#000033 
 
     if has("patch-8.1.0360")
-	    set diffopt+=internal,algorithm:patience
+      set diffopt+=internal,algorithm:patience
     endif
-    "set syntax=diff
   endif
 augroup END
 
