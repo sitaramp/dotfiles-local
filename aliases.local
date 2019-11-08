@@ -5,9 +5,9 @@ alias gvim='gvim -v'
 alias dotfiles='cd ~/dotfiles-local'
 
 # Git
-#alias git 'hub'
-#alias g='git status -sb'
-alias gs='git status -uno'
+#alias git='hub'
+#alias gs='git status -uno'
+alias gs='git status -sb'
 alias gf='git fetch'
 alias gpr='git pull --rebase=preserve'
 alias grc='git rebase --continue'
@@ -50,8 +50,8 @@ function mv() { /bin/mv -vi "$@" ; }
 function cls() { clear; /bin/ls; /bin/pwd; }
 function grep() { /usr/bin/ack --color "$@"; }
 function grepp() { /usr/bin/ack -P --color "$@"; }
-function atmux() { tmux new-session -A -s "$USER"; }
-function htmux() { tmux new-session -A -s "$HOST"; }
+function atmux() { tmux new-session -A -s "$HOST"; }
+function htmux() { tmux new-session -A -s "SESS-2"; }
 
 # check if command exists
 _has() {
