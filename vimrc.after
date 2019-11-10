@@ -251,6 +251,9 @@ noremap <leader>y "*y
 noremap <leader>p "*p
 noremap <leader>Y "+y
 noremap <leader>P "+p
+"reformat reindent
+noremap <Esc>P P'[v']=
+noremap <Esc>p p'[v']=
 
 "" {{{ automatic paste mode
 function! WrapForTmux(s)
