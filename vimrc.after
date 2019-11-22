@@ -175,16 +175,15 @@ if $VIM_CRONTAB == "true"
 endif
 
 set timeout " Do time out on mappings and others
-set timeoutlen=1000 " Wait {num} ms before timing out a mapping
+set timeoutlen=10000 " Wait {num} ms before timing out a mapping
 " When you’re pressing Escape to leave insert mode in the terminal, it will by
 " default take a second or another keystroke to leave insert mode completely
 " and update the statusline. This fixes that. I got this from:
 " https://powerline.readthedocs.org/en/latest/tipstricks.html#vim
-set ttimeoutlen=10
 augroup FastEscape
     autocmd!
     au InsertEnter * set timeoutlen=0
-    au InsertLeave * set timeoutlen=1000
+    au InsertLeave * set timeoutlen=10000
 augroup END
 
 augroup checktime
@@ -288,7 +287,7 @@ nmap <leader>n0 :set relativenumber!<CR>
 nmap <leader>nn :set number!<CR>
 set ruler
 set scroll=4
-set scrolloff=15
+set scrolloff=4
 set textwidth=100
 set linebreak
 
