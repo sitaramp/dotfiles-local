@@ -49,6 +49,11 @@
 " :silent verbose map
 " :redir END
 
+" Undo
+" u, C-r seq undo/redo
+" g-, g+ timed undo/redo
+" <leader> u gundo treeview
+
 " Switch between the last two files
 nmap <C-e> :e#<CR>
 nnoremap <Leader><Leader> <C-^>
@@ -241,10 +246,11 @@ set mouse=nv
 " To enable Right to paste disable mouse
 " set mouse-=a
 
-" The * is the default clipboard + is the selection clipboard
+" The * is the default clipboard + is the system clipboard
 " paste plus clipboard using using "+p
 "set clipboard=unamed
-set clipboard^=unnamed,unnamedplus
+" Warning: vim must be compiled with clipboard support, use vim-gtk or vim-X11
+set clipboard=unnamed,unnamedplus
 "copy paste to system cliboard by prefixing with <leader>
 noremap <leader>y "*y
 noremap <leader>p "*p
@@ -300,6 +306,18 @@ set showcmd
 "nnoremap <C-k> <C-w>k
 "nnoremap <C-h> <C-w>h
 "nnoremap <C-l> <C-w>l
+
+"Display the undo tree with <leader>u.
+nnoremap <leader>u :GundoToggle<CR>
+"Add this line if you are using Python 3.
+"let g:gundo_prefer_python3 = 1
+
+" Use persistent history.
+if !isdirectory("/tmp/.vim-undo-dir")
+    call mkdir("/tmp/.vim-undo-dir", "", 0700)
+endif
+set undodir=/tmp/.vim-undo-dir
+set undofile
 
 "Colors
 " Prereq export XTERM=xterm-256color,;  install ncurses-term
@@ -525,6 +543,9 @@ augroup VimDiff
     "hi DiffDelete cterm=none    ctermbg=9          ctermfg=233 gui=none guibg=Red guifg=white
     "hi DiffChange cterm=bold    ctermbg=17         ctermfg=10  gui=none guibg=Red guifg=bg
     "hi DiffText   cterm=bold    ctermbg=88         ctermfg=10  gui=none guibg=Red guifg=bg
+
+    set foldmethod=indent
+    autocmd Syntax * normal zR
 
     if has("patch-8.1.0360")
       set diffopt+=internal,algorithm:patience

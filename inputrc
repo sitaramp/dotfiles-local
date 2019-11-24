@@ -5,6 +5,12 @@
 ## Control the behaviour of the readline library used e.g.
 ## by the bash in the interactive mode for line editing.
 ##
+## help
+## key mapping
+##  bind -p
+## reload
+##  bind -f ~/.inputrc
+##
 ################################################################################
 
 #  readline initialization file

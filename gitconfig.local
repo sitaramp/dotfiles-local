@@ -6,6 +6,7 @@
 [fetch]
   prune = true
 [rebase]
+  autoStash = true
   autosquash = true
 [hub]
   protocol = ssh
