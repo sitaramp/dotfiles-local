@@ -3,6 +3,8 @@
 # [include]
 #    path= ~/dotfiles-local/gitconfig.local
 #
+#[include]
+#  path = /home/c4dev/.enterprise/config.include
 [fetch]
   prune = true
 [rebase]
