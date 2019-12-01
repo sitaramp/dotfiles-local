@@ -59,6 +59,7 @@ nmap <C-e> :e#<CR>
 nnoremap <Leader><Leader> <C-^>
 "nmap [b   :bprev<CR>
 "nmap ]b   :bnext<CR>
+":Gcd      change to top level git directory
 
 " single key acess to Buffers
 nmap ;  :Buffers<CR>
@@ -81,10 +82,9 @@ nnoremap <S-Tab>   :bprev<CR>
 "nnoremap <C-M>     :GitFiles?<CR>
 
 " Single key access to files fzf and tags
-nmap <leader>b :Buffers<CR>
-nmap <leader>o :History<CR>
-"nnoremap <C-t> :Files<CR>
-nmap <leader>t :Tags<CR>
+nmap         ; :Buffers<CR> " edit old files
+nmap <leader>t :Files<CR>   " edit files in current directory and below
+nmap <leader>p :History<CR> " edit a buffer in current window
 "nmap <leader>c :Colors<CR>
 
 map <Leader> <Plug>(easymotion-prefix)
@@ -96,6 +96,8 @@ map <Leader> <Plug>(easymotion-prefix)
 
 " Tell ack.vim to use ripgrep instead
 let g:ackprg = 'rg --vimgrep --no-heading'
+let g:grepprg = 'rg --vimgrep --no-heading'
+set grepformat^=%f:%l:%c:%m
 
 let $FZF_DEFAULT_COMMAND = 'rg --files --follow -g "!{.git,obj}/*" 2>/dev/null'
 command! -bang -nargs=* Rg
@@ -124,12 +126,12 @@ nnoremap <leader>v :call FzyCommand("fd ''", ":vs")<cr>
 nnoremap <leader>s :call FzyCommand("fd ''", ":sp")<cr>
 
 " fuzzy grep/ack  Use ^c to abort
-nnoremap <leader>a :Rg<cr>
+nnoremap <leader>/ :Rg<space>
 
 " Search for word under the cursor in the current directory
 " Use \x to close quickfix window
-nnoremap <leader>k mo:Ack! "\b<cword>\b" <CR>
-"nnoremap <C-S-k>  mo:Ggrep! "\b<cword>\b" <CR>
+nnoremap <leader>k mo:Ack!   "\b<cword>\b" <CR>
+nnoremap <leader>K mo:Ggrep! "\b<cword>\b" <CR>
 
 " italicize comments
 highlight Comment cterm=italic
