@@ -1,13 +1,15 @@
 #!/bin/sh
 set -e 
 PATH="$HOME/.local/bin:/usr/local/bin:$PATH"
-$DIR="sade/src/dart/Dart"
+PRODUCT_ROOT="`git rev-parse --show-toplevel`"
+DIR="$PRODUCT_ROOT/sade/src/dart/Dart"
 trap 'rm -f "$DIR/tags.$$"' EXIT
 
 # Assumes universal-ctags is on the path
 pushd .
 cd $DIR
 #ctags --tag-relative=yes -R -f tags.$$ --languages=-javascript,sql
-ctags -R -f tags.$$
+#ctags -R -f tags.$$
+ctags -R --extras=+q -f tags.$$ .
 mv tags.$$ tags
 popd

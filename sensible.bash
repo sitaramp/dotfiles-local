@@ -145,7 +145,7 @@ export PS1="\[$(tput setab 7)\]\u@\h:\w\$(parse_git_branch) >>\[$(tput sgr0)\] "
 # fzf
 if [[ -f ~/.fzf.bash ]]; then
 #   source ~/.fzf.bash
-#  export FZF_TMUX=1
+  export FZF_TMUX=1
 #  export FZF_TMUXHEIGHT=50%
    export FZF_DEFAULT_COMMAND='fd --type file'
    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
