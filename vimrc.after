@@ -62,7 +62,7 @@ nnoremap <Leader><Leader> <C-^>
 ":Gcd      change to top level git directory
 
 " single key acess to Buffers
-nmap ;  :Buffers<CR>
+"nmap ;  :Buffers<CR>
 nmap \0 :buffers<CR>
 nmap \1 :e #1<CR>
 nmap \2 :e #2<CR>
@@ -82,9 +82,10 @@ nnoremap <S-Tab>   :bprev<CR>
 "nnoremap <C-M>     :GitFiles?<CR>
 
 " Single key access to files fzf and tags
-nmap         ; :Buffers<CR> " edit old files
-nmap <leader>t :Files<CR>   " edit files in current directory and below
-nmap <leader>p :History<CR> " edit a buffer in current window
+nmap <leader>b :Buffers<CR>  " edit a buffer in current window
+nmap <leader>o :History<CR>  " edit recent files
+"nmap <leader>t :Files<CR>   " edit files in current directory and below
+nmap <leader>t :Tags<CR>
 "nmap <leader>c :Colors<CR>
 
 map <Leader> <Plug>(easymotion-prefix)
@@ -130,8 +131,8 @@ nnoremap <leader>/ :Rg<space>
 
 " Search for word under the cursor in the current directory
 " Use \x to close quickfix window
-nnoremap <leader>k mo:Ack!   "\b<cword>\b" <CR>
-nnoremap <leader>K mo:Ggrep! "\b<cword>\b" <CR>
+nnoremap <leader>a mo:Ack!   "\b<cword>\b" <CR>
+nnoremap <leader>k mo:Ggrep! "\b<cword>\b" <CR>
 
 " italicize comments
 highlight Comment cterm=italic
