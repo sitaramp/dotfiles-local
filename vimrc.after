@@ -81,10 +81,16 @@ nnoremap <Tab>     :bnext<CR>
 nnoremap <S-Tab>   :bprev<CR>
 "nnoremap <C-M>     :GitFiles?<CR>
 
+"[Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump=1
+
 " Single key access to files fzf and tags
-nmap <leader>b :Buffers<CR>  " edit a buffer in current window
-nmap <leader>o :History<CR>  " edit recent files
-"nmap <leader>t :Files<CR>   " edit files in current directory and below
+" edit a buffer in current window
+nmap <leader>b :Buffers<CR>
+" edit recent files
+nmap <leader>o :History<CR>
+" edit files in current directory and below
+"nmap <leader>t :Files<CR>
 nmap <leader>t :Tags<CR>
 "nmap <leader>c :Colors<CR>
 
@@ -100,31 +106,31 @@ let g:ackprg = 'rg --vimgrep --no-heading'
 let g:grepprg = 'rg --vimgrep --no-heading'
 set grepformat^=%f:%l:%c:%m
 
-let $FZF_DEFAULT_COMMAND = 'rg --files --follow -g "!{.git,obj}/*" 2>/dev/null'
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case -g "!{*.lock,*-lock.json, *.obj}" '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:40%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+"let $FZF_DEFAULT_COMMAND = 'rg --files --follow -g "!{.git,obj}/*" 2>/dev/null'
+"command! -bang -nargs=* Rg
+  "\ call fzf#vim#grep(
+  "\   'rg --column --line-number --no-heading --color=always --smart-case -g "!{*.lock,*-lock.json, *.obj}" '.shellescape(<q-args>), 1,
+  "\   <bang>0 ? fzf#vim#with_preview('up:40%')
+  "\           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  "\   <bang>0)
 
-" fzy file filter
-function! FzyCommand(choice_command, vim_command)
-  try
-    let output = system(a:choice_command . " | fzy ")
-  catch /Vim:Interrupt/
-    " Swallow errors from ^C, allow redraw! below
-  endtry
-  redraw!
-  if v:shell_error == 0 && !empty(output)
-    exec a:vim_command . ' ' . output
-  endif
-endfunction
+"" fzy file filter
+"function! FzyCommand(choice_command, vim_command)
+  "try
+    "let output = system(a:choice_command . " | fzy ")
+  "catch /Vim:Interrupt/
+    "" Swallow errors from ^C, allow redraw! below
+  "endtry
+  "redraw!
+  "if v:shell_error == 0 && !empty(output)
+    "exec a:vim_command . ' ' . output
+  "endif
+"endfunction
 
-" fuzzy file find
-nnoremap <leader>e :call FzyCommand("fd ''", ":e")<cr>
-nnoremap <leader>v :call FzyCommand("fd ''", ":vs")<cr>
-nnoremap <leader>s :call FzyCommand("fd ''", ":sp")<cr>
+"" fuzzy file find
+"nnoremap <leader>e :call FzyCommand("fd ''", ":e")<cr>
+"nnoremap <leader>v :call FzyCommand("fd ''", ":vs")<cr>
+"nnoremap <leader>s :call FzyCommand("fd ''", ":sp")<cr>
 
 " fuzzy grep/ack  Use ^c to abort
 nnoremap <leader>/ :Rg<space>
