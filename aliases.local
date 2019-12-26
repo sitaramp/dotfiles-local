@@ -52,6 +52,7 @@ function grep() { /usr/bin/ack --color "$@"; }
 function grepp() { /usr/bin/ack -P --color "$@"; }
 function atmux() { tmux new-session -A -s "$HOST"; }
 function htmux() { tmux new-session -A -s "SESS-2"; }
+function gcd() { cd `git rev-parse --show-toplevel`; }
 
 # check if command exists
 _has() {
