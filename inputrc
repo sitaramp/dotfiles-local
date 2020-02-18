@@ -21,7 +21,9 @@ $include /etc/inputrc
 "\C-p":history-search-backward
 "\C-n":history-search-forward
 set colored-stats On
+set page-completions on
 set completion-ignore-case On
+set completion-query-items 200
 set completion-prefix-display-length 3
 set mark-symlinked-directories On
 #
@@ -33,7 +35,7 @@ set show-all-if-ambiguous on
 set show-all-if-unmodified On
 set visible-stats On
 set echo-control-characters off
-set match-hiddlen-files off
+set match-hidden-files off
 #
 # The bell style used e.g. on error or tab completion, possible values
 # are `none', `visible', and `audible' the ringing the bell.
@@ -48,6 +50,126 @@ set bell-style none
 #
 set show-all-if-unmodified on
 
+set editing-mode vi
+$if mode=vi
+
+    ## <ctrl/alt> left/right -- backward/forward one word
+    #  <alt> left   -- move backward one word
+    "\e[3D":   backward-word
+    "\e[1;3D": backward-word
+    #  <ctrl> left  -- move backward one word
+    "\e[5D":   backward-word
+    "\e[1;5D": backward-word
+
+    #  <alt> right  -- move forward one word
+    "\e[3C":   forward-word
+    "\e[1;3C": forward-word
+    #  <ctrl> right -- move forward one word
+    "\e[5C":   forward-word
+    "\e[1;5C": forward-word
+
+    ## <ctrl/alt> up/down -- beginning/end of line
+    #  <alt> up     -- move to beginning of line
+    "\e[3A":   beginning-of-line
+    "\e[1;3A": beginning-of-line
+    #  <ctrl> up    -- move to beginning of line
+    "\e[5A":   beginning-of-line
+    "\e[1;5A": beginning-of-line
+
+    #  <ctrl> down  -- move to end of line
+    "\e[3B":   end-of-line
+    "\e[1;3B": end-of-line
+    #  <ctrl> down  -- move to end of line
+    "\e[5B":   end-of-line
+    "\e[1;5B": end-of-line
+
+  ## vi-command keymap
+  set keymap vi-command
+
+    #  <ctrl> l  -- clear screen
+    "\C-l": clear-screen
+
+    #  <ctrl> k  -- clear whole line
+    "\C-k": kill-whole-line
+
+    #  <ctrl> a  -- move to beginning of line (^)
+    "\C-a": vi-insert-beg
+    #  <ctrl> [  -- move to beginning of line (^)
+    "\C-[": vi-insert-beg
+
+    #  <ctrl> e  -- move to end of line ($)
+    "\C-e": vi-append-eol
+    #  <ctrl> ]  -- move to end of line ($)
+    "\C-]": vi-append-eol
+
+    #  <up>      -- history search backward (match current input)
+    "\e[A": history-search-backward
+    #  <down>    -- history search forward (match current input)
+    "\e[B": history-search-forward
+
+
+    #  <ctrl> w  -- delete last word
+    "\C-w": backward-kill-word
+
+    #  <ctrl> BS -- delete last word
+    #"\C-\b": backward-kill-word
+    #"\C-^?": backward-kill-word
+    #"\C-_": backward-kill-word
+
+    #  <ctrl> gx -- expand without executing
+    "\C-gx": glob-expand-word
+
+    #  <ctrl> 3  -- prefix with '# '
+    "\C-3": "\C-a# "
+
+  ## vi-insert keymap
+  set keymap vi-insert
+
+    #  emulate a few options from "set -o emacs":
+    #  <ctrl> l  -- clear screen
+    "\C-l": clear-screen
+
+    #  <ctrl> k  -- clear whole line
+    "\C-k": kill-whole-line
+
+    #  <ctrl> a  -- move to beginning of line (^)
+    "\C-a": vi-insert-beg
+    #  <ctrl> [  -- move to beginning of line (^)
+    "\C-[": vi-insert-beg
+
+    #  <ctrl> e  -- move to end of line ($)
+    "\C-e": vi-append-eol
+    #  <ctrl> ]  -- move to end of line ($)
+    "\C-]": vi-append-eol
+
+    #  <up>      -- history search backward (match current input)
+    "\e[A": history-search-backward
+    #  <down>    -- history search forward (match current input)
+    "\e[B": history-search-forward
+
+    # <ctrl> <left>  -- move to prev word
+    # "\C-\e[D": vi-prev-word
+    # <ctrl> <right>  -- move to next word
+    # "\C-\e[C": vi-next-word
+
+    #  <ctrl> w  -- delete last word
+    "\C-w": backward-kill-word
+
+    #  <ctrl> BS -- delete last word
+    #"\C-\b": backward-kill-word
+    #"\C-?": backward-kill-word
+    #"\C-_": backward-kill-word
+
+    #  <ctrl> gx -- glob expand without executing
+    "\C-gx": glob-expand-word
+
+    #  <ctrl> 3  -- prefix with '# '
+    "\C-3": "\C-a# "
+$endif
+
+$if mode=emacs
+    #  see: bindkey -p
+$endif
 #
 # end
 #

@@ -27,10 +27,25 @@ show logging
 # set solib-search-path  ./csx_pkg.dir/ulib:./csx_pkg.dir:./lib64
 # set substitute-path  /home/jenkins-build/workspace/SDNas_corsica-buildall/ /c4_working/corsica-ufs64
 
-# set logging redirect on
+# breakpoints
+# break function | linenum
+# break ... if condition==true
+#info breakpoints
+
+
+# watchpoints stops execution whenever that value of an expression changes
+#watch expr
+#info watchpoints
+
+# Display summary of all threads
+# info threads
+# Get thread info, switch and bt all
 # thread apply all where
-# thread apply all where
+
+# Switch to thread <threadno>
+# thread <num>
 # thread <thread pid#>
+# thread apply <threadno> where
 
 # info break
 # cond 3 if var=value

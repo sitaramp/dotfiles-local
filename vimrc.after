@@ -102,9 +102,11 @@ map <Leader> <Plug>(easymotion-prefix)
 :map <A-RIGHT> <S-RIGHT>
 
 " Tell ack.vim to use ripgrep instead
-let g:ackprg = 'rg --vimgrep --no-heading'
-let g:grepprg = 'rg --vimgrep --no-heading'
-set grepformat^=%f:%l:%c:%m
+if executable('rg')
+   let g:ackprg = 'rg --vimgrep --no-heading'
+   let g:grepprg = 'rg --vimgrep --no-heading'
+   set grepformat^=%f:%l:%c:%m
+endif
 
 "let $FZF_DEFAULT_COMMAND = 'rg --files --follow -g "!{.git,obj}/*" 2>/dev/null'
 "command! -bang -nargs=* Rg
@@ -137,8 +139,19 @@ nnoremap <leader>/ :Rg<space>
 
 " Search for word under the cursor in the current directory
 " Use \x to close quickfix window
-nnoremap <leader>a mo:Ack!   "\b<cword>\b" <CR>
-nnoremap <leader>k mo:Ggrep! "\b<cword>\b" <CR>
+"nnoremap <leader>a mo:Ack!   "\b<cword>\b" <CR>
+nnoremap <leader>ack :Ack --follow <Space>
+nmap <Leader>ac yiw<leader>ack<C-r>"
+vmap <Leader>ac   y<Leader>ack<C-r>"
+map  <leader>k     <leader>ac<Bs><CR>
+nnoremap <leader>gg mo:Ggrep! "\b<cword>\b" <CR>
+
+" Search for file 
+"noremap <F1> :denite<Space>
+"map  <leader>fdr <F1> -no-split -no-auto-resize ignorecase -start-insert file_rec buffer<CR>
+"nmap <leader>fd  yiw<leader>fdr<C-r>"
+"vmap <leader>fd    y<leader>fdr<C-r>"
+"map  <leader>o      <leader>fd<Bs><cr>
 
 " italicize comments
 highlight Comment cterm=italic
@@ -259,7 +272,7 @@ set mouse=nv
 " paste plus clipboard using using "+p
 "set clipboard=unamed
 " Warning: vim must be compiled with clipboard support, use vim-gtk or vim-X11
-set clipboard=unnamed,unnamedplus
+set clipboard+=unnamed,unnamedplus
 "copy paste to system cliboard by prefixing with <leader>
 noremap <leader>y "*y
 noremap <leader>p "*p
@@ -395,7 +408,7 @@ if has("cscope")
     cs add cscope.out
   elseif filereadable ($CSCOPE_DB)
     cs  add  $CSCOPE_DB $CSCOPE_ROOT
-    set tags=$CSCOPE_ROOT/tags
+    set tags+=$CSCOPE_ROOT/tags
   endif
 endif
 " Show the list for multiple matches
@@ -446,13 +459,13 @@ let g:NERDTreeStatusLine = -1
 
 
 " Fugitive
-nmap <leader>gs :Gstatus<CR>
-nmap <leader>gd :Gdiff<CR>
-nmap <leader>gc :Gcommit<CR>
-nmap <leader>gb :Gblame<CR>
-nmap <leader>gl :Glog<CR>
-nmap <leader>gp :Gpush<CR>
-nmap <leader>gw :Gwrite<CR>
+"nmap <leader>gs :Gstatus<CR>
+"nmap <leader>gd :Gdiff<CR>
+"nmap <leader>gc :Gcommit<CR>
+"nmap <leader>gb :Gblame<CR>
+"nmap <leader>gl :Glog<CR>
+"nmap <leader>gp :Gpush<CR>
+"nmap <leader>gw :Gwrite<CR>
 
 " janus status line
 if janus#is_plugin_enabled('fugitive')

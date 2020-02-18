@@ -52,7 +52,7 @@ function grep() { /usr/bin/ack --color "$@"; }
 function grepp() { /usr/bin/ack -P --color "$@"; }
 function atmux() { tmux new-session -A -s "$HOST"; }
 function htmux() { tmux new-session -A -s "SESS-2"; }
-function gcd() { cd `git rev-parse --show-toplevel`; }
+function gcd() { cd "`git rev-parse --show-toplevel`"; }
 
 # check if command exists
 _has() {
@@ -103,3 +103,45 @@ fi
 if _has thefuck; then
   eval $(thefuck --alias ff)
 fi
+
+cheat() {
+   curl "http://cht.sh/$1"
+  }
+
+tldr-web() {
+   w3m -dump "https://raw.githubusercontent.com/tldr-pages/tldr/master/pages/common/$1.md"
+   w3m -dump "https://raw.githubusercontent.com/tldr-pages/tldr/master/pages/linux/$1.md"
+  }
+
+man2txt() {
+    man "$1" | col -bx
+  }
+
+manflags(){
+    man "$1" | awk '{$1=$1;print}' | grep "^\-"
+  } #man pages just the flags more or less, captures some extra
+
+ubuman() {
+   w3m -dump "https://manpages.ubuntu.com/manpages/$(lsb_release -cs)/en/man1/"$1".1.html"
+  } # ubuntu web manpages note bionic, update with do release up
+
+ubumanflags() {
+   w3m -dump "https://manpages.ubuntu.com/manpages/$(lsb_release -cs)/en/man1/$1.1.html" | \
+   awk '{$1=$1;print}' | grep "^\-"
+  } # ubuntu web manpages
+
+explain () {
+    if [ "$#" -eq 0 ]; then
+      while read  -p "Command: " cmd; do
+        curl -Gs "https://www.mankier.com/api/v2/explain/?cols="$(tput cols) --data-urlencode "q=$cmd"
+      done
+      echo "Bye!"
+    elif [ "$#" -eq 1 ]; then
+      curl -Gs "https://www.mankier.com/api/v2/explain/?cols="$(tput cols) --data-urlencode "q=$1"
+    else
+      echo "Usage"
+      echo "explain                  interactive mode."
+      echo "explain 'cmd -o | ...'   one quoted command to explain it."
+    fi
+  }
+# notetoself: check ```info``` check ```help``` check ```apropos``` check ```whatis```

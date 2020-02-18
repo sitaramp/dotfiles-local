@@ -77,7 +77,8 @@
   #stash-unapply '!git stash show -p | git apply -R'
   latest = for-each-ref --sort=committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)'
   newb = checkout -b
-  info = diff-tree --no-commit-id --name-status -r 
+  #info = diff-tree --no-commit-id --name-status -r 
+  info = show --stat
   last = log -1
   ll = log --stat --abbrev-commit
   hist = log --color --pretty=format:\"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)\" --relative-date -10 --decorate
