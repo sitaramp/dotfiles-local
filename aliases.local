@@ -48,9 +48,9 @@ function rm() { /bin/rm -vi "$@"; }
 function cp() { /bin/cp -i "$@"; }
 function mv() { /bin/mv -vi "$@" ; }
 function cls() { clear; /bin/ls; /bin/pwd; }
-function grep() { /usr/bin/ack --color "$@"; }
+#function grep() { /usr/bin/ack --color "$@"; }
 function grepp() { /usr/bin/ack -P --color "$@"; }
-function atmux() { tmux new-session -A -s "$HOST"; }
+function atmux() { tmux new-session -A -s "$HOSTNAME"; }
 function htmux() { tmux new-session -A -s "SESS-2"; }
 function gcd() { cd "`git rev-parse --show-toplevel`"; }
 

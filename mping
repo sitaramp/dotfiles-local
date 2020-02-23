@@ -24,6 +24,10 @@
 # SSH listening                  green
 
 # Feel free to adapt, enhance. Take care.
+# https://github.com/xsagb/mping
+# prereqs:
+#   iputils-ping nmap
+
 
 : "${HOSTS:=$@}"
 : "${INTERVAL:=1}"
@@ -112,7 +116,8 @@ printf "\\033[s"
 while :; do
 	for host in $HOSTS; do
 		status "$host"
-		printf \\n
+#		printf \\n
+		echo -n " "
 	done
 	# restore curpos
 	printf "\\033[%dB\\033[u" "$LINENR"
