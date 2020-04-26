@@ -4,16 +4,16 @@ Quick terminal setup to get started.
 Use off-the-shelve components and keep local changes to a minimum thus reducing maintenance.
 These files are modeled after https://github.com/statico/dotfiles and thoughbot.
 
-### Installation
+### Prerequisites:
 
 1. Launch Zsh:
 'zsh
 
-2. Install the  required packages and dependencies
+2. Install the  required packages and dependencies:
  - zsh
  - prezto
- - bash-completion
- - vim janus
+ - bash-completion: https://github.com/scop/bash-completion
+ - vim janus: https://github.com/carlhuda/janus/wiki/Pre-requisites
  - fzf
  - enhancd
  - lsd
@@ -37,19 +37,26 @@ These files are modeled after https://github.com/statico/dotfiles and thoughbot.
 3. On the client install powerline or nerdfonts. Configure terminal to
    your liking
 
-4. Clone the repository to your home directory:
+### Installation
+1. Clone the repository to your home directory:
 
 `git clone --recursive https://github.com/sitaramp/dotfiles-local ~/dotfiles-local
 
-4. Create a new zsh configuration
 
-5. Set Zsh as your default shell:
+2. Set Zsh as your default shell:
 ```
 chsh - /bin/zsh
 ```
-6. Open a new Zsh terminal window or tab
+3. Open a new Zsh terminal window or tab
 
-7. Follow more customization below
+4. Create symlinks
+ln -s ~/dotfiles/janus ~/.janus
+ln -s ~/dotfiles/inputrc ~/.inputrc
+ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/global-gitignore ~/.gitignore
+ln -s ~/dotfiles/dircolors ~/.dircolors
+
+5. Follow more customization below
 
 ### Updating:
 
@@ -58,7 +65,45 @@ cd $DOTFILES_DIR
 git pull
 git submodule update --init --recursive
 ```
-### Bash
+### Uninstall
+To remove the dotfile configs, run the following commands. Be certain to double check the contents of the files before removing so you don't lose custom settings.
+```
+unlink ~/.janus
+unlink ~/.inputrc
+unlink ~/.tmux.conf
+unlink ~/.gitignore
+unlink ~/.dircolors
+rm -rf ~/dotfiles-local
+chsh -s /bin/bash # change back to Bash if you want
+```
+Then open a new terminal window to see the effects.
+
+### Usage and customization
+## Some keyboard shortcuts to know:
+```
+Ctrl + R : reverse command history chooser
+Ctrl + T : fuzzy directory chooser
+cd -     : directory matches down the current directory hierarchy
+cd ..    : directory matches up the current directory hierarchy
+```
+
+## Shell Command line
+1. Navigation :
+- Ctrl + A : Go to beginning of the line
+- Ctrl + E : Go to end of the line
+-  Alt + F : Go to next word
+-  Alt + B : Go to previous work
+2. Edit :
+- Ctrl + D : Delete word
+- Ctrl + W : Delete previous word
+-  Alt + D : Delete next word
+- Ctrl + - : undo
+2. History
+- $ secret-command --password 1234qwerty  # oh no! that should not be in my history!
+- $ sed -i '/secret-command/d' $HISTFILE  # delete history line containing 'secret-command'
+- $  secret-command --password 1234qwerty  # Avoid histort. Notice the space at the start of the command!
+
+## Bash
 1. Create symlink to inputrc for command line completion
 ```
 ln -s ~/dotfiles-local/inputrc ~/.inputrc
@@ -71,7 +116,7 @@ ln -s ~/dotfiles-local/inputrc ~/.inputrc
   source ~/dotfiles-local/aliases.local
 ```
 
-### ZSH
+## ZSH
 
 1. Ensure zprezto is installed
 
@@ -98,14 +143,6 @@ ln -s ~/dotfiles-local/inputrc ~/.inputrc
 ```
    +zstyle ':prezto:module:prompt' theme 'powerlevel9k'
 ```
-4. Some keyboard shortcuts to know:
-```
-Ctrl + R : reverse command history chooser
-Ctrl + T : fuzzy directory chooser
-cd -     : directory matches down the current directory hierarchy
-cd ..    : directory matches up the current directory hierarchy
-```
-
 ### TMUX
 
 Prefix is set to "`" backquote
@@ -182,7 +219,9 @@ Some handy keyboard shortcut to know:
  :CLEAN      cleanup trailing white spaces
  :SudoWrite  write buffer
 ```
-For more information see: https://learnxinyminutes.com/docs/vim/
+For more information see:
+http://www.viemu.com/vi-vim-cheat-sheet.gif
+https://learnxinyminutes.com/docs/vim/
 
 ### GIT
 
