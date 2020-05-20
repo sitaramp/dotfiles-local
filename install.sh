@@ -17,6 +17,7 @@ git submodule update --init --recursive
 
 # Install missing dependencies
 sudo zypper install iputils-ping cargo tmux nmap ack ripgrep bash-completion bc
+sudo zypper install xclip gvim
 sudo zypper install libevent-devel ncurses-devel
 sudo zypper install --target kernel-devel
 
