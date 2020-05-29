@@ -5,6 +5,8 @@
 #
 #[include]
 #  path = /home/c4dev/.enterprise/config.include
+[include]
+  path = /home/spawar/gitconfig.user
 [fetch]
   prune = true
 [rebase]
@@ -118,7 +120,7 @@
 	newHighlight = green bold 22
 [color "status"]
   added = green
-  changed = yellow
+  changed = red
   untracked = cyan
 [color "branch"]
   current = yellow reverse
