@@ -44,10 +44,17 @@
 " :help map verbose
 " Vim Debug:
 " http://inlehmansterms.net/2014/10/31/debugging-vim/
+" vim -D somefile.txt
+" vim --startuptime vim.log
+" vim -V9 somefile.txt
+" :set verbosefile = vim-verbose.txt
+" :set verbose=9
 " Vim Keymap Debug:
 " :redir! > vim_keys.txt
 " :silent verbose map
 " :redir END
+" What overrode you mapping ?
+" https://vi.stackexchange.com/7722/how-to-debug-a-mapping
 
 " Undo
 " u, C-r seq undo/redo
@@ -130,9 +137,10 @@ endif
 "endfunction
 
 "" fuzzy file find
-"nnoremap <leader>e :call FzyCommand("fd ''", ":e")<cr>
-"nnoremap <leader>v :call FzyCommand("fd ''", ":vs")<cr>
-"nnoremap <leader>s :call FzyCommand("fd ''", ":sp")<cr>
+nmap <leader>ee :History <CR>
+"nnoremap <leader>ee :call FzyCommand("fd ''", ":e")<cr>
+"nnoremap <leader>ev :call FzyCommand("fd ''", ":vs")<cr>
+"nnoremap <leader>es :call FzyCommand("fd ''", ":sp")<cr>
 
 " fuzzy grep/ack  Use ^c to abort
 nnoremap <leader>/ :Rg<space>

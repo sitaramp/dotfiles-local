@@ -4,9 +4,8 @@
 #    path= ~/dotfiles-local/gitconfig.local
 #
 #[include]
-#  path = /home/c4dev/.enterprise/config.include
-[include]
   path = /home/spawar/gitconfig.user
+# path = /home/c4dev/.enterprise/config.include
 [fetch]
   prune = true
 [rebase]
