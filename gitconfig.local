@@ -1,11 +1,17 @@
 #
-# include this files from your ~/.gitconfig
+# Add the following to ~/.gitconfig
 # [include]
 #    path= ~/dotfiles-local/gitconfig.local
-#
-#[include]
-  path = /home/spawar/gitconfig.user
-# path = /home/c4dev/.enterprise/config.include
+
+# For each workspace add the following to ~/.gitconfig
+# [includeIf "gitdir:/workspace-dir/"]
+#    path= /workspace-dir/.gitconfig
+
+# For each workspace create /workspace-dir/.gitconfig and add
+# [user]
+#    name =  username
+#    email = username@example.com
+
 [fetch]
   prune = true
 [rebase]
