@@ -92,7 +92,10 @@ fi
 # then edit all of the files containng the pattern
 if _has rg; then
   vack() {
-    vim `rg --color=never -l $@`
+     vim `rg --color=never -l $@`
+#     /usr/bin/rg --vimgrep $@ | vim -q /dev/stdin
+#     /usr/bin/rg -l "$@" | xargs vim -c "/$@/norm n"
+#     /usr/bin/rg -l $@ * > /tmp/err && vim -q /tmp/err
   }
 elif _has ag; then
   vack() {

@@ -127,6 +127,7 @@ if executable('rg')
    set grepformat^=%f:%l:%c:%m
 endif
 
+" fzy file filter
 "let $FZF_DEFAULT_COMMAND = 'rg --files --follow -g "!{.git,obj}/*" 2>/dev/null'
 "command! -bang -nargs=* Rg
   "\ call fzf#vim#grep(
@@ -135,7 +136,7 @@ endif
   "\           : fzf#vim#with_preview('right:50%:hidden', '?'),
   "\   <bang>0)
 
-"" fzy file filter
+" fzy file filter
 "function! FzyCommand(choice_command, vim_command)
   "try
     "let output = system(a:choice_command . " | fzy ")
@@ -153,6 +154,12 @@ nmap <leader>ee :History <CR>
 "nnoremap <leader>ee :call FzyCommand("fd ''", ":e")<cr>
 "nnoremap <leader>ev :call FzyCommand("fd ''", ":vs")<cr>
 "nnoremap <leader>es :call FzyCommand("fd ''", ":sp")<cr>
+
+augroup autoquickfix
+    autocmd!
+    autocmd QuickfixCmdPost []* cwindow
+    autocmd QuickFixCmdPost    l*  lwindow
+augroup END
 
 " fuzzy grep/ack  Use ^c to abort
 nnoremap <leader>/ :Rg<space>
