@@ -431,11 +431,9 @@ if has("cscope")
   "use both cscope and tag
   set cscopetag
   " add any local cscope db
-  if filereadable("cscope.out")
-    cs add cscope.out
-  elseif filereadable ($CSCOPE_DB)
+  if filereadable($CSCOPE_DB)
     cs  add  $CSCOPE_DB $CSCOPE_ROOT
-    set tags+=$CSCOPE_ROOT/tags
+    set tags+=tags;$CSCOPE_ROOT
   endif
 endif
 " Show the list for multiple matches

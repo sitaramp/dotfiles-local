@@ -11,7 +11,7 @@
 # [user]
 #    name =  username
 #    email = username@example.com
-
+#
 [fetch]
   prune = true
 [rebase]

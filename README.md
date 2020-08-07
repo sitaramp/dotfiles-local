@@ -18,7 +18,6 @@ These files are modeled after https://github.com/statico/dotfiles and thoughbot.
  - enhancd
  - lsd
  - tldr
- - cht.sh
  - cargo
  - python3
  - vim janus
@@ -41,7 +40,6 @@ These files are modeled after https://github.com/statico/dotfiles and thoughbot.
 1. Clone the repository to your home directory:
 
 `git clone --recursive https://github.com/sitaramp/dotfiles-local ~/dotfiles-local
-
 
 2. Set Zsh as your default shell:
 ```
@@ -143,6 +141,14 @@ ln -s ~/dotfiles-local/inputrc ~/.inputrc
 ```
    +zstyle ':prezto:module:prompt' theme 'powerlevel9k'
 ```
+4. Some keyboard shortcuts to know:
+```
+Ctrl + R : reverse command history chooser
+Ctrl + T : fuzzy directory chooser
+cd -     : directory matches down the current directory hierarchy
+cd ..    : directory matches up the current directory hierarchy
+```
+
 ### TMUX
 
 Prefix is set to "`" backquote
@@ -161,7 +167,7 @@ ln -s ~/dotfiles-local/tmux.conf ~/.tmux.conf
  - prefix + R to rename window
  - prefix + Ctl+R  reload config
 
-Some shortcuts to know:
+Some shell shortcuts to know:
 ```
 ` - prefix key
 `prefix + c`      : crete window

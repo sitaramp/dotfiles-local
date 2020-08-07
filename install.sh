@@ -25,6 +25,8 @@ sudo zypper install --target kernel-devel
 cargo install fd-find lsd ripgrep
 
 # python installs
+sudo python3 -m pip --upgrade setuptools
+sudo python3 -m pip --upgrade pip
 sudo python3 -m pip install tldr
 
 python3 -m pip install powerline-shell

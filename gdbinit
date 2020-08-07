@@ -11,6 +11,8 @@ set pagination off
 set logging off
 set height 0
 set filename-display basename
+set max-value-size unlimited
+
 
 # https://sourceware.org/gdb/onlinedocs/gdb/Logging-Output.html
 set logging file /opt/sdnas/config/sitaram-gdb.txt
@@ -46,6 +48,8 @@ show logging
 # thread <num>
 # thread <thread pid#>
 # thread apply <threadno> where
+# thread apply 100-200 where
+# http://www.sourceware.org/gdb/current/onlinedocs/gdb/Threads.html
 
 # info break
 # cond 3 if var=value
