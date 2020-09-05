@@ -199,7 +199,7 @@ Some handy keyboard shortcut to know:
  :tn         nextfunction definition
  <C-t>       pop back from tag
  <C-n>       word compltion
- 
+
  <leader><leader> toggle buffer
  <leader>hs       toggle highlight seach
  <leader>k        grep current directgory
@@ -209,19 +209,19 @@ Some handy keyboard shortcut to know:
  <leader>cu       comment out line
  <leader>gb       gitblame
  <leader>gd       gitdiff
- 
+
  [b and ]b       prev and next buffer
  [g and ]g       prev and next git change hulk
  [q and ]q       prev and next quick window
  [w and ]w       prev and next ALE errors
  [on and ]on     on/off the numbers
  [or and ]or     on/off the relative numbers
- 
- 
+
+
  [c and ]c   vimdiff prev and next conflict in change
  do          vimdiff diff obtain
  dp          vimdiff diff put
- 
+
  :CLEAN      cleanup trailing white spaces
  :SudoWrite  write buffer
 ```
@@ -231,18 +231,33 @@ https://learnxinyminutes.com/docs/vim/
 
 ### GIT
 
-1. Create  ~/.gitconfig.user to store personal information like Name and Email
-```
+
+Create and the Add the following to ~/.gitconfig
+'''
+ [include]
+    path= ~/dotfiles-local/gitconfig.local
+'''
+For each workspace add the following line to ~/.gitconfig
+'''
+ [includeIf "gitdir:/workspace-dir/"]
+    path= /workspace-dir/.gitconfig
+'''
+
+Under each workspace create /your-workspace-dir/.gitconfig
+Then add the details specific to that repo
+'''
 [user]
-    email = someuser@example.com
     name = someusername lastname
-```
+    email = someusername@users.noreply.github.com
+'''
+
 2. Create symlinks and configure other settings
 
 ```
- ln -s  ~/dotfiles-local/gitconfig ~/.gitconfig
- ln -s ~/dotfiles-local/gitignore ~/.gitignore
+# See install.sh
 ```
+
+## GIT Usage
 If you get merge conflict during pull or rebase:
 ```
 git mergetool
