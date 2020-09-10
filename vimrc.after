@@ -387,8 +387,9 @@ if &term =~ "xterm"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
   "restore screen after quitting
-  let &t_ti = "\<Esc>7\<Esc>[r\<Esc>[?47h"
-  let &t_te = "\<Esc>[?47l\<Esc>8"
+  " Comment t_ti and t_te for windows terminal
+  "let &t_ti = "\<Esc>7\<Esc>[r\<Esc>[?47h"
+  "let &t_te = "\<Esc>[?47l\<Esc>8"
   let &t_ts = "\<Esc>[k"
   let &t_fe = "\<Esc>G"
   if has("terminfo")
