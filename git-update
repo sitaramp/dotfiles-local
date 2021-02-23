@@ -17,3 +17,6 @@ git pull --rebase=preserve
 
 # update repo and submodules from upstream
 #git submodule foreach --recursive git pull origin master
+
+# Large repo
+#git update-index untracked-cache

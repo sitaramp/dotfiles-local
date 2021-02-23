@@ -95,9 +95,9 @@ let g:fzf_buffers_jump=1
 " edit a buffer in current window
 nmap <leader>b :Buffers<CR>
 " edit recent files
-nmap <leader>o :History<CR>
+nmap <leader>e :History<CR>
 " edit files in current directory and below
-"nmap <leader>t :Files<CR>
+"nmap <leader>o :Files<CR>
 nmap <leader>t :Tags<CR>
 "nmap <leader>c :Colors<CR>
 
@@ -127,30 +127,7 @@ if executable('rg')
    set grepformat^=%f:%l:%c:%m
 endif
 
-" fzy file filter
-"let $FZF_DEFAULT_COMMAND = 'rg --files --follow -g "!{.git,obj}/*" 2>/dev/null'
-"command! -bang -nargs=* Rg
-  "\ call fzf#vim#grep(
-  "\   'rg --column --line-number --no-heading --color=always --smart-case -g "!{*.lock,*-lock.json, *.obj}" '.shellescape(<q-args>), 1,
-  "\   <bang>0 ? fzf#vim#with_preview('up:40%')
-  "\           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  "\   <bang>0)
-
-" fzy file filter
-"function! FzyCommand(choice_command, vim_command)
-  "try
-    "let output = system(a:choice_command . " | fzy ")
-  "catch /Vim:Interrupt/
-    "" Swallow errors from ^C, allow redraw! below
-  "endtry
-  "redraw!
-  "if v:shell_error == 0 && !empty(output)
-    "exec a:vim_command . ' ' . output
-  "endif
-"endfunction
-
 "" fuzzy file find
-nmap <leader>ee :History <CR>
 "nnoremap <leader>ee :call FzyCommand("fd ''", ":e")<cr>
 "nnoremap <leader>ev :call FzyCommand("fd ''", ":vs")<cr>
 "nnoremap <leader>es :call FzyCommand("fd ''", ":sp")<cr>
@@ -173,7 +150,7 @@ vmap <Leader>ac   y<Leader>ack<C-r>"
 map  <leader>k     <leader>ac<Bs><CR>
 nnoremap <leader>gg mo:Ggrep! "\b<cword>\b" <CR>
 
-" Search for file 
+" Search for file
 "noremap <F1> :denite<Space>
 "map  <leader>fdr <F1> -no-split -no-auto-resize ignorecase -start-insert file_rec buffer<CR>
 "nmap <leader>fd  yiw<leader>fdr<C-r>"
@@ -275,8 +252,26 @@ command! TEOL %s/\s\+$//
 command! CLEAN retab | TEOL
 
 "" highlight whitespace errors
-set listchars=tab:▸\ ,eol:¬
-set listchars=tab:▸\ ,trail:·
+set list
+"set listchars=tab:▸\ ,eol:¬
+set listchars=tab:\ \ ,extends:·,precedes:·,trail:·
+
+" Consider < and > a pair
+set matchpairs+=<:>
+
+" Makes foo-bar considered one word
+set iskeyword+=-
+
+" Open vertical split to the right
+set splitright
+
+" Show tab bar if there are at least two tabs
+set showtabline=1
+
+" Show matching brackets
+set showmatch
+set matchtime=15
+
 highlight NonText guibg=#060606
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
 set colorcolumn=80
@@ -345,6 +340,7 @@ set scroll=4
 set scrolloff=4
 set textwidth=100
 set linebreak
+set display=lastline
 
 " show command as they are being entered, like in emacs
 set showcmd
@@ -483,20 +479,6 @@ let g:NERDTreeMarkBookmarks = 0
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeStatusLine = -1
 
-
-" Fugitive
-"nmap <leader>gs :Gstatus<CR>
-"nmap <leader>gd :Gdiff<CR>
-"nmap <leader>gc :Gcommit<CR>
-"nmap <leader>gb :Gblame<CR>
-"nmap <leader>gl :Glog<CR>
-"nmap <leader>gp :Gpush<CR>
-"nmap <leader>gw :Gwrite<CR>
-
-" janus status line
-if janus#is_plugin_enabled('fugitive')
-  set statusline+=%{fugitive#statusline()}
-endif
 
 " GitGutter
 nmap [g  :GitGutterPrevHunk<CR>

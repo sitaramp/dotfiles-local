@@ -72,6 +72,7 @@ endif
 # Install Rust Cargo
 # Install rustup
 
+# Cargo installs
 cargo install fd-find lsd ripgrep
 
 # python installs
@@ -98,6 +99,7 @@ curl -L https://bit.ly/janus-bootstrap | bash
 
 
 # Install scripts in ~/.bashrc
+
 # Create symlinks to binaries
 sudo ln -s $DOTFILES_DIR/mping /usr/local/bin/mping
 sudo ln -s $DOTFILES_DIR/diff-so-fancy /usr/local/bin/mdiff-so-fancy
@@ -131,4 +133,9 @@ function _update_ps1() {
 if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
-
+pushd .
+mkdir ~/Downloads
+cd ~/Downloads
+wget https://github.com/tmux/tmux/releases/download/3.1/tmux-3.1-rc.tar.gz
+wget https://github.com/beyondgrep/ack3/archive/v3.3.1.zip
+popd

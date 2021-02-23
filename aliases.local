@@ -28,7 +28,7 @@ alias tgrep='ag -U \!*'
 alias df='df -h'
 
 #alias du='du -sh -d 2'
-alias du='du -h --max-depth=1 "$@" | sort -n -r'
+alias du='du -x -h --max-depth=1 "$@" | sort -n -r'
 
 # show me files matching "ls grep"
 #unalias ls

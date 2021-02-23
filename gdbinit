@@ -34,6 +34,11 @@ show logging
 # break ... if condition==true
 #info breakpoints
 
+# set var variable_name=newval
+# tbreak +1          # set break before jump
+# jump +1            # jump over not executed
+# skip function_name # executed w/o break
+
 
 # watchpoints stops execution whenever that value of an expression changes
 #watch expr

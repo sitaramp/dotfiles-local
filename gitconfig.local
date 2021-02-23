@@ -125,7 +125,7 @@
 	newHighlight = green bold 22
 [color "status"]
   added = green
-  changed = red
+  changed = yellow
   untracked = cyan
 [color "branch"]
   current = yellow reverse
