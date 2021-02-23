@@ -25,7 +25,7 @@ alias apt-get='sudo apt-get'
 alias apt-get='sudo apt-get'
 #alias path='echo $PATH'
 alias tgrep='ag -U \!*'
-alias df='df -h'
+alias adf='df -h'
 
 #alias du='du -sh -d 2'
 alias du='du -x -h --max-depth=1 "$@" | sort -n -r'
