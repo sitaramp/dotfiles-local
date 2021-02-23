@@ -18,12 +18,18 @@
 $include /etc/inputrc
 
 
-"\C-p":history-search-backward
-"\C-n":history-search-forward
+#"\C-p":history-search-backward
+#"\C-n":history-search-forward
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\e[C": forward-char
+"\e[D": backward-char
 set colored-stats On
 set page-completions on
 set completion-ignore-case On
-set completion-query-items 200
+set completion-query-items -1
+set print-completion-horizontally on
+4et page-completions off
 set completion-prefix-display-length 3
 set mark-symlinked-directories On
 #
@@ -60,6 +66,7 @@ $if mode=vi
     #  <ctrl> left  -- move backward one word
     "\e[5D":   backward-word
     "\e[1;5D": backward-word
+    "\e\e[D": forward-word
 
     #  <alt> right  -- move forward one word
     "\e[3C":   forward-word
@@ -67,6 +74,7 @@ $if mode=vi
     #  <ctrl> right -- move forward one word
     "\e[5C":   forward-word
     "\e[1;5C": forward-word
+    "\e\e[C": forward-word
 
     ## <ctrl/alt> up/down -- beginning/end of line
     #  <alt> up     -- move to beginning of line

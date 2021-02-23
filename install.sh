@@ -62,11 +62,11 @@ elif [[ "$OS" == *Debian*  || $OS == *Ubuntu* ]]; then
     sudo aptg-et install cloud-guest-utils
     sudo apt-get install --target kernel-devel
 elif [[ "$OS" == *CentOS* || "$OS" == *RedHat* ]]; then
-    sudo apt-get install git iputils-ping cargo tmux nmap ack bash-completion bc htop
-    sudo apt-get install xclip gvim
-    sudo apt-get install libssl-dev libevent-devel ncurses-devel
-    sudo apt=get install ruby rubygem-rake ruby-devel ack ctags git
-    sudo apt-get install --target kernel-devel
+    sudo yum install git iputils-ping cargo tmux nmap ack bash-completion bc htop
+    sudo yum install xclip gvim
+    sudo yum install libssl-dev libevent-devel ncurses-devel
+    sudo yum install ruby rubygem-rake ruby-devel ack ctags git
+    sudo yum install --target kernel-devel
 endif
 
 # Install Rust Cargo
