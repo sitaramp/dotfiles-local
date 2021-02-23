@@ -84,6 +84,7 @@ nmap \9 :e #9<CR>
 "close quickfix window
 nmap \x :cclose<CR>
 nnoremap <leader>w :w!<CR>
+
 " Cycle through  buffers
 nnoremap <Tab>     :bnext<CR>
 nnoremap <S-Tab>   :bprev<CR>
@@ -166,8 +167,10 @@ au Filetype typescript let b:SuperTabDefaultCompletionType = "<C-x><C-o>"
 
 " Change j,k to act more visually in presence of wrapped lines
 " wrapparound line movement
-nmap     j gj
-nmap     k gk
+noremap <silent> j gj
+noremap <silent> k gk
+noremap <silent> 0 g0
+noremap <silent> $ g$
 nnoremap ' `
 nnoremap Y y$
 
@@ -220,6 +223,11 @@ nmap q: <silent>
 nmap K  <silent>
 command! Q q
 command! W w
+command Wq wq
+command WQ wq
+"nnoremap Q <nop>
+map <F1> <Esc>
+imap <F1> <Esc>
 
 " Quitting
 " quit all, don't force
@@ -323,7 +331,8 @@ set numberwidth=5
 set relativenumber
 set number
 nmap <leader>n0 :set relativenumber!<CR>
-nmap <leader>nn :set number!<CR>
+"nmap <leader>nn :set number!<CR>
+nmap <leader>nn :set invnumber<CR>
 set ruler
 set scroll=4
 set scrolloff=4

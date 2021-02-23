@@ -497,6 +497,7 @@ augroup VimDiff
     autocmd VimEnter,FilterWritePre * if &diff | GitGutterDisable | endif
 augroup END
 
+autocmd FileType apache setlocal commentstring=#\ %s
 
 " ALE settings
 let g:ale_sign_warning = '▲'

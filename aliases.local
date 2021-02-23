@@ -7,7 +7,7 @@ alias dotfiles='cd ~/dotfiles-local'
 # Git
 #alias git='hub'
 #alias gs='git status -uno'
-alias gs='git status -sb'
+#alias gs='git status -sb'
 alias gf='git fetch'
 alias gpr='git pull --rebase=preserve'
 alias grc='git rebase --continue'
@@ -25,7 +25,7 @@ alias apt-get='sudo apt-get'
 alias apt-get='sudo apt-get'
 #alias path='echo $PATH'
 alias tgrep='ag -U \!*'
-alias adf='df -h'
+alias df='/bin/df -h'
 
 #alias du='du -sh -d 2'
 alias du='du -x -h --max-depth=1 "$@" | sort -n -r'
@@ -35,14 +35,14 @@ alias du='du -x -h --max-depth=1 "$@" | sort -n -r'
 #function ls() { /bin/ls --color=auto "$@"; }
 #unalias ll
 #function ll()  { /bin/ls -alhrt --color=auto -F "$@"; }
-function ls1()  { /bin/ls -alhrt --color=auto | /usr/local/bin/ack -i --color "$1" | /usr/local/bin/ack -v ack; }
+function ls1()  { /bin/ls -alhrt --color=auto | /usr/bin/ack -i --color "$1" | /usr/bin/ack -v ack; }
 #function llt() { /bin/ls -alhrt --color=auto -F "$@"; }
 #function llS() { /bin/ls -alhrS --color=auto -F "$@"; }
 
 # A quick grep-for-processes.
-function ps() { /usr/bin/ps auxf; }
+function ps() { /bin/ps auxf; }
 function myps() { ps -fjH -u "$USER"; }
-function ps1() { ps auxww | /usr/local/bin/ack -i --color "$1" | /usr/local/bin/ack -v ack; }
+function ps1() { ps auxww | /usr/bin/ack -i --color "$1" | /usr/bin/ack -v ack; }
 
 # Zippin
 function gz() { tar -zcvf "$@"; }
@@ -53,7 +53,7 @@ function mnt() { /bin/mount | column -t "$@" ; }
 function netstat() { /bin/netstat -tlnp "$@" ; }
 function cls() { clear; /bin/ls; /bin/pwd; }
 #function grep() { /usr/bin/ack --color "$@"; }
-function grepp() { /usr/local/bin/ack -P --color "$@"; }
+function grepp() { /usr/bin/ack -P --color "$@"; }
 function atmux() { tmux new-session -A -s "$HOSTNAME"; }
 function htmux() { tmux new-session -A -s "SESS-2"; }
 function gcd() { cd "`git rev-parse --show-toplevel`"; }

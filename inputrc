@@ -29,7 +29,7 @@ set page-completions on
 set completion-ignore-case On
 set completion-query-items -1
 set print-completion-horizontally on
-4et page-completions off
+set page-completions off
 set completion-prefix-display-length 3
 set mark-symlinked-directories On
 #
