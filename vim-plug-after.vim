@@ -8,11 +8,13 @@
 "======================
 "<leader>ul underline
 ":sudoW sudoWrite
-"<F4> toggle paste mode
+"<F5> toggle paste mode
 "<leader>u covert the entire word to lowercase
 "<leader>l covert the entire word to lowercase
 "<leader>tw toggle wrap
 "<leader>cd :cd...
+set ignorecase
+set smartcase
 
 " NERDTree
 "<leader>n NERDTreeToggle
@@ -85,9 +87,18 @@ nmap \9 :e #9<CR>
 nmap \x :cclose<CR>
 nnoremap <leader>w :w!<CR>
 
+map <C-s> :w<CR>
+imap <C-s> <ESC><C-s>
+imap <C-e> <C-o>$
+imap <C-a> <C-o>0
+inoremap jj <Esc>
+
 " Cycle through  buffers
-nnoremap <Tab>     :bnext<CR>
-nnoremap <S-Tab>   :bprev<CR>
+map <tab>  :tabn<CR>
+map <S-tab> :tabp<CR>
+map <C-n>   :tabnew<CR>
+"nnoremap <Tab>     :bnext<CR>
+"nnoremap <S-Tab>   :bprev<CR>
 "nnoremap <C-M>     :GitFiles?<CR>
 
 "[Buffers] Jump to the existing window if possible
@@ -99,9 +110,12 @@ nmap <leader>b :Buffers<CR>
 " edit recent files
 nmap <leader>e :History<CR>
 " edit files in current directory and below
-"nmap <leader>o :Files<CR>
+nmap <leader>o :Files<CR>
 nmap <leader>t :Tags<CR>
-"nmap <leader>c :Colors<CR>
+nmap <leader>c :Colors<CR>
+"nmap <leader>m :GitFiles<CR>
+nmap \e :Files<CR>
+nmap \r :Rg<CR>
 
 map <Leader> <Plug>(easymotion-prefix)
 
@@ -225,6 +239,7 @@ command! Q q
 command! W w
 command Wq wq
 command WQ wq
+"command! W w !sudo tee % > /dev/null
 "nnoremap Q <nop>
 map <F1> <Esc>
 imap <F1> <Esc>
@@ -375,6 +390,7 @@ set undofile
 if &term =~ "xterm"
   " 256 colors
   let &t_Co = 256
+" term supports 24bit truecolor sequences
   set termguicolors
   " true color (i.e. 24bit RGB) escape codes
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -486,6 +502,7 @@ augroup VimDiff
     autocmd VimEnter,FilterWritePre * if &diff | GitGutterDisable | endif
 augroup END
 
+"vim-commentary
 autocmd FileType apache setlocal commentstring=#\ %s
 
 " ALE settings
@@ -582,10 +599,17 @@ augroup VimDiff
   endif
 augroup END
 
-" Local config
-if filereadable($HOME . "/.vimrc.project")
-  source ~/.vimrc.project
-endif
-"
+fun! Divider(char)
+  let len = strlen(getline('.'))
+  call append('.', repeat(a:char, len))
+  normal j
+endfun
+
+map \d :read !date +"\%B \%-d, \%Y"<CR>
+map \= :call Divider('=')<CR>
+map \- :call Divider('-')<CR>
+map \~ :call Divider('~')<CR>
+" Pandoc/markdown config.
+let g:pandoc#syntax#conceal#use = 0
 
 

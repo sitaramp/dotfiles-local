@@ -39,7 +39,9 @@ These files are modeled after https://github.com/statico/dotfiles and thoughbot.
 ### Installation
 1. Clone the repository to your home directory:
 
-`git clone --recursive https://github.com/sitaramp/dotfiles-local ~/dotfiles-local
+```
+git clone --recursive https://github.com/sitaramp/dotfiles-local ~/dotfiles-local
+```
 
 2. Set Zsh as your default shell:
 ```
@@ -48,11 +50,13 @@ chsh - /bin/zsh
 3. Open a new Zsh terminal window or tab
 
 4. Create symlinks
+```
 ln -s ~/dotfiles/janus ~/.janus
 ln -s ~/dotfiles/inputrc ~/.inputrc
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/global-gitignore ~/.gitignore
 ln -s ~/dotfiles/dircolors ~/.dircolors
+```
 
 5. Follow more customization below
 
@@ -63,6 +67,7 @@ cd $DOTFILES_DIR
 git pull
 git submodule update --init --recursive
 ```
+
 ### Uninstall
 To remove the dotfile configs, run the following commands. Be certain to double check the contents of the files before removing so you don't lose custom settings.
 ```
@@ -105,8 +110,8 @@ cd ..    : directory matches up the current directory hierarchy
 1. Create symlink to inputrc for command line completion
 ```
 ln -s ~/dotfiles-local/inputrc ~/.inputrc
-
 ```
+
 2. Edit ~/.bashrc to:
 
 ```
@@ -151,16 +156,18 @@ cd ..    : directory matches up the current directory hierarchy
 
 ### TMUX
 
-Prefix is set to "`" backquote
+Prefix is set to "``" backquote
 1. Install TPM :
 ```
   mkdir -p ~/.tmux/plugins
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
+
 2. Create symlink to tmux.conf
 ```
 ln -s ~/dotfiles-local/tmux.conf ~/.tmux.conf
 ```
+
 3. Load tmux do the following:
  - prefix + I to fetch the plugins
  - prefix + U to update the plugins
@@ -168,13 +175,12 @@ ln -s ~/dotfiles-local/tmux.conf ~/.tmux.conf
  - prefix + Ctl+R  reload config
 
 Some shell shortcuts to know:
-```
-` - prefix key
-`prefix + c`      : crete window
-`prefix + #`      : switch to numbered window
-`prefix + Escape` : switch to vi mode
-'prefix + d'      : disconnect the session without lossing session
-```
+`` `` `` : prefix key
+ `prefix + c`      : crete window
+ `prefix + #`      : switch to numbered window
+ `prefix + Escape` : switch to vi mode
+ `prefix + d`      : disconnect the session without lossing session
+
 For more information see: https://learnxinyminutes.com/docs/tmux/
 
 ### VIM
@@ -188,6 +194,7 @@ For more information see: https://learnxinyminutes.com/docs/tmux/
 cd ~/dotfiles-local/janus
 git submodule add https://github.com/login-name/repo.vim repo.vim
 ```
+
 The \<leader> key is set to \<Space>, it can be changed in file 'vimrvc.before'.
 Some handy keyboard shortcut to know:
 ```
@@ -233,35 +240,34 @@ https://learnxinyminutes.com/docs/vim/
 
 
 Create and the Add the following to ~/.gitconfig
-'''
+```
  [include]
     path= ~/dotfiles-local/gitconfig.local
-'''
+```
+
 For each workspace add the following line to ~/.gitconfig
-'''
+```
  [includeIf "gitdir:/workspace-dir/"]
     path= /workspace-dir/.gitconfig
-'''
+```
 
 Under each workspace create /your-workspace-dir/.gitconfig
 Then add the details specific to that repo
-'''
+```
 [user]
     name = someusername lastname
     email = someusername@users.noreply.github.com
-'''
+```
 
 2. Create symlinks and configure other settings
-
-```
-# See install.sh
-```
+See install.sh
 
 ## GIT Usage
 If you get merge conflict during pull or rebase:
 ```
 git mergetool
 ```
+
 Use the following vim commands to merge or edit conflicts:
 ```
 :diffg RE  # get from REMOTE
@@ -269,9 +275,11 @@ Use the following vim commands to merge or edit conflicts:
 :diffg LO  # get from LOCAL
 :wqa       # write and close all the splits
 ```
+
 Then forward-port local commit to the update upstream HEAD:
 ```
 git commit -add/rm <conflicted-files>
 git rebase --continue
 ```
+
 For more information on how to configure settings see: https://learnxinyminutes.com/docs/git/
