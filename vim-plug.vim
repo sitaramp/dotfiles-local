@@ -38,6 +38,9 @@ endif
 
 " Initialize plugin system
 call plug#end()
+"PlugInstall
+"PlugStatus
+"PlugUpdate
 
 if filereadable($HOME . "/dotfiles-local/vim-plug-after.vim")
 	source ~/dotfiles-local/vim-plug-after.vim

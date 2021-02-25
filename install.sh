@@ -7,8 +7,7 @@ DOTFILES_DIR=$HOME/dotfiles-local
 ln -s ~/dotfiles-local/janus ~/.janus
 ln -s ~/dotfiles-local/inputrc ~/.inputrc
 ln -s ~/dotfiles-local/tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles-local/vimrc.after ~/.vimrc.after
-ln -s ~/dotfiles-local/vimrc.before ~/.vimrc.before
+ln -s ~/dotfiles-local/vim-plug.vim ~/.vimrc
 ln -s ~/dotfiles-local/gdbinit ~/.gdbinit
 ln -s ~/dotfiles-local/dircolor ~/.dircolor
 
@@ -94,9 +93,9 @@ curl -L https://cpanmin.us | perl - --sudo App::cpanminus
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
-# Install Janus vim
-curl -L https://bit.ly/janus-bootstrap | bash
-
+# Install vim-plug
+curl -fLo  ~/.vim/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Install scripts in ~/.bashrc
 

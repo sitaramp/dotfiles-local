@@ -4,8 +4,6 @@
 
 " SPACE as a Leader
 "use space as leader in sensible modes
-"let mapleader = "\<Space>"
-"let maplocalleader = "\<Space>"
 let mapleader = "\<Space>"
 let maplocalleader = "\<Space>"
 nmap <space> <leader>

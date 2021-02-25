@@ -28,7 +28,7 @@ set colored-stats On
 set page-completions on
 set completion-ignore-case On
 set completion-query-items -1
-set print-completion-horizontally on
+set print-completions-horizontally on
 set page-completions off
 set completion-prefix-display-length 3
 set mark-symlinked-directories On

@@ -419,18 +419,26 @@ endif
 " send more characters for redraws
 set ttyfast
 syntax on
+
+"set background=light
 set background=dark
 
 "Solarized settings
 " set termcolors=256 for 256color. Comment out for TC
 " putty=default 256, use patch putty for true color
 let g:solarized_termcolors=256
-"colorscheme solarized
+
+" gruvbox settings soft, medium or hard
+"let g:gruvbox_contrast_dark = medium
+"let g:gruvbox_contrast_light = hard
 
 "Molokai settings
 " Set the following for 256color. Comment out for TC
 let g:rehash256 = 1
-colorscheme molokai
+
+"colorscheme molokai
+"colorscheme solarized
+autocmd vimenter * ++nested colorscheme gruvbox
 
 "" use login Shell instead of interactive shell
 if executable('zsh')
@@ -534,10 +542,6 @@ let g:airline#extensions#ale#enabled = 1
 let g:SuperTabLongestEnhanced = 1
 let g:SuperTabLongestHighlight = 1
 au Filetype typescript let b:SuperTabDefaultCompletionType = "<C-x><C-o>"
-
-" CtrlP
-let g:ctrlp_map= '<C-p>'
-let g:ctrlp_cmd = 'CtrlP'
 
 " symtastic
 "if janus#is_plugin_enabled('syntastic')
