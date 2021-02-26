@@ -543,18 +543,11 @@ let g:SuperTabLongestEnhanced = 1
 let g:SuperTabLongestHighlight = 1
 au Filetype typescript let b:SuperTabDefaultCompletionType = "<C-x><C-o>"
 
-" symtastic
+" syntastic
 "if janus#is_plugin_enabled('syntastic')
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
-"endif
-
-"if janus#is_plugin_enabled('ale')
-  " run linter when files is saved
-  let g:ale_lint_on_text_changed = 'never'
-  " don't want linters to run on opening a file
-  let g:ale_lint_on_enter = 0
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 "endif
 
 "Always use vertical diffs

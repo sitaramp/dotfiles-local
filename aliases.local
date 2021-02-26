@@ -52,7 +52,7 @@ function mv() { /bin/mv -vi "$@" ; }
 function mnt() { /bin/mount | column -t "$@" ; }
 function netstat() { /bin/netstat -tlnp "$@" ; }
 function cls() { clear; /bin/ls; /bin/pwd; }
-#function grep() { /usr/bin/ack --color "$@"; }
+function grep() { /usr/bin/ack --color "$@"; }
 function grepp() { /usr/bin/ack -P --color "$@"; }
 function atmux() { tmux new-session -A -s "$HOSTNAME"; }
 function htmux() { tmux new-session -A -s "SESS-2"; }
