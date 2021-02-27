@@ -1,32 +1,7 @@
-[submodule "janus/ale"]
-	path = janus/ale
-	url = https://github.com/w0rp/ale.git
-[submodule "janus/fzf.vim"]
-	path = janus/fzf.vim
-	url = https://github.com/junegunn/fzf.vim
-[submodule "janus/vim-tmux-navigator"]
-	path = janus/vim-tmux-navigator
-	url = https://github.com/christoomey/vim-tmux-navigator
-[submodule "janus/vim-airline"]
-	path = janus/vim-airline
-	url = https://github.com/vim-airline/vim-airline
 [submodule "janus/vim-better-sml"]
 	path = janus/vim-better-sml
 	url = https://github.com/jez/vim-better-sml
-[submodule "janus/vim-airline-themes"]
-	path = janus/vim-airline-themes
-	url = https://github.com/vim-airline/vim-airline-themes
-[submodule "janus/vimux"]
-	path = janus/vimux
-	url = https://github.com/benmills/vimux
-[submodule "janus/fzf"]
-	path = janus/fzf
-	url = https://github.com/junegunn/fzf
 [submodule "colorgcc"]
 	path = colorgcc
 	url = https://github.com/colorgcc/colorgcc
-	branch = master
-[submodule "molokai"]
-	path = janus/molokai
-	url = https://github.com/tomasr/molokai
 	branch = master
