@@ -9,10 +9,13 @@
     "newline",
     "root"
   ],
-  "mode": "flat",
+  "mode": "patched",
   "cwd": {
     "mode": "plain",
     "max_depth": 2
+  },
+  "vcs": {
+      "show_symbol": true
   },
   "theme": "gruvbox"
 }

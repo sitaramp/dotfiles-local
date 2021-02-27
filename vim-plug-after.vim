@@ -438,7 +438,7 @@ let g:rehash256 = 1
 
 "colorscheme molokai
 "colorscheme solarized
-autocmd vimenter * ++nested colorscheme gruvbox
+ colorscheme gruvbox
 
 "" use login Shell instead of interactive shell
 if executable('zsh')
