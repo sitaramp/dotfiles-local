@@ -15,7 +15,7 @@
     "max_depth": 2
   },
   "vcs": {
-      "show_symbol": true
+      "show_symbol": false
   },
   "theme": "gruvbox"
 }

@@ -52,6 +52,7 @@ node_modules
 .vim/janus/vim/*/doc/tags
 .vim/janus/vim/*/doc/tags-??
 .vimlocal
+.gitconfig
 
 !tags/
 .bundle

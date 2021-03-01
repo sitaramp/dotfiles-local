@@ -13,14 +13,13 @@ These files are modeled after https://github.com/statico/dotfiles and thoughbot.
  - zsh
  - prezto
  - bash-completion: https://github.com/scop/bash-completion
- - vim janus: https://github.com/carlhuda/janus/wiki/Pre-requisites
+ - vim-plug: https://github.com/junegunn/vim-plug
  - fzf
  - enhancd
  - lsd
  - tldr
  - cargo
  - python3
- - vim janus
  - ripgrep
  - ack2
  - fd-find
@@ -29,8 +28,8 @@ These files are modeled after https://github.com/statico/dotfiles and thoughbot.
  - cscope
  - git
  - ruby
- - rake
- - ack
+ - perl
+ - App::Ack
  - cht.sh
 
 3. On the client install powerline or nerdfonts. Configure terminal to
@@ -175,30 +174,28 @@ ln -s ~/dotfiles-local/tmux.conf ~/.tmux.conf
  - prefix + Ctl+R  reload config
 
 Some shell shortcuts to know:
-`` `` `` : prefix key
+`back_tick` : prefix key
  `prefix + c`      : crete window
  `prefix + #`      : switch to numbered window
  `prefix + Escape` : switch to vi mode
- `prefix + d`      : disconnect the session without lossing session
+ `prefix + d`      : detach the session without lossing session
+ `atmux`           : aliases to open or re-attack existing session
 
 For more information see: https://learnxinyminutes.com/docs/tmux/
 
 ### VIM
 
-1. Install Janus
-2. Comments out unused modules in vimrc.before
-3. Edit ~/dotfiles-local/vim.after
-4. Create symlink ~/.janus to ~/dotfiles-local/janus
-5. Install modules not covered by Janus to ~/.janus or
-```
-cd ~/dotfiles-local/janus
-git submodule add https://github.com/login-name/repo.vim repo.vim
-```
+1. Install vim-plug
+2. Comments out unused modules in vim-plug.vim
+3. Edit ~/dotfiles-local/vim-plug-after.vim
+4. Create symlink ~/.vimrc to ~/dotfiles-local/vim-plug.vim
+5. Add modules not covered by existing modules to vim-plug.vim
 
-The \<leader> key is set to \<Space>, it can be changed in file 'vimrvc.before'.
+The \<leader> key is set to \<Space>, it can be changed in file 'vvim-plug-before.vim'.
 Some handy keyboard shortcut to know:
 ```
- <F-4>       Toggle paste mode
+ <F3>        Toggle Numberline
+ <F5>        Toggle paste mode
  <C-e>       toggle buffer
  <C-w>       close all buffers
 

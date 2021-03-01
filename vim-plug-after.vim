@@ -2,12 +2,15 @@
 " Credit https://github.com/statico/dotfiles/blob/master/.vim/vimrc
 "
 " Mnemonic
-" b - buffer; p = project; s = search; h = help
+" b - buffer; g git, \ = project; s = search; t = toggle, h = help
 
 " Janus custominzation
 "======================
 "<leader>ul underline
 ":sudoW sudoWrite
+"<F2> toggle tagbar
+"<F3> toggle number
+"<F4> toggle highlight
 "<F5> toggle paste mode
 "<leader>u covert the entire word to lowercase
 "<leader>l covert the entire word to lowercase
@@ -16,10 +19,6 @@
 set ignorecase
 set smartcase
 
-" NERDTree
-"<leader>n NERDTreeToggle
-"<leader>/ NERDTreeToggle
-"
 " Unimpaired
 "[b go to the prev buffer
 "]b go to the next buffer
@@ -50,6 +49,8 @@ nmap <leader>gr :Gread<CR> " checkout file, undo changes
 " vim -D somefile.txt
 " vim --startuptime vim.log
 " vim -V9 somefile.txt
+" Check key mappings
+"   :verbose map <tab>
 " :set verbosefile = vim-verbose.txt
 " :set verbose=9
 " Vim Keymap Debug:
@@ -66,9 +67,7 @@ nmap <leader>gr :Gread<CR> " checkout file, undo changes
 
 " Switch between the last two files
 nmap <C-e> :e#<CR>
-nnoremap <Leader><Leader> <C-^>
-"nmap [b   :bprev<CR>
-"nmap ]b   :bnext<CR>
+nnoremap <Leader><Tab> <C-^>
 ":Gcd      change to top level git directory
 
 " single key acess to Buffers
@@ -85,37 +84,45 @@ nmap \8 :e #8<CR>
 nmap \9 :e #9<CR>
 "close quickfix window
 nmap \x :cclose<CR>
+nmap <leader>ql :copen<CR>
+nmap <leader>qc :cclose<CR>
 nnoremap <leader>w :w!<CR>
-
 map <C-s> :w<CR>
 imap <C-s> <ESC><C-s>
-imap <C-e> <C-o>$
-imap <C-a> <C-o>0
+
 inoremap jj <Esc>
+inoremap kk <Esc>
 
 " Cycle through  buffers
-map <tab>  :tabn<CR>
-map <S-tab> :tabp<CR>
-map <C-n>   :tabnew<CR>
-"nnoremap <Tab>     :bnext<CR>
-"nnoremap <S-Tab>   :bprev<CR>
-"nnoremap <C-M>     :GitFiles?<CR>
+noremap <silent> <tab>   :tabnext<CR>
+noremap <silent> <S-tab> :tabprevious<CR>
+noremap <silent> <C-n>   :tabnew<CR>
+noremap <silent> <C-F4>  :close<CR>
+
+"nmap [b   :bprev<CR>
+"nmap ]b   :bnext<CR>
+nnoremap <leader>bn :bnext<CR>
+nnoremap <leader>bp :bprev<CR>
 
 "[Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump=1
+" Empty value to disable preview window altogether
+let g:fzf_preview_window = []
+nnoremap <silent> <leader>bt :call fzf#vim#buffer_tags('', { 'options': ['--nth', '1,2', '--query', '^f$ '] })<CR>
 
 " Single key access to files fzf and tags
 " edit a buffer in current window
-nmap <leader>b :Buffers<CR>
 " edit recent files
-nmap <leader>e :History<CR>
+nnoremap <leader>bb :Buffers<CR>
+nnoremap <leader>fe :History<CR>
 " edit files in current directory and below
-nmap <leader>o :Files<CR>
-nmap <leader>t :Tags<CR>
-nmap <leader>c :Colors<CR>
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fg :GitFiles?<CR>
+nnoremap <leader>g] :Tags<CR>
+nnoremap <leader>tc :Colors<CR>
 "nmap <leader>m :GitFiles<CR>
-nmap \e :Files<CR>
-nmap \r :Rg<CR>
+"nmap \e :Files<CR>
+"nmap \r :Rg<CR>
 
 map <Leader> <Plug>(easymotion-prefix)
 
@@ -124,10 +131,11 @@ map <A-LEFT> <S-LEFT>
 map! <A-RIGHT> <S-RIGHT>
 map <A-RIGHT> <S-RIGHT>
 
+" Ack
 " Tell ack.vim to use ripgrep instead
 if executable('rg')
-   let g:ackprg = 'rg --vimgrep --no-heading'
-   let g:grepprg = 'rg --vimgrep --no-heading'
+   let g:ackprg = 'rg --vimgrep --no-heading --smart-case'
+   let g:grepprg = 'rg --vimgrep --no-heading --smart-case'
    set grepformat^=%f:%l:%c:%m
 endif
 
@@ -143,16 +151,22 @@ augroup autoquickfix
 augroup END
 
 " fuzzy grep/ack  Use ^c to abort
-nnoremap <leader>/ :Rg<space>
+nnoremap <leader>/ :Ack!<Space>
+
+" Auto close the Quickfix list after pressing '<enter>' on a list item
+" To open quick fix window :copen
+let g:ack_autoclose = 1
+" Don't jump to first match
+cnoreabbrev Ack Ack!
 
 " Search for word under the cursor in the current directory
 " Use \x to close quickfix window
-"nnoremap <leader>a mo:Ack!   "\b<cword>\b" <CR>
-nnoremap <leader>ack :Ack --follow <Space>
-nmap <Leader>ac yiw<leader>ack<C-r>"
-vmap <Leader>ac   y<Leader>ack<C-r>"
-map  <leader>k     <leader>ac<Bs><CR>
-nnoremap <leader>gg mo:Ggrep! "\b<cword>\b" <CR>
+""nnoremap <leader>a mo:Ack!   "\b<cword>\b" <CR>
+"nnoremap <leader>ack :Ack --follow <Space>
+"nmap <Leader>ac yiw<leader>ack<C-r>"
+"vmap <Leader>ac   y<Leader>ack<C-r>"
+"map  <leader>k     <leader>ac<Bs><CR>
+"nnoremap <leader>gg mo:Ggrep! "\b<cword>\b" <CR>
 
 " Search for file
 "noremap <F1> :denite<Space>
@@ -167,11 +181,20 @@ highlight Comment cterm=italic
 """""""""""""""""""""""""""""""
 " Toggle search highlight on off with F5
 """""""""""""""""""""""""""""""""
-map  <F5>      :set hls!<bar> set hls?<CR>
-imap <F5><Esc> :set hls!<bar> set hls?<CR>
-set pastetoggle=<F2>
+map  <F4>      :set hls!<bar> set hls?<CR>
+imap <F4> <Esc><F4>
+map <leader>th <F4>
+
+set pastetoggle=<F5>
+map <leader>tp <F5>
+
 " Tagbar C++ class outline viewer
-nmap <F8> :TagbarToggle<CR>
+let g:tagbar_autoclose = 1
+let g:tagbar_autofocus = 1
+let g:tagbar_compat = 1
+let g:tagbar_sort = 0 "Sort according to their structure in file & not filename
+nmap <F2> :TagbarToggle<CR>
+nnoremap <leader>tt <F2>
 
 
 " SuperTab
@@ -187,15 +210,6 @@ noremap <silent> 0 g0
 noremap <silent> $ g$
 nnoremap ' `
 nnoremap Y y$
-
-" Emacs-like binding in the command line
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-" Emacs-like bindings in insert mode
-imap <C-e> <C-o>$
-imap <C-a> <C-o>0
-inoremap jj <Esc>
-
 
 " Fix annoyances inthe QuickFix window
 autocmd FileType qf setlocal number nolist
@@ -306,7 +320,9 @@ set mouse=nv
 " paste plus clipboard using using "+p
 "set clipboard=unamed
 " Warning: vim must be compiled with clipboard support, use vim-gtk or vim-X11
-set clipboard+=unnamed,unnamedplus
+if has('unnamedplus')
+  set clipboard=unnamed,unnamedplus
+endif
 "copy paste to system cliboard by prefixing with <leader>
 noremap <leader>y "*y
 noremap <leader>p "*p
@@ -345,9 +361,11 @@ set number
 set numberwidth=5
 set relativenumber
 set number
-nmap <leader>n0 :set relativenumber!<CR>
-"nmap <leader>nn :set number!<CR>
-nmap <leader>nn :set invnumber<CR>
+nmap <leader>t0 :set invrelativenumber<CR>
+noremap <F3> :set invnumber invrelativenumber<CR>
+inoremap <F3> <ESC><F3>
+nmap <leader>tn <F3>
+
 set ruler
 set scroll=4
 set scrolloff=4
@@ -366,7 +384,7 @@ set showcmd
 "nnoremap <C-l> <C-w>l
 
 "Display the undo tree with <leader>u.
-nnoremap <leader>u :GundoToggle<CR>
+nnoremap <leader>tu :GundoToggle<CR>
 "Add this line if you are using Python 3.
 "let g:gundo_prefer_python3 = 1
 
@@ -480,7 +498,7 @@ nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 " NERDTree
-map <C-n> :NERDTreeToggle<CR>
+map <leader>ft :NERDTreeToggle<CR>
 "map <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Open NERDTree if no file is specified
@@ -490,7 +508,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Open NERDTree if directory is specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-" don't show these fil types
+" don't show these file types
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 
 "Close vim if NERDTree is the last pane
@@ -524,7 +542,7 @@ nmap <Leader>fw <Plug>(ale_fix)
 " if you don't want linters to run on opening a file
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 'never'
-"let g:ale_lint_on_save = 0
+let g:ale_lint_on_save = 1
 
 augroup VimDiff
     autocmd!
@@ -536,7 +554,15 @@ set laststatus=2
 let g:airline_detect_paste=1
 let g:airline_theme='molokai' "cool molokai
 let g:airline_powerline_fonts = 1
+let g:aitline#extensions#tabline#enabled = 1
+let g:aitline#extensions#tabline#left_sep = ' '
+let g:aitline#extensions#tabline#left_alt_sep = '|'
+let g:aitline#extensions#tabline#fnamemode = ':t'
 let g:airline#extensions#ale#enabled = 1
+" disable +32 ~9 -0 hunks information in airline section B
+let g:airline#extensions#hunks#enabled = 0
+" remove encoding text & devicon
+au VimEnter * let g:airline_section_x = airline#section#create_right(['tagbar']) | :AirlineRefresh
 
 " SuperTab
 let g:SuperTabLongestEnhanced = 1

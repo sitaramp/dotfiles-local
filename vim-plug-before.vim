@@ -25,6 +25,7 @@ set expandtab
 set nosmartindent
 set showmatch
 set wildmode=list:longest,full
+set wildmenu
 set hidden
 set mouse=a
 set formatoptions=tcqrow
