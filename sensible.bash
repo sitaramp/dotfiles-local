@@ -127,8 +127,8 @@ fi
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
-#export PS1="\[$(tput setaf 2)\]\u@\h:\w $ \[$(tput sgr0)\]"
-export PS1="\[$(tput setab 7)\]\u@\h:\w\$(parse_git_branch) >>\[$(tput sgr0)\] "
+export PS1="\[$(tput setaf 2)\]\u@\h:\w $ \[$(tput sgr0)\]"
+#export PS1="\[$(tput setab 7)\]\u@\h:\w\$(parse_git_branch) >>\[$(tput sgr0)\] "
 
 # Examples:
 # export dotfiles="$HOME/dotfiles"

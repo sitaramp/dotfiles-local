@@ -36,13 +36,22 @@ nmap <leader>gr :Gread<CR> " checkout file, undo changes
 "<leader>gc maps to :Gcommit<CR>
 "<leader>gp maps to :Gpush<CR>
 
+" Commentary
+" Comment - uncomment
+"    gcc -- one line comment
+"    [count] gcc -- count lines
+"    gc {4j} -- 4 lines
+"    {visual} gc --- visual block
+"    gcgc -- the current comment block
+
 " vim-trailing-whitespace
 ":FixWhitespace
-"
+
 "To More keyboard mappings
 " :nmap for normal mode mapping
 " :vmap for visual mode mapping
 " :imap for insert mode mapping
+" :nore non-recursive
 " :help map verbose
 " Vim Debug:
 " http://inlehmansterms.net/2014/10/31/debugging-vim/
@@ -84,14 +93,15 @@ nmap \8 :e #8<CR>
 nmap \9 :e #9<CR>
 "close quickfix window
 nmap \x :cclose<CR>
-nmap <leader>ql :copen<CR>
+nmap <leader>qo :copen<CR>
 nmap <leader>qc :cclose<CR>
 nnoremap <leader>w :w!<CR>
 map <C-s> :w<CR>
 imap <C-s> <ESC><C-s>
 
-inoremap jj <Esc>
-inoremap kk <Esc>
+" farmergreg/vim-lastplace
+let g:lastplace_ignore_buftype = "quickfix,nofile,help"
+let g:lastplace_ignore = "gitcommit"
 
 " Cycle through  buffers
 noremap <silent> <tab>   :tabnext<CR>
@@ -110,6 +120,18 @@ let g:fzf_buffers_jump=1
 let g:fzf_preview_window = []
 nnoremap <silent> <leader>bt :call fzf#vim#buffer_tags('', { 'options': ['--nth', '1,2', '--query', '^f$ '] })<CR>
 
+" Use \x to close quickfix window
+augroup autoquickfix
+    autocmd!
+    autocmd QuickfixCmdPost []* cwindow
+    autocmd QuickFixCmdPost    l*  lwindow
+augroup END
+
+" Fix annoyances inthe QuickFix window
+autocmd FileType qf setlocal number nolist
+autocmd FileType qf wincmd J " Makes sure it's at the bottom of the vim window
+
+" fzf
 " Single key access to files fzf and tags
 " edit a buffer in current window
 " edit recent files
@@ -124,7 +146,19 @@ nnoremap <leader>tc :Colors<CR>
 "nmap \e :Files<CR>
 "nmap \r :Rg<CR>
 
-map <Leader> <Plug>(easymotion-prefix)
+" Easymotion
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+nmap <leader>s <Plug>(easymotion-overwin-f)
+" or
+" `s{char}{char}{label}`
+nmap <leader>s <Plug>(easymotion-overwin-f2)
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
 
 map! <A-LEFT> <S-LEFT>
 map <A-LEFT> <S-LEFT>
@@ -139,28 +173,17 @@ if executable('rg')
    set grepformat^=%f:%l:%c:%m
 endif
 
-"" fuzzy file find
-"nnoremap <leader>ee :call FzyCommand("fd ''", ":e")<cr>
-"nnoremap <leader>ev :call FzyCommand("fd ''", ":vs")<cr>
-"nnoremap <leader>es :call FzyCommand("fd ''", ":sp")<cr>
-
-augroup autoquickfix
-    autocmd!
-    autocmd QuickfixCmdPost []* cwindow
-    autocmd QuickFixCmdPost    l*  lwindow
-augroup END
-
-" fuzzy grep/ack  Use ^c to abort
-nnoremap <leader>/ :Ack!<Space>
 
 " Auto close the Quickfix list after pressing '<enter>' on a list item
 " To open quick fix window :copen
+let g:ack_use_cword_for_empty_search = 1
 let g:ack_autoclose = 1
 " Don't jump to first match
 cnoreabbrev Ack Ack!
 
 " Search for word under the cursor in the current directory
-" Use \x to close quickfix window
+" fuzzy grep/ack  Use ^c to abort
+nnoremap <leader>/ :Ack!<Space>
 ""nnoremap <leader>a mo:Ack!   "\b<cword>\b" <CR>
 "nnoremap <leader>ack :Ack --follow <Space>
 "nmap <Leader>ac yiw<leader>ack<C-r>"
@@ -211,39 +234,7 @@ noremap <silent> $ g$
 nnoremap ' `
 nnoremap Y y$
 
-" Fix annoyances inthe QuickFix window
-autocmd FileType qf setlocal number nolist
-autocmd FileType qf wincmd J " Makes sure it's at the bottom of the vim window
 
-set noswapfile
-set autowrite
-set autoread
-
-" make it possible to edit crontabs in vim.
-if $VIM_CRONTAB == "true"
-    set nobackup
-    set nowritebackup
-endif
-
-set timeout " Do time out on mappings and others
-set timeoutlen=20000 " Wait {num} ms before timing out a mapping
-" When you’re pressing Escape to leave insert mode in the terminal, it will by
-" default take a second or another keystroke to leave insert mode completely
-" and update the statusline. This fixes that. I got this from:
-" https://powerline.readthedocs.org/en/latest/tipstricks.html#vim
-augroup FastEscape
-    autocmd!
-    au InsertEnter * set timeoutlen=0
-    au InsertLeave * set timeoutlen=20000
-augroup END
-
-augroup checktime
-  au!
-  if !has("gui_running")
-    "silent! is necessary,otherwise throws errors when using cmd
-    autocmd BufEnter,CursorHold,CursorHoldI * silent! checktime
-  endif
-augroup END
 
 " These are things that I mistype and want ignored.
 nmap Q  <silent>
@@ -266,12 +257,6 @@ map <leader>qQ :qa!<CR>
 " quit all, after saving all files
 map <leader>qw :wqa!<CR>
 
-" tab, spacing, wrapping
-set expandtab
-set shiftwidth=4
-set tabstop=4
-set smarttab
-set nowrap
 
 " Trim spaces at EOL and retab. I run `:CLEAN` a lot to clean up files.
 command! TEOL %s/\s\+$//
