@@ -57,7 +57,7 @@ nmap <leader>gr :Gread<CR> " checkout file, undo changes
 " vim --startuptime vim.log
 " vim -V9 somefile.txt
 " Check key mappings
-"   :verbose map <tab>
+"   :verbose map <any-key>
 " :set verbosefile = vim-verbose.txt
 " :set verbose=9
 " Vim Keymap Debug:
@@ -109,13 +109,6 @@ noremap <silent> <C-F4>  :close<CR>
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bp :bprev<CR>
 
-"[Buffers] Jump to the existing window if possible
-let g:fzf_buffers_jump=1
-" Empty value to disable preview window altogether
-let g:fzf_preview_window = []
-nnoremap <silent> <leader>bt :call fzf#vim#buffer_tags('', { 'options': ['--nth', '1,2', '--query', '^f$ '] })<CR>
-
-" Use \x to close quickfix window
 augroup autoquickfix
     autocmd!
     autocmd QuickfixCmdPost []* cwindow
@@ -125,21 +118,6 @@ augroup END
 " Fix annoyances inthe QuickFix window
 autocmd FileType qf setlocal number nolist
 autocmd FileType qf wincmd J " Makes sure it's at the bottom of the vim window
-
-" fzf
-" Single key access to files fzf and tags
-" edit a buffer in current window
-" edit recent files
-nnoremap <leader>bb :Buffers<CR>
-nnoremap <leader>fe :History<CR>
-" edit files in current directory and below
-nnoremap <leader>ff :Files<CR>
-nnoremap <leader>fg :GitFiles?<CR>
-nnoremap <leader>g] :Tags<CR>
-nnoremap <leader>tc :Colors<CR>
-"nmap <leader>m :GitFiles<CR>
-"nmap \e :Files<CR>
-"nmap \r :Rg<CR>
 
 " Easymotion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
@@ -160,6 +138,28 @@ map <A-LEFT> <S-LEFT>
 map! <A-RIGHT> <S-RIGHT>
 map <A-RIGHT> <S-RIGHT>
 
+" fzf
+"[Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump=1
+" Empty value to disable preview window altogether
+let g:fzf_preview_window = []
+nnoremap <silent> <leader>bt :call fzf#vim#buffer_tags('', { 'options': ['--nth', '1,2', '--query', '^f$ '] })<CR>
+
+" fzf
+" Single key access to files fzf and tags
+" edit a buffer in current window
+" edit recent files
+nnoremap <leader>bb :Buffers<CR>
+nnoremap <leader>fe :History<CR>
+" edit files in current directory and below
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fg :GitFiles?<CR>
+nnoremap <leader>g] :Tags<CR>
+nnoremap <leader>tc :Colors<CR>
+"nmap <leader>m :GitFiles<CR>
+"nmap \e :Files<CR>
+"nmap \r :Rg<CR>
+
 " Ack
 " Tell ack.vim to use ripgrep instead
 if executable('rg')
@@ -171,8 +171,9 @@ endif
 
 " Auto close the Quickfix list after pressing '<enter>' on a list item
 " To open quick fix window :copen
-let g:ack_use_cword_for_empty_search = 1
+let g:ackhighlight = 1
 let g:ack_autoclose = 1
+let g:ack_use_cword_for_empty_search = 1
 " Don't jump to first match
 cnoreabbrev Ack Ack!
 
@@ -241,8 +242,14 @@ cabbrev W w
 cabbrev Wq wq
 cabbrev WQ wq
 
-"command! W w !sudo tee % > /dev/null
-"nnoremap Q <nop>
+augroup checktime
+  au!
+  if !has("gui_running")
+    "silent! is necessary,otherwise throws errors when using cmd
+    autocmd BufEnter,CursorHold,CursorHoldI * silent! checktime
+  endif
+augroup END
+
 map <F1> <Esc>
 imap <F1> <Esc>
 
