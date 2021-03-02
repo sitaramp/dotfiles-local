@@ -1,7 +1,7 @@
 "
 " Credit https://github.com/statico/dotfiles/blob/master/.vim/vimrc
 "
-" Mnemonic
+" <leader> Mnemonics 
 " b - buffer; g git, \ = project; s = search; t = toggle, h = help
 
 " Janus custominzation
@@ -16,8 +16,6 @@
 "<leader>l covert the entire word to lowercase
 "<leader>tw toggle wrap
 "<leader>cd :cd...
-set ignorecase
-set smartcase
 
 " Unimpaired
 "[b go to the prev buffer
@@ -95,9 +93,6 @@ nmap \9 :e #9<CR>
 nmap \x :cclose<CR>
 nmap <leader>qo :copen<CR>
 nmap <leader>qc :cclose<CR>
-nnoremap <leader>w :w!<CR>
-map <C-s> :w<CR>
-imap <C-s> <ESC><C-s>
 
 " farmergreg/vim-lastplace
 let g:lastplace_ignore_buftype = "quickfix,nofile,help"
@@ -235,15 +230,17 @@ nnoremap ' `
 nnoremap Y y$
 
 
+nnoremap <C-s> :write<CR>
+inoremap <C-s> <ESC>:write<CR>
+nnoremap <leader>w :w!<CR>
 
-" These are things that I mistype and want ignored.
-nmap Q  <silent>
-nmap q: <silent>
-nmap K  <silent>
-command! Q q
-command! W w
-command Wq wq
-command WQ wq
+
+" remap :W, :Q etc if you press the shift key for tool lonag
+cabbrev Q q
+cabbrev W w
+cabbrev Wq wq
+cabbrev WQ wq
+
 "command! W w !sudo tee % > /dev/null
 "nnoremap Q <nop>
 map <F1> <Esc>
@@ -257,15 +254,6 @@ map <leader>qQ :qa!<CR>
 " quit all, after saving all files
 map <leader>qw :wqa!<CR>
 
-
-" Trim spaces at EOL and retab. I run `:CLEAN` a lot to clean up files.
-command! TEOL %s/\s\+$//
-command! CLEAN retab | TEOL
-
-"" highlight whitespace errors
-set list
-"set listchars=tab:▸\ ,eol:¬
-set listchars=tab:\ \ ,extends:·,precedes:·,trail:·
 
 " Consider < and > a pair
 set matchpairs+=<:>
@@ -283,36 +271,21 @@ set showtabline=1
 set showmatch
 set matchtime=15
 
-highlight NonText guibg=#060606
-highlight Folded  guibg=#0A0A0A guifg=#9090D0
-set colorcolumn=80
-highlight ColorColumn ctermbg=darkgray
-
-"match ExtraWhitespace /\s\+\%#\@<!$/
-"highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
-"highlight WhiteSpaceEOL ctermbg=white guibg=white
-let c_space_errors = 1
-
-" enable mouse in normal and visual mode. See help using-mouse
-set mouse=nv
-
-" Use Shift + Drag shift + Right Click to copy paste
-" Use Shift + Cntrl + v to insert
-" To enable Right to paste disable mouse
-" set mouse-=a
 
 " The * is the default clipboard + is the system clipboard
 " paste plus clipboard using using "+p
-"set clipboard=unamed
 " Warning: vim must be compiled with clipboard support, use vim-gtk or vim-X11
 if has('unnamedplus')
   set clipboard=unnamed,unnamedplus
 endif
 "copy paste to system cliboard by prefixing with <leader>
-noremap <leader>y "*y
-noremap <leader>p "*p
-noremap <leader>Y "+y
-noremap <leader>P "+p
+vmap <leader>y "+y
+vmap <leader>d "+d
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vmap <leader>p "+p
+vmap <leader>P "+P
+
 "reformat reindent
 noremap <Esc>P P'[v']=
 noremap <Esc>p p'[v']=
@@ -401,8 +374,9 @@ if &term =~ "xterm"
 
   "restore screen after quitting
   " Comment t_ti and t_te for windows terminal
-  let &t_ti = "\<Esc>7\<Esc>[r\<Esc>[?47h"
-  let &t_te = "\<Esc>[?47l\<Esc>8"
+  "let &t_ti = "\<Esc>7\<Esc>[r\<Esc>[?47h"
+  "let &t_te = "\<Esc>[?47l\<Esc>8"
+
   let &t_ts = "\<Esc>[k"
   let &t_fe = "\<Esc>G"
   if has("terminfo")
@@ -442,6 +416,25 @@ let g:rehash256 = 1
 "colorscheme molokai
 "colorscheme solarized
  colorscheme gruvbox
+
+"" highlight whitespace errors
+set list
+"set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+set listchars=tab:→\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+
+"match ExtraWhitespace /\s\+\%#\@<!$/
+"highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
+"highlight WhiteSpaceEOL ctermbg=white guibg=white
+let c_space_errors = 1
+highlight NonText guibg=#060606
+highlight Folded  guibg=#0A0A0A guifg=#9090D0
+
+" Trim spaces at EOL and retab. I run `:CLEAN` a lot to clean up files.
+command! TEOL %s/\s\+$//
+command! CLEAN retab | TEOL
+
+set colorcolumn=80
+highlight ColorColumn ctermbg=darkgray
 
 "" use login Shell instead of interactive shell
 if executable('zsh')

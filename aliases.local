@@ -30,19 +30,20 @@ alias df='/bin/df -h'
 #alias du='du -sh -d 2'
 alias du='du -x -h --max-depth=1 "$@" | sort -n -r'
 
+ACKBIN=/usr/local/bin/ack
 # show me files matching "ls grep"
 #unalias ls
 #function ls() { /bin/ls --color=auto "$@"; }
 #unalias ll
 #function ll()  { /bin/ls -alhrt --color=auto -F "$@"; }
-function ls1()  { /bin/ls -alhrt --color=auto | /usr/bin/ack -i --color "$1" | /usr/bin/ack -v ack; }
+function ls1()  { /bin/ls -alhrt --color=auto | $ACKBIN -i --color "$1" | $ACKBIN -v ack; }
 #function llt() { /bin/ls -alhrt --color=auto -F "$@"; }
 #function llS() { /bin/ls -alhrS --color=auto -F "$@"; }
 
 # A quick grep-for-processes.
 function ps() { /bin/ps auxf; }
 function myps() { /bin/ps -fjH -u "$USER"; }
-function ps1() { /bin/ps auxww | /usr/bin/ack -i --color "$1" | /usr/bin/ack -v ack; }
+function ps1() { /bin/ps auxww | $ACKBIN -i --color "$1" | $ACKBIN -v ack; }
 
 # Zippin
 function gz() { tar -zcvf "$@"; }
@@ -52,8 +53,8 @@ function mv() { /bin/mv -vi "$@" ; }
 function mnt() { /bin/mount | column -t "$@" ; }
 function netstat() { /bin/netstat -tlnp "$@" ; }
 function cls() { clear; /bin/ls; /bin/pwd; }
-function grep() { /usr/bin/ack --color "$@"; }
-function grepp() { /usr/bin/ack -P --color "$@"; }
+function grep() { $ACKBIN --color "$@"; }
+function grepp() { $ACKBIN -P --color "$@"; }
 function atmux() { tmux new-session -A -s "$HOSTNAME"; }
 function htmux() { tmux new-session -A -s "SESS-2"; }
 function gcd() { cd "`git rev-parse --show-toplevel`"; }
