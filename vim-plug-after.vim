@@ -8,6 +8,7 @@
 "======================
 "<leader>ul underline
 ":sudoW sudoWrite
+"<F1> escape
 "<F2> toggle tagbar
 "<F3> toggle number
 "<F4> toggle highlight
@@ -25,14 +26,12 @@
 "[q go to the prev quickix item
 "]q go to the next quickfix item
 
-" Fugitive
-nmap <leader>gs :Git<CR> " git status
-nmap <leader>gb :Git blame<CR>
-nmap <leader>gd :Gdiffsplit<CR> " dd side-by-side diff
-nmap <leader>gr :Gread<CR> " checkout file, undo changes
-"<leader>gl maps to :Glog<CR>
-"<leader>gc maps to :Gcommit<CR>
-"<leader>gp maps to :Gpush<CR>
+" windows movement
+" Quicker window movement
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-l> <C-w>l
 
 " Commentary
 " Comment - uncomment
@@ -43,7 +42,7 @@ nmap <leader>gr :Gread<CR> " checkout file, undo changes
 "    gcgc -- the current comment block
 
 " vim-trailing-whitespace
-":FixWhitespace
+" :FixWhitespace
 
 "To More keyboard mappings
 " :nmap for normal mode mapping
@@ -89,14 +88,6 @@ nmap \6 :e #6<CR>
 nmap \7 :e #7<CR>
 nmap \8 :e #8<CR>
 nmap \9 :e #9<CR>
-"close quickfix window
-nmap \x :cclose<CR>
-nmap <leader>qo :copen<CR>
-nmap <leader>qc :cclose<CR>
-
-" farmergreg/vim-lastplace
-let g:lastplace_ignore_buftype = "quickfix,nofile,help"
-let g:lastplace_ignore = "gitcommit"
 
 " Cycle through  buffers
 noremap <silent> <tab>   :tabnext<CR>
@@ -109,6 +100,11 @@ noremap <silent> <C-F4>  :close<CR>
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bp :bprev<CR>
 
+" close, open quickfix window
+nmap \x :cclose<CR>
+nmap <leader>qo :copen<CR>
+nmap <leader>qc :cclose<CR>
+
 augroup autoquickfix
     autocmd!
     autocmd QuickfixCmdPost []* cwindow
@@ -118,6 +114,19 @@ augroup END
 " Fix annoyances inthe QuickFix window
 autocmd FileType qf setlocal number nolist
 autocmd FileType qf wincmd J " Makes sure it's at the bottom of the vim window
+
+" farmergreg/vim-lastplace
+let g:lastplace_ignore_buftype = "quickfix,nofile,help"
+let g:lastplace_ignore = "gitcommit"
+
+" Fugitive
+nmap <leader>gs :Git<CR> " git status
+nmap <leader>gb :Git blame<CR>
+nmap <leader>gd :Gdiffsplit<CR> " dd side-by-side diff
+nmap <leader>gr :Gread<CR> " checkout file, undo changes
+"<leader>gl maps to :Glog<CR>
+"<leader>gc maps to :Gcommit<CR>
+"<leader>gp maps to :Gpush<CR>
 
 " Easymotion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
@@ -144,12 +153,10 @@ let g:fzf_buffers_jump=1
 " Empty value to disable preview window altogether
 let g:fzf_preview_window = []
 nnoremap <silent> <leader>bt :call fzf#vim#buffer_tags('', { 'options': ['--nth', '1,2', '--query', '^f$ '] })<CR>
-
-" fzf
 " Single key access to files fzf and tags
 " edit a buffer in current window
-" edit recent files
 nnoremap <leader>bb :Buffers<CR>
+" edit recent files
 nnoremap <leader>fe :History<CR>
 " edit files in current directory and below
 nnoremap <leader>ff :Files<CR>
@@ -167,8 +174,6 @@ if executable('rg')
    let g:grepprg = 'rg --vimgrep --no-heading --smart-case'
    set grepformat^=%f:%l:%c:%m
 endif
-
-
 " Auto close the Quickfix list after pressing '<enter>' on a list item
 " To open quick fix window :copen
 let g:ackhighlight = 1
@@ -176,7 +181,6 @@ let g:ack_autoclose = 1
 let g:ack_use_cword_for_empty_search = 1
 " Don't jump to first match
 cnoreabbrev Ack Ack!
-
 " Search for word under the cursor in the current directory
 " fuzzy grep/ack  Use ^c to abort
 nnoremap <leader>/ :Ack!<Space>
@@ -215,7 +219,6 @@ let g:tagbar_sort = 0 "Sort according to their structure in file & not filename
 nmap <F2> :TagbarToggle<CR>
 nnoremap <leader>tt <F2>
 
-
 " SuperTab
 let g:SuperTabLongestEnhanced = 1
 let g:SuperTabLongestHighlight = 1
@@ -230,11 +233,9 @@ noremap <silent> $ g$
 nnoremap ' `
 nnoremap Y y$
 
-
 nnoremap <C-s> :write<CR>
 inoremap <C-s> <ESC>:write<CR>
 nnoremap <leader>w :w!<CR>
-
 
 " remap :W, :Q etc if you press the shift key for tool lonag
 cabbrev Q q
@@ -261,7 +262,6 @@ map <leader>qQ :qa!<CR>
 " quit all, after saving all files
 map <leader>qw :wqa!<CR>
 
-
 " Consider < and > a pair
 set matchpairs+=<:>
 
@@ -277,7 +277,6 @@ set showtabline=1
 " Show matching brackets
 set showmatch
 set matchtime=15
-
 
 " The * is the default clipboard + is the system clipboard
 " paste plus clipboard using using "+p
@@ -338,15 +337,6 @@ set textwidth=100
 set linebreak
 set display=lastline
 
-" show command as they are being entered, like in emacs
-set showcmd
-
-" windows movement
-" Quicker window movement
-"nnoremap <C-j> <C-w>j
-"nnoremap <C-k> <C-w>k
-"nnoremap <C-h> <C-w>h
-"nnoremap <C-l> <C-w>l
 
 "Display the undo tree with <leader>u.
 nnoremap <leader>tu :GundoToggle<CR>
@@ -418,7 +408,7 @@ let g:solarized_termcolors=256
 
 "Molokai settings
 " Set the following for 256color. Comment out for TC
-let g:rehash256 = 1
+"let g:rehash256 = 1
 
 "colorscheme molokai
 "colorscheme solarized
@@ -503,7 +493,6 @@ let g:NERDTreeMinimalUI = 1
 let g:NERDTreeMarkBookmarks = 0
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeStatusLine = -1
-
 
 " GitGutter
 nmap [g  :GitGutterPrevHunk<CR>

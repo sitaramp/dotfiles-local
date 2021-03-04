@@ -18,7 +18,6 @@ set rtp+=~/.fzf
 set directory=$HOME/.vim/swapfiles
 set synmaxcol=200
 
-set showcmd
 set scrolloff=7
 
 " search settings
@@ -27,6 +26,8 @@ set hlsearch
 set ignorecase
 set smartcase
 
+" show command as they are being entered, like in emacs
+set showcmd
 set showmatch
 set wildmenu "bash style tab completion
 set wildignorecase
@@ -44,7 +45,7 @@ set hidden
 "set mouse=c
 
 set formatoptions=tcqrow
-set shell=/bin/bash
+set shell=/bin/bash\ -l
 set nofoldenable
 set spellcapcheck= " Have no need for this.
 " Let modelines set things like indentexpr
