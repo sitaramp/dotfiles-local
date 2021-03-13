@@ -1,7 +1,7 @@
 "
 " Credit https://github.com/statico/dotfiles/blob/master/.vim/vimrc
 "
-" <leader> Mnemonics 
+" <leader> Mnemonics
 " b - buffer; g git, \ = project; s = search; t = toggle, h = help
 
 " Janus custominzation
@@ -42,7 +42,7 @@
 "    gcgc -- the current comment block
 
 " vim-trailing-whitespace
-" :FixWhitespace
+nnoremap <leader>cw :FixWhitespace<CR>
 
 "To More keyboard mappings
 " :nmap for normal mode mapping
@@ -123,6 +123,7 @@ let g:lastplace_ignore = "gitcommit"
 nmap <leader>gs :Git<CR> " git status
 nmap <leader>gb :Git blame<CR>
 nmap <leader>gd :Gdiffsplit<CR> " dd side-by-side diff
+" git revert file
 nmap <leader>gr :Gread<CR> " checkout file, undo changes
 "<leader>gl maps to :Glog<CR>
 "<leader>gc maps to :Gcommit<CR>
@@ -158,12 +159,14 @@ nnoremap <silent> <leader>bt :call fzf#vim#buffer_tags('', { 'options': ['--nth'
 nnoremap <leader>bb :Buffers<CR>
 " edit recent files
 nnoremap <leader>fe :History<CR>
-" edit files in current directory and below
+" find files in current directory and below
 nnoremap <leader>ff :Files<CR>
+" find git files in current directory and below
 nnoremap <leader>fg :GitFiles?<CR>
-nnoremap <leader>g] :Tags<CR>
+" find code tags
+nnoremap <leader>ct :Tags<CR>
+" toggle colorscheme
 nnoremap <leader>tc :Colors<CR>
-"nmap <leader>m :GitFiles<CR>
 "nmap \e :Files<CR>
 "nmap \r :Rg<CR>
 
