@@ -107,7 +107,6 @@ noremap <silent> <C-F4>  :close<CR>
 " Cycle through buffers
 " Switch between the last two files
 "nmap <C-e> <C-^>
-" <C-e> window resizer, Enter to exit, q to cancel
 nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader><Leader> <C-^>
 
@@ -166,6 +165,9 @@ map! <A-LEFT> <S-LEFT>
 map <A-LEFT> <S-LEFT>
 map! <A-RIGHT> <S-RIGHT>
 map <A-RIGHT> <S-RIGHT>
+
+inoremap jj <Esc>
+inoremap kk <Esc>
 
 " fzf
 "[Buffers] Jump to the existing window if possible
