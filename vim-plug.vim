@@ -37,7 +37,7 @@ Plug 'simnalamburt/vim-mundo'
 "Plug 'zhou13/vim-easyescape'
 Plug 'farmergreg/vim-lastplace'
 Plug 'easymotion/vim-easymotion'
-Plug 'smeji/winresizer'
+Plug 'simeji/winresizer'
 
 if filereadable($HOME . "/dotfiles-local/vim-plug-before.vim")
 	source ~/dotfiles-local/vim-plug-before.vim

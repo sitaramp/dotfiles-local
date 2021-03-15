@@ -83,11 +83,6 @@ nnoremap <leader>cw :FixWhitespace<CR>
 " What overrode you mapping ?
 " https://vi.stackexchange.com/7722/how-to-debug-a-mapping
 
-" Undo
-" u, C-r seq undo/redo
-" g-, g+ timed undo/redo
-" <leader> u gundo treeview
-
 ":Gcd      change to top level git directory
 
 " single key acess to Buffers
@@ -262,7 +257,7 @@ nnoremap Y y$
 
 nnoremap <C-s> :write<CR>
 inoremap <C-s> <ESC>:write<CR>
-nnoremap <leader>w :w!<CR>
+"nnoremap <leader>w :w!<CR>
 
 " remap :W, :Q etc if you press the shift key for tool lonag
 cabbrev Q q
@@ -365,8 +360,10 @@ set linebreak
 set display=lastline
 
 
-"Display the undo tree with <leader>u.
-nnoremap <leader>tu :GundoToggle<CR>
+" Undo
+" u, C-r seq undo/redo
+"Display the undo tree with <leader>tu.
+nnoremap <leader>tu :MundoToggle<CR>
 "Add this line if you are using Python 3.
 "let g:gundo_prefer_python3 = 1
 
@@ -500,7 +497,7 @@ nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 " NERDTree
-map <leader>ft :NERDTreeToggle<CR>
+map <leader>tn :NERDTreeToggle<CR>
 "map <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Open NERDTree if no file is specified
