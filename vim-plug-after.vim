@@ -18,6 +18,23 @@
 "<leader>tw toggle wrap
 "<leader>cd :cd...
 
+" Goto
+" <C-o> go to the prev search
+" <C-i> go to the next search
+" gi    go to the last insert
+" g;    go to the next modification
+" g,    go to the prev modification
+" gf    go to file located at the filepath under the cursor
+" gx    execute the file under the cursor
+" gI    insert at column 0
+
+
+"Macros
+" qa
+" Do what you have to do
+" q
+" @a -- repeat macro a
+
 " Unimpaired
 "[b go to the prev buffer
 "]b go to the next buffer
@@ -71,34 +88,41 @@ nnoremap <leader>cw :FixWhitespace<CR>
 " g-, g+ timed undo/redo
 " <leader> u gundo treeview
 
-" Switch between the last two files
-nmap <C-e> :e#<CR>
-nnoremap <Leader><Tab> <C-^>
 ":Gcd      change to top level git directory
 
 " single key acess to Buffers
 "nmap ;  :Buffers<CR>
-nmap \0 :buffers<CR>
-nmap \1 :e #1<CR>
-nmap \2 :e #2<CR>
-nmap \3 :e #3<CR>
-nmap \4 :e #4<CR>
-nmap \5 :e #5<CR>
-nmap \6 :e #6<CR>
-nmap \7 :e #7<CR>
-nmap \8 :e #8<CR>
-nmap \9 :e #9<CR>
+nnoremap \0 :buffers<CR>
+nnoremap \1 :bf
+nnoremap \2 2<C-^>
+nnoremap \3 3<C-^>
+nnoremap \4 4<C-^>
+nnoremap \5 5<C-^>
+nnoremap \6 6<C-^>
+nnoremap \7 7<C-^>
+nnoremap \8 8<C-^>
+nnoremap \9 :bl
 
-" Cycle through  buffers
+" Cycle through  tabs
 noremap <silent> <tab>   :tabnext<CR>
 noremap <silent> <S-tab> :tabprevious<CR>
 noremap <silent> <C-n>   :tabnew<CR>
 noremap <silent> <C-F4>  :close<CR>
 
+" Cycle through buffers
+" Switch between the last two files
+"nmap <C-e> <C-^>
+" <C-e> window resizer, Enter to exit, q to cancel
+nnoremap <Leader><Tab> <C-^>
+nnoremap <Leader><Leader> <C-^>
+
 "nmap [b   :bprev<CR>
 "nmap ]b   :bnext<CR>
+nnoremap <leader>b1 :bf<CR>
+nnoremap <leader>b9 :bl<CR>
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bp :bprev<CR>
+let g:winresizer_start_key = "<leader>wr"
 
 " close, open quickfix window
 nmap \x :cclose<CR>

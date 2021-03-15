@@ -32,10 +32,12 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'plasticboy/vim-markdown'
 Plug 'rhysd/vim-clang-format'
-Plug 'sjl/gundo.vim'
+"Plug 'sjl/gundo.vim'
+Plug 'simnalamburt/vim-mundo'
 "Plug 'zhou13/vim-easyescape'
 Plug 'farmergreg/vim-lastplace'
 Plug 'easymotion/vim-easymotion'
+Plug 'smeji/winresizer'
 
 if filereadable($HOME . "/dotfiles-local/vim-plug-before.vim")
 	source ~/dotfiles-local/vim-plug-before.vim
