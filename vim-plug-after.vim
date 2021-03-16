@@ -2,19 +2,18 @@
 " Credit https://github.com/statico/dotfiles/blob/master/.vim/vimrc
 "
 " <leader> Mnemonics
-" b - buffer; g git, \ = project; s = search; t = toggle, h = help
+" b - buffer; g git, \ = project; s = search; t = toggle, , n = noes, h = help
 
-" Janus custominzation
-"======================
-"<leader>ul underline
 ":sudoW sudoWrite
 "<F1> escape
 "<F2> toggle tagbar
 "<F3> toggle number
 "<F4> toggle highlight
 "<F5> toggle paste mode
-"<leader>u covert the entire word to lowercase
-"<leader>l covert the entire word to lowercase
+
+"<leader>nl underline
+"<leader>nu covert the entire word to upprcase
+"<leader>nl covert the entire word to lowercase
 "<leader>tw toggle wrap
 "<leader>cd :cd...
 
@@ -87,16 +86,16 @@ nnoremap <leader>cw :FixWhitespace<CR>
 
 " single key acess to Buffers
 "nmap ;  :Buffers<CR>
-nnoremap \0 :buffers<CR>
-nnoremap \1 :bf
-nnoremap \2 2<C-^>
-nnoremap \3 3<C-^>
-nnoremap \4 4<C-^>
-nnoremap \5 5<C-^>
-nnoremap \6 6<C-^>
-nnoremap \7 7<C-^>
-nnoremap \8 8<C-^>
-nnoremap \9 :bl
+nnoremap <leader>0 :buffers<CR>
+nnoremap <leader>1 :bf<CR>
+nnoremap <leader>2 2<C-^>
+nnoremap <leader>3 3<C-^>
+nnoremap <leader>4 4<C-^>
+nnoremap <leader>5 5<C-^>
+nnoremap <leader>6 6<C-^>
+nnoremap <leader>7 7<C-^>
+nnoremap <leader>8 8<C-^>
+nnoremap <leader>9 :bl<CR>
 
 " Cycle through  tabs
 noremap <silent> <tab>   :tabnext<CR>
@@ -113,6 +112,13 @@ nnoremap <Leader><Leader> <C-^>
 "nmap [b   :bprev<CR>
 "nmap ]b   :bnext<CR>
 nnoremap <leader>b1 :bf<CR>
+nnoremap <leader>b2 2<C-^>
+nnoremap <leader>b3 3<C-^>
+nnoremap <leader>b4 4<C-^>
+nnoremap <leader>b5 5<C-^>
+nnoremap <leader>b6 6<C-^>
+nnoremap <leader>b7 7<C-^>
+nnoremap <leader>b8 8<C-^>
 nnoremap <leader>b9 :bl<CR>
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bp :bprev<CR>
