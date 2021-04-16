@@ -42,6 +42,7 @@ show logging
 
 # watchpoints stops execution whenever that value of an expression changes
 #watch expr
+#watch *addr
 #info watchpoints
 
 # Display summary of all threads
@@ -57,7 +58,7 @@ show logging
 # http://www.sourceware.org/gdb/current/onlinedocs/gdb/Threads.html
 
 # info break
-# cond 3 if var=value
+# cond 3 if var==value
 # cond 3
 
 # watch --location addr

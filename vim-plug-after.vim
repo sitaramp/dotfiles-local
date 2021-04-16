@@ -2,7 +2,7 @@
 " Credit https://github.com/statico/dotfiles/blob/master/.vim/vimrc
 "
 " <leader> Mnemonics
-" b - buffer; g git, \ = project; s = search; t = toggle, , n = noes, h = help
+" b - buffer; g git, \ = project; s = search; t = toggle, , n = notes, h = help
 
 ":sudoW sudoWrite
 "<F1> escape
@@ -12,8 +12,6 @@
 "<F5> toggle paste mode
 
 "<leader>nl underline
-"<leader>nu covert the entire word to upprcase
-"<leader>nl covert the entire word to lowercase
 "<leader>tw toggle wrap
 "<leader>cd :cd...
 
@@ -174,6 +172,7 @@ map <A-RIGHT> <S-RIGHT>
 
 inoremap jj <Esc>
 inoremap kk <Esc>
+inoremap bb <Esc>
 
 " fzf
 "[Buffers] Jump to the existing window if possible
