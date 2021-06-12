@@ -1,6 +1,6 @@
 " Author: Sitaram Pawar
 " Description: gcc linter for ALE sade files
-" Copy this files to janus/ale/ale_linters/cpp/sade.vim
+" Copy this files to ~/.vim/plugged/ale/ale_linters/cpp/sade.vim
 
 call ale#Set('cpp_sade_executable', 'mklocal')
 call ale#Set('cpp_sade_options', '')
@@ -22,7 +22,7 @@ endfunction
 
 call ale#linter#Define('cpp', {
 \   'name': 'sade',
-\   'aliases': [],
+\   'aliases': ['sade'],
 \   'output_stream': 'stderr',
 \   'executable': {b -> ale#Var(b, 'cpp_sade_executable')},
 \   'command': {b -> ale#c#RunMakeCommand(b, function('ale_linters#cpp#sade#GetCommand'))},

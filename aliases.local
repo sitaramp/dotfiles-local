@@ -1,6 +1,6 @@
 # Productivity
 alias todo='$EDITOR ~/.todo'
-alias vi='vim'
+alias vi='vim -X'
 alias gvim='gvim -v'
 alias dotfiles='cd ~/dotfiles-local'
 
@@ -30,11 +30,11 @@ alias df='/bin/df -h'
 #alias du='du -sh -d 2'
 alias du='du -x -h --max-depth=1 "$@" | sort -n -r'
 
-ACKBIN=/usr/local/bin/ack
+ACKBIN=/usr/bin/ack
 # show me files matching "ls grep"
-#unalias ls
+unalias ls >/dev/null 2>&1
 #function ls() { /bin/ls --color=auto "$@"; }
-#unalias ll
+unalias ll >/dev/null 2>&1
 #function ll()  { /bin/ls -alhrt --color=auto -F "$@"; }
 function ls1()  { /bin/ls -alhrt --color=auto | $ACKBIN -i --color "$1" | $ACKBIN -v ack; }
 #function llt() { /bin/ls -alhrt --color=auto -F "$@"; }
@@ -53,6 +53,7 @@ function mv() { /bin/mv -vi "$@" ; }
 function mnt() { /bin/mount | column -t "$@" ; }
 function netstat() { /bin/netstat -tlnp "$@" ; }
 function cls() { clear; /bin/ls; /bin/pwd; }
+unalias grep >/dev/null 2>&1
 function grep() { $ACKBIN --color "$@"; }
 function grepp() { $ACKBIN -P --color "$@"; }
 function atmux() { tmux new-session -A -s "$HOSTNAME"; }

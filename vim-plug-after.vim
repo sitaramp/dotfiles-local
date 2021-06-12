@@ -180,15 +180,17 @@ let g:fzf_buffers_jump=1
 " Empty value to disable preview window altogether
 let g:fzf_preview_window = []
 nnoremap <silent> <leader>bt :call fzf#vim#buffer_tags('', { 'options': ['--nth', '1,2', '--query', '^f$ '] })<CR>
+
 " Single key access to files fzf and tags
-" edit a buffer in current window
-nnoremap <leader>bb :Buffers<CR>
-" edit recent files
-nnoremap <leader>fe :History<CR>
-" find files in current directory and below
-nnoremap <leader>ff :Files<CR>
-" find git files in current directory and below
-nnoremap <leader>fg :GitFiles?<CR>
+" find a buffer in current window
+nmap <leader>bb :Buffers<CR>
+nmap <leader>bn :next<CR>
+" find recent files
+nmap <leader>fe :History<CR>
+" find git files
+nmap <leader>fg :GFiles<CR>
+" file files in current directory and below
+"nmap <leader>ff :Files<CR>
 " find code tags
 nnoremap <leader>ct :Tags<CR>
 " toggle colorscheme
@@ -470,15 +472,6 @@ if executable('zsh')
 endif
 set shell=/bin/bash\ -l
 
-if has("cscope")
-  "use both cscope and tag
-  set cscopetag
-  " add any local cscope db
-  if filereadable($CSCOPE_DB)
-    cs  add  $CSCOPE_DB $CSCOPE_ROOT
-    set tags+=tags;$CSCOPE_ROOT
-  endif
-endif
 " Show the list for multiple matches
 nnoremap <C-]> g<C-]>
 

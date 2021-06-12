@@ -2,27 +2,26 @@
 
 # validate project root
 
-if ! [ -f "$CSCOPE_ROOT/DartCommon.mk" ];  then
-      echo "$0 failed: Failed to find Project directory Please setup projeuct dir"
+if ! [ -f "$TAGS_ROOT/DartCommon.mk" ];  then
+      echo "$0 failed: Failed to find Project directory Please setup project dir"
       exit 1
 fi
 
-pushd . ; cd $CSCOPE_ROOT
+pushd . ; cd $TAGS_ROOT
 
 # Generate ctags
 # vim sttings
-#    set tags+=$CSCOPE_ROOT/tags,tags
+#    set tags+=$TAGS_ROOT/tags,tags
 ctags -R --extras=+q .
 
-# Generate cscope DB
-CSCOPE_DIR="$CSCOPE_ROOT/cscope"
-
-if [ ! -d "$CSCOPE_DIR" ]; then
-mkdir "$CSCOPE_DIR"
+# Generate file list
+export TAGS_DIR="$TAGS_ROOT/.tags_root"
+if [ ! -d "$TAGS_DIR" ]; then
+mkdir "$TAGS_DIR"
 fi
 
 echo "Finding files ..."
-find "$CSCOPE_ROOT" -name '*.[ch]' \
+find "$TAGS_ROOT" -name '*.[ch]' \
 -o -name '*.java' \
 -o -name '*properties' \
 -o -name '*.cpp' \
@@ -31,11 +30,16 @@ find "$CSCOPE_ROOT" -name '*.[ch]' \
 -o -name '*.hpp' \
 -o -name '*.hxx' \
 -o -name '*.py' \
--o -name '*.php' > "$CSCOPE_DIR/cscope.files"
+-o -name '*.php' > "$TAGS_DIR/cscope.files"
 
-echo "Adding files to cscope db: $CSCOPE_ROOT/cscope.db ..."
-cscope -b -u -C -i "$CSCOPE_DIR/cscope.files"
+# Generate cscope DB
+echo "Adding files to cscope db: $TAGS_ROOT/cscope.db ..."
+#cscope -b -u -C -i "$TAGS_DIR/cscope.files"
 
-export CSCOPE_DB="$CSCOPE_ROOT/cscope.out"
-echo "Exported CSCOPE_DB to: '$CSCOPE_DB'"
+#export CSCOPE_DB="$TAGS_ROOT/cscope.out"
+#echo "Exported CSCOPE_DB to: '$CSCOPE_DB'"
+
+#Generate gtags
+gtags --accept-dotfiles -c -f "$TAGS_DIR/cscope.files"
+export GTAGS_DB="$TAGS_ROOT/GTAGS"
 popd

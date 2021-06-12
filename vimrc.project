@@ -3,13 +3,52 @@
 "
 set makeprg=${PRODUCT_ROOT}/sade/build_standalone_sade.sh
 
+"\ '.c$': {'ale_linters': ['sade'], 'ale_fixers': ['clangtidy']},
+"\ '.h$': {'ale_linters': ['sade'], 'ale_fixers': ['clangtidy']},
+
 " Only run gcc linter for cxx and hxx
 let g:ale_pattern_options = {
-\ '.c$': {'ale_linters': ['sade'], 'ale_fixers': ['clangtidy']},
-\ '.h$': {'ale_linters': ['sade'], 'ale_fixers': ['clangtidy']},
 \ '.cxx$': {'ale_linters': ['sade'], 'ale_fixers': ['clangtidy']},
 \ '.hxx$': {'ale_linters': ['sade'], 'ale_fixers': ['clangtidy']}
 \}
 " If you configure g:ale_pattern_options outside of vimrc, you need this.
 let g:ale_pattern_options_enabled = 1
+
+""custom project root directory
+let g:gutentags_add_default_project_roots = 0
+let g:gutentags_project_root = ['.tags_root']
+
+"use both cscope and tag
+set cscopetag
+" add any local cscope db
+if filereadable($CSCOPE_DB)
+  cs  add  $CSCOPE_DB $TAGS_ROOT
+  set tags+=tags;$TAGS_ROOT/tags
+  let g:gutentags_modules = ['ctags', 'cscope']
+else
+  set csprg=gtags-cscope
+  if filereadable($GTAGS_DB)
+    cs  add $GTAGS_DB $TAGS_ROOT
+    set tags+=tags;$TAGS_ROOT/tags
+    let g:gutentags_modules = ['ctags', 'gtags_cscope']
+  else
+    let g:gutentags_modules = ['ctags', 'cscope', 'gtags_cscope']
+  endif
+endif
+" no default keymapping
+let g:gutentags_plus_nomap = 1
+" change focus to quickfix window after search (optional).
+let g:gutentags_plus_switch = 1
+let g:gutentags_generate_on_missing = 0
+let g:gutentags_generate_on_write = 0
+let g:gutentags_generate_on_new = 0
+" debug
+let g:gutentags_define_advanced_commands = 1
+"find global definition
+noremap <silent> <leader>gg :GscopeFind g <C-R><C-W><cr>
+"find all callers
+noremap <silent> <leader>gc :GscopeFind c <C-R><C-W><cr>
+"find all places where var is assinged
+noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
+"let g:gutentags_ctags_extra_args = ['--fields=+ainKz']
 

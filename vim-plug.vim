@@ -38,7 +38,12 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'farmergreg/vim-lastplace'
 Plug 'easymotion/vim-easymotion'
 Plug 'simeji/winresizer'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'skywind3000/gutentags_plus'
 
+" disable X clipboard for startup performance
+" or start with -X
+set clipboard=exclude:.*
 if filereadable($HOME . "/dotfiles-local/vim-plug-before.vim")
 	source ~/dotfiles-local/vim-plug-before.vim
 endif
