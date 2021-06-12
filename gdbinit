@@ -65,3 +65,9 @@ show logging
 # info watch
 # https://ccrma.stanford.edu/~jos/stkintro/Useful_commands_gdb.html
 
+
+# Disassembly
+#(gdb) layout asm
+#(gdb) layout split 
+#(Gdb) layout regs
+
