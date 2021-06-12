@@ -190,7 +190,7 @@ nmap <leader>fe :History<CR>
 " find git files
 nmap <leader>fg :GFiles<CR>
 " file files in current directory and below
-"nmap <leader>ff :Files<CR>
+nmap <leader>ff :Files<CR>
 " find code tags
 nnoremap <leader>ct :Tags<CR>
 " toggle colorscheme
