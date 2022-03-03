@@ -1,4 +1,3 @@
-#!/bin/bash
 
 # validate project root
 
@@ -40,6 +39,7 @@ echo "Adding files to cscope db: $TAGS_ROOT/cscope.db ..."
 #echo "Exported CSCOPE_DB to: '$CSCOPE_DB'"
 
 #Generate gtags
+set GTAGSFORCECPP=1
 gtags --accept-dotfiles -c -f "$TAGS_DIR/cscope.files"
 export GTAGS_DB="$TAGS_ROOT/GTAGS"
 popd

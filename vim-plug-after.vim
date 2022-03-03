@@ -155,7 +155,7 @@ nmap <leader>gr :Gread<CR> " checkout file, undo changes
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
-"nmap <leader>s <Plug>(easymotion-overwin-f)
+"nmap s <Plug>(easymotion-overwin-f)
 " or
 " `s{char}{char}{label}`
 nmap s <Plug>(easymotion-overwin-f2)
@@ -185,14 +185,14 @@ nnoremap <silent> <leader>bt :call fzf#vim#buffer_tags('', { 'options': ['--nth'
 
 " Single key access to files fzf and tags
 " find a buffer in current window
-nmap <leader>bb :Buffers<CR>
-nmap <leader>bn :next<CR>
+nmap <leader>b :Buffers<CR>
+"nmap <leader>bn :next<CR>
 " find recent files
-nmap <leader>fe :History<CR>
+nmap <leader>e :History<CR>
 " find git files
-nmap <leader>fg :GFiles<CR>
-" file files in current directory and below
-nmap <leader>ff :Files<CR>
+nmap <leader>g :GFiles<CR>
+" find files in current directory and below
+"nmap <leader>ff :Files<CR>
 " find code tags
 nnoremap <leader>ct :Tags<CR>
 " toggle colorscheme
@@ -222,7 +222,7 @@ nnoremap <leader>/ :Ack!<Space>
 "nmap <Leader>ac yiw<leader>ack<C-r>"
 "vmap <Leader>ac   y<Leader>ack<C-r>"
 "map  <leader>k     <leader>ac<Bs><CR>
-"nnoremap <leader>gg mo:Ggrep! "\b<cword>\b" <CR>
+"nnoremap <leader>s mo:Ggrep! "\b<cword>\b" <CR>
 
 " Search for file
 "noremap <F1> :denite<Space>

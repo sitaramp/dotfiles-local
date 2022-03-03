@@ -37,7 +37,7 @@ show logging
 # set var variable_name=newval
 # tbreak +1          # set break before jump
 # jump +1            # jump over not executed
-# skip function_name # executed w/o break
+# skip function_name # always execute w/o break/steps
 
 
 # watchpoints stops execution whenever that value of an expression changes
