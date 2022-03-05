@@ -79,13 +79,17 @@ endif
 # Cargo installs
 cargo install fd-find lsd ripgrep
 
-# python installs
-sudo apt-get install python3-pip
-sudo python3 -m pip --upgrade setuptools
-sudo python3 -m pip --upgrade pip
-sudo python3 -m pip install tldr
+# python system wide installs
+#sudo apt-get install python3-pip
+#sudo python3 -m pip --upgrade setuptools
+#sudo python3 -m pip --upgrade pip
+#wget https://bootstrap.pypa.io/get-pip.py
+# python user env install
+curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | python
 
-python3 -m pip install powerline-shell
+pip install tldr
+
+pip install powerline-shell
 mkdir -p ~/.config/powerline-shell
 mv  ~/.config/powerline-shell/config.json  ~/.config/powerline-shell/config.json.bak
 ln -s $DOTFILE_DIR/config/powerline-shell/config.json ~/.config/powerline-shell/config.json
@@ -116,7 +120,8 @@ popd
 # append the following lines to ~/.bashrc
 if [[ ! "$PATH" == */dotfiles-local/bin* ]]; then
   export PATH="$HOME/dotfiles-local/bin:${PATH:+${PATH}}"
-  export PATH="${PATH:+${PATH}:}/sbin/local"
+  export PATH="${PATH:+${PATH}:}/usr/local/bin"
+  export PATH="${PATH:+${PATH}:}/usr/local/sbin"
   export PATH="${PATH:+${PATH}:}/sbin"
   export PATH="${PATH:+${PATH}:}$HOME/.cargo/bin"
   export PATH="${PATH:+${PATH}:}$HOME/.local/bin"

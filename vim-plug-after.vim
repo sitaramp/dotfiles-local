@@ -69,6 +69,7 @@ nnoremap <leader>cw :FixWhitespace<CR>
 " vim -D somefile.txt
 " vim --startuptime vim.log
 " vim -V9 somefile.txt
+" vim -V9vim-debug.log somefile.txt
 " Check key mappings
 "   :verbose map <any-key>
 " :set verbosefile = vim-verbose.txt
@@ -101,6 +102,9 @@ noremap <silent> <S-tab> :tabprevious<CR>
 noremap <silent> <C-n>   :tabnew<CR>
 noremap <silent> <C-F4>  :close<CR>
 
+" Files
+" :Files ..
+" :Rg ...
 " Cycle through buffers
 " Switch between the last two files
 "nmap <C-e> <C-^>
