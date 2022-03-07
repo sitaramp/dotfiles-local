@@ -33,14 +33,6 @@ alias df='/bin/df -h'
 alias du='du -x -h --max-depth=1 "$@" | sort -n -r'
 
 ACKBIN=/usr/bin/ack
-# show me files matching "ls grep"
-unalias ls >/dev/null 2>&1
-#function ls() { /bin/ls --color=auto "$@"; }
-unalias ll >/dev/null 2>&1
-#function ll()  { /bin/ls -alhrt --color=auto -F "$@"; }
-function ls1()  { /bin/ls -alhrt --color=auto | $ACKBIN -i --color "$1" | $ACKBIN -v ack; }
-#function llt() { /bin/ls -alhrt --color=auto -F "$@"; }
-#function llS() { /bin/ls -alhrS --color=auto -F "$@"; }
 
 # A quick grep-for-processes.
 function ps() { /bin/ps auxf; }
@@ -72,12 +64,22 @@ _color() {
   return $( tput colors )
 }
 
+unalias ls >/dev/null 2>&1
+function ls() { /bin/ls --color=auto -F "$@"; }
+
 # lsd https://github.com/Peltoche/lsd
+unalias ll >/dev/null 2>&1
 if _has lsd; then
-   alias ll='lsd -l'
-   alias lla='lsd -la'
-   alias llt='lsd -tree'
+  alias ll='lsd -alhrtF'
+  alias llS='lsd -alhrS'
+  alias llt='lsd --tree'
+else
+  function ll()  { /bin/ls -alhrt --color=auto -F "$@"; }
+  function llS() { /bin/ls -alhrS --color=auto -F "$@"; }
 fi
+
+# show me files matching "ls grep"
+function ls1()  { /bin/ls -alhrt --color=auto | $ACKBIN -i --color "$1" | $ACKBIN -v ack; }
 
 # prefer ripgrep over ack and ag
 if _has rg; then
