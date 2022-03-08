@@ -3,13 +3,18 @@
 
 DOTFILES_DIR=$HOME/dotfiles-local
 
+pushd .
+cd $DOTFILES_DIR
+git submodule update --init --recursive --remote
+git submodule foreach --recursive git pull origin master
+popd 
+
 # Create symlinks
-ln -s ~/dotfiles-local/janus ~/.janus
-ln -s ~/dotfiles-local/inputrc ~/.inputrc
-ln -s ~/dotfiles-local/tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles-local/vim-plug.vim ~/.vimrc
-ln -s ~/dotfiles-local/gdbinit ~/.gdbinit
-ln -s ~/dotfiles-local/dircolor ~/.dircolor
+ln -s $DOTFILES_DIR/vim-plug.vim ~/.vim
+ln -s $DOTFILES_DIR/inputrc ~/.inputrc
+ln -s $DOTFILES_DIR/tmux.conf ~/.tmux.conf
+ln -s $DOTFILES_DIR/gdbinit ~/.gdbinit
+ln -s $DOTFILES_DIR/dir_colors ~/.dir_colors
 
 # Detect OS and VER
 if [ -f /etc/os-release ]; then
@@ -31,10 +36,10 @@ elif [ -f /etc/debian_version ]; then
     OS=Debian
     VER=$(cat /etc/debian_version)
 elif [ -f /etc/SuSe-release ]; then
-    # Older SuSE/etc.
-    #...
+    OS=SuSE
+    # ...
 elif [ -f /etc/redhat-release ]; then
-    # Older Red Hat, CentOS, etc.
+    OS=CentOS
     #...
 else
     # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
@@ -48,18 +53,18 @@ git submodule update --init --recursive
 
 # Install missing dependencies
 if [[ "$OS" == *SuSE* ]]; then
-    sudo zypper install git iputils-ping tmux cargo nmap ack bash-completion bc htop
+    sudo zypper install git fd iputils-ping tmux cargo nmap ack bash-completion bc htop
     sudo zypper install xclip gvim
     sudo zypper install libssl-devel libevent-devel ncurses-devel
     sudo zypper install ruby rubygems rubygem-rake ctags
     sudo zypper install --target kernel-devel
 elif [[ "$OS" == *Debian*  || $OS == *Ubuntu* ]]; then
-    sudo apt-get install git net-tools iputils-ping cargo nmap ack bash-completion bc htop
-    sudo apt-get install xclip vim-gtk3
-    sudo apt-get install libssl-dev libevent-dev ncurses-dev
-    sudo apt-get install ruby-dev rake exuberant-ctags ack-grep
-    sudo aptg-et install cloud-guest-utils
-    sudo apt-get install --target kernel-devel
+    sudo apt install git fd-find net-tools iputils-ping cargo nmap ack bash-completion bc htop
+    sudo apt install xclip vim-gtk3
+    sudo apt install libssl-dev libevent-dev ncurses-dev
+    sudo apt install ruby-dev rake exuberant-ctags ack-grep
+    sudo apt install cloud-guest-utils
+    sudo apt install --target kernel-devel
 elif [[ "$OS" == *CentOS* || "$OS" == *RedHat* ]]; then
     sudo yum install git iputils-ping cargo tmux nmap ack bash-completion bc htop
     sudo yum install xclip gvim
@@ -99,11 +104,6 @@ curl -fLo  ~/.vim/autoload/plug.vim --create-dirs \
 
 # Install scripts in ~/.bashrc
 
-# Create symlinks to binaries
-sudo ln -s $DOTFILES_DIR/mping /usr/local/bin/mping
-sudo ln -s $DOTFILES_DIR/diff-so-fancy /usr/local/bin/mdiff-so-fancy
-sudo ln -s $DOTFILES_DIR/colorgcc-so-fancy /usr/local/bin/gcc
-
 # install the latest tmux from sources
 pushd .
 mkdir -p ~/Downloads
@@ -113,18 +113,19 @@ wget https://github.com/beyondgrep/ack3/archive/v3.3.1.zip
 popd
 
 # append the following lines to ~/.bashrc
-if [[ ! "$PATH" == */home/spawar/.cargo/bin* ]]; then
+if [[ ! "$PATH" == */dotfiles-local/bin* ]]; then
+  export PATH="$HOME/dotfiles-local/bin:${PATH:+${PATH}}"
   export PATH="${PATH:+${PATH}:}/sbin/local"
   export PATH="${PATH:+${PATH}:}/sbin"
-  export PATH="${PATH:+${PATH}:}/home/spawar/.cargo/bin"
-  export PATH="${PATH:+${PATH}:}/home/spawar/.local/bin"
+  export PATH="${PATH:+${PATH}:}$HOME/.cargo/bin"
+  export PATH="${PATH:+${PATH}:}$HOME/.local/bin"
 fi
 
 [[ $- == *i* ]] || return
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f /etc/bash_completion ] && source /etc/bash_completion
-[ -f ~/dotfiles-local/bash_sensible ] && source ~/dotfiles-local/bash_sensislbe
-[ -f ~/dotfiles-local/aliases.local ] && source ~/dotfiles-local/aliases.local
+[ -f ~/dotfiles-local/bash_sensible ] && source ~/dotfiles-local/bash_sensisble
+[ -f ~/dotfiles-local/aliases.sh ] && source ~/dotfiles-local/aliases.sh
 
 function _update_ps1() {
     PS1=$(powerline-shell $?)
@@ -135,6 +136,7 @@ fi
 pushd .
 mkdir ~/Downloads
 cd ~/Downloads
+
 wget https://github.com/tmux/tmux/releases/download/3.1/tmux-3.1-rc.tar.gz
 wget https://github.com/beyondgrep/ack3/archive/v3.3.1.zip
 popd

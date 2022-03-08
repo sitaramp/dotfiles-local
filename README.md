@@ -115,7 +115,7 @@ ln -s ~/dotfiles-local/inputrc ~/.inputrc
 
 ```
   source ~/dotfiles-local/sensible.bash
-  source ~/dotfiles-local/aliases.local
+  source ~/dotfiles-local/aliases.sh
 ```
 
 ## ZSH
@@ -239,7 +239,7 @@ https://learnxinyminutes.com/docs/vim/
 Create and the Add the following to ~/.gitconfig
 ```
  [include]
-    path= ~/dotfiles-local/gitconfig.local
+    path= ~/dotfiles-local/gitconfig.cfg
 ```
 
 For each workspace add the following line to ~/.gitconfig

@@ -1,7 +1,5 @@
 # Productivity
 alias todo='$EDITOR ~/.todo'
-alias vi='vim -v -X'
-alias gvim='gvim -v'
 alias dotfiles='cd ~/dotfiles-local'
 
 # Git
@@ -63,6 +61,11 @@ _has() {
 _color() {
   return $( tput colors )
 }
+
+if _has gvim; then
+  alias vi='gvim -v -X'
+  alias gvim='gvim -v'
+fi
 
 unalias ls >/dev/null 2>&1
 function ls() { /bin/ls --color=auto -F "$@"; }
