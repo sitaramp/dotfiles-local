@@ -174,12 +174,17 @@ ln -s ~/dotfiles-local/tmux.conf ~/.tmux.conf
  - prefix + Ctl+R  reload config
 
 Some shell shortcuts to know:
+```
 `back_tick` : prefix key
  `prefix + c`      : crete window
- `prefix + #`      : switch to numbered window
+ `prefix + #`      : switch to the numbered window
  `prefix + Escape` : switch to vi mode
  `prefix + d`      : detach the session without lossing session
+ `prefix + I`      : Install tmux plugins
+ `prefix + U`      : Update tmux plugins
+ `prefix + Cltr-r` : Restore closed session
  `atmux`           : aliases to open or re-attack existing session
+```
 
 For more information see: https://learnxinyminutes.com/docs/tmux/
 
@@ -191,7 +196,7 @@ For more information see: https://learnxinyminutes.com/docs/tmux/
 4. Create symlink ~/.vimrc to ~/dotfiles-local/vim-plug.vim
 5. Add modules not covered by existing modules to vim-plug.vim
 
-The \<leader> key is set to \<Space>, it can be changed in file 'vvim-plug-before.vim'.
+The \<leader> key is set to \<Space>, it can be changed in file 'vim-plug-before.vim'.
 Some handy keyboard shortcut to know:
 ```
  <F3>        Toggle Numberline
