@@ -196,7 +196,7 @@ nmap <leader>e :History<CR>
 " find git files
 nmap <leader>g :GFiles<CR>
 " find files in current directory and below
-"nmap <leader>ff :Files<CR>
+nmap <leader>o :Files<CR>
 " find code tags
 nnoremap <leader>ct :Tags<CR>
 " toggle colorscheme
@@ -486,7 +486,7 @@ nnoremap <C-]> g<C-]>
 "
 "  <C-\> 's'   symbol: find all references to the token under cursor
 "  <C-\> 'g'   global: find global definition(s) of the token under cursor
-"  <C-\> 'c'   calls:  find all calls to the function name under cursor
+"  <C-\> 'c'   callers: find all calls to the function name under cursor
 "  <C-\> 't'   text:   find all instances of the text under cursor
 "  <C-\> 'e'   egrep:  egrep search for the word under cursor
 "  <C-\> 'f'   file:   open the filename under cursor

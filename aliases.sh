@@ -45,7 +45,7 @@ function mv() { /bin/mv -vi "$@" ; }
 function mnt() { /bin/mount | column -t "$@" ; }
 function netstat() { /bin/netstat -tlnp "$@" ; }
 function cls() { clear; /bin/ls; /bin/pwd; }
-unalias grep >/dev/null 2>&1
+#unalias grep >/dev/null 2>&1
 #function grep() { $ACKBIN --color "$@"; }
 #function grepp() { $ACKBIN -P --color "$@"; }
 function atmux() { tmux new-session -A -s "$HOSTNAME"; }
