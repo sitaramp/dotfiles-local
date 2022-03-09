@@ -77,7 +77,8 @@ endif
 # Install rustup
 
 # Cargo installs
-cargo install fd-find lsd ripgrep
+# https://lib.rs/crates/lsd
+#cargo install fd-find lsd ripgrep
 
 # python system wide installs
 #sudo apt-get install python3-pip
