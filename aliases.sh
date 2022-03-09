@@ -7,6 +7,7 @@ alias dotfiles='cd ~/dotfiles-local'
 #alias gs='git status -uno'
 #alias gs='git status -sb'
 alias gf='git fetch'
+# For Git >= 2.25 and latter use --rebase=merges
 alias gpr='git pull --rebase=merges'
 alias grc='git rebase --continue'
 alias gss='git stash save'
