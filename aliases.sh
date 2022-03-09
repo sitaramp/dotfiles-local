@@ -7,7 +7,7 @@ alias dotfiles='cd ~/dotfiles-local'
 #alias gs='git status -uno'
 #alias gs='git status -sb'
 alias gf='git fetch'
-alias gpr='git pull --rebase=preserve'
+alias gpr='git pull --rebase=merges'
 alias grc='git rebase --continue'
 alias gss='git stash save'
 alias gsl='git stash list'
@@ -30,7 +30,7 @@ alias df='/bin/df -h'
 #aliase du=dust
 alias du='du -x -h --max-depth=1 "$@" | sort -n -r'
 
-ACKBIN=/usr/bin/ack
+ACKBIN=/usr/local/bin/ack
 
 # A quick grep-for-processes.
 function ps() { /bin/ps auxf; }
@@ -46,8 +46,8 @@ function mnt() { /bin/mount | column -t "$@" ; }
 function netstat() { /bin/netstat -tlnp "$@" ; }
 function cls() { clear; /bin/ls; /bin/pwd; }
 unalias grep >/dev/null 2>&1
-function grep() { $ACKBIN --color "$@"; }
-function grepp() { $ACKBIN -P --color "$@"; }
+#function grep() { $ACKBIN --color "$@"; }
+#function grepp() { $ACKBIN -P --color "$@"; }
 function atmux() { tmux new-session -A -s "$HOSTNAME"; }
 function htmux() { tmux new-session -A -s "SESS-2"; }
 function gcd() { cd "`git rev-parse --show-toplevel`"; }
@@ -82,7 +82,7 @@ else
 fi
 
 # show me files matching "ls grep"
-function ls1()  { /bin/ls -alhrt --color=auto | $ACKBIN -i --color "$1" | $ACKBIN -v ack; }
+function ls1()  { /bin/ls -alht | $ACKBIN --color -i "$1"; }
 
 # prefer ripgrep over ack and ag
 if _has rg; then

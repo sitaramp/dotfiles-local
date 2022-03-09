@@ -93,6 +93,7 @@ ln -s $DOTFILE_DIR/config/powerline-shell/config.json ~/.config/powerline-shell/
 
 # perl installs
 curl -L https://cpanmin.us | perl - --sudo App::cpanminus
+#cpan install App::Ack
 
 # Install git repos
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
