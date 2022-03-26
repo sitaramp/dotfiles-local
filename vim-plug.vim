@@ -43,7 +43,7 @@ Plug 'skywind3000/gutentags_plus'
 
 " disable X clipboard for startup performance
 " or start with -X
-set clipboard=exclude:.*
+"set clipboard=exclude:.*
 if filereadable($HOME . "/dotfiles-local/vim-plug-before.vim")
 	source ~/dotfiles-local/vim-plug-before.vim
 endif

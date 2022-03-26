@@ -319,7 +319,9 @@ set matchtime=15
 " paste plus clipboard using using "+p
 " Warning: vim must be compiled with clipboard support, use vim-gtk or vim-X11
 if has('unnamedplus')
-  set clipboard=unnamed,unnamedplus
+  set clipboard=unnamedplus
+  noremap x "_x
+  noremap X "_x
 endif
 "copy paste to system cliboard by prefixing with <leader>
 vmap <leader>y "+y
