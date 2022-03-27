@@ -18,7 +18,9 @@ alias gl='git log --oneline --decorate -10'
 # Quick access
 alias s=source
 alias dir=ls
-alias path='echo $PATH'
+#alias path='echo $PATH'
+# display path as a much more readable vertical list.
+alias path='echo -e ${PATH//:/\\n}'
 alias ..='cd ..'
 alias apt-get='sudo apt-get'
 alias apt-get='sudo apt-get'
@@ -41,7 +43,7 @@ function ps1() { /bin/ps auxww | $ACKBIN -i --color "$1" | $ACKBIN -v ack; }
 # Zippin
 function gz() { tar -zcvf "$@"; }
 function rm() { /bin/rm -vi "$@"; }
-function cp() { /bin/cp -i "$@"; }
+function cp() { /bin/cp -avi "$@"; }
 function mv() { /bin/mv -vi "$@" ; }
 function mnt() { /bin/mount | column -t "$@" ; }
 function netstat() { /bin/netstat -tlnp "$@" ; }
@@ -49,8 +51,7 @@ function cls() { clear; /bin/ls; /bin/pwd; }
 #unalias grep >/dev/null 2>&1
 #function grep() { $ACKBIN --color "$@"; }
 #function grepp() { $ACKBIN -P --color "$@"; }
-function atmux() { tmux new-session -A -s "$HOSTNAME"; }
-function htmux() { tmux new-session -A -s "SESS-2"; }
+function atmux() { tmux new-session -A -s `hostname`; }
 function gcd() { cd "`git rev-parse --show-toplevel`"; }
 
 # check if command exists
@@ -112,10 +113,6 @@ else
   vack() {
     vim `ack -l $@`
   }
-fi
-
-if _has thefuck; then
-  eval $(thefuck --alias ff)
 fi
 
 cheat() {
