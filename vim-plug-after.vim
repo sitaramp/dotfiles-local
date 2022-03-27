@@ -321,7 +321,7 @@ set matchtime=15
 if has('unnamedplus')
   set clipboard=unnamedplus
   noremap x "_x
-  noremap X "_x
+  noremap X "_X
 endif
 "copy paste to system cliboard by prefixing with <leader>
 vmap <leader>y "+y
