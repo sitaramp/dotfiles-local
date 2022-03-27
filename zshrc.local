@@ -81,8 +81,6 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
     PROMPT_COMMAND="$PROMPT_COMMNAD; custom_prompt"
 fi
 
-#eval $(thefuck --alias ff)
-
 if [[ ! "$PATH" == */$HOME/.local/bin* ]]; then
   export PATH="${PATH:+${PATH}:}$HOME/.local/bin"
 fi
