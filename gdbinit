@@ -51,7 +51,8 @@ show logging
 # thread apply all where
 
 # Switch to thread <threadno>
-# thread <num>
+# thread                              # info on current thread
+# thread <num>                        # switch to thread
 # thread <thread pid#>
 # thread apply <threadno> where
 # thread apply 100-200 where
@@ -64,7 +65,6 @@ show logging
 # watch --location addr
 # info watch
 # https://ccrma.stanford.edu/~jos/stkintro/Useful_commands_gdb.html
-
 
 # Disassembly
 #(gdb) layout asm

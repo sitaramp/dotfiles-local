@@ -26,10 +26,13 @@ if filereadable($CSCOPE_DB)
   set tags+=tags;$TAGS_ROOT/tags
   let g:gutentags_modules = ['ctags', 'cscope']
 else
-  set csprg=gtags-cscope
   if filereadable($GTAGS_DB)
-    cs  add $GTAGS_DB $TAGS_ROOT
+    set csprg=gtags-cscope
+    cs  add GTAGS $TAGS_ROOT -a
     set tags+=tags;$TAGS_ROOT/tags
+    let g:gutentags_gtags_dbpath = $TAGS_ROOT
+    let $GTAGSDBPATH = $TAGS_ROOT
+    let $GTAGSROOT = $TAGS_ROOT
     let g:gutentags_modules = ['ctags', 'gtags_cscope']
   else
     let g:gutentags_modules = ['ctags', 'cscope', 'gtags_cscope']
