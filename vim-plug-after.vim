@@ -102,13 +102,10 @@ noremap <silent> <S-tab> :tabprevious<CR>
 noremap <silent> <C-n>   :tabnew<CR>
 noremap <silent> <C-F4>  :close<CR>
 
-" Files
-" :Files ..
-" :Rg ...
+
 " Cycle through buffers
 " Switch between the last two files
 "nmap <C-e> <C-^>
-nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader><Leader> <C-^>
 
 "nmap [b   :bprev<CR>
@@ -187,16 +184,25 @@ let g:fzf_buffers_jump=1
 let g:fzf_preview_window = []
 nnoremap <silent> <leader>bt :call fzf#vim#buffer_tags('', { 'options': ['--nth', '1,2', '--query', '^f$ '] })<CR>
 
+" Files
+" :Files ..
+" :Rg ...
+nmap <Leader><Tab> <plug>(fzf-maps-n)
+xmap <Leader><Tab> <plug>(fzf-maps-x)
+omap <Leader><Tab> <plug>(fzf-maps-o)
+
 " Single key access to files fzf and tags
 " find a buffer in current window
-nmap <leader>b :Buffers<CR>
+nnoremap <leader><Enter> :Buffers<CR>
+nnoremap <leader>/ :BLines<CR>
+nnoremap <leader>l :Lines<CR>
 "nmap <leader>bn :next<CR>
 " find recent files
 nmap <leader>e :History<CR>
-" find git files
-nmap <leader>g :GFiles<CR>
+"" find git files
+"nmap <leader>g :GFiles<CR>
 " find files in current directory and below
-nmap <leader>o :Files<CR>
+nmap <leader>f :GFiles<CR>
 " find code tags
 nnoremap <leader>ct :Tags<CR>
 " toggle colorscheme
@@ -204,29 +210,37 @@ nnoremap <leader>tc :Colors<CR>
 "nmap \e :Files<CR>
 "nmap \r :Rg<CR>
 
-" Ack
-" Tell ack.vim to use ripgrep instead
+"" Ack
+"" Tell ack.vim or grepper to use ripgrep instead
 if executable('rg')
-   let g:ackprg = 'rg --vimgrep --no-heading --smart-case'
-   let g:grepprg = 'rg --vimgrep --no-heading --smart-case'
+   let g:ackprg = 'rg --vimgrep --no-heading --smart-case --follow'
+   let g:grepprg = 'rg --vimgrep --no-heading --smart-case --follow'
    set grepformat^=%f:%l:%c:%m
 endif
-" Auto close the Quickfix list after pressing '<enter>' on a list item
-" To open quick fix window :copen
-let g:ackhighlight = 1
-let g:ack_autoclose = 1
-let g:ack_use_cword_for_empty_search = 1
-" Don't jump to first match
-cnoreabbrev Ack Ack!
-" Search for word under the cursor in the current directory
-" fuzzy grep/ack  Use ^c to abort
-nnoremap <leader>/ :Ack!<Space>
-""nnoremap <leader>a mo:Ack!   "\b<cword>\b" <CR>
-"nnoremap <leader>ack :Ack --follow <Space>
-"nmap <Leader>ac yiw<leader>ack<C-r>"
-"vmap <Leader>ac   y<Leader>ack<C-r>"
-"map  <leader>k     <leader>ac<Bs><CR>
-"nnoremap <leader>s mo:Ggrep! "\b<cword>\b" <CR>
+
+"" Auto close the Quickfix list after pressing '<enter>' on a list item
+"" To open quick fix window :copen
+"let g:ackhighlight = 1
+"let g:ack_autoclose = 1
+"let g:ack_use_cword_for_empty_search = 1
+
+"" Don't jump to first match
+"cnoreabbrev Ack Ack!
+
+"" Search for word under the cursor in the current directory
+"" fuzzy grep/ack  Use ^c to abort
+"nnoremap <leader>/ :Ack!<Space>
+"""nnoremap <leader>a mo:Ack!   "\b<cword>\b" <CR>
+""nnoremap <leader>ack :Ack --follow <Space>
+""nmap <Leader>ac yiw<leader>ack<C-r>"
+""vmap <Leader>ac   y<Leader>ack<C-r>"
+""map  <leader>k     <leader>ac<Bs><CR>
+""nnoremap <leader>s mo:Ggrep! "\b<cword>\b" <CR>
+
+" imhinz/vim-grepper
+let g:grepper={}
+let g:grepper.tools=["rg"]
+nnoremap <leader>g :Grepper -tool rg -cword -noprompt<cr>
 
 " Search for file
 "noremap <F1> :denite<Space>
@@ -265,6 +279,10 @@ au Filetype typescript let b:SuperTabDefaultCompletionType = "<C-x><C-o>"
 " wrapparound line movement
 noremap <silent> j gj
 noremap <silent> k gk
+noremap <silent> <Down> gj
+noremap <silent> <Up> gk
+inoremap <silent> <Down> <C-o>gj
+inoremap <silent> <Up> <C-o>gk
 noremap <silent> 0 g0
 noremap <silent> $ g$
 nnoremap ' `
@@ -303,7 +321,7 @@ map <leader>qw :wqa!<CR>
 set matchpairs+=<:>
 
 " Makes foo-bar considered one word
-set iskeyword+=-
+"set iskeyword+=-
 
 " Open vertical split to the right
 set splitright
@@ -319,9 +337,10 @@ set matchtime=15
 " paste plus clipboard using using "+p
 " Warning: vim must be compiled with clipboard support, use vim-gtk or vim-X11
 if has('unnamedplus')
-  set clipboard=unnamedplus
+  set clipboard=unnamedplus,unnamed
   noremap x "_x
   noremap X "_X
+  noremap <del> "_X
 endif
 "copy paste to system cliboard by prefixing with <leader>
 vmap <leader>y "+y
@@ -441,7 +460,7 @@ set background=dark
 "Solarized settings
 " set termcolors=256 for 256color. Comment out for TC
 " putty=default 256, use patch putty for true color
-let g:solarized_termcolors=256
+"let g:solarized_termcolors=256
 
 " gruvbox settings soft, medium or hard
 "let g:gruvbox_contrast_dark = medium
@@ -452,8 +471,8 @@ let g:solarized_termcolors=256
 "let g:rehash256 = 1
 
 "colorscheme molokai
-"colorscheme solarized
- colorscheme gruvbox
+colorscheme solarized
+"colorscheme gruvbox
 
 "" highlight whitespace errors
 set list
@@ -486,23 +505,16 @@ nnoremap <C-]> g<C-]>
 """"""""""""" cscope/vim key mappings
 " The following maps all invoke one of the following cscope search types:
 "
-"  <C-\> 's'   symbol: find all references to the token under cursor
-"  <C-\> 'g'   global: find global definition(s) of the token under cursor
-"  <C-\> 'c'   callers: find all calls to the function name under cursor
-"  <C-\> 't'   text:   find all instances of the text under cursor
-"  <C-\> 'e'   egrep:  egrep search for the word under cursor
-"  <C-\> 'f'   file:   open the filename under cursor
-"  <C-\> 'i'   includes: find files that include the filename under cursor
-"  <C-\> 'd'   called: find functions that function under cursor calls
+"  <leader> cs   symbol: find all references to the token under cursor
+"  <leader> cg   global: find global definition(s) of the token under cursor
+"  <leader> cc   callers:find all calls to the function name under cursor
+"  <leader> ct   text:   find all instances of the text under cursor
+"  <leader> ce   egrep:  egrep search for the word under cursor
+"  <leader> cf   file:   open the filename under cursor
+"  <leader> ci   includes: find files that include the filename under cursor
+"  <leader> cd   called: find functions that function under cursor calls
+"  <leader> ca   assigned: find places where current symbol is assigned
 "
-nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 " NERDTree
 map <leader>tn :NERDTreeToggle<CR>
@@ -619,7 +631,8 @@ augroup VimDiff
     "hi DiffChange cterm=bold    ctermbg=17         ctermfg=10  gui=none guibg=Red guifg=bg
     "hi DiffText   cterm=bold    ctermbg=88         ctermfg=10  gui=none guibg=Red guifg=bg
 
-    set foldmethod=indent
+    set nofoldenable "disable folds
+    "set foldmethod=indent
     autocmd Syntax * normal zR
 
     if has("patch-8.1.0360")

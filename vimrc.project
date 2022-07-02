@@ -19,16 +19,19 @@ let g:gutentags_add_default_project_roots = 0
 let g:gutentags_project_root = ['.tags_root']
 
 "use both cscope and tag
-set cscopetag
+if has('cscope')
+  set cscopetag cscopeverbose
+endif
+
 " add any local cscope db
 if filereadable($CSCOPE_DB)
-  cs  add  $CSCOPE_DB $TAGS_ROOT
+  "cs  add  $CSCOPE_DB $TAGS_ROOT
   set tags+=tags;$TAGS_ROOT/tags
   let g:gutentags_modules = ['ctags', 'cscope']
 else
   if filereadable($GTAGS_DB)
     set csprg=gtags-cscope
-    cs  add GTAGS $TAGS_ROOT -a
+    "cs  add GTAGS $TAGS_ROOT -a
     set tags+=tags;$TAGS_ROOT/tags
     let g:gutentags_gtags_dbpath = $TAGS_ROOT
     let $GTAGSDBPATH = $TAGS_ROOT
@@ -38,8 +41,6 @@ else
     let g:gutentags_modules = ['ctags', 'cscope', 'gtags_cscope']
   endif
 endif
-" no default keymapping
-let g:gutentags_plus_nomap = 1
 " change focus to quickfix window after search (optional).
 let g:gutentags_plus_switch = 1
 let g:gutentags_generate_on_missing = 0
@@ -47,11 +48,43 @@ let g:gutentags_generate_on_write = 0
 let g:gutentags_generate_on_new = 0
 " debug
 let g:gutentags_define_advanced_commands = 1
-"find global definition
-noremap <silent> <leader>gg :GscopeFind g <C-R><C-W><cr>
-"find all callers
-noremap <silent> <leader>gc :GscopeFind c <C-R><C-W><cr>
-"find all places where var is assinged
-noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
 "let g:gutentags_ctags_extra_args = ['--fields=+ainKz']
 
+" no default keymapping
+let g:gutentags_plus_nomap = 1
+""""""""""""" cscope/vim key mappings
+" The following maps all invoke one of the following cscope search types:
+"
+"  <leader> cs   symbol: find all references to the token under cursor
+"  <leader> cg   global: find global definition(s) of the token under cursor
+"  <leader> cc   callers:find all calls to the function name under cursor
+"  <leader> ct   text:   find all instances of the text under cursor
+"  <leader> ce   egrep:  egrep search for the word under cursor
+"  <leader> cf   file:   open the filename under cursor
+"  <leader> ci   includes: find files that #include filename under cursor
+"  <leader> cd   called: find functions called by this function
+"  <leader> ca   assigned: find places where current symbol is assigned
+"
+if filereadable($CSCOPE_DB)
+  noremap <silent> <leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>
+  noremap <silent> <leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
+  noremap <silent> <leader>cc :cs find c <C-R>=expand("<cword>")<CR><CR>
+  noremap <silent> <leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>
+  noremap <silent> <leader>ce :cs find e <C-R>=expand("<cword>")<CR><CR>
+  noremap <silent> <leader>cf :cs find f <C-R>=expand("<cfile>")<CR><CR>
+  noremap <silent> <leader>ci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+  noremap <silent> <leader>cd :cs find d <C-R>=expand("<cword>")<CR><CR>
+  noremap <silent> <leader>ca :cs find a <C-R>=expand("<cword>")<CR><CR>
+else
+  if filereadable($GTAGS_DB)
+    noremap <silent> <leader>cs :GscopeFind s <C-R><C-W><cr>
+    noremap <silent> <leader>cg :GscopeFind g <C-R><C-W><cr>
+    noremap <silent> <leader>cc :GscopeFind c <C-R><C-W><cr>
+    noremap <silent> <leader>ct :GscopeFind t <C-R><C-W><cr>
+    noremap <silent> <leader>ce :GscopeFind e <C-R><C-W><cr>
+    noremap <silent> <leader>cf :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
+    noremap <silent> <leader>ci :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
+    noremap <silent> <leader>cd :GscopeFind d <C-R><C-W><cr>
+    noremap <silent> <leader>ca :GscopeFind a <C-R><C-W><cr>
+  endif
+endif

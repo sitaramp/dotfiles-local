@@ -10,9 +10,10 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-rsi'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'mileszs/ack.vim'
+"Plug 'mileszs/ack.vim'
+Plug 'mhinz/vim-grepper'
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
@@ -58,6 +59,6 @@ if filereadable($HOME . "/dotfiles-local/vim-plug-after.vim")
 	source ~/dotfiles-local/vim-plug-after.vim
 endif
 
-if filereadable($HOME . "/dotfiles-local/vimrc.project")
-	source ~/dotfiles-local/vimrc.project
+if filereadable($HOME . "/dotfiles-local/vimrc.sade")
+	source ~/dotfiles-local/vimrc.sade
 endif

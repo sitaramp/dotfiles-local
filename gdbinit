@@ -71,3 +71,5 @@ show logging
 #(gdb) layout split 
 #(Gdb) layout regs
 
+# make a function call
+# print (int) getSplCount()

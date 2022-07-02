@@ -42,6 +42,7 @@ set hidden
 "set mouse=a
 " Enable mouse in normal and visual mode. See help using-mouse
 "set mouse=nv
+set mouse=v
 "set mouse=c
 
 set formatoptions=tcqrow
