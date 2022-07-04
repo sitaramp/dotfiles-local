@@ -65,6 +65,7 @@ elif [[ "$OS" == *Debian*  || $OS == *Ubuntu* ]]; then
     sudo apt install ruby-dev rake exuberant-ctags ack-grep
     sudo apt install cloud-guest-utils
     sudo apt install --target kernel-devel
+    sudo apt install ctags global shellcheck
 elif [[ "$OS" == *CentOS* || "$OS" == *RedHat* ]]; then
     sudo yum install git iputils-ping cargo tmux nmap ack bash-completion bc htop
     sudo yum install xclip gvim
@@ -89,6 +90,21 @@ endif
 curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | python
 
 pip install tldr
+pip install autopep8   # python linter
+pip install vim-vint   # vim linter
+npm install -g fixjson # json linter
+
+# install cht.sh
+PATH_DIR="$HOME/dotfiles-local/bin"  # or another directory on your $PATH
+curl https://cht.sh/:cht.sh > "$PATH_DIR/cht.sh"
+mod +x "$PATH_DIR/cht.sh"
+
+# install z and fz
+mkdir ~/.bash_completion.d
+curl "https://raw.githubusercontent.com/rupa/z/master/{z.sh}" \
+        -o ~/.bash_completion.d/"#1"
+curl "https://raw.githubusercontent.com/changyuheng/fz/master/{fz.sh}" \
+        -o ~/.bash_completion.d/z"#1"
 
 pip install powerline-shell
 mkdir -p ~/.config/powerline-shell

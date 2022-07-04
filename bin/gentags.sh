@@ -33,7 +33,7 @@ find "$TAGS_ROOT" -name '*.[ch]' \
 
 # Generate cscope DB
 echo "Adding files to cscope db: $TAGS_ROOT/cscope.db ..."
-#cscope -b -u -C -i "$TAGS_DIR/cscope.files"
+#cscope -b -q -u -C -i "$TAGS_DIR/cscope.files"
 
 #export CSCOPE_DB="$TAGS_ROOT/cscope.out"
 #echo "Exported CSCOPE_DB to: '$CSCOPE_DB'"

@@ -86,6 +86,19 @@ fi
 # show me files matching "ls grep"
 function ls1()  { /bin/ls -alht | $ACKBIN --color -i "$1"; }
 
+unalias z 2> /dev/null
+
+# fz
+# z [dir name slug]<TAB> #  recent dirs
+# zz [dir name slug]<TAB> # limit to current cwd and subdirs
+if [ -d ~/.bash_completion.d ]; then
+  for file in ~/.bash_completion.d/*; do
+        . $file
+          done
+fi
+alias j=z
+alias jj=zz
+
 # prefer ripgrep over ack and ag
 if _has rg; then
   alias ag=rg

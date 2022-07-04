@@ -61,11 +61,14 @@ endif
 " tab, spacing, wrapping
 set expandtab "use space
 set smarttab
-set expandtab
 set tabstop=4
 set shiftwidth=4
+set shiftround
 set softtabstop=4
+set smartindent
 set autoindent
+set copyindent
+set preserveindent
 set nowrap
 " Use softwrapping in text documents
 autocmd FileType text,markdown,tex,html setlocal wrap linebreak

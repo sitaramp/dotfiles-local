@@ -471,8 +471,8 @@ set background=dark
 "let g:rehash256 = 1
 
 "colorscheme molokai
-colorscheme solarized
-"colorscheme gruvbox
+"colorscheme solarized
+colorscheme gruvbox
 
 "" highlight whitespace errors
 set list
