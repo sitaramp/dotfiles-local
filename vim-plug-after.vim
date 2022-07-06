@@ -337,7 +337,7 @@ set matchtime=15
 " paste plus clipboard using using "+p
 " Warning: vim must be compiled with clipboard support, use vim-gtk or vim-X11
 if has('unnamedplus')
-  set clipboard=unnamedplus,unnamed
+  set clipboard=unnamed,unnamedplus
   noremap x "_x
   noremap X "_X
   noremap <del> "_X
@@ -558,7 +558,7 @@ nmap ]w :ALENextWrap<CR>
 nmap [w :ALEPreviousWrap<CR>
 nmap <Leader>fw <Plug>(ale_fix)
 " if you don't want linters to run on opening a file
-let g:ale_lint_on_enter = 0
+let g:ale_lint_on_enter = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_save = 1
 

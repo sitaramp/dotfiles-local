@@ -31,9 +31,9 @@ alias df='/bin/df -h'
 #alias du='du -sh -d 2'
 #du in rust
 #aliase du=dust
-alias du='du -x -h --max-depth=1 "$@" | sort -n -r'
+function du() { du -x -h --max-depth=1 "$@" | sort -n -r; }
 
-ACKBIN=/usr/local/bin/ack
+ACKBIN=/usr/bin/ack
 
 # A quick grep-for-processes.
 function ps() { /bin/ps auxf; }
@@ -61,7 +61,7 @@ _has() {
 
 # check if colors exist
 _color() {
-  return $( tput colors )
+  return "$( tput colors )"
 }
 
 if _has gvim; then
@@ -116,15 +116,15 @@ fi
 # then edit all of the files containng the pattern
 if _has rg; then
   vack() {
-    vim `rg --color=never -l $@`
+    vim `rg --color=never --smart-case -l "$@"`
   }
 elif _has ag; then
   vack() {
-    vim `ag --nocolor -l $@`
+    vim `ag --nocolor -l "$@"`
   }
 else
   vack() {
-    vim `ack -l $@`
+    vim `ack -l "$@"`
   }
 fi
 

@@ -4,17 +4,17 @@
 DOTFILES_DIR=$HOME/dotfiles-local
 
 pushd .
-cd $DOTFILES_DIR
+cd "$DOTFILES_DIR"
 git submodule update --init --recursive --remote
 git submodule foreach --recursive git pull origin master
-popd 
+popd
 
 # Create symlinks
-ln -s $DOTFILES_DIR/vim-plug.vim ~/.vim
-ln -s $DOTFILES_DIR/inputrc ~/.inputrc
-ln -s $DOTFILES_DIR/tmux.conf ~/.tmux.conf
-ln -s $DOTFILES_DIR/gdbinit ~/.gdbinit
-ln -s $DOTFILES_DIR/dir_colors ~/.dir_colors
+ln -s "$DOTFILES_DIR"/vim-plug.vim ~/.vim
+ln -s "$DOTFILES_DIR"/inputrc ~/.inputrc
+ln -s "$DOTFILES_DIR"/tmux.conf ~/.tmux.conf
+ln -s "$DOTFILES_DIR"/gdbinit ~/.gdbinit
+ln -s "$DOTFILES_DIR"/dir_colors ~/.dir_colors
 
 # Detect OS and VER
 if [ -f /etc/os-release ]; then
@@ -48,7 +48,7 @@ else
 fi
 
 # update sumodules
-cd $DOTFILE_DIR/janus
+cd "$DOTFILES_DIR"
 git submodule update --init --recursive
 
 # Install missing dependencies
@@ -58,6 +58,7 @@ if [[ "$OS" == *SuSE* ]]; then
     sudo zypper install libssl-devel libevent-devel ncurses-devel
     sudo zypper install ruby rubygems rubygem-rake ctags
     sudo zypper install --target kernel-devel
+    sudo apt install ctags global ShellCheck
 elif [[ "$OS" == *Debian*  || $OS == *Ubuntu* ]]; then
     sudo apt install git fd-find net-tools iputils-ping cargo nmap ack bash-completion bc htop
     sudo apt install xclip vim-gtk3
@@ -72,7 +73,8 @@ elif [[ "$OS" == *CentOS* || "$OS" == *RedHat* ]]; then
     sudo yum install libssl-dev libevent-devel ncurses-devel
     sudo yum install ruby rubygem-rake ruby-devel ack ctags git
     sudo yum install --target kernel-devel
-endif
+    sudo apt install ctags global ShellCheck
+fi
 
 # Install Rust Cargo
 # Install rustup
