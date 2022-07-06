@@ -24,7 +24,7 @@ elif is_app_installed reattach-to-user-namespace; then
 elif [ -n "${DISPLAY-}" ] && is_app_installed xsel; then
   copy_backend="xsel -i --clipboard"
 elif [ -n "${DISPLAY-}" ] && is_app_installed xclip; then
-  copy_backend="xclip -i -f -selection primary | xclip -i -selection clipboard"
+  copy_backend="xclip -i -f -selection primary >/dev/null | xclip -i -selection clipboard >/dev/null"
 elif [ -n "${copy_backend_remote_tunnel_port-}" ] \
     && (netstat -f inet -nl 2>/dev/null || netstat -4 -nl 2>/dev/null) \
       | grep -q "[.:]$copy_backend_remote_tunnel_port"; then

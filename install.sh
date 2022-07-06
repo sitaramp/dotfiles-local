@@ -15,6 +15,11 @@ ln -s "$DOTFILES_DIR"/inputrc ~/.inputrc
 ln -s "$DOTFILES_DIR"/tmux.conf ~/.tmux.conf
 ln -s "$DOTFILES_DIR"/gdbinit ~/.gdbinit
 ln -s "$DOTFILES_DIR"/dir_colors ~/.dir_colors
+ln -s ~/dotfiles-local/inputrc ~/.inputrc
+ln -s ~/dotfiles-local/tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles-local/vim-plug.vim ~/.vimrc
+ln -s ~/dotfiles-local/gdbinit ~/.gdbinit
+ln -s ~/dotfiles-local/dir_colors ~/.dircolors
 
 # Detect OS and VER
 if [ -f /etc/os-release ]; then
@@ -137,20 +142,23 @@ wget https://github.com/beyondgrep/ack3/archive/v3.3.1.zip
 popd
 
 # append the following lines to ~/.bashrc
-if [[ ! "$PATH" == */dotfiles-local/bin* ]]; then
-  export PATH="$HOME/dotfiles-local/bin:${PATH:+${PATH}}"
-  export PATH="${PATH:+${PATH}:}/usr/local/bin"
-  export PATH="${PATH:+${PATH}:}/usr/local/sbin"
-  export PATH="${PATH:+${PATH}:}/sbin"
-  export PATH="${PATH:+${PATH}:}$HOME/.cargo/bin"
-  export PATH="${PATH:+${PATH}:}$HOME/.local/bin"
-fi
-
 [[ $- == *i* ]] || return
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f /etc/bash_completion ] && source /etc/bash_completion
 [ -f ~/dotfiles-local/bash_sensible ] && source ~/dotfiles-local/bash_sensisble
 [ -f ~/dotfiles-local/aliases.sh ] && source ~/dotfiles-local/aliases.sh
+
+if [[ ! "$PATH" == */dotfiles-local/bin* ]]; then
+  export PATH="$HOME/dotfiles-local/bin:${PATH:+${PATH}}"
+  export PATH="${PATH:+${PATH}:}$HOME/.cargo/bin"
+  export PATH="${PATH:+${PATH}:}$HOME/.local/bin"
+fi
+
+if [[ ! "$PATH" == */local/bin* ]]; then
+  export PATH="${PATH:+${PATH}:}/usr/local/bin"
+  export PATH="${PATH:+${PATH}:}/usr/local/sbin"
+  export PATH="${PATH:+${PATH}:}/sbin"
+fi
 
 function _update_ps1() {
     PS1=$(powerline-shell $?)
@@ -162,6 +170,6 @@ pushd .
 mkdir ~/Downloads
 cd ~/Downloads
 
-wget https://github.com/tmux/tmux/releases/download/3.1/tmux-3.1-rc.tar.gz
-wget https://github.com/beyondgrep/ack3/archive/v3.3.1.zip
+#wget https://github.com/tmux/tmux/releases/download/3.1/tmux-3.1-rc.tar.gz
+#wget https://github.com/beyondgrep/ack3/archive/v3.3.1.zip
 popd

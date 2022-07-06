@@ -43,7 +43,7 @@ set hidden
 " Enable mouse in normal and visual mode. See help using-mouse
 "set mouse=nv
 set mouse=v
-"set mouse=c
+"set mouse=c    "disable cursor
 
 set formatoptions=tcqrow
 set shell=/bin/bash\ -l
@@ -123,4 +123,6 @@ let g:ale_completion_enabled = 1
 au FileType css,scss setl iskeyword+=-
 
 filetype plugin indent on
-
+if !has('nvim')
+  set encoding=utf-8
+end
