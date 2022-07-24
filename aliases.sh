@@ -31,7 +31,7 @@ alias df='/bin/df -h'
 #alias du='du -sh -d 2'
 #du in rust
 #aliase du=dust
-function du() { du -x -h --max-depth=1 "$@" | sort -n -r; }
+function du() { /usr/bin/du -x -h --max-depth=1 "$@" | sort -n -r; }
 
 ACKBIN=/usr/bin/ack
 
