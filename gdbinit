@@ -39,6 +39,8 @@ show logging
 # jump +1            # jump over not executed
 # skip function_name # always execute w/o break/steps
 
+# map code address to source code
+# info line *0xaddress
 
 # watchpoints stops execution whenever that value of an expression changes
 #watch expr

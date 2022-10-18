@@ -64,9 +64,9 @@ _color() {
   return "$( tput colors )"
 }
 
-if _has gvim; then
-  alias vi='gvim -v -X'
-  alias gvim='gvim -v'
+if _has /usr/bin/gvim; then
+  alias vi='/usr/bin/gvim -v -X'
+  alias gvim='/usr/bin/gvim -v'
 fi
 
 unalias ls >/dev/null 2>&1

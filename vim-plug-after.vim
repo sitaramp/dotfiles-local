@@ -174,7 +174,7 @@ map! <A-RIGHT> <S-RIGHT>
 map <A-RIGHT> <S-RIGHT>
 
 inoremap jj <Esc>
-inoremap kk <Esc>
+"inoremap kk <Esc>
 inoremap bb <Esc>
 
 " fzf
@@ -561,6 +561,7 @@ nmap <Leader>fw <Plug>(ale_fix)
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
+let g:ale_linters = {'python': ['flake8']}
 
 augroup VimDiff
     autocmd!

@@ -42,6 +42,7 @@ Plug 'simeji/winresizer'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 Plug 'roxma/vim-tmux-clipboard'
+Plug 'Yggdroot/indentline'
 
 " disable X clipboard for startup performance
 " or start with -X
