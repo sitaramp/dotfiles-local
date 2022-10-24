@@ -60,7 +60,7 @@ git submodule update --init --recursive
 if [[ "$OS" == *SuSE* ]]; then
     sudo zypper install git fd iputils-ping tmux cargo nmap ack bash-completion bc htop
     sudo zypper install xclip gvim
-    sudo zypper install libssl-devel libevent-devel ncurses-devel
+    sudo zypper install build-essential libssl-devel libevent-devel ncurses-devel
     sudo zypper install ruby rubygems rubygem-rake ctags
     sudo zypper install --target kernel-devel
     sudo apt install ctags global ShellCheck
@@ -150,15 +150,13 @@ popd
 
 if [[ ! "$PATH" == */dotfiles-local/bin* ]]; then
   export PATH="$HOME/dotfiles-local/bin:${PATH:+${PATH}}"
-  export PATH="${PATH:+${PATH}:}$HOME/.cargo/bin"
-  export PATH="${PATH:+${PATH}:}$HOME/.local/bin"
-fi
-
-if [[ ! "$PATH" == */local/bin* ]]; then
   export PATH="${PATH:+${PATH}:}/usr/local/bin"
   export PATH="${PATH:+${PATH}:}/usr/local/sbin"
   export PATH="${PATH:+${PATH}:}/sbin"
+#  export PATH="${PATH:+${PATH}:}$HOME/.cargo/bin"
+#  export PATH="${PATH:+${PATH}:}$HOME/.local/bin"
 fi
+
 
 function _update_ps1() {
     PS1=$(powerline-shell $?)
