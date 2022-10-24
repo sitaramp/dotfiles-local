@@ -13,7 +13,7 @@ set nocompatible
 set t_Co=256
 
 " set fzf path before loading fzf.vim
-set rtp+=~/.fzf
+set runtimepath+=~/.fzf
 
 set directory=$HOME/.vim/swapfiles
 set synmaxcol=200
@@ -50,7 +50,7 @@ set shell=/bin/bash\ -l
 set nofoldenable
 set spellcapcheck= " Have no need for this.
 " Let modelines set things like indentexpr
-if has("modelineexpr")
+if has('modelineexpr')
   set modelineexpr
 endif
 " set autochdir
@@ -106,7 +106,7 @@ augroup END
 
 augroup checktime
   au!
-  if !has("gui_running")
+  if !has('gui_running')
     "silent! is necessary,otherwise throws errors when using cmd
     autocmd BufEnter,CursorHold,CursorHoldI * silent! checktime
   endif
@@ -120,7 +120,7 @@ augroup END
 let g:ale_completion_enabled = 1
 
 " Hyphen names as single word for style files
-au FileType css,scss setl iskeyword+=-
+autocmd FileType css,scss setl iskeyword+=-
 
 filetype plugin indent on
 if !has('nvim')

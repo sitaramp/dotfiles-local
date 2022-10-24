@@ -97,10 +97,10 @@ nnoremap <leader>8 8<C-^>
 nnoremap <leader>9 :bl<CR>
 
 " Cycle through  tabs
-noremap <silent> <tab>   :tabnext<CR>
-noremap <silent> <S-tab> :tabprevious<CR>
-noremap <silent> <C-n>   :tabnew<CR>
-noremap <silent> <C-F4>  :close<CR>
+"noremap <silent> <tab>   :tabnext<CR>
+"noremap <silent> <S-tab> :tabprevious<CR>
+"noremap <silent> <C-n>   :tabnew<CR>
+"noremap <silent> <C-F4>  :close<CR>
 
 
 " Cycle through buffers
@@ -519,6 +519,10 @@ nnoremap <C-]> g<C-]>
 " NERDTree
 map <leader>tn :NERDTreeToggle<CR>
 "map <leader>cd :cd %:p:h<CR>:pwd<CR>
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 
 " Open NERDTree if no file is specified
 autocmd StdinReadPre * let s:std_in=1
@@ -526,12 +530,15 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Open NERDTree if directory is specified
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") |
+      \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv[0] | endif
+
 " don't show these file types
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 
 "Close vim if NERDTree is the last pane
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | quit | endif
+
 " More space with NERDTree
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeMarkBookmarks = 0
