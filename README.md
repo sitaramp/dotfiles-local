@@ -127,7 +127,7 @@ ln -s ~/dotfiles-local/inputrc ~/.inputrc
 ```
   source ~/.zpretzo/runcoms/zshrc
   source ~/dotfiles-local/zshrc.local
-  source ~/dotfiles-local/aliases.local
+  source ~/dotfiles-local/aliases.sh
 ```
 
 3. Edit `~/.zpretzorc` :

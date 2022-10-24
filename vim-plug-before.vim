@@ -53,7 +53,7 @@ set spellcapcheck= " Have no need for this.
 if has('modelineexpr')
   set modelineexpr
 endif
-" set autochdir
+set autochdir
 if exists('+colorcolumn')
   set colorcolumn=80
 endif
