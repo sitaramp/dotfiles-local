@@ -4,10 +4,10 @@
 DOTFILES_DIR=$HOME/dotfiles-local
 
 pushd .
-cd "$DOTFILES_DIR"
+cd "$DOTFILES_DIR" || return
 git submodule update --init --recursive --remote
 git submodule foreach --recursive git pull origin master
-popd
+popd || return
 
 # Create symlinks
 ln -s "$DOTFILES_DIR"/vim-plug.vim ~/.vim
@@ -96,9 +96,9 @@ fi
 # python user env install
 curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | python
 
-pip install tldr
-pip install autopep8   # python linter
-pip install vim-vint   # vim linter
+pip3 install tldr
+pip3 install autopep8   # python linter
+pip3 install vim-vint   # vim linter
 npm install -g fixjson # json linter
 
 # install cht.sh

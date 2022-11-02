@@ -568,7 +568,7 @@ nmap <Leader>fw <Plug>(ale_fix)
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
-let g:ale_linters = {'python': ['flake8']}
+let g:ale_linters = {'python': ['autopep8']}
 
 augroup VimDiff
     autocmd!
