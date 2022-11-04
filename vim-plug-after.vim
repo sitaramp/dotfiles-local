@@ -193,17 +193,16 @@ omap <Leader><Tab> <plug>(fzf-maps-o)
 
 " Single key access to files fzf and tags
 " find a buffer in current window
-nnoremap <leader><Enter> :Buffers<CR>
+nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>/ :BLines<CR>
 nnoremap <leader>l :Lines<CR>
-nmap <leader>bn :next<CR>
-nmap <leader>bp :prev<CR>
 " find recent files
-nmap <leader>bb :History<CR>
+nmap <leader>bh :History<CR>
 "" find git files
 "nmap <leader>g :GFiles<CR>
 " find files in current directory and below
-nmap <leader>bf :GFiles<CR>
+nmap <leader>bg :GFiles<CR>
+nmap <leader>bf :Files<CR>
 " find code tags
 nnoremap <leader>ct :Tags<CR>
 " toggle colorscheme
@@ -522,10 +521,10 @@ nnoremap <leader>ft :NERDTreeToggle<CR>
 nnoremap <leader>ff :NERDTreeFind<CR>
 nnoremap <leader>fn :NERDTreeFocus<CR>
 "map <leader>cd :cd %:p:h<CR>:pwd<CR>
-"nnoremap <leader>n :NERDTreeFocus<CR>
 "nnoremap <C-n> :NERDTree<CR>
 "nnoremap <C-t> :NERDTreeToggle<CR>
 "nnoremap <C-f> :NERDTreeFind<CR>
+"nnoremap <C-n> :NERDTree<CR>
 
 " Open NERDTree if no file is specified
 autocmd StdinReadPre * let s:std_in=1
