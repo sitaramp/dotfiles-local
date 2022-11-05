@@ -203,6 +203,7 @@ wezterm.on(
 local default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe" }
 
 return {
+
   window_decorations           = "RESIZE",
   native_macos_fullscreen_mode = true,
   tab_max_width                = 16,
@@ -245,6 +246,27 @@ return {
     }
   },
 
+    window_frame = {
+    -- The font used in the tab bar.
+    -- Roboto Bold is the default; this font is bundled
+    -- with wezterm.
+    -- Whatever font is selected here, it will have the
+    -- main font setting appended to it to pick up any
+    -- fallback fonts you may have used there.
+    font = wezterm.font { family = 'Roboto', weight = 'Bold' },
+
+    -- The size of the font in the tab bar.
+    -- Default to 10. on Windows but 12.0 on other systems
+    font_size = 14.0,
+
+    -- The overall background color of the tab bar when
+    -- the window is focused
+    active_titlebar_bg = '#333333',
+
+    -- The overall background color of the tab bar when
+    -- the window is not focused
+    inactive_titlebar_bg = '#333333',
+  },
   colors                                     = {
     tab_bar = {
       background = "#0b0022",
@@ -358,61 +380,27 @@ return {
   default_prog                               = default_prog,
 
 
+    -- color_scheme = "PaperColorDark (Gogh)",
+    -- color_scheme = "PaperColor Light (base16)",
     color_scheme = "Gruvbox Dark",
     -- color_scheme = "ayu",
-    -- color_scheme = "nightfox",
-
-	color_schemes = {
-		["tokyonight"] = {
-			cursor_bg = "#c0caf5",
-			cursor_fg = "#15161e",
-			cursor_border = "#c0caf5",
-
-			selection_bg = "#33467c",
-
-			-- background = "#1a1b26",
-			background = "#ffffff",
-			foreground = "#c0caf5",
-
-			-- black, red, green, yellow, blue, magenta, cyan, white
-			ansi = { "#15161e", "#f7768e", "#9ece6a", "#e0af68", "#7aa2f7", "#bb9af7", "#7dcfff", "#a9b1d6" },
-			brights = { "#363b54", "#db4b4b", "#9ece6a", "#e0af68", "#7aa2f7", "#bb9af7", "#7dcfff", "#c0caf5" },
-		},
-		["nightfox"] = {
-			foreground = "#cdcecf",
-			background = "#192330",
-			cursor_bg = "#cdcecf",
-			cursor_border = "#cdcecf",
-			cursor_fg = "#192330",
-			selection_bg = "#283648",
-			selection_fg = "#cdcecf",
-			ansi = { "#393b44", "#c94f6d", "#81b29a", "#dbc074", "#719cd6", "#9d79d6", "#63cdcf", "#dfdfe0" },
-			brights = { "#7f8c98", "#d6616b", "#58cd8b", "#ffe37e", "#84cee4", "#b8a1e3", "#59f0ff", "#f2f2f2" },
-		},
-		["nightfly"] = {
-			cursor_bg = "#9ca1aa",
-			cursor_fg = "#080808",
-			cursor_border = "#9ca1aa",
-
-			selection_bg = "#b2ceee",
-
-			background = "#011627",
-			foreground = "#acb4c2",
-
-			-- black, red, green, yellow, blue, magenta, cyan, white
-			ansi = { "#1d3b53", "#fc514e", "#a1cd5e", "#e3d18a", "#82aaff", "#c792ea", "#7fdbca", "#a1aab8" },
-			brights = { "#7c8f8f", "#ff5874", "#21c7a8", "#ecc48d", "#82aaff", "#ae81ff", "#7fdbca", "#d6deeb" },
-		},
-	},
 
 	use_dead_keys = false,
-	leader = { key="b", mods="CTRL" },
+	leader = { key="a", mods="CTRL", timeout_milliseconds = 1000 },
+	selection_word_boundary = ' \t\n#$%{}[]()"\'`,;',
+	show_tab_index_in_tab_bar = true,
+	tab_and_split_indices_are_zero_based = false,
+	scroll_to_bottom_on_input = true,
 
 	keys = {
-		-- New/close pane
-		{ key = "c", mods = "LEADER", action=wezterm.action{SpawnTab="CurrentPaneDomain" }},
-		{ key = "x", mods = "LEADER", action=wezterm.action{CloseCurrentPane={confirm=true}}},
-		-- ALT Enter  ToggleFullScreen
+
+	-- Send "CTRL-A" to the terminal when pression CTRL-A, CTRL-A
+	{ key = "a", mods = "LEADER|CTRL", action=wezterm.action.SendString '\x01' },
+
+	-- New/close pane
+	{ key = "c", mods = "LEADER", action=wezterm.action{SpawnTab="CurrentPaneDomain" }},
+	{ key = "x", mods = "LEADER", action=wezterm.action{CloseCurrentPane={confirm=true}}},
+	-- ALT Enter  ToggleFullScreen
 
         -- Pane navigation
         { key = "h", mods = "LEADER",       action=wezterm.action{ActivatePaneDirection="Left"}},
@@ -425,6 +413,7 @@ return {
         { key = "RightArrow", mods = "CTRL",action=wezterm.action{ActivatePaneDirection="Right"}},
 
         -- Tab navigation
+
         { key = "z", mods = "LEADER",       action="TogglePaneZoomState" },
         { key = "1", mods = "LEADER",       action=wezterm.action{ActivateTab=0}},
         { key = "2", mods = "LEADER",       action=wezterm.action{ActivateTab=1}},
@@ -434,9 +423,9 @@ return {
         { key = "6", mods = "LEADER",       action=wezterm.action{ActivateTab=5}},
         { key = "7", mods = "LEADER",       action=wezterm.action{ActivateTab=6}},
         { key = "8", mods = "LEADER",       action=wezterm.action{ActivateTab=7}},
-        { key = "9", mods = "LEADER",       action=wezterm.action{ActivateTab=8}},
+        { key = "9", mods = "LEADER",       action=wezterm.action{ActivateTab=-1}},
         { key = "0", mods = "LEADER",       action="ShowTabNavigator"},
-        { key = "b", mods = "LEADER|CTRL",  action="ActivateLastTab"},
+        { key = "`", mods = "LEADER",       action="ActivateLastTab"},
         { key = "LeftArrow", mods = "SHIFT",    action=wezterm.action{ActivateTabRelative=-1}},
         { key = "RightArrow", mods = "SHIFT",   action=wezterm.action{ActivateTabRelative=1}},
         { key = "LeftArrow", mods = "CTRL|SHIFT",    action=wezterm.action{MoveTabRelative=-1}},
