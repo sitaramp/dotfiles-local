@@ -201,8 +201,8 @@ nmap <leader>bh :History<CR>
 "" find git files
 "nmap <leader>g :GFiles<CR>
 " find files in current directory and below
-nmap <leader>bg :GFiles<CR>
 nmap <leader>bf :Files<CR>
+nmap <leader>bg :GFiles<CR>
 " find code tags
 nnoremap <leader>ct :Tags<CR>
 " toggle colorscheme
@@ -333,18 +333,22 @@ set showtabline=1
 set showmatch
 set matchtime=15
 
-" The * is the default clipboard + is the system clipboard
-" paste plus clipboard using using "+p
-" Warning: vim must be compiled with clipboard support, use vim-gtk or vim-X11
-if has('unnamedplus')
-  set clipboard=unnamed,unnamedplus
-  noremap x "_x
-  noremap X "_X
-  noremap <del> "_X
-endif
-"copy paste to system cliboard by prefixing with <leader>
-vmap <leader>y "+y
-vmap <leader>d "+d
+"  Copy paste across vim sessions
+" On MacOS X and Windows the + and * regusters are the same
+" On Linux + is the desktop clipboard (usable via ctl-c/x/v)
+"          * is the X11 primary selection ( usable via mouse buttons)
+" Warning: vim must be compiled with +clipboard and xterm_clipboard
+"See plugin vim-tmux-clipboard and vim-osc-yank
+" set cross-platform value
+set clipboard=unnamed,unnamedplus
+"  noremap x "_x
+"  noremap X "_X
+"  noremap <del> "_X
+
+nnoremap <leader>y <Plug>OSCYank
+vnoremap <leader>y :OSCYank<cr>
+"nnoremap <leader>y "+y
+vnoremap <leader>d "+d
 nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vmap <leader>p "+p
