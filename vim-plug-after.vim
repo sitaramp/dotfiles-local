@@ -506,7 +506,7 @@ set shell=/bin/bash\ -l
 " Show the list for multiple matches
 nnoremap <C-]> g<C-]>
 
-""""""""""""" cscope/vim key mappings
+""""""""""""" cscope/vim key mappings as define by skywind3000/gutentags_plus
 " The following maps all invoke one of the following cscope search types:
 "
 "  <leader> cs   symbol: find all references to the token under cursor

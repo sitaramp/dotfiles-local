@@ -116,7 +116,7 @@ curl "https://raw.githubusercontent.com/changyuheng/fz/master/{fz.sh}" \
 pip install powerline-shell
 mkdir -p ~/.config/powerline-shell
 mv  ~/.config/powerline-shell/config.json  ~/.config/powerline-shell/config.json.bak
-ln -s $DOTFILE_DIR/config/powerline-shell/config.json ~/.config/powerline-shell/config.json
+ln -s "$DOTFILES_DIR"/config/powerline-shell/config.json ~/.config/powerline-shell/config.json
 
 
 # perl installs
@@ -136,10 +136,10 @@ curl -fLo  ~/.vim/autoload/plug.vim --create-dirs \
 # install the latest tmux from sources
 pushd .
 mkdir -p ~/Downloads
-cd ~/Downloads
+cd ~/Downloads || return
 wget https://github.com/tmux/tmux/releases/download/3.1b/tmux-3.1b.tar.gz
 wget https://github.com/beyondgrep/ack3/archive/v3.3.1.zip
-popd
+popd || exit
 
 # append the following lines to ~/.bashrc
 [[ $- == *i* ]] || return
@@ -166,7 +166,7 @@ if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
 fi
 pushd .
 mkdir ~/Downloads
-cd ~/Downloads
+cd ~/Downloads || exit
 
 #wget https://github.com/tmux/tmux/releases/download/3.1/tmux-3.1-rc.tar.gz
 #wget https://github.com/beyondgrep/ack3/archive/v3.3.1.zip
