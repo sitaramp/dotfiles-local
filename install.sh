@@ -10,7 +10,6 @@ git submodule foreach --recursive git pull origin master
 popd || return
 
 # Create symlinks
-ln -s "$DOTFILES_DIR"/vim-plug.vim ~/.vim
 ln -s "$DOTFILES_DIR"/inputrc ~/.inputrc
 ln -s "$DOTFILES_DIR"/tmux.conf ~/.tmux.conf
 ln -s "$DOTFILES_DIR"/gdbinit ~/.gdbinit
@@ -19,7 +18,7 @@ ln -s ~/dotfiles-local/inputrc ~/.inputrc
 ln -s ~/dotfiles-local/tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles-local/vim-plug.vim ~/.vimrc
 ln -s ~/dotfiles-local/gdbinit ~/.gdbinit
-ln -s ~/dotfiles-local/dir_colors ~/.dircolors
+ln -s ~/dotfiles-local/dir_colors ~/.dir_colors
 
 # Detect OS and VER
 if [ -f /etc/os-release ]; then
@@ -132,20 +131,12 @@ curl -fLo  ~/.vim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Install scripts in ~/.bashrc
-
-# install the latest tmux from sources
-pushd .
-mkdir -p ~/Downloads
-cd ~/Downloads || return
-wget https://github.com/tmux/tmux/releases/download/3.1b/tmux-3.1b.tar.gz
-wget https://github.com/beyondgrep/ack3/archive/v3.3.1.zip
-popd || exit
-
 # append the following lines to ~/.bashrc
+
 [[ $- == *i* ]] || return
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f /etc/bash_completion ] && source /etc/bash_completion
-[ -f ~/dotfiles-local/bash_sensible ] && source ~/dotfiles-local/bash_sensisble
+[ -f ~/dotfiles-local/sensible.bash ] && source ~/dotfiles-local/sensible.bash
 [ -f ~/dotfiles-local/aliases.sh ] && source ~/dotfiles-local/aliases.sh
 
 if [[ ! "$PATH" == */dotfiles-local/bin* ]]; then
@@ -154,7 +145,7 @@ if [[ ! "$PATH" == */dotfiles-local/bin* ]]; then
   export PATH="${PATH:+${PATH}:}/usr/local/sbin"
   export PATH="${PATH:+${PATH}:}/sbin"
 #  export PATH="${PATH:+${PATH}:}$HOME/.cargo/bin"
-#  export PATH="${PATH:+${PATH}:}$HOME/.local/bin"
+  export PATH="${PATH:+${PATH}:}$HOME/.local/bin"
 fi
 
 

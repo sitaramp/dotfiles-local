@@ -50,11 +50,10 @@ chsh - /bin/zsh
 
 4. Create symlinks
 ```
-ln -s ~/dotfiles/janus ~/.janus
 ln -s ~/dotfiles/inputrc ~/.inputrc
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/global-gitignore ~/.gitignore
-ln -s ~/dotfiles/dircolors ~/.dircolors
+ln -s ~/dotfiles/dir_colors ~/.dir_colors
 ```
 
 5. Follow more customization below
@@ -70,11 +69,10 @@ git submodule update --init --recursive
 ### Uninstall
 To remove the dotfile configs, run the following commands. Be certain to double check the contents of the files before removing so you don't lose custom settings.
 ```
-unlink ~/.janus
 unlink ~/.inputrc
 unlink ~/.tmux.conf
 unlink ~/.gitignore
-unlink ~/.dircolors
+unlink ~/.dir_colors
 rm -rf ~/dotfiles-local
 chsh -s /bin/bash # change back to Bash if you want
 ```
