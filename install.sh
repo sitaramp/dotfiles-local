@@ -1,4 +1,24 @@
-#! /bin/bash
+#!/usr/bin/env bash
+set -o errexit # exit error if command fails
+set -o nounset # fail if ivariable is  unset
+set -o pipefail # fail even if one command in pipeline fails
+#
+# debug command lines: TRACE=1 ./install.sh
+if [[ "${TRACE-0}" == "1" ]]; then
+    set -o xtrace
+fi
+
+if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
+    echo 'Usage: ./install.sh arg-one arg-two
+
+This is an awesome bash script to install all dotfile packages.
+
+'
+    exit
+fi
+
+# Change to current directory
+cd "$(dirname "$0")"
 
 
 DOTFILES_DIR=$HOME/dotfiles-local
@@ -98,7 +118,7 @@ curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | pyth
 pip3 install tldr
 pip3 install autopep8   # python linter
 pip3 install vim-vint   # vim linter
-npm install -g fixjson # json linter
+npm install -g fixjson  # json linter
 
 # install cht.sh
 PATH_DIR="$HOME/dotfiles-local/bin"  # or another directory on your $PATH
