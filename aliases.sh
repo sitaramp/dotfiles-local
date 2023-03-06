@@ -34,7 +34,7 @@ alias df='/bin/df -h'
 unalias du > /dev/null 2>&1
 function du() { /usr/bin/du -x -h -k --max-depth=1 "$@" | sort -n -r; }
 
-ACKBIN=/usr/bin/ack
+ACKBIN=/usr/local/bin/ack
 
 # A quick grep-for-processes.
 function ps() { /bin/ps auxf; }
@@ -49,6 +49,7 @@ function mv() { /bin/mv -vi "$@" ; }
 function mnt() { /bin/mount | column -t "$@" ; }
 function netstat() { /bin/netstat -tlnp "$@" ; }
 function cls() { clear; /bin/ls; /bin/pwd; }
+function ctime() { perl -we "print scalar localtime "$0"" ; }
 #unalias grep >/dev/null 2>&1
 #function grep() { $ACKBIN --color "$@"; }
 #function grepp() { $ACKBIN -P --color "$@"; }

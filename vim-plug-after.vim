@@ -196,6 +196,8 @@ omap <Leader><Tab> <plug>(fzf-maps-o)
 nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>/ :BLines<CR>
 nnoremap <leader>l :Lines<CR>
+"use :Rg to search across files
+
 " find recent files
 nmap <leader>bh :History<CR>
 "" find git files
@@ -240,7 +242,9 @@ endif
 " imhinz/vim-grepper
 let g:grepper={}
 let g:grepper.tools=["rg"]
-nnoremap <leader>g :Grepper -tool rg -cword -noprompt<cr>
+" Search current word
+nnoremap <leader>* :Grepper -tool rg -cword -noprompt<cr>
+nnoremap <leader>a :Grepper -tool git -noopen -jump<cr>
 
 " Search for file
 "noremap <F1> :denite<Space>
@@ -595,6 +599,30 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#hunks#enabled = 0
 " remove encoding text & devicon
 au VimEnter * let g:airline_section_x = airline#section#create_right(['tagbar']) | :AirlineRefresh
+" Show the buffers in the tabline.
+let g:airline#extensions#neomake#enabled = 0
+
+" Spell-checking settings
+
+    " Keep the spellfile in the homedir. This will be a symlink to the dotfiles
+    " version of the spellfile.
+    "set spellfile=$HOME/.vim-spell-en.utf-8.add
+
+    " Spell check markdown and git commit messages.
+    autocmd FileType markdown setlocal spell
+    autocmd FileType gitcommit setlocal spell
+    " For filetypes with spellcheck available, we'll also support auto-complete.
+    set complete+=kspell
+
+    " Don't count acronyms / abbreviations as spelling errors
+    " (all upper-case letters, at least three characters)
+    " Also will not count acronym with 's' at the end a spelling error
+    " Also will not count numbers that are part of this
+    " Recognizes the following as correct:
+    au BufNewFile,BufRead syn match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
+    au BufNewFile,BufRead syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
+
+
 
 " SuperTab
 let g:SuperTabLongestEnhanced = 1
