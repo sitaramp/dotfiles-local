@@ -1,4 +1,5 @@
 ### Know the system
+
 ```
 id                # know your self
 w                 # who is logged in
@@ -11,6 +12,7 @@ lsb_release -a    # distro info
 ```
 
 ### Know the processes
+
 ```
 ps                  # process list
 pstree              # process tree list
@@ -18,6 +20,7 @@ top, htop, atop     # top cpu consumer
 kill <pid>          # kill pid
 ```
 ### Know the ports
+
 ```
 netstat -lntp                      # LISTEN and CONNECTED ports
 ss      -plat                      # -u for udp
@@ -26,6 +29,7 @@ lsof    -iTCP -sTCP:LISTEN -p -n   # MacOS
 
 
 ### Working with files
+
 ```
 cat states.txt
 less /etc/ntp.conf
@@ -40,6 +44,7 @@ EOF
 ```
 
 ### Bunary files
+
 ```
 strings  # print the printable strings of file
 od       # octal format
@@ -47,6 +52,7 @@ cmp      # compare byte by byte
 ```
 
 ### Text files
+
 ```
 comm   # sorted files line by line
 diff   # differences line by line
@@ -54,13 +60,15 @@ diff   # differences line by line
 ```
 
 ### Internet
+
 ```
 curl -O http://www.gutenburg.com/files/4300/4300-0.txt
 curl ifconfig.me  # quickly find my IP
 wget http://www.gutenburg.com/files/4300/4300-0.txt
-``
+```
 
 ### Command line enditing
+
 ```
 Ctrl+a    # move cursor to start
 Alt+b     # move cursor back
@@ -72,6 +80,7 @@ Ctrl+e    # move cursor to end
 ```
 
 ###  Command line re-use
+
 ```
 !!     # repeat last command
 cd -   # change to last directory
@@ -82,12 +91,14 @@ Ctrl-l # clear terminal
 ```
 
 ### Stream redirection
+
 ```
 >    # redirect stdout
 2>&1 # redirect both stdout and stderr
 ```
 
 ### Pipes
+
 ```
 # stdout and stdin
 free -m | grep Mem:  |  awk  '{print 4}'
@@ -101,6 +112,7 @@ find . -name '*.html' | parallel mv {} web /
 ```
 
 ###  find, grep awk and sed
+
 ```
 fd  # fd-find find replacement
 rg  # ripgrep grep replacement
