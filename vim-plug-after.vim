@@ -301,6 +301,7 @@ cabbrev Q q
 cabbrev W w
 cabbrev Wq wq
 cabbrev WQ wq
+cnoreabbrev q1 q!
 
 augroup checktime
   au!

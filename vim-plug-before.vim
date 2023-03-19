@@ -63,7 +63,6 @@ endif
 " tab, spacing, wrapping
 set expandtab "use space
 set smarttab
-set expandtab
 set tabstop=4
 set shiftwidth=4
 set shiftround

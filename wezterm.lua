@@ -208,6 +208,7 @@ return {
   native_macos_fullscreen_mode = true,
   tab_max_width                = 16,
   enable_scroll_bar            = true,
+  audible_bell                 = "Disabled",
   initial_rows                 = 20,
   initial_cols                 = 80,
   window_background_opacity    = 1.0,
