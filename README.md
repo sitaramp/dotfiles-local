@@ -43,12 +43,14 @@ git clone --recursive https://github.com/sitaramp/dotfiles-local ~/dotfiles-loca
 ```
 
 2. Set Zsh as your default shell:
+
 ```
 chsh - /bin/zsh
 ```
 3. Open a new Zsh terminal window or tab
 
-4. Create symlinks
+4. Create symlinks to the following files
+
 ```
 ln -s ~/dotfiles/inputrc ~/.inputrc
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
@@ -68,18 +70,21 @@ git submodule update --init --recursive
 
 ### Uninstall
 To remove the dotfile configs, run the following commands. Be certain to double check the contents of the files before removing so you don't lose custom settings.
+
 ```
-unlink ~/.inputrc
-unlink ~/.tmux.conf
-unlink ~/.gitignore
-unlink ~/.dir_colors
+rm ~/.inputrc
+rm ~/.tmux.conf
+rm ~/.gitignore
+rm ~/.dircolors
 rm -rf ~/dotfiles-local
 chsh -s /bin/bash # change back to Bash if you want
 ```
+
 Then open a new terminal window to see the effects.
 
-### Usage and customization
-## Some keyboard shortcuts to know:
+## Usage and customization
+### Some keyboard shortcuts to know:
+
 ```
 Ctrl + R : reverse command history chooser
 Ctrl + T : fuzzy directory chooser
@@ -89,22 +94,30 @@ cd ..    : directory matches up the current directory hierarchy
 
 ## Shell Command line
 1. Navigation :
-- Ctrl + A : Go to beginning of the line
-- Ctrl + E : Go to end of the line
--  Alt + F : Go to next word
--  Alt + B : Go to previous work
+
+*  Ctrl + A : Go to beginning of the line
+*  Ctrl + E : Go to end of the line
+*  Alt + F : Go to next word
+*  Alt + B : Go to previous work
+
 2. Edit :
-- Ctrl + D : Delete word
-- Ctrl + W : Delete previous word
--  Alt + D : Delete next word
-- Ctrl + - : undo
+
+* Ctrl + D : Delete word
+* Ctrl + W : Delete previous word
+*  Alt + D : Delete next word
+* Ctrl + - : undo
+
 2. History
+
+```
 - $ secret-command --password 1234qwerty  # oh no! that should not be in my history!
 - $ sed -i '/secret-command/d' $HISTFILE  # delete history line containing 'secret-command'
 - $  secret-command --password 1234qwerty  # Avoid histort. Notice the space at the start of the command!
+```
 
 ## Bash
 1. Create symlink to inputrc for command line completion
+
 ```
 ln -s ~/dotfiles-local/inputrc ~/.inputrc
 ```
@@ -128,22 +141,26 @@ ln -s ~/dotfiles-local/inputrc ~/.inputrc
   source ~/dotfiles-local/aliases.sh
 ```
 
-3. Edit `~/.zpretzorc` :
+3. Edit ~/.zpretzorc :
 
-  - Enable modules:
+   Enable the following modules:
+
 ```
-'syntax-highlighting'
-'autosuggestions'
-'git'
-'fasd'
-'prompt'
+syntax-highlighting
+autosuggestions
+git
+fasd
+prompt
 ```
+
   - Choose a prompt theme to load:
 
 ```
    +zstyle ':prezto:module:prompt' theme 'powerlevel9k'
 ```
+
 4. Some keyboard shortcuts to know:
+
 ```
 Ctrl + R : reverse command history chooser
 Ctrl + T : fuzzy directory chooser
@@ -153,14 +170,18 @@ cd ..    : directory matches up the current directory hierarchy
 
 ### TMUX
 
-Prefix is set to "``" backquote
+Prefix is set to backquote
+
 1. Install TPM :
+
 ```
   mkdir -p ~/.tmux/plugins
+  
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
 2. Create symlink to tmux.conf
+
 ```
 ln -s ~/dotfiles-local/tmux.conf ~/.tmux.conf
 ```
@@ -172,8 +193,9 @@ ln -s ~/dotfiles-local/tmux.conf ~/.tmux.conf
  - prefix + Ctl+R  reload config
 
 Some shell shortcuts to know:
+
 ```
-`back_tick` : prefix key
+back_tick` : prefix key
  `prefix + c`      : crete window
  `prefix + #`      : switch to the numbered window
  `prefix + Escape` : switch to vi mode
@@ -196,6 +218,7 @@ For more information see: https://learnxinyminutes.com/docs/tmux/
 
 The \<leader> key is set to \<Space>, it can be changed in file 'vim-plug-before.vim'.
 Some handy keyboard shortcut to know:
+
 ```
  <F3>        Toggle Numberline
  <F5>        Toggle paste mode
@@ -232,6 +255,7 @@ Some handy keyboard shortcut to know:
  :CLEAN      cleanup trailing white spaces
  :SudoWrite  write buffer
 ```
+
 For more information see:
 http://www.viemu.com/vi-vim-cheat-sheet.gif
 https://learnxinyminutes.com/docs/vim/
@@ -240,12 +264,14 @@ https://learnxinyminutes.com/docs/vim/
 
 
 Create and the Add the following to ~/.gitconfig
+
 ```
  [include]
     path= ~/dotfiles-local/gitconfig.cfg
 ```
 
 For each workspace add the following line to ~/.gitconfig
+
 ```
  [includeIf "gitdir:/workspace-dir/"]
     path= /workspace-dir/.gitconfig
@@ -253,6 +279,7 @@ For each workspace add the following line to ~/.gitconfig
 
 Under each workspace create /your-workspace-dir/.gitconfig
 Then add the details specific to that repo
+
 ```
 [user]
     name = someusername lastname
@@ -264,11 +291,13 @@ See install.sh
 
 ## GIT Usage
 If you get merge conflict during pull or rebase:
+
 ```
 git mergetool
 ```
 
 Use the following vim commands to merge or edit conflicts:
+
 ```
 :diffg RE  # get from REMOTE
 :diffg BA  # get from BASE
@@ -277,6 +306,7 @@ Use the following vim commands to merge or edit conflicts:
 ```
 
 Then forward-port local commit to the update upstream HEAD:
+
 ```
 git commit -add/rm <conflicted-files>
 git rebase --continue
