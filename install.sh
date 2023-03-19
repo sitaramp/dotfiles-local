@@ -77,25 +77,25 @@ git submodule update --init --recursive
 
 # Install missing dependencies
 if [[ "$OS" == *SuSE* ]]; then
-    sudo zypper install git fd iputils-ping tmux cargo nmap ack bash-completion bc htop
-    sudo zypper install xclip gvim
+    sudo zypper install git fd iputils-ping tmux cargo nmap bash-completion bc htop
+    sudo zypper install xsel gvim
     sudo zypper install build-essential libssl-devel libevent-devel ncurses-devel
     sudo zypper install ruby rubygems rubygem-rake ctags
     sudo zypper install --target kernel-devel
     sudo apt install ctags global ShellCheck
 elif [[ "$OS" == *Debian*  || $OS == *Ubuntu* ]]; then
-    sudo apt install git fd-find net-tools iputils-ping cargo nmap ack bash-completion bc htop
-    sudo apt install xclip vim-gtk3
+    sudo apt install git fd-find net-tools iputils-ping cargo nmap bash-completion bc htop
+    sudo apt install xsel vim-gtk3
     sudo apt install libssl-dev libevent-dev ncurses-dev
-    sudo apt install ruby-dev rake exuberant-ctags ack-grep
+    sudo apt install ruby-dev rake exuberant-ctags 
     sudo apt install cloud-guest-utils
     sudo apt install --target kernel-devel
     sudo apt install ctags global shellcheck
 elif [[ "$OS" == *CentOS* || "$OS" == *RedHat* ]]; then
-    sudo yum install git iputils-ping cargo tmux nmap ack bash-completion bc htop
-    sudo yum install xclip gvim
+    sudo yum install git iputils-ping cargo tmux nmap bash-completion bc htop
+    sudo yum install xsel gvim
     sudo yum install libssl-dev libevent-devel ncurses-devel
-    sudo yum install ruby rubygem-rake ruby-devel ack ctags git
+    sudo yum install ruby rubygem-rake ruby-devel ctags git
     sudo yum install --target kernel-devel
     sudo apt install ctags global ShellCheck
 fi
@@ -140,7 +140,6 @@ ln -s "$DOTFILES_DIR"/config/powerline-shell/config.json ~/.config/powerline-she
 
 # perl installs
 curl -L https://cpanmin.us | perl - --sudo App::cpanminus
-#cpan install App::Ack
 
 # Install git repos
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -180,5 +179,4 @@ mkdir ~/Downloads
 cd ~/Downloads || exit
 
 #wget https://github.com/tmux/tmux/releases/download/3.1/tmux-3.1-rc.tar.gz
-#wget https://github.com/beyondgrep/ack3/archive/v3.3.1.zip
 popd
