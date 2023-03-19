@@ -37,3 +37,7 @@ xterm*ScrollBar: true
 
 ! stop output to terminal from jumping down to bottom of scroll again
 xterm*scrollTtyOutput: false
+
+! allow xterm OCS 52 codes
+XTerm*disallowedWindowOps: 20,21,SetXprop
+

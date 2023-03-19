@@ -34,15 +34,17 @@ set wildignorecase
 set wildmode=list:longest,full
 set hidden
 
+" Tmux mouse
+set ttymouse=xterm2
 " Use Shift + Drag shift + Right Click to copy paste
 " Use Shift + Cntrl + v to insert
-" To enable Right to paste disable mouse
- set mouse-=a
+" To enable Right to paste-- disable mouse
+"set mouse-=a
 " Use the mouse to move the cursor
-"set mouse=a
+set mouse=a
 " Enable mouse in normal and visual mode. See help using-mouse
 "set mouse=nv
-set mouse=v
+"set mouse=v
 "set mouse=c    "disable cursor
 
 set formatoptions=tcqrow
