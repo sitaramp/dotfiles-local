@@ -32,29 +32,29 @@ alias df='/bin/df -h'
 #du in rust
 #aliase du=dust
 unalias du > /dev/null 2>&1
-function du() { /usr/bin/du -x -h -k --max-depth=1 "$@" | sort -n -r; }
+du() { /usr/bin/du -x -h -k --max-depth=1 "$@" | sort -n -r; }
 
 ACKBIN=/usr/local/bin/ack
 
 # A quick grep-for-processes.
-function ps() { /bin/ps auxf; }
-function myps() { /bin/ps -fjH -u "$USER"; }
-function ps1() { /bin/ps auxww | $ACKBIN -i --color "$1" | $ACKBIN -v ack; }
+ps() { /bin/ps auxf; }
+myps() { /bin/ps -fjH -u "$USER"; }
+ps1() { /bin/ps auxww | $ACKBIN -i --color "$1" | $ACKBIN -v ack; }
 
 # Zippin
-function gz() { tar -zcvf "$@"; }
-function rm() { /bin/rm -vi "$@"; }
-function cp() { /bin/cp -avi "$@"; }
-function mv() { /bin/mv -vi "$@" ; }
-function mnt() { /bin/mount | column -t "$@" ; }
-function netstat() { /bin/netstat -tlnp "$@" ; }
-function cls() { clear; /bin/ls; /bin/pwd; }
-function ctime() { perl -we "print scalar localtime "$0"" ; }
+gz() { tar -zcvf "$@"; }
+rm() { /bin/rm -vi "$@"; }
+cp() { /bin/cp -auvi "$@"; }
+mv() { /bin/mv -vi "$@" ; }
+mnt() { /bin/mount | column -t "$@" ; }
+netstat() { /bin/netstat -tlnp "$@" ; }
+cls() { clear; /bin/ls; /bin/pwd; }
+ctime() { perl -we "print scalar localtime $0" ; }
 #unalias grep >/dev/null 2>&1
-#function grep() { $ACKBIN --color "$@"; }
-#function grepp() { $ACKBIN -P --color "$@"; }
-function atmux() { tmux new-session -A -s `hostname`; }
-function gcd() { cd "`git rev-parse --show-toplevel`"; }
+#grep() { $ACKBIN --color "$@"; }
+#grepp() { $ACKBIN -P --color "$@"; }
+atmux() { tmux new-session -A -s $(hostname) ; }
+gcd() { cd "$(git rev-parse --show-toplevel)"; }
 
 # check if command exists
 _has() {
@@ -72,7 +72,7 @@ if _has /usr/bin/gvim; then
 fi
 
 unalias ls >/dev/null 2>&1
-function ls() { /bin/ls --color=auto -F "$@"; }
+ls() { /bin/ls --color=auto -F "$@"; }
 
 # lsd https://github.com/Peltoche/lsd
 unalias ll >/dev/null 2>&1
@@ -81,12 +81,14 @@ if _has lsd; then
   alias llS='lsd -alhrS'
   alias llt='lsd --tree'
 else
-  function ll()  { /bin/ls -alhrt --color=auto -F "$@"; }
-  function llS() { /bin/ls -alhrS --color=auto -F "$@"; }
+  unalias ll > /dev/null 2>&1
+  unalias llS > /dev/null 2>&1
+  function ll()  { /bin/ls -alhrt --color=auto -F "$@" ; }
+  function llS () { /bin/ls -alhrS --color=auto -F "$@" ; }
 fi
 
 # show me files matching "ls grep"
-function ls1()  { /bin/ls -alht | $ACKBIN --color -i "$1"; }
+ls1()  { /bin/ls -alht | $ACKBIN --color -i "$1" ; }
 
 unalias z 2> /dev/null
 
@@ -94,9 +96,8 @@ unalias z 2> /dev/null
 # z [dir name slug]<TAB> #  recent dirs
 # zz [dir name slug]<TAB> # limit to current cwd and subdirs
 if [ -d ~/.bash_completion.d ]; then
-  for file in ~/.bash_completion.d/*; do
-        . $file
-          done
+  . ~/.bash_completion.d/z.sh
+  . ~/.bash_completion.d/fz.sh
 fi
 alias j=z
 alias jj=zz
@@ -118,15 +119,15 @@ fi
 # then edit all of the files containng the pattern
 if _has rg; then
   vack() {
-    vim `rg --color=never --smart-case -l "$@"`
+    vim $(rg --color=never --smart-case -l "$@")
   }
 elif _has ag; then
   vack() {
-    vim `ag --nocolor -l "$@"`
+    vim $(ag --nocolor -l "$@")
   }
 else
   vack() {
-    vim `ack -l "$@"`
+    vim $(ack -l "$@")
   }
 fi
 
@@ -134,7 +135,7 @@ cheat() {
    curl "http://cht.sh/$1"
   }
 
-tldr-web() {
+tldrweb() {
    w3m -dump "https://raw.githubusercontent.com/tldr-pages/tldr/master/pages/common/$1.md"
    w3m -dump "https://raw.githubusercontent.com/tldr-pages/tldr/master/pages/linux/$1.md"
   }
