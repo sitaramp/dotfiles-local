@@ -43,8 +43,11 @@ ps1() { /bin/ps auxww | $ACKBIN -i --color "$1" | $ACKBIN -v ack; }
 
 # Zippin
 gz() { tar -zcvf "$@"; }
+unalias rm > /dev/null 2>&1
 rm() { /bin/rm -vi "$@"; }
+unalias cp > /dev/null 2>&1
 cp() { /bin/cp -auvi "$@"; }
+unalias mv > /dev/null 2>&1
 mv() { /bin/mv -vi "$@" ; }
 mnt() { /bin/mount | column -t "$@" ; }
 netstat() { /bin/netstat -tlnp "$@" ; }
