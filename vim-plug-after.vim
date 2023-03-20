@@ -413,10 +413,10 @@ nnoremap <leader>tu :MundoToggle<CR>
 "let g:gundo_prefer_python3 = 1
 
 " Use persistent history.
-if !isdirectory("/tmp/.vim-undo-dir")
-    call mkdir("/tmp/.vim-undo-dir", "", 0700)
+if !isdirectory($HOME."/.vim/undo-dir")
+  call mkdir($HOME."/.vim/undo-dir", "p", 0700)
 endif
-set undodir=/tmp/.vim-undo-dir
+set undodir=~/.vim/undo-dir
 set undofile
 
 "Colors
