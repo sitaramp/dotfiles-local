@@ -101,6 +101,7 @@ unalias z 2> /dev/null
 if [ -d ~/.bash_completion.d ]; then
   . ~/.bash_completion.d/z.sh
   . ~/.bash_completion.d/fz.sh
+  . ~/.bash_completion.d/v.sh
 fi
 alias j=z
 alias jj=zz
