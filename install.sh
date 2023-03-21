@@ -155,8 +155,8 @@ curl "https://raw.githubusercontent.com/rupa/z/master/{z.sh}" \
     -o ~/.bash_completion.d/"#1"
 curl "https://raw.githubusercontent.com/changyuheng/fz/master/{fz.sh}" \
     -o ~/.bash_completion.d/z"#1"
-curl "https://raw.githubusercontent.com/rupa/z/master/{v.sh}" \
-    -o ~/.bash_completion.d/"#1"
+curl "https://raw.githubusercontent.com/rupa/v/master/{v}" \
+    -o ~/.local/bin/"#1"
 
 # Install scripts in ~/.bashrc
 # append the following lines to ~/.bashrc

@@ -18,6 +18,7 @@ alias gl='git log --oneline --decorate -10'
 # Quick access
 alias s=source
 alias dir=ls
+
 #alias path='echo $PATH'
 # display path as a much more readable vertical list.
 alias path='echo -e ${PATH//:/\\n}'
@@ -87,7 +88,7 @@ else
   unalias ll > /dev/null 2>&1
   unalias llS > /dev/null 2>&1
   function ll()  { /bin/ls -alhrt --color=auto -F "$@" ; }
-  function llS () { /bin/ls -alhrS --color=auto -F "$@" ; }
+  function llS() { /bin/ls -alhrS --color=auto -F "$@" ; }
 fi
 
 # show me files matching "ls grep"
@@ -101,7 +102,6 @@ unalias z 2> /dev/null
 if [ -d ~/.bash_completion.d ]; then
   . ~/.bash_completion.d/z.sh
   . ~/.bash_completion.d/fz.sh
-  . ~/.bash_completion.d/v.sh
 fi
 alias j=z
 alias jj=zz
