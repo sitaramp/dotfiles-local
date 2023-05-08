@@ -350,14 +350,14 @@ set clipboard=unnamed,unnamedplus
 "  noremap X "_X
 "  noremap <del> "_X
 
-nnoremap <leader>y <Plug>OSCYank
-vnoremap <leader>y :OSCYank<cr>
-"nnoremap <leader>y "+y
+nnoremap <leader>y <Plug>OSCYankOperator
+vnoremap <leader>y <Plug>OSCYankVisual
+nnoremap <leader>yy <leader>y_
 vnoremap <leader>d "+d
 nnoremap <leader>p "+p
-nnoremap <leader>P "+P
+nnoremap <leader>P "*P
 vmap <leader>p "+p
-vmap <leader>P "+P
+vmap <leader>P "*P
 
 "reformat reindent
 noremap <Esc>P P'[v']=

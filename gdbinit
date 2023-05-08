@@ -57,6 +57,7 @@ show logging
 # thread <num>                        # switch to thread
 # thread <thread pid#>
 # thread apply <threadno> where
+# thread apply all where
 # thread apply 100-200 where
 # http://www.sourceware.org/gdb/current/onlinedocs/gdb/Threads.html
 

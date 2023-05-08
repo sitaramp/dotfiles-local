@@ -51,7 +51,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 "Plug 'tpope/vim-tbone'
 "Plug 'roxma/vim-tmux-clipboard'
-Plug 'ojroques/vim-oscyank'
+Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 "Plug 'jabirali/vim-tmux-yank'
 Plug 'Yggdroot/indentline'
 

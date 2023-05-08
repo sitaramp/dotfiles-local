@@ -85,6 +85,14 @@ set noswapfile
 set autowrite
 set autoread
 
+" persist undo history
+set undolevels=1000
+set history=200
+if has ('persistent_undo')
+  set undodir=~/.vim/.vimundo
+  set undofile
+endif
+
 set ttimeout " Do time out on mappings and others
 set ttimeoutlen=20000 " Wait {num} ms before timing out a mapping
 " When you’re pressing Escape to leave insert mode in the terminal, it will by

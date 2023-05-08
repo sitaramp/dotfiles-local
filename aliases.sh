@@ -8,7 +8,7 @@ alias dotfiles='cd ~/dotfiles-local'
 #alias gs='git status -sb'
 alias gf='git fetch'
 # For Git >= 2.25 and latter use --rebase=merges
-alias gpr='git pull --rebase=merges'
+alias gpr='git pull --rebase=preserve'
 alias grc='git rebase --continue'
 alias gss='git stash save'
 alias gsl='git stash list'
@@ -58,7 +58,7 @@ ctime() { perl -we "print scalar localtime $0" ; }
 #grep() { $ACKBIN --color "$@"; }
 #grepp() { $ACKBIN -P --color "$@"; }
 atmux() { tmux new-session -A -s $(hostname) ; }
-gcd() { cd "$(git rev-parse --show-toplevel)"; }
+gcd() { cd "$(git rev-parse --show-toplevel)" ; }
 
 # check if command exists
 _has() {

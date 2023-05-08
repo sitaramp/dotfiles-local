@@ -32,11 +32,11 @@ popd || return
 # Create symlinks
 ln -s "$DOTFILES_DIR"/inputrc ~/.inputrc
 ln -s "$DOTFILES_DIR"/tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles-local/vim-plug.vim ~/.vimrc
 ln -s "$DOTFILES_DIR"/gdbinit ~/.gdbinit
 ln -s "$DOTFILES_DIR"/dir_colors ~/.dir_colors
 ln -s ~/dotfiles-local/inputrc ~/.inputrc
 ln -s ~/dotfiles-local/tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles-local/vim-plug.vim ~/.vimrc
 ln -s ~/dotfiles-local/gdbinit ~/.gdbinit
 ln -s ~/dotfiles-local/dir_colors ~/.dir_colors
 
@@ -125,13 +125,6 @@ PATH_DIR="$HOME/dotfiles-local/bin"  # or another directory on your $PATH
 curl https://cht.sh/:cht.sh > "$PATH_DIR/cht.sh"
 mod +x "$PATH_DIR/cht.sh"
 
-# install z and fz
-mkdir ~/.bash_completion.d
-curl "https://raw.githubusercontent.com/rupa/z/master/{z.sh}" \
-        -o ~/.bash_completion.d/"#1"
-curl "https://raw.githubusercontent.com/changyuheng/fz/master/{fz.sh}" \
-        -o ~/.bash_completion.d/z"#1"
-
 pip install powerline-shell
 mkdir -p ~/.config/powerline-shell
 mv  ~/.config/powerline-shell/config.json  ~/.config/powerline-shell/config.json.bak
@@ -149,14 +142,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 curl -fLo  ~/.vim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# install z, fz, v
-mkdir ~/.bash_completion.d
-curl "https://raw.githubusercontent.com/rupa/z/master/{z.sh}" \
-    -o ~/.bash_completion.d/"#1"
-curl "https://raw.githubusercontent.com/changyuheng/fz/master/{fz.sh}" \
-    -o ~/.bash_completion.d/z"#1"
-curl "https://raw.githubusercontent.com/rupa/v/master/{v}" \
-    -o ~/.local/bin/"#1"
+# Install jump
 
 # Install scripts in ~/.bashrc
 # append the following lines to ~/.bashrc

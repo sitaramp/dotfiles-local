@@ -287,37 +287,6 @@ return {
     }
   },
 
-  tab_bar_style                              = {
-    active_tab_left = wezterm.format(
-      {
-        { Background = { Color = "#0b0022" } },
-        { Foreground = { Color = "#3c1361" } },
-        { Text = SOLID_LEFT_ARROW }
-      }
-    ),
-    active_tab_right = wezterm.format(
-      {
-        { Background = { Color = "#0b0022" } },
-        { Foreground = { Color = "#3c1361" } },
-        { Text = SOLID_RIGHT_ARROW }
-      }
-    ),
-    inactive_tab_left = wezterm.format(
-      {
-        { Background = { Color = "#0b0022" } },
-        { Foreground = { Color = "#1b1032" } },
-        { Text = SOLID_LEFT_ARROW }
-      }
-    ),
-    inactive_tab_right = wezterm.format(
-      {
-        { Background = { Color = "#0b0022" } },
-        { Foreground = { Color = "#1b1032" } },
-        { Text = SOLID_RIGHT_ARROW }
-      }
-    )
-  },
-
     -- Tab bar appearance
     --[[
     colors = {
