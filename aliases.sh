@@ -58,7 +58,7 @@ ctime() { perl -we "print scalar localtime $0" ; }
 #grep() { $ACKBIN --color "$@"; }
 #grepp() { $ACKBIN -P --color "$@"; }
 atmux() { tmux new-session -A -s $(hostname) ; }
-gcd() { cd "$(git rev-parse --show-toplevel)" ; }
+gcd() { cd "$(git rev-parse --show-toplevel)"  ; }
 
 # check if command exists
 _has() {
@@ -118,7 +118,6 @@ elif _has ack; then
     alias ack='ack --nocolor'
   fi
 fi
-
 
 # then edit all of the files containng the pattern
 if _has rg; then

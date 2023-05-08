@@ -378,13 +378,13 @@ endfunction
 let &t_SI .= WrapForTmux("\<Esc>[?2004h")
 let &t_EI .= WrapForTmux("\<Esc>[?2004l")
 
-function! XTermPasteBegin()
-  set pastetoggle=<Esc>[201~
-  set paste
-  return ""
-endfunction
+"function! XTermPasteBegin()
+"  set pastetoggle=<Esc>[201~
+"  set paste
+"  return ""
+"endfunction
 
-inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+"inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 " }}}
 
 " Numbers

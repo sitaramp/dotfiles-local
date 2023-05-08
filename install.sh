@@ -173,5 +173,11 @@ pushd .
 mkdir ~/Downloads
 cd ~/Downloads || exit
 
-#wget https://github.com/tmux/tmux/releases/download/3.1/tmux-3.1-rc.tar.gz
+# install the latest tmux from sources
+pushd .
+mkdir -p ~/Downloads
+cd ~/Downloads
+#wget https://github.com/tmux/tmux/releases/download/3.1b/tmux-3.1b.tar.gz
+wget https://github.com/tmux/tmux/releases/download/3.1/tmux-3.1-rc.tar.gz
+popd
 popd
