@@ -16,6 +16,9 @@ fi
 # Stop here if this is a non-interactive shell
 [ -z "$PS1" ] && return
 
+# disable scroll lock Ctrl+S
+stty -ixon
+
 ## GENERAL OPTIONS ##
 
 # Prevent file overwrite on stdout redirection
