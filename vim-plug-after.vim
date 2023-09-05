@@ -502,6 +502,9 @@ command! CLEAN retab | TEOL
 set colorcolumn=80
 highlight ColorColumn ctermbg=darkgray
 
+"highlisght current row
+set cursorline
+
 "" use login Shell instead of interactive shell
 if executable('zsh')
   set shell=/usr/bin/zsh\ -l

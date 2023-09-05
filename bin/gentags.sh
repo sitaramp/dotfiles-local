@@ -32,14 +32,16 @@ find "$TAGS_ROOT" -name '*.[ch]' \
 -o -name '*.php' > "$TAGS_DIR/cscope.files"
 
 # Generate cscope DB
-echo "Adding files to cscope db: $TAGS_ROOT/cscope.db ..."
-#cscope -b -q -u -C -i "$TAGS_DIR/cscope.files"
+echo "Generating cscope db: $TAGS_ROOT/cscope.db ..."
+cscope -b -q -u -C -i "$TAGS_DIR/cscope.files"
 
-#export CSCOPE_DB="$TAGS_ROOT/cscope.out"
-#echo "Exported CSCOPE_DB to: '$CSCOPE_DB'"
+export CSCOPE_DB="$TAGS_ROOT/cscope.out"
+echo "CSCOPE_DB is set to $CSCOPE_DB"
 
 #Generate gtags
-set GTAGSFORCECPP=1
+echo "Generating gtags db: $TAGS_ROOT/GTAGS ..."
+export GTAGSFORCECPP=1
 gtags --accept-dotfiles -c -f "$TAGS_DIR/cscope.files"
 export GTAGS_DB="$TAGS_ROOT/GTAGS"
+echo "CSCOPE_DB is set to $GTAGS_DB"
 popd
