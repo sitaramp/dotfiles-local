@@ -41,7 +41,7 @@ ACKBIN=/usr/local/bin/ack
 ps() { /bin/ps auxf; }
 myps() { /bin/ps -fjH -u "$USER"; }
 ps1() { /bin/ps auxww | $ACKBIN -i --color "$1" | $ACKBIN -v ack; }
-unalias beep
+#unalias beep
 beep() { echo -e '\a'; }
 
 # Zippin

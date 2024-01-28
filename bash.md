@@ -112,8 +112,18 @@ find . -name '*.html' | parallel mv {} web /
 ```
 
 ###  find, grep awk and sed
-
+# lines before and after match
+grep -B 3 -A 2 foo /path/to/file
+# lines not matching or invert
+grep -v foo /path/to/file
 ```
 fd  # fd-find find replacement
 rg  # ripgrep grep replacement
 ```
+# Script
+set -e # stop on err
+set -x # debug
+use shellcheck
+
+# Copy files
+rsync -auvhP username@host:/pathname/ /pathname

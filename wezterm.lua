@@ -401,7 +401,7 @@ return {
 
 	use_dead_keys = false,
 	leader = { key="a", mods="CTRL", timeout_milliseconds = 1000 },
-	selection_word_boundary = ' \t\n#$%{}[]()"\'`,;',
+	selection_word_boundary = ' \t\n#=$%{}[]()"\'`,;',
 	show_tab_index_in_tab_bar = true,
 	tab_and_split_indices_are_zero_based = false,
 	scroll_to_bottom_on_input = true,
