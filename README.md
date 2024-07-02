@@ -162,10 +162,11 @@ prompt
 4. Some keyboard shortcuts to know:
 
 ```
-Ctrl + R : reverse command history chooser
-Ctrl + T : fuzzy directory chooser
-cd -     : directory matches down the current directory hierarchy
-cd ..    : directory matches up the current directory hierarchy
+Ctrl + R         : reverse command history chooser
+Ctrl + T         : fuzzy directory chooser
+cd -             : directory matches down the current directory hierarchy
+cd ..            : directory matches up the current directory hierarchy
+cd /etc/**<TAB>  : Tab completion
 ```
 
 ### TMUX

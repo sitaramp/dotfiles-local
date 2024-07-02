@@ -14,6 +14,7 @@
 "<leader>nl underline
 "<leader>tw toggle wrap
 "<leader>cd :cd...
+"<leader> Enter " disable highlight
 
 " Goto
 " <C-o> go to the prev search
@@ -57,6 +58,7 @@
 
 " vim-trailing-whitespace
 nnoremap <leader>cw :FixWhitespace<CR>
+noremap <leader> <cr> :noh<cr>
 
 "To More keyboard mappings
 " :nmap for normal mode mapping
@@ -231,7 +233,7 @@ endif
 
 "" Search for word under the cursor in the current directory
 "" fuzzy grep/ack  Use ^c to abort
-"nnoremap <leader>/ :Ack!<Space>
+nnoremap <leader>g :Ack!<Space>
 """nnoremap <leader>a mo:Ack!   "\b<cword>\b" <CR>
 ""nnoremap <leader>ack :Ack --follow <Space>
 ""nmap <Leader>ac yiw<leader>ack<C-r>"
@@ -700,4 +702,6 @@ map \~ :call Divider('~')<CR>
 " Pandoc/markdown config.
 let g:pandoc#syntax#conceal#use = 0
 
+" Show tab bar if there are at least two tabs
+set showtabline=1
 

@@ -28,6 +28,8 @@ set colored-stats On
 set colored-completion-prefix on
 set page-completions on
 set completion-ignore-case On
+set completion-map-case On
+set skip-completed-text On
 set completion-query-items -1
 set print-completions-horizontally on
 set page-completions off
@@ -42,7 +44,6 @@ set keyseq-timeout 1200
 #
 set show-all-if-ambiguous on
 
-set show-all-if-unmodified On
 set visible-stats On
 set echo-control-characters off
 set match-hidden-files off
@@ -66,15 +67,15 @@ $if mode=vi
     ## <ctrl/alt> left/right -- backward/forward one word
     #  <alt> left   -- move backward one word
     "\e[3D":   backward-word
-    "\e[1;3D": backward-word
+    "\e[1;9D": backward-word
     #  <ctrl> left  -- move backward one word
     "\e[5D":   backward-word
     "\e[1;5D": backward-word
-    "\e\e[D": forward-word
+    "\e\e[D":  backward-word
 
     #  <alt> right  -- move forward one word
     "\e[3C":   forward-word
-    "\e[1;3C": forward-word
+    "\e[1;9C": forward-word
     #  <ctrl> right -- move forward one word
     "\e[5C":   forward-word
     "\e[1;5C": forward-word
@@ -178,6 +179,11 @@ $if mode=vi
     #  <ctrl> 3  -- prefix with '# '
     "\C-3": "\C-a# "
 $endif
+
+# Allow UTF-8 input and outpu
+set input-meta on
+set output-meta on
+set convert-meta off
 
 $if mode=emacs
     #  see: bindkey -p

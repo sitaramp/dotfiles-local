@@ -93,6 +93,10 @@ if has ('persistent_undo')
   set undofile
 endif
 
+" Save and restore marks, registers content,
+" command-line history, search pattern history
+set viminfo='1000,<500,:500,/500
+
 set ttimeout " Do time out on mappings and others
 set ttimeoutlen=20000 " Wait {num} ms before timing out a mapping
 " When you’re pressing Escape to leave insert mode in the terminal, it will by

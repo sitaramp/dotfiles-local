@@ -1,6 +1,3 @@
-[submodule "janus/vim-better-sml"]
-	path = janus/vim-better-sml
-	url = https://github.com/jez/vim-better-sml
 [submodule "colorgcc"]
 	path = colorgcc
 	url = https://github.com/colorgcc/colorgcc
