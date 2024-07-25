@@ -5,8 +5,15 @@ else
 endif
 
 " Use :help 'option' to see the documentation for the given option.
+" Helper function
+" Returns true if paste mode is enabled
+function! HasPaste()
+    if &paste
+        return 'PASTE MODE  '
+    endif
+    return ''
+endfunction
 
-endif
 set nocompatible
 set t_Co=256
 set ttyfast
@@ -26,8 +33,8 @@ set complete-=i
 set nrformats-=octal
 
 " make ESC key more responsive
-set ttimout
-set ttimoutlen=100
+set ttimeout
+set ttimeoutlen=100
 
 set hidden
 set ruler
@@ -78,7 +85,6 @@ set noswapfile
 set undofile
 set history=1000
 
-set laststatus=2
 set showcmd
 set wildmenu
 " Ignore compiled files
@@ -105,4 +111,6 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+set laststatus=2
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
