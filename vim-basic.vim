@@ -1,3 +1,12 @@
+if exists('g:loaded_sensible') || &compatible
+  finish
+else
+  let g:loaded_sensible = 'yes'
+endif
+
+" Use :help 'option' to see the documentation for the given option.
+
+endif
 set nocompatible
 set t_Co=256
 set ttyfast
@@ -13,6 +22,12 @@ set nosmartindent
 set tabstop=4    " show exiting tab with 4 spaces
 set shiftwidth=4 " When indenting with '>' use 4 spaces
 set backspace=indent,eol,start
+set complete-=i
+set nrformats-=octal
+
+" make ESC key more responsive
+set ttimout
+set ttimoutlen=100
 
 set hidden
 set ruler
@@ -25,6 +40,11 @@ set smartcase
 set showmatch
 set cursorline
 set background=dark
+set scrolloff=4
+set sidescrolloff=2
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+
+
 
 "" With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
@@ -33,7 +53,14 @@ let mapleader = "\<Space>"
 nmap <leader>w :w!<cr>
 
 " Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
+map <silent> <leader>h (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
+nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
 " no bells
 set noerrorbells
@@ -49,10 +76,15 @@ set nobackup
 set nowb
 set noswapfile
 set undofile
+set history=1000
 
 set laststatus=2
 set showcmd
 set wildmenu
+" Ignore compiled files
+set wildignore=*.o,*~,*.pyc
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+
 set mouse=a
 
 syntax enable

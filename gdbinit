@@ -32,20 +32,30 @@ show logging
 # breakpoints
 # break function | linenum
 # break ... if condition==true
-#info breakpoints
+# info breakpoints
+# disable 1 # disable breakpoint 1
+# enable 1  # disable breakpoint 1
+# delete 1  # disable breakpoint 1
+# condition 1 if <expr> # stop at 1 only if <expr> is true
+
+# Examine memory
+# print <var>
+# print *<addr>
+# p/x   <var>
+# x/32  <addr>
+# map code address to source code
+# info line *0xaddress
+
 
 # set var variable_name=newval
 # tbreak +1          # set break before jump
 # jump +1            # jump over not executed
 # skip function_name # always execute w/o break/steps
 
-# map code address to source code
-# info line *0xaddress
-
-# watchpoints stops execution whenever that value of an expression changes
-#watch expr
-#watch *addr
-#info watchpoints
+# watchpoints stops execution whenever that value of an expression "changes"
+# watch expr
+# watch *addr
+# info watchpoints
 
 # Display summary of all threads
 # info threads
@@ -70,9 +80,9 @@ show logging
 # https://ccrma.stanford.edu/~jos/stkintro/Useful_commands_gdb.html
 
 # Disassembly
-#(gdb) layout asm
-#(gdb) layout split 
-#(Gdb) layout regs
+# layout asm
+# layout split
+# layout regs
 
 # make a function call
 # print (int) getSplCount()

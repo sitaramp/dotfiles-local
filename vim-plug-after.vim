@@ -175,9 +175,11 @@ map <A-LEFT> <S-LEFT>
 map! <A-RIGHT> <S-RIGHT>
 map <A-RIGHT> <S-RIGHT>
 
-inoremap jj <Esc>
-"inoremap kk <Esc>
 inoremap bb <Esc>
+inoremap jj <Esc>
+inoremap jk <Esc>
+inoremap kj <Esc>
+inoremap kk <Esc>
 
 " fzf
 "[Buffers] Jump to the existing window if possible
