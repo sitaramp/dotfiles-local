@@ -103,10 +103,16 @@ nnoremap <silent> <leader><CR> (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
 nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
 " Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
+"map <C-j> <C-W>j
+"map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+" Scroll
+nnoremap J 5j
+nnoremap K 5k
+map <C-j> <C-W>e
+map <C-k> <C-W>y
 
 " no bells
 set noerrorbells

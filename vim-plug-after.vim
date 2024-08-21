@@ -97,12 +97,14 @@ nnoremap <leader>7 7<C-^>
 nnoremap <leader>8 8<C-^>
 
 " Cycle through  tabs
-noremap <C-Tab>   :bnext<CR>
-noremap <C-S-Tab> :bprev<CR>
-noremap <C-w>     :bd<CR>
+set hidden
+noremap <C-n> :bnext<CR>
+noremap <C-p> :bprev<CR>
+noremap <C-q> :bd<CR>
 
-inoremap <C-Tab>   <Esc>:bnext<CR>
-inoremap <C-S-tab> <Esc>:bprev<CR>
+inoremap <C-n> <Esc>:bnext<CR>
+inoremap <C-p> <Esc>:bprev<CR>
+inoremap <C-q> <Esc>:bd<CR>
 
 
 " Cycle through buffers
@@ -283,9 +285,12 @@ noremap <silent> 0 g0
 noremap <silent> $ g$
 nnoremap ' `
 nnoremap Y y$
+" Mappings to indent without exiting visual mode
+vnoremap > >gv
+vnoremap < <gv
 
-nnoremap <C-s> :write<CR>
-inoremap <C-s> <ESC>:write<CR>
+nnoremap <C-s> :update<CR>
+inoremap <C-s> <ESC>:update<CR>
 "nnoremap <leader>w :w!<CR>
 
 " remap :W, :Q etc if you press the shift key for tool lonag
@@ -394,6 +399,15 @@ set textwidth=100
 set linebreak
 set display=lastline
 
+" Mappings for paging and scrolling
+nnoremap K 5k
+vnoremap K 5k
+nnoremap J 5j
+vnoremap J 5j
+nnoremap <C-k> <C-y>
+vnoremap <C-k> <C-y>
+nnoremap <C-j> <C-e>
+vnoremap <C-j> <C-e>
 
 " Undo
 " u, C-r seq undo/redo
@@ -592,9 +606,9 @@ let g:airline_detect_paste=1
 let g:airline_theme='molokai' "cool molokai
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#fnamemode = ':t'
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+"let g:airline#extensions#tabline#fnamemode = ':t'
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 " disable +32 ~9 -0 hunks information in airline section B

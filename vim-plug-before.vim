@@ -25,6 +25,8 @@ set incsearch
 set hlsearch
 set ignorecase
 set smartcase
+set signcolumn=yes " always show sign column on left side
+
 
 " show command as they are being entered, like in emacs
 set showcmd
@@ -32,7 +34,6 @@ set showmatch
 set wildmenu "bash style tab completion
 set wildignorecase
 set wildmode=list:longest,full
-set hidden
 
 " Tmux mouse
 set ttymouse=xterm2
