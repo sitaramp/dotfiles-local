@@ -50,17 +50,56 @@ set background=dark
 set scrolloff=4
 set sidescrolloff=2
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+set signcolumn=yes " always show sign column on left side
+set list
+set splitright " Open new vertical split panes on the right
 
+" Critical Mappings
+let mapleader=" "
+let mapleader = "\<Space>"
+" let g:maplocalleader = ','
+inoremap  jk <esc>
+inoremap  jj <esc>
+inoremap  kk <esc>
 
+" Mappings to move by visual lines when wrapped
+nnoremap j gj
+onoremap j gj
+nnoremap k gk
+onoremap k gk
+nnoremap <down> gj
+onoremap <down> gj
+onoremap <up> gk
+nnoremap <up> gk
+
+" Mapping for motion
+nnoremap H g^
+onoremap H g^
+nnoremap L g$
+onoremap L g$
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+
+" Mappings to make Y work like C and ':t'D
+nnoremap Y y$
+
+" Mappings to indent without exiting visual mode
+vnoremap > >gv
+vnoremap < <gv
 
 "" With a map leader it's possible to do extra key combinations
+remap U <C-R>
+nnoremap <Leader>s :update<CR>
+
 " like <leader>w saves the current file
 let mapleader = "\<Space>"
 " Fast saving
 nmap <leader>w :w!<cr>
 
 " Disable highlight when <leader><cr> is pressed
-map <silent> <leader>h (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
+nnoremap <silent> <leader><CR> (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
 nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
 " Smart way to move between windows
@@ -113,4 +152,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 set laststatus=2
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+
+map <leader>qq :qa<CR>
+map <leader>qQ :qa!<CR>
 
