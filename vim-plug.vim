@@ -22,7 +22,9 @@ Plug 'junegunn/fzf.vim'
 "Plug 'mileszs/ack.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'tomasr/molokai'
-"Plug 'morhetz/gruvbox'
+Plug 'sheerun/vim-polygot'
+Plug 'fidian/hexmode'
+Plug 'chrisbra/csv.vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'altercation/vim-colors-solarized'
 Plug 'sheerun/vim-polyglot'
@@ -54,6 +56,10 @@ Plug 'skywind3000/gutentags_plus'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 "Plug 'jabirali/vim-tmux-yank'
 Plug 'Yggdroot/indentline'
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
+let g:vim_markdown_folding_disabled = 1
+Plug 'ap/vim-buftabline'
 
 " disable X clipboard for startup performance
 " or start with -X

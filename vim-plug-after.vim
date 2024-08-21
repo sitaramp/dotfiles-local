@@ -87,8 +87,7 @@ noremap <leader> <cr> :noh<cr>
 
 " single key acess to Buffers
 "nmap ;  :Buffers<CR>
-nnoremap <leader>0 :buffers<CR>
-nnoremap <leader>1 :bf<CR>
+nnoremap <leader>1 1<C-^>
 nnoremap <leader>2 2<C-^>
 nnoremap <leader>3 3<C-^>
 nnoremap <leader>4 4<C-^>
@@ -96,13 +95,14 @@ nnoremap <leader>5 5<C-^>
 nnoremap <leader>6 6<C-^>
 nnoremap <leader>7 7<C-^>
 nnoremap <leader>8 8<C-^>
-nnoremap <leader>9 :bl<CR>
 
 " Cycle through  tabs
-"noremap <silent> <tab>   :tabnext<CR>
-"noremap <silent> <S-tab> :tabprevious<CR>
-"noremap <silent> <C-n>   :tabnew<CR>
-"noremap <silent> <C-F4>  :close<CR>
+noremap <C-Tab>   :bnext<CR>
+noremap <C-S-Tab> :bprev<CR>
+noremap <C-w>     :bd<CR>
+
+inoremap <C-Tab>   <Esc>:bnext<CR>
+inoremap <C-S-tab> <Esc>:bprev<CR>
 
 
 " Cycle through buffers
@@ -156,19 +156,17 @@ nmap <leader>gr :Gread<CR> " checkout file, undo changes
 
 " Easymotion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
-" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-" `s{char}{label}`
-"nmap s <Plug>(easymotion-overwin-f)
-" or
-" `s{char}{char}{label}`
-nmap s <Plug>(easymotion-overwin-f2)
+let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
 " Turn on case-insensitive feature
 let g:EasyMotion_smartcase = 1
-" JK motions: Line motions
+" JK motions: jump to Line motions
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
-"map <Leader>l <Plug>(easymotion-lineforward)
-"map <Leader>h <Plug>(easymotion-linebackward))
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>h <Plug>(easymotion-linebackward)
 
 map! <A-LEFT> <S-LEFT>
 map <A-LEFT> <S-LEFT>
@@ -197,18 +195,14 @@ omap <Leader><Tab> <plug>(fzf-maps-o)
 
 " Single key access to files fzf and tags
 " find a buffer in current window
-nnoremap <leader>bb :Buffers<CR>
-nnoremap <leader>/ :BLines<CR>
-nnoremap <leader>l :Lines<CR>
-"use :Rg to search across files
-
-" find recent files
-nmap <leader>bh :History<CR>
-"" find git files
-"nmap <leader>g :GFiles<CR>
 " find files in current directory and below
-nmap <leader>bf :Files<CR>
-nmap <leader>bg :GFiles<CR>
+nnoremap <silent> <leader>fo :Files<CR>|   " Open new Buffer
+"nnoremap <silent> <leader>fg :GFiles<CR>| " Find Git files
+nnoremap <silent> <leader>fl :Buffers<CR>| " Buffer List
+nnoremap <silent> <leader>fh :History<CR>| " find recent files
+nnoremap <silent> <leader>ff :BLines<CR>|  " Find in current File
+nnoremap <silent> <leader>fa :Rg<CR>|      " find in All files
+
 " find code tags
 nnoremap <leader>ct :Tags<CR>
 " toggle colorscheme
@@ -238,7 +232,7 @@ endif
 nnoremap <leader>g :Ack!<Space>
 """nnoremap <leader>a mo:Ack!   "\b<cword>\b" <CR>
 ""nnoremap <leader>ack :Ack --follow <Space>
-""nmap <Leader>ac yiw<leader>ack<C-r>"
+""nnoremap <Leader>ac yiw<leader>ack<C-r>"
 ""vmap <Leader>ac   y<Leader>ack<C-r>"
 ""map  <leader>k     <leader>ac<Bs><CR>
 ""nnoremap <leader>s mo:Ggrep! "\b<cword>\b" <CR>
@@ -261,22 +255,16 @@ nnoremap <leader>a :Grepper -tool git -noopen -jump<cr>
 highlight Comment cterm=italic
 
 """""""""""""""""""""""""""""""
-" Toggle search highlight on off with F5
+" Toggle search highlight on off with <leader><CR>
 """""""""""""""""""""""""""""""""
-map  <F4>      :set hls!<bar> set hls?<CR>
-imap <F4> <Esc><F4>
-map <leader>th <F4>
-
-set pastetoggle=<F5>
-map <leader>tp <F5>
+nnoremap <silent> <leader><CR> (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
 
 " Tagbar C++ class outline viewer
 let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
 let g:tagbar_compat = 1
 let g:tagbar_sort = 0 "Sort according to their structure in file & not filename
-nmap <F2> :TagbarToggle<CR>
-nnoremap <leader>tt <F2>
+nnoremap <leader>t :TagbarToggle<CR>
 
 " SuperTab
 let g:SuperTabLongestEnhanced = 1
@@ -396,10 +384,8 @@ set number
 set numberwidth=5
 set relativenumber
 set number
-nmap <leader>t0 :set invrelativenumber<CR>
-noremap <F3> :set invnumber invrelativenumber<CR>
-inoremap <F3> <ESC><F3>
-nmap <leader>tn <F3>
+nmap    <leader>1 :set invrelativenumber<CR>
+noremap <leader>0 :set invnumber invrelativenumber<CR>
 
 set ruler
 set scroll=4
@@ -534,13 +520,19 @@ nnoremap <C-]> g<C-]>
 
 " NERDTree
 nnoremap <leader>ft :NERDTreeToggle<CR>
-nnoremap <leader>ff :NERDTreeFind<CR>
-nnoremap <leader>fn :NERDTreeFocus<CR>
+"nnoremap <leader>ff :NERDTreeFind<CR>
+"nnoremap <leader>fn :NERDTreeFocus<CR>
 "map <leader>cd :cd %:p:h<CR>:pwd<CR>
 "nnoremap <C-n> :NERDTree<CR>
 "nnoremap <C-t> :NERDTreeToggle<CR>
 "nnoremap <C-f> :NERDTreeFind<CR>
 "nnoremap <C-n> :NERDTree<CR>
+let NERDTreeWinPos="right"
+let NERDTreeMinimalUI=1
+let NERDTreeStatusline=-1 " use global status line
+let NERDTreeShowHidden=1
+let NERDTreeMouseMode=2 " single click to open directories
+
 
 " Open NERDTree if no file is specified
 autocmd StdinReadPre * let s:std_in=1
@@ -564,8 +556,9 @@ let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeStatusLine = -1
 
 " GitGutter
-nmap [g  :GitGutterPrevHunk<CR>
-nmap ]g  :GitGutterNextHunk<CR>
+nnoremap [g  :GitGutterPrevHunk<CR>
+nnoremap ]g  :GitGutterNextHunk<CR>
+set conceallevel=0
 augroup VimDiff
     autocmd!
     autocmd VimEnter,FilterWritePre * if &diff | GitGutterDisable | endif
@@ -579,9 +572,9 @@ let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
-nmap ]w :ALENextWrap<CR>
-nmap [w :ALEPreviousWrap<CR>
-nmap <Leader>fw <Plug>(ale_fix)
+nnoremap ]w :ALENextWrap<CR>
+nnoremap [w :ALEPreviousWrap<CR>
+nnoremap <Leader>fw <Plug>(ale_fix)
 " if you don't want linters to run on opening a file
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_text_changed = 'never'
@@ -598,10 +591,11 @@ set laststatus=2
 let g:airline_detect_paste=1
 let g:airline_theme='molokai' "cool molokai
 let g:airline_powerline_fonts = 1
-let g:aitline#extensions#tabline#enabled = 1
-let g:aitline#extensions#tabline#left_sep = ' '
-let g:aitline#extensions#tabline#left_alt_sep = '|'
-let g:aitline#extensions#tabline#fnamemode = ':t'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#fnamemode = ':t'
+let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 " disable +32 ~9 -0 hunks information in airline section B
 let g:airline#extensions#hunks#enabled = 0
