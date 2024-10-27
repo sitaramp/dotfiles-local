@@ -77,14 +77,17 @@ git submodule update --init --recursive
 
 # Install missing dependencies
 if [[ "$OS" == *SuSE* ]]; then
-    sudo zypper install git fd iputils-ping tmux cargo nmap bash-completion bc htop
+    sudo zypper install git fd iputils-ping tmux nmap bash-completion \
+                bc bottom bat fd-find git-delta ripgrep lsd duf
+    ripgrep
     sudo zypper install xsel gvim
     sudo zypper install build-essential libssl-devel libevent-devel ncurses-devel
     sudo zypper install ruby rubygems rubygem-rake ctags
     sudo zypper install --target kernel-devel
-    sudo apt install ctags global ShellCheck
+    sudo zypper install ctags global ShellCheck
 elif [[ "$OS" == *Debian*  || $OS == *Ubuntu* ]]; then
-    sudo apt install git fd-find net-tools iputils-ping cargo nmap bash-completion bc htop
+    sudo apt install git fd-find net-tools iputils-ping nmap bash-completion bc \
+                bc bottom bat fd-find git-delta ripgrep lsd duf
     sudo apt install xsel vim-gtk3
     sudo apt install libssl-dev libevent-dev ncurses-dev
     sudo apt install ruby-dev rake exuberant-ctags 
@@ -92,12 +95,13 @@ elif [[ "$OS" == *Debian*  || $OS == *Ubuntu* ]]; then
     sudo apt install --target kernel-devel
     sudo apt install ctags global shellcheck
 elif [[ "$OS" == *CentOS* || "$OS" == *RedHat* ]]; then
-    sudo yum install git iputils-ping cargo tmux nmap bash-completion bc htop
+    sudo yum install git iputils-ping tmux nmap bash-completion bc \
+                bc bottom bat fd-find git-delta ripgrep lsd duf
     sudo yum install xsel gvim
     sudo yum install libssl-dev libevent-devel ncurses-devel
     sudo yum install ruby rubygem-rake ruby-devel ctags git
     sudo yum install --target kernel-devel
-    sudo apt install ctags global ShellCheck
+    sudo yum install ctags global ShellCheck
 fi
 
 # Install Rust Cargo
@@ -125,7 +129,8 @@ PATH_DIR="$HOME/dotfiles-local/bin"  # or another directory on your $PATH
 curl https://cht.sh/:cht.sh > "$PATH_DIR/cht.sh"
 mod +x "$PATH_DIR/cht.sh"
 
-pip install powerline-shell
+pip install powerline-shell flake8
+
 mkdir -p ~/.config/powerline-shell
 mv  ~/.config/powerline-shell/config.json  ~/.config/powerline-shell/config.json.bak
 ln -s "$DOTFILES_DIR"/config/powerline-shell/config.json ~/.config/powerline-shell/config.json
@@ -148,6 +153,7 @@ curl -fLo  ~/.vim/autoload/plug.vim --create-dirs \
 # append the following lines to ~/.bashrc
 
 [[ $- == *i* ]] || return
+stty -ixon
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f /etc/bash_completion ] && source /etc/bash_completion
 [ -f ~/dotfiles-local/sensible.bash ] && source ~/dotfiles-local/sensible.bash
@@ -169,15 +175,13 @@ function _update_ps1() {
 if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
+
 pushd .
 mkdir ~/Downloads
 cd ~/Downloads || exit
 
 # install the latest tmux from sources
-pushd .
-mkdir -p ~/Downloads
-cd ~/Downloads
 #wget https://github.com/tmux/tmux/releases/download/3.1b/tmux-3.1b.tar.gz
-wget https://github.com/tmux/tmux/releases/download/3.1/tmux-3.1-rc.tar.gz
-popd
+#wget https://github.com/tmux/tmux/releases/download/3.1/tmux-3.1-rc.tar.gz
+#popd
 popd

@@ -5,7 +5,7 @@
 " SPACE as a Leader
 "use space as leader in sensible modes
 let mapleader = "\<Space>"
-let maplocalleader = "\<Space>"
+let maplocalleader = "\\"
 nmap <space> <leader>
 vmap <space> <leader>
 
@@ -68,8 +68,8 @@ set tabstop=4
 set shiftwidth=4
 set shiftround
 set softtabstop=4
-set smartindent
 set autoindent
+set smartindent
 set copyindent
 set preserveindent
 set nowrap

@@ -36,7 +36,7 @@ Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'preservim/tagbar'
 "Plug 'ervandew/supertab'
 Plug 'airblade/vim-gitgutter'
-Plug 'bronson/vim-trailing-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'dense-analysis/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -59,7 +59,9 @@ Plug 'Yggdroot/indentline'
 Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
 let g:vim_markdown_folding_disabled = 1
-Plug 'ap/vim-buftabline'
+"Plug 'ap/vim-buftabline'
+Plug 'pacha/vem-tabline'
+Plug 'chriskempson/base16-vim'
 
 " disable X clipboard for startup performance
 " or start with -X

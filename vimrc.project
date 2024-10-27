@@ -55,36 +55,36 @@ let g:gutentags_plus_nomap = 1
 """"""""""""" cscope/vim key mappings
 " The following maps all invoke one of the following cscope search types:
 "
-"  <leader> cs   symbol: find all references to the token under cursor
-"  <leader> cg   global: find global definition(s) of the token under cursor
-"  <leader> cc   callers:find all calls to the function name under cursor
-"  <leader> ct   text:   find all instances of the text under cursor
-"  <leader> ce   egrep:  egrep search for the word under cursor
-"  <leader> cf   file:   open the filename under cursor
-"  <leader> ci   includes: find files that #include filename under cursor
-"  <leader> cd   called: find functions called by this function
-"  <leader> ca   assigned: find places where current symbol is assigned
+"  <leader> mgr   symbol: find all references to the token under cursor
+"  <leader> mgd   global: find global definition(s) of the token under cursor
+"  <leader> mgc   callers:find all calls to the function name under cursor
+"  <leader> mgt   text:   find all instances of the text under cursor
+"  <leader> mge   egrep:  egrep search for the word under cursor
+"  <leader> mgf   file:   open the filename under cursor
+"  <leader> mgi   includes: find files that #include filename under cursor
+"  <leader> mgd   called: find functions called by this function
+"  <leader> mga   assigned: find places where current symbol is assigned
 "
 if filereadable($CSCOPE_DB)
-  noremap <silent> <leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>
-  noremap <silent> <leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
-  noremap <silent> <leader>cc :cs find c <C-R>=expand("<cword>")<CR><CR>
-  noremap <silent> <leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>
-  noremap <silent> <leader>ce :cs find e <C-R>=expand("<cword>")<CR><CR>
-  noremap <silent> <leader>cf :cs find f <C-R>=expand("<cfile>")<CR><CR>
-  noremap <silent> <leader>ci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-  noremap <silent> <leader>cd :cs find d <C-R>=expand("<cword>")<CR><CR>
-  noremap <silent> <leader>ca :cs find a <C-R>=expand("<cword>")<CR><CR>
+  noremap <silent> <leader>mgr :cs find s <C-R>=expand("<cword>")<CR><CR>
+  noremap <silent> <leader>mgd :cs find g <C-R>=expand("<cword>")<CR><CR>
+  noremap <silent> <leader>mgc :cs find c <C-R>=expand("<cword>")<CR><CR>
+  noremap <silent> <leader>mgt :cs find t <C-R>=expand("<cword>")<CR><CR>
+  noremap <silent> <leader>mge :cs find e <C-R>=expand("<cword>")<CR><CR>
+  noremap <silent> <leader>mgf :cs find f <C-R>=expand("<cfile>")<CR><CR>
+  noremap <silent> <leader>mgi :cs find i <C-R>=expand("<cfile>")<CR><CR>
+  noremap <silent> <leader>mgd :cs find d <C-R>=expand("<cword>")<CR><CR>
+  noremap <silent> <leader>mga :cs find a <C-R>=expand("<cword>")<CR><CR>
 else
   if filereadable($GTAGS_DB)
-    noremap <silent> <leader>cs :GscopeFind s <C-R><C-W><cr>
-    noremap <silent> <leader>cg :GscopeFind g <C-R><C-W><cr>
-    noremap <silent> <leader>cc :GscopeFind c <C-R><C-W><cr>
-    noremap <silent> <leader>ct :GscopeFind t <C-R><C-W><cr>
-    noremap <silent> <leader>ce :GscopeFind e <C-R><C-W><cr>
-    noremap <silent> <leader>cf :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
-    noremap <silent> <leader>ci :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
-    noremap <silent> <leader>cd :GscopeFind d <C-R><C-W><cr>
-    noremap <silent> <leader>ca :GscopeFind a <C-R><C-W><cr>
+    noremap <silent> <leader>mgr :GscopeFind s <C-R><C-W><cr>
+    noremap <silent> <leader>mgd :GscopeFind g <C-R><C-W><cr>
+    noremap <silent> <leader>mgc :GscopeFind c <C-R><C-W><cr>
+    noremap <silent> <leader>mgt :GscopeFind t <C-R><C-W><cr>
+    noremap <silent> <leader>mge :GscopeFind e <C-R><C-W><cr>
+    noremap <silent> <leader>mgf :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
+    noremap <silent> <leader>mgi :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
+    noremap <silent> <leader>mgd :GscopeFind d <C-R><C-W><cr>
+    noremap <silent> <leader>mga :GscopeFind a <C-R><C-W><cr>
   endif
 endif

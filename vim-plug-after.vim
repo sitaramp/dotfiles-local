@@ -3,10 +3,16 @@
 "
 " <leader> Mnemonics
 " b - buffer; g git, \ = project; s = search; t = toggle, , n = notes, h = help
+" p - project
+" c - comment code
+" d - current directory
+" g - files
+" g - goto
 
 ":sudoW sudoWrite
 "<F1> escape
-"<F2> toggle tagbar
+"<F2> toggle Tagbar
+"<F3> toggle NerdTree
 "<F3> toggle number
 "<F4> toggle highlight
 "<F5> toggle paste mode
@@ -50,20 +56,21 @@
 
 " Commentary
 " Comment - uncomment
-"    gcc -- one line comment
+" gcc -- one line comment
 "    [count] gcc -- count lines
 "    gc {4j} -- 4 lines
 "    {visual} gc --- visual block
 "    gcgc -- the current comment block
 
-" vim-trailing-whitespace
-nnoremap <leader>cw :FixWhitespace<CR>
-noremap <leader> <cr> :noh<cr>
+nnoremap <leader>cl gcc
+nnoremap <leader>cp gcap
 
-"To More keyboard mappings
-" :nmap for normal mode mapping
-" :vmap for visual mode mapping
-" :imap for insert mode mapping
+"
+"To find More keyboard mappings
+" :Maps list all mappings
+" :nmap list normal mode mapping
+" :vmap list visual mode mapping
+" :imap list insert mode mapping
 " :nore non-recursive
 " :help map verbose
 " Vim Debug:
@@ -87,48 +94,35 @@ noremap <leader> <cr> :noh<cr>
 
 " single key acess to Buffers
 "nmap ;  :Buffers<CR>
-nnoremap <leader>1 1<C-^>
-nnoremap <leader>2 2<C-^>
-nnoremap <leader>3 3<C-^>
-nnoremap <leader>4 4<C-^>
-nnoremap <leader>5 5<C-^>
-nnoremap <leader>6 6<C-^>
-nnoremap <leader>7 7<C-^>
-nnoremap <leader>8 8<C-^>
+nmap <leader>1 1<C-^>
+nmap <leader>2 2<C-^>
+nmap <leader>3 3<C-^>
+nmap <leader>4 4<C-^>
+nmap <leader>5 5<C-^>
+nmap <leader>6 6<C-^>
+nmap <leader>7 7<C-^>
+nmap <leader>8 8<C-^>
+nmap <leader>9 9<C-^>
 
 " Cycle through  tabs
 set hidden
-noremap <C-n> :bnext<CR>
-noremap <C-p> :bprev<CR>
-noremap <C-q> :bd<CR>
-
-inoremap <C-n> <Esc>:bnext<CR>
-inoremap <C-p> <Esc>:bprev<CR>
-inoremap <C-q> <Esc>:bd<CR>
 
 
 " Cycle through buffers
 " Switch between the last two files
-"nmap <C-e> <C-^>
 nnoremap <Leader><Leader> <C-^>
 
 "nmap [b   :bprev<CR>
 "nmap ]b   :bnext<CR>
-nnoremap <leader>b1 :bf<CR>
-nnoremap <leader>b2 2<C-^>
-nnoremap <leader>b3 3<C-^>
-nnoremap <leader>b4 4<C-^>
-nnoremap <leader>b5 5<C-^>
-nnoremap <leader>b6 6<C-^>
-nnoremap <leader>b7 7<C-^>
-nnoremap <leader>b8 8<C-^>
-nnoremap <leader>b9 :bl<CR>
-nnoremap <leader>bn :bnext<CR>
-nnoremap <leader>bp :bprev<CR>
+"nmap <C-S-L>  :bprev<CR>
+"nmap <C-S-R>  :bnext<CR>
+nmap <leader>bp <Plug>vem_prev_buffer-
+nmap <leader>bn <Plug>vem_next_buffer-
+nmap <leader>bd <Plug>vem_delete_buffer-
 let g:winresizer_start_key = "<leader>wr"
 
 " close, open quickfix window
-nmap \x :cclose<CR>
+nmap <leader>qx :cclose<CR>
 nmap <leader>qo :copen<CR>
 nmap <leader>qc :cclose<CR>
 
@@ -146,6 +140,16 @@ autocmd FileType qf wincmd J " Makes sure it's at the bottom of the vim window
 let g:lastplace_ignore_buftype = "quickfix,nofile,help"
 let g:lastplace_ignore = "gitcommit"
 
+" Mappings to indent without exiting visual mode
+vnoremap > >gv
+vnoremap < <gv
+
+" vim-better-whitespace
+nnoremap <leader>xdw :StripWhitespace<CR>
+nnoremap <leader>tw  :ToggleWhitespace<CR>
+"let g:better_whitespace_enabled=1
+"let g:strip_whitespace_on_save=1
+
 " Fugitive
 nmap <leader>gs :Git<CR> " git status
 nmap <leader>gb :Git blame<CR>
@@ -161,6 +165,9 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
+" Easymotion color highlight
+hi link EasyMotionTarget ErrorMsg
+hi link EasyMotionShade  Comment
 
 " Turn on case-insensitive feature
 let g:EasyMotion_smartcase = 1
@@ -170,10 +177,10 @@ map <Leader>k <Plug>(easymotion-k)
 map <Leader>l <Plug>(easymotion-lineforward)
 map <Leader>h <Plug>(easymotion-linebackward)
 
-map! <A-LEFT> <S-LEFT>
-map <A-LEFT> <S-LEFT>
+map! <A-LEFT>  <S-LEFT>
+map  <A-LEFT>  <S-LEFT>
 map! <A-RIGHT> <S-RIGHT>
-map <A-RIGHT> <S-RIGHT>
+map  <A-RIGHT> <S-RIGHT>
 
 inoremap bb <Esc>
 inoremap jj <Esc>
@@ -182,11 +189,31 @@ inoremap kj <Esc>
 inoremap kk <Esc>
 
 " fzf
+set rtp+=~/.fzf
+" Initialize config dictionary
+let g:fzf_vim = {}
 "[Buffers] Jump to the existing window if possible
-let g:fzf_buffers_jump=1
+let g:fzf_vim.buffers_jump=1
 " Empty value to disable preview window altogether
-let g:fzf_preview_window = []
+let g:fzf_vim.preview_window = []
+let g:fzf_history_dir = '~/.local/share/fzf-history'
 nnoremap <silent> <leader>bt :call fzf#vim#buffer_tags('', { 'options': ['--nth', '1,2', '--query', '^f$ '] })<CR>
+
+" fzf window key map
+" Tab   select entries
+" Alt-a select all
+" Alt-d de-select all
+" Build a quickfix list when multiple files are selected
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val, "lnum":1 }'))
+  copen
+  cc
+endfunction
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
 
 " Files
 " :Files ..
@@ -195,22 +222,39 @@ nmap <Leader><Tab> <plug>(fzf-maps-n)
 xmap <Leader><Tab> <plug>(fzf-maps-x)
 omap <Leader><Tab> <plug>(fzf-maps-o)
 
-" Single key access to files fzf and tags
 " find a buffer in current window
 " find files in current directory and below
-nnoremap <silent> <leader>fo :Files<CR>|   " Open new Buffer
-"nnoremap <silent> <leader>fg :GFiles<CR>| " Find Git files
-nnoremap <silent> <leader>fl :Buffers<CR>| " Buffer List
-nnoremap <silent> <leader>fh :History<CR>| " find recent files
-nnoremap <silent> <leader>ff :BLines<CR>|  " Find in current File
-nnoremap <silent> <leader>fa :Rg<CR>|      " find in All files
+"nnoremap <C-p>               :Files<CR>|  " Open new Buffer
+nnoremap <silent> <leader>bb :Buffers<CR>| " Buffer List
+nnoremap <silent> <leader>bh :History<CR>| " find recent files
+nnoremap <silent> <leader>f/ :GFiles<CR>|  " Find in project diectroy
+nnoremap <silent> <leader>pf :GFiles<CR>|  " Find in project diectroy
+nnoremap <silent> <leader>p/ :GFiles<CR>|  " Find in project diectroy
+nnoremap <silent> <leader>ff :FZF<CR>|     " Find in current diectroy
+nnoremap <silent> <leader>fo :Files<CR>|   " Find in current project
+nnoremap <silent> <leader>fs :update<CR>   " save buffer
+nnoremap <silent> <leader>fS :wall<CR>     " save all modified buffers
+nnoremap <silent> <leader>fr :History<CR>| " find recent files
+nnoremap <silent> <leader>ft :NERDTreeToggle<CR>
+
+" Search shortcuts
+nnoremap <silent> <leader>s/ :Rg<CR>|      " find in Project
+nnoremap <silent> <leader>sb :BLines<CR>|  " find in current buffer
+nnoremap <silent> <leader>ss :Lines<CR>|   " find in all buffer
+nnoremap <silent> <leader>sd :Rg . <CR>|      " find in All directory files
+nnoremap <silent> <leader>sp :Rg<CR>|      " find in All project files
+nnoremap <leader>sc  :set invhlsearch<cr>
 
 " find code tags
-nnoremap <leader>ct :Tags<CR>
-" toggle colorscheme
-nnoremap <leader>tc :Colors<CR>
+"nnoremap <leader>jf :Tags<CR>   " jump forward
+"nnoremap <leader>jb <C-t>       " jump back
 "nmap \e :Files<CR>
 "nmap \r :Rg<CR>
+
+"if exists('$BASE16_THEME')
+"      \ && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
+"    let base16colorspace=256
+"endif
 
 "" Ack
 "" Tell ack.vim or grepper to use ripgrep instead
@@ -256,17 +300,14 @@ nnoremap <leader>a :Grepper -tool git -noopen -jump<cr>
 " italicize comments
 highlight Comment cterm=italic
 
-"""""""""""""""""""""""""""""""
-" Toggle search highlight on off with <leader><CR>
-"""""""""""""""""""""""""""""""""
-nnoremap <silent> <leader><CR> (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
 
 " Tagbar C++ class outline viewer
 let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
 let g:tagbar_compat = 1
 let g:tagbar_sort = 0 "Sort according to their structure in file & not filename
-nnoremap <leader>t :TagbarToggle<CR>
+nnoremap <F2> :TagbarToggle<CR>
+inoremap <F2> :TagbarToggle<CR>
 
 " SuperTab
 let g:SuperTabLongestEnhanced = 1
@@ -275,14 +316,14 @@ au Filetype typescript let b:SuperTabDefaultCompletionType = "<C-x><C-o>"
 
 " Change j,k to act more visually in presence of wrapped lines
 " wrapparound line movement
-noremap <silent> j gj
-noremap <silent> k gk
-noremap <silent> <Down> gj
-noremap <silent> <Up> gk
+noremap  <silent> j gj
+noremap  <silent> k gk
+noremap  <silent> <Down> gj
+noremap  <silent> <Up>   gk
 inoremap <silent> <Down> <C-o>gj
-inoremap <silent> <Up> <C-o>gk
-noremap <silent> 0 g0
-noremap <silent> $ g$
+inoremap <silent> <Up>   <C-o>gk
+noremap  <silent> 0 g0
+noremap  <silent> $ g$
 nnoremap ' `
 nnoremap Y y$
 " Mappings to indent without exiting visual mode
@@ -350,11 +391,11 @@ set clipboard=unnamed,unnamedplus
 nnoremap <leader>y <Plug>OSCYankOperator
 vnoremap <leader>y <Plug>OSCYankVisual
 nnoremap <leader>yy <leader>y_
-vnoremap <leader>d "+d
-nnoremap <leader>p "+p
-nnoremap <leader>P "*P
-vmap <leader>p "+p
-vmap <leader>P "*P
+"vnoremap <leader>d "+d
+"nnoremap <leader>p "+p
+"nnoremap <leader>P "*P
+"vmap     <leader>p "+p
+"vmap     <leader>P "*P
 
 "reformat reindent
 noremap <Esc>P P'[v']=
@@ -389,8 +430,8 @@ set number
 set numberwidth=5
 set relativenumber
 set number
-nmap    <leader>1 :set invrelativenumber<CR>
-noremap <leader>0 :set invnumber invrelativenumber<CR>
+nmap    <leader>tN :set invrelativenumber<CR>
+noremap <leader>tn :set invnumber invrelativenumber<CR>
 
 set ruler
 set scroll=4
@@ -398,16 +439,6 @@ set scrolloff=4
 set textwidth=100
 set linebreak
 set display=lastline
-
-" Mappings for paging and scrolling
-nnoremap K 5k
-vnoremap K 5k
-nnoremap J 5j
-vnoremap J 5j
-nnoremap <C-k> <C-y>
-vnoremap <C-k> <C-y>
-nnoremap <C-j> <C-e>
-vnoremap <C-j> <C-e>
 
 " Undo
 " u, C-r seq undo/redo
@@ -486,6 +517,9 @@ set background=dark
 "colorscheme molokai
 "colorscheme solarized
 colorscheme gruvbox
+"colorscheme base16-default-dark
+" toggle colorscheme
+nnoremap <leader>tc :Colors<CR>
 
 "" highlight whitespace errors
 set list
@@ -515,8 +549,15 @@ if executable('zsh')
 endif
 set shell=/bin/bash\ -l
 
+"gd go to local definition
+"gD go to global definition
+"g* go search forward
+"g# go search backwards
+"gg go to top
+"G got to bottom
 " Show the list for multiple matches
 nnoremap <C-]> g<C-]>
+nnoremap gD g<C-]>
 
 """"""""""""" cscope/vim key mappings as define by skywind3000/gutentags_plus
 " The following maps all invoke one of the following cscope search types:
@@ -533,7 +574,7 @@ nnoremap <C-]> g<C-]>
 "
 
 " NERDTree
-nnoremap <leader>ft :NERDTreeToggle<CR>
+nnoremap <F3> :NERDTreeToggle<CR>
 "nnoremap <leader>ff :NERDTreeFind<CR>
 "nnoremap <leader>fn :NERDTreeFocus<CR>
 "map <leader>cd :cd %:p:h<CR>:pwd<CR>
@@ -606,6 +647,7 @@ let g:airline_detect_paste=1
 let g:airline_theme='molokai' "cool molokai
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 "let g:airline#extensions#tabline#left_sep = ' '
 "let g:airline#extensions#tabline#left_alt_sep = '|'
 "let g:airline#extensions#tabline#fnamemode = ':t'
@@ -615,7 +657,6 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#hunks#enabled = 0
 " remove encoding text & devicon
 au VimEnter * let g:airline_section_x = airline#section#create_right(['tagbar']) | :AirlineRefresh
-" Show the buffers in the tabline.
 let g:airline#extensions#neomake#enabled = 0
 
 " Spell-checking settings

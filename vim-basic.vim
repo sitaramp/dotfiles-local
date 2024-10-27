@@ -54,6 +54,12 @@ set signcolumn=yes " always show sign column on left side
 set list
 set splitright " Open new vertical split panes on the right
 
+" Folding Settings
+set foldenable " enable folding
+set foldlevelstart=20 " open most folds by default
+set foldnestmax=10 " 10 nested folds max
+set foldmethod=indent " this is good for python, fold based on indents
+
 " Critical Mappings
 let mapleader=" "
 let mapleader = "\<Space>"
@@ -63,14 +69,14 @@ inoremap  jj <esc>
 inoremap  kk <esc>
 
 " Mappings to move by visual lines when wrapped
-nnoremap j gj
-onoremap j gj
-nnoremap k gk
-onoremap k gk
-nnoremap <down> gj
-onoremap <down> gj
-onoremap <up> gk
-nnoremap <up> gk
+nnoremap <silent> j gj
+onoremap <silent> j gj
+nnoremap <silent> k gk
+onoremap <silent> k gk
+nnoremap <silent> <down> gj
+onoremap <silent> <down> gj
+onoremap <silent> <up> gk
+nnoremap <silent> <up> gk
 
 " Mapping for motion
 nnoremap H g^
@@ -99,8 +105,8 @@ let mapleader = "\<Space>"
 nmap <leader>w :w!<cr>
 
 " Disable highlight when <leader><cr> is pressed
-nnoremap <silent> <leader><CR> (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
-nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+nnoremap <silent> <leader>sc (&hls && v:hlsearch ? ':nohls' : ':set hls')<cr>
+"nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
 " Smart way to move between windows
 "map <C-j> <C-W>j
@@ -109,10 +115,10 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Scroll
-nnoremap J 5j
-nnoremap K 5k
-map <C-j> <C-W>e
-map <C-k> <C-W>y
+"nnoremap J 5j
+"nnoremap K 5k
+"map <C-j> <C-W>e
+"map <C-k> <C-W>y
 
 " no bells
 set noerrorbells
@@ -159,6 +165,20 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 set laststatus=2
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
+map <F1> <Esc>
+imap <F1> <Esc>
+" Mappings for moving around buffers
+nnoremap <leader>bb :buffers<CR>:b<space>
+nnoremap <Leader><Leader> <C-^>
+nnoremap [b :bprevious<CR>
+nnoremap ]b :bnext<CR>
 map <leader>qq :qa<CR>
 map <leader>qQ :qa!<CR>
+
+" remap :W, :Q etc if you press the shift key for tool long
+cabbrev Q q
+cabbrev W w
+cabbrev Wq wq
+cabbrev WQ wq
+cnoreabbrev q1 q!
 

@@ -127,3 +127,13 @@ use shellcheck
 
 # Copy files
 rsync -auvhP username@host:/pathname/ /pathname
+
+# More Command line hacks
+https://github.com/onceupon/Bash-Oneliner
+
+# ~/.ssh/config
+Host devvm
+  HostName  192.168.1.2
+  User username
+  IdentityFile ~/.ssh/id_rsa
+  Localforward 5900 localhost:5900
