@@ -90,10 +90,10 @@ elif [[ "$OS" == *Debian*  || $OS == *Ubuntu* ]]; then
                 bc bottom bat fd-find git-delta ripgrep lsd duf
     sudo apt install xsel vim-gtk3
     sudo apt install libssl-dev libevent-dev ncurses-dev
-    sudo apt install ruby-dev rake exuberant-ctags 
+    sudo apt install ruby-dev rake universal-ctags 
     sudo apt install cloud-guest-utils
     sudo apt install --target kernel-devel
-    sudo apt install ctags global shellcheck
+    sudo apt install ctags global shellcheck bat
 elif [[ "$OS" == *CentOS* || "$OS" == *RedHat* ]]; then
     sudo yum install git iputils-ping tmux nmap bash-completion bc \
                 bc bottom bat fd-find git-delta ripgrep lsd duf

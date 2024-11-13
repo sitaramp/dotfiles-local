@@ -80,6 +80,6 @@ if filereadable($HOME . "/dotfiles-local/vim-plug-after.vim")
 	source ~/dotfiles-local/vim-plug-after.vim
 endif
 
-if filereadable($HOME . "/dotfiles-local/vimrc.sade")
+if filereadable($HOME . "/dotfiles-local/vimrc.project")
 	source ~/dotfiles-local/vimrc.project
 endif

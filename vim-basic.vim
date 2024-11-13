@@ -29,8 +29,10 @@ set nosmartindent
 set tabstop=4    " show exiting tab with 4 spaces
 set shiftwidth=4 " When indenting with '>' use 4 spaces
 set backspace=indent,eol,start
+set whichwrap+=<,>,[,]
 set complete-=i
 set nrformats-=octal
+set formatoptions=cjoqrtw
 
 " make ESC key more responsive
 set ttimeout
@@ -135,6 +137,7 @@ set nowb
 set noswapfile
 set undofile
 set history=1000
+set clipboard=unnamed,unnamedplus
 
 set showcmd
 set wildmenu
@@ -144,9 +147,15 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 
 set mouse=a
 
+background=dark
 syntax enable
 syntax on
 filetype plugin indent on
+
+"distable background color erase when within tmux
+if $TMUX != ""
+  set t_ut=
+endif
 
 " Show tab bar if there are at least two tabs
 set showtabline=1
@@ -181,4 +190,7 @@ cabbrev W w
 cabbrev Wq wq
 cabbrev WQ wq
 cnoreabbrev q1 q!
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
 

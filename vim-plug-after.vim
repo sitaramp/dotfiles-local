@@ -388,9 +388,9 @@ set clipboard=unnamed,unnamedplus
 "  noremap X "_X
 "  noremap <del> "_X
 
-nnoremap <leader>y <Plug>OSCYankOperator
-vnoremap <leader>y <Plug>OSCYankVisual
-nnoremap <leader>yy <leader>y_
+nnoremap <leader>c <Plug>OSCYankOperator
+vnoremap <leader>c <Plug>OSCYankVisual
+nnoremap <leader>cc <leader>c_
 "vnoremap <leader>d "+d
 "nnoremap <leader>p "+p
 "nnoremap <leader>P "*P
@@ -424,6 +424,31 @@ let &t_EI .= WrapForTmux("\<Esc>[?2004l")
 
 "inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 " }}}
+
+" Visual mode pressing * or # searches for the current selection
+vnoremap <silent> * :call VisualSelection('f')<CR>
+vnoremap <silent> # :call VisualSelection('b')<CR>
+"
+function! VisualSelection(direction) range
+  let l:saved_reg = @"
+  execute "normal! vgvy"
+
+  let l:pattern = escape(@", '\\/.*$^~[]')
+  let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+  if a:direction == 'b'
+    execute "normal ?" . l:pattern . "^M"
+  elseif a:direction == 'gv'
+    call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
+  elseif a:direction == 'replace'
+    call CmdLine("%s" . '/'. l:pattern . '/')
+  elseif a:direction == 'f'
+    execute "normal /" . l:pattern . "^M"
+  endif
+
+  let @/ = l:pattern
+  let @" = l:saved_reg
+endfunction
 
 " Numbers
 set number
@@ -514,9 +539,9 @@ set background=dark
 " Set the following for 256color. Comment out for TC
 "let g:rehash256 = 1
 
-"colorscheme molokai
+colorscheme molokai
 "colorscheme solarized
-colorscheme gruvbox
+"colorscheme gruvbox
 "colorscheme base16-default-dark
 " toggle colorscheme
 nnoremap <leader>tc :Colors<CR>
@@ -716,7 +741,8 @@ augroup VimDiff
     set background=dark
     "syntax off
     "set syntax=diff
-    colorscheme evening
+    "colorscheme molokai
+    colorscheme gruvbox
 
     set cursorline
     ""set cursorcolumn

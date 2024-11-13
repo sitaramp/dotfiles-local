@@ -120,6 +120,8 @@ elif _has ack; then
     alias ack='ack --nocolor'
   fi
 fi
+alias diff='diff --color=auto'
+alias ip='ip --color=auto'
 
 # then edit all of the files containng the pattern
 if _has rg; then

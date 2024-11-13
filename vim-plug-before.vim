@@ -48,7 +48,7 @@ set mouse=a
 "set mouse=v
 "set mouse=c    "disable cursor
 
-set formatoptions=tcqrow
+set formatoptions=cjoqrtw
 set shell=/bin/bash\ -l
 set nofoldenable
 set spellcapcheck= " Have no need for this.
