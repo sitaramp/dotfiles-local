@@ -79,6 +79,7 @@ nnoremap <leader>cp gcap
 " vim --startuptime vim.log
 " vim -V9 somefile.txt
 " vim -V9vim-debug.log somefile.txt
+" vim --noplug somefile.txt
 " Check key mappings
 "   :verbose map <any-key>
 " :set verbosefile = vim-verbose.txt
@@ -241,9 +242,10 @@ nnoremap <silent> <leader>ft :NERDTreeToggle<CR>
 nnoremap <silent> <leader>s/ :Rg<CR>|      " find in Project
 nnoremap <silent> <leader>sb :BLines<CR>|  " find in current buffer
 nnoremap <silent> <leader>ss :Lines<CR>|   " find in all buffer
-nnoremap <silent> <leader>sd :Rg . <CR>|      " find in All directory files
+nnoremap <silent> <leader>sd :Rg . <CR>|   " find in All directory files
 nnoremap <silent> <leader>sp :Rg<CR>|      " find in All project files
-nnoremap <leader>sc  :set invhlsearch<cr>
+nnoremap <leader>sc          :set invhlsearch<cr>
+nnoremap <F4>                :set invhlsearch<cr>
 
 " find code tags
 "nnoremap <leader>jf :Tags<CR>   " jump forward
@@ -388,9 +390,10 @@ set clipboard=unnamed,unnamedplus
 "  noremap X "_X
 "  noremap <del> "_X
 
-nnoremap <leader>c <Plug>OSCYankOperator
-vnoremap <leader>c <Plug>OSCYankVisual
-nnoremap <leader>cc <leader>c_
+nmap <leader>c <Plug>OSCYankOperator
+nmap <leader>cc <leader>c_
+vmap <leader>c <Plug>OSCYankVisual
+"vnoremap <C-c> y:call SendViaOSC52(getreg('"'))<cr>
 "vnoremap <leader>d "+d
 "nnoremap <leader>p "+p
 "nnoremap <leader>P "*P
@@ -400,6 +403,8 @@ nnoremap <leader>cc <leader>c_
 "reformat reindent
 noremap <Esc>P P'[v']=
 noremap <Esc>p p'[v']=
+
+set pastetoggle=<F5>
 
 "" {{{ automatic paste mode
 function! WrapForTmux(s)
@@ -416,13 +421,13 @@ endfunction
 let &t_SI .= WrapForTmux("\<Esc>[?2004h")
 let &t_EI .= WrapForTmux("\<Esc>[?2004l")
 
-"function! XTermPasteBegin()
-"  set pastetoggle=<Esc>[201~
-"  set paste
-"  return ""
-"endfunction
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
 
-"inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 " }}}
 
 " Visual mode pressing * or # searches for the current selection

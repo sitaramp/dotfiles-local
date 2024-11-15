@@ -53,7 +53,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 "Plug 'tpope/vim-tbone'
 "Plug 'roxma/vim-tmux-clipboard'
-Plug 'ojroques/vim-oscyank', {'branch': 'main'}
+Plug 'ojroques/vim-oscyank', { 'tcommit': '14685fc' }
 "Plug 'jabirali/vim-tmux-yank'
 Plug 'Yggdroot/indentline'
 Plug 'godlygeek/tabular'
@@ -67,7 +67,7 @@ Plug 'chriskempson/base16-vim'
 " or start with -X
 "set clipboard=exclude:.*
 if filereadable($HOME . "/dotfiles-local/vim-plug-before.vim")
-	source ~/dotfiles-local/vim-plug-before.vim
+  source ~/dotfiles-local/vim-plug-before.vim
 endif
 
 " Initialize plugin system
@@ -77,9 +77,13 @@ call plug#end()
 "PlugUpdate
 
 if filereadable($HOME . "/dotfiles-local/vim-plug-after.vim")
-	source ~/dotfiles-local/vim-plug-after.vim
+  source ~/dotfiles-local/vim-plug-after.vim
 endif
 
 if filereadable($HOME . "/dotfiles-local/vimrc.project")
-	source ~/dotfiles-local/vimrc.project
+  source ~/dotfiles-local/vimrc.project
 endif
+
+"if filereadable($HOME . "/dotfiles-local/osc52.vim")
+"  source ~/dotfiles-local/osc52.vim
+"endif

@@ -94,6 +94,7 @@ elif [[ "$OS" == *Debian*  || $OS == *Ubuntu* ]]; then
     sudo apt install cloud-guest-utils
     sudo apt install --target kernel-devel
     sudo apt install ctags global shellcheck bat
+    sudo apt install fonts-powerline
 elif [[ "$OS" == *CentOS* || "$OS" == *RedHat* ]]; then
     sudo yum install git iputils-ping tmux nmap bash-completion bc \
                 bc bottom bat fd-find git-delta ripgrep lsd duf
