@@ -131,9 +131,31 @@ rsync -auvhP username@host:/pathname/ /pathname
 # More Command line hacks
 https://github.com/onceupon/Bash-Oneliner
 
-# ~/.ssh/config
+# On the laptop ~/.ssh/config
+Host jumpbox
+  HostName jumpbox-ip-addr
+  User root
+  IdentityFile ~/.ssh/id_rsa
 Host devvm
-  HostName  192.168.1.2
+  HostName  devvm-ip-addr
   User username
   IdentityFile ~/.ssh/id_rsa
   Localforward 5900 localhost:5900
+Host testhost-1
+  Hostname testhost-1
+  User root
+  IdentityFile ~/.ssh/id_rsa
+  ProxyJump jumpbox
+
+# On testhost-1 add two entries to ~/.ssh/config
+Host jumpbox
+  HostName jumpbox-ip-addr
+  User usename
+  IdentityFile ~/.ssh/id_rsa
+Host devvm
+  HostName devvm-ip-addr
+  User username
+  IdentityFile ~/.ssh/id_rsa
+  ProxyJump jumpbox
+
+

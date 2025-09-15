@@ -7,6 +7,8 @@ show history
 set print pretty on
 set print static off
 set output-radix 16
+set print thread-events off
+set print elements 1024
 set pagination off
 set logging off
 set height 0
@@ -15,7 +17,7 @@ set max-value-size unlimited
 
 
 # https://sourceware.org/gdb/onlinedocs/gdb/Logging-Output.html
-set logging file /opt/sdnas/config/sitaram-gdb.txt
+set logging file gdb-out.gdb
 set logging overwrite on
 set logging on
 # set logging redirect on

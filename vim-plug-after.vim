@@ -232,7 +232,7 @@ nnoremap <silent> <leader>f/ :GFiles<CR>|  " Find in project diectroy
 nnoremap <silent> <leader>pf :GFiles<CR>|  " Find in project diectroy
 nnoremap <silent> <leader>p/ :GFiles<CR>|  " Find in project diectroy
 nnoremap <silent> <leader>ff :FZF<CR>|     " Find in current diectroy
-nnoremap <silent> <leader>fo :Files<CR>|   " Find in current project
+nnoremap <silent> <leader>fo :Files %:p:h<CR>|   " Find in current project
 nnoremap <silent> <leader>fs :update<CR>   " save buffer
 nnoremap <silent> <leader>fS :wall<CR>     " save all modified buffers
 nnoremap <silent> <leader>fr :History<CR>| " find recent files
@@ -242,7 +242,7 @@ nnoremap <silent> <leader>ft :NERDTreeToggle<CR>
 nnoremap <silent> <leader>s/ :Rg<CR>|      " find in Project
 nnoremap <silent> <leader>sb :BLines<CR>|  " find in current buffer
 nnoremap <silent> <leader>ss :Lines<CR>|   " find in all buffer
-nnoremap <silent> <leader>sd :Rg . <CR>|   " find in All directory files
+nnoremap <silent> <leader>sd :Rg %:p:h <CR>|   " find in All directory files
 nnoremap <silent> <leader>sp :Rg<CR>|      " find in All project files
 nnoremap <leader>sc          :set invhlsearch<cr>
 nnoremap <F4>                :set invhlsearch<cr>
@@ -291,6 +291,7 @@ let g:grepper.tools=["rg"]
 " Search current word
 nnoremap <leader>* :Grepper -tool rg -cword -noprompt<cr>
 nnoremap <leader>a :Grepper -tool git -noopen -jump<cr>
+nnoremap <silent> <leader>sp :Rg<CR>|      " find in All project files
 
 " Search for file
 "noremap <F1> :denite<Space>
@@ -336,7 +337,7 @@ nnoremap <C-s> :update<CR>
 inoremap <C-s> <ESC>:update<CR>
 "nnoremap <leader>w :w!<CR>
 
-" remap :W, :Q etc if you press the shift key for tool lonag
+" remap :W, :Q etc if you press the shift key for tool long
 cabbrev Q q
 cabbrev W w
 cabbrev Wq wq
@@ -390,9 +391,9 @@ set clipboard=unnamed,unnamedplus
 "  noremap X "_X
 "  noremap <del> "_X
 
-nmap <leader>c <Plug>OSCYankOperator
-nmap <leader>cc <leader>c_
-vmap <leader>c <Plug>OSCYankVisual
+nmap <leader>y <Plug>OSCYankOperator
+nmap <leader>yy <leader>c_
+vmap <leader>y <Plug>OSCYankVisual
 "vnoremap <C-c> y:call SendViaOSC52(getreg('"'))<cr>
 "vnoremap <leader>d "+d
 "nnoremap <leader>p "+p
@@ -459,7 +460,19 @@ endfunction
 set number
 set numberwidth=5
 set relativenumber
-set number
+
+augroup linenumbers
+  autocmd!
+  autocmd BufEnter *    :set relativenumber
+  autocmd BufLeave *    :set number norelativenumber
+  autocmd WinEnter *    :set relativenumber
+  autocmd WinLeave *    :set number norelativenumber
+  autocmd InsertEnter * :set number norelativenumber
+  autocmd InsertLeave * :set relativenumber
+  autocmd FocusLost *   :set number norelativenumber
+  autocmd FocusGained * :set relativenumber
+augroup END
+
 nmap    <leader>tN :set invrelativenumber<CR>
 noremap <leader>tn :set invnumber invrelativenumber<CR>
 
@@ -481,8 +494,8 @@ nnoremap <leader>tu :MundoToggle<CR>
 if !isdirectory($HOME."/.vim/undo-dir")
   call mkdir($HOME."/.vim/undo-dir", "p", 0700)
 endif
-set undodir=~/.vim/undo-dir
 set undofile
+set undodir=~/.vim/undo-dir
 
 "Colors
 " Prereq export XTERM=xterm-256color,;  install ncurses-term

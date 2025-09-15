@@ -11,19 +11,19 @@ else
       exit 1
 fi
 
-if [[ -e $CSCOPE_DB ]]; then
+if [[ -e $TAGS_ROOT/cscope.out ]]; then
      echo "Found cscope DB"
 else
       echo "Failed to locate cscope DB. Please setup project env and run gentags"
       exit 1
 fi
 
-pushd . ; cd $TAGS_ROOT
+pushd . ; cd "$TAGS_ROOT" || return
 export CSCOPE_EDITOR=vim
 
-if [[ -e $GTAGS_DB ]]; then
+if [[ -e "$GTAGS_DB" ]]; then
       gtags-cscope -d
 else
       cscope -d -f cscope.out
 fi
-popd
+popd || return

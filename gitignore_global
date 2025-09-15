@@ -171,4 +171,6 @@ desktop.ini
 *.vsd
 *.xls
 *.xlsm
-
+# vscode
+**/.vscode/**
+**/obj/**

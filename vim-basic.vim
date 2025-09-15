@@ -40,7 +40,6 @@ set ttimeoutlen=100
 
 set hidden
 set ruler
-set number
 set nowrap
 set hlsearch
 set incsearch
@@ -55,6 +54,22 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set signcolumn=yes " always show sign column on left side
 set list
 set splitright " Open new vertical split panes on the right
+
+" Number
+set number
+set numberwidth=5
+set relativenumber
+augroup linenumbers
+  autocmd!
+  autocmd BufEnter *    :set relativenumber
+  autocmd BufLeave *    :set number norelativenumber
+  autocmd WinEnter *    :set relativenumber
+  autocmd WinLeave *    :set number norelativenumber
+  autocmd InsertEnter * :set number norelativenumber
+  autocmd InsertLeave * :set relativenumber
+  autocmd FocusLost *   :set number norelativenumber
+  autocmd FocusGained * :set relativenumber
+augroup END
 
 " Folding Settings
 set foldenable " enable folding
@@ -98,7 +113,6 @@ vnoremap > >gv
 vnoremap < <gv
 
 "" With a map leader it's possible to do extra key combinations
-remap U <C-R>
 nnoremap <Leader>s :update<CR>
 
 " like <leader>w saves the current file
@@ -147,7 +161,7 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 
 set mouse=a
 
-background=dark
+set background=dark
 syntax enable
 syntax on
 filetype plugin indent on

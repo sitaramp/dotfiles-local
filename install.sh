@@ -78,7 +78,7 @@ git submodule update --init --recursive
 # Install missing dependencies
 if [[ "$OS" == *SuSE* ]]; then
     sudo zypper install git fd iputils-ping tmux nmap bash-completion \
-                bc bottom bat fd-find git-delta ripgrep lsd duf
+                bash-completion-extra bc bottom bat fd-find git-delta ripgrep lsd duf
     ripgrep
     sudo zypper install xsel gvim
     sudo zypper install build-essential libssl-devel libevent-devel ncurses-devel
@@ -87,7 +87,7 @@ if [[ "$OS" == *SuSE* ]]; then
     sudo zypper install ctags global ShellCheck
 elif [[ "$OS" == *Debian*  || $OS == *Ubuntu* ]]; then
     sudo apt install git fd-find net-tools iputils-ping nmap bash-completion bc \
-                bc bottom bat fd-find git-delta ripgrep lsd duf
+                bash-completion-extra bc bottom bat fd-find git-delta ripgrep lsd duf
     sudo apt install xsel vim-gtk3
     sudo apt install libssl-dev libevent-dev ncurses-dev
     sudo apt install ruby-dev rake universal-ctags 
@@ -97,7 +97,7 @@ elif [[ "$OS" == *Debian*  || $OS == *Ubuntu* ]]; then
     sudo apt install fonts-powerline
 elif [[ "$OS" == *CentOS* || "$OS" == *RedHat* ]]; then
     sudo yum install git iputils-ping tmux nmap bash-completion bc \
-                bc bottom bat fd-find git-delta ripgrep lsd duf
+                bash-completion-extra bc bottom bat fd-find git-delta ripgrep lsd duf
     sudo yum install xsel gvim
     sudo yum install libssl-dev libevent-devel ncurses-devel
     sudo yum install ruby rubygem-rake ruby-devel ctags git
@@ -184,5 +184,15 @@ cd ~/Downloads || exit
 # install the latest tmux from sources
 #wget https://github.com/tmux/tmux/releases/download/3.1b/tmux-3.1b.tar.gz
 #wget https://github.com/tmux/tmux/releases/download/3.1/tmux-3.1-rc.tar.gz
+# install eget
+curl https://zyedidia.github.io/eget.sh | sh
+# install latest tmux
+eget --to /usr/local/bin tmux/tmux
+# install latest zoxide
+eget --to /usr/local/bin ajeetdsouza/zoxide
+# install latedt ripgrep
+eget --to /usr/local/bin BurntSushi/ripgrep
+# install latest fd
+eget --to /usr/local/bin sharkdp/fd
 #popd
 popd
