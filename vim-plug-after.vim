@@ -401,9 +401,9 @@ vmap <leader>y <Plug>OSCYankVisual
 "vmap     <leader>p "+p
 "vmap     <leader>P "*P
 
-"reformat reindent
-noremap <Esc>P P'[v']=
-noremap <Esc>p p'[v']=
+""reformat reindent
+"noremap <Esc>P P'[v']=
+"noremap <Esc>p p'[v']=
 
 set pastetoggle=<F5>
 
@@ -657,11 +657,6 @@ let g:NERDTreeStatusLine = -1
 nnoremap [g  :GitGutterPrevHunk<CR>
 nnoremap ]g  :GitGutterNextHunk<CR>
 set conceallevel=0
-augroup VimDiff
-    autocmd!
-    autocmd VimEnter,FilterWritePre * if &diff | GitGutterDisable | endif
-augroup END
-
 "vim-commentary
 autocmd FileType apache setlocal commentstring=#\ %s
 
@@ -678,11 +673,6 @@ let g:ale_lint_on_enter = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
 let g:ale_linters = {'python': ['autopep8']}
-
-augroup VimDiff
-    autocmd!
-    autocmd VimEnter,FilterWritePre * if &diff | ALEDisable | endif
-augroup END
 
 " Airline status line  settings
 set laststatus=2
@@ -746,6 +736,9 @@ augroup VimDiff
   autocmd!
   if &diff
 
+    autocmd!
+    autocmd VimEnter,FilterWritePre * if &diff | GitGutterDisable | endif
+    autocmd VimEnter,FilterWritePre * if &diff | ALEDisable | endif
     set norelativenumber
     set diffopt=filler,context:200 " filler is default and inserts empty lines for sync
     "map ] ]c
