@@ -588,7 +588,7 @@ set cursorline
 
 "" use login Shell instead of interactive shell
 if executable('zsh')
-  set shell=/usr/bin/zsh\ -l
+  set shell=/bin/zsh\ -l
 endif
 set shell=/bin/bash\ -l
 
