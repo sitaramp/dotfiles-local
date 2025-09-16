@@ -13,7 +13,8 @@ set nocompatible
 set t_Co=256
 
 " set fzf path before loading fzf.vim
-set runtimepath+=~/.fzf
+"set runtimepath+=~/.fzf
+set runtimepath+=/opt/homebrew/opt/fzf
 
 set directory=$HOME/.vim/swapfiles
 set synmaxcol=200
@@ -86,13 +87,17 @@ set noswapfile
 set autowrite
 set autoread
 
-" persist undo history
-set undolevels=1000
-set history=200
+" Use persistent history.
 if has ('persistent_undo')
-  set undodir=~/.vim/.vimundo
+  if !isdirectory($HOME."/.vim/undo-dir")
+    call mkdir($HOME."/.vim/undo-dir", "p", 0700)
+  endif
+  set undodir=~/.vim/undo-dir
   set undofile
+  set history=200
+  set undolevels=1000
 endif
+
 
 " Save and restore marks, registers content,
 " command-line history, search pattern history

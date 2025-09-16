@@ -149,10 +149,19 @@ au FocusGained,BufEnter * silent! checktime
 set nobackup
 set nowb
 set noswapfile
-set undofile
-set history=1000
-set clipboard=unnamed,unnamedplus
 
+" Use persistent history.
+if has ('persistent_undo')
+  if !isdirectory($HOME."/.vim/undo-dir")
+    call mkdir($HOME."/.vim/undo-dir", "p", 0700)
+  endif
+  set undodir=~/.vim/undo-dir
+  set undofile
+  set history=200
+  set undolevels=1000
+endif
+
+set clipboard=unnamed,unnamedplus
 set showcmd
 set wildmenu
 " Ignore compiled files

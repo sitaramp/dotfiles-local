@@ -490,13 +490,6 @@ nnoremap <leader>tu :MundoToggle<CR>
 "Add this line if you are using Python 3.
 "let g:gundo_prefer_python3 = 1
 
-" Use persistent history.
-if !isdirectory($HOME."/.vim/undo-dir")
-  call mkdir($HOME."/.vim/undo-dir", "p", 0700)
-endif
-set undofile
-set undodir=~/.vim/undo-dir
-
 "Colors
 " Prereq export XTERM=xterm-256color,;  install ncurses-term
 " The cterm color numbers refer to XTerm colors in 256 color mode.
@@ -677,10 +670,12 @@ let g:ale_linters = {'python': ['autopep8']}
 " Airline status line  settings
 set laststatus=2
 let g:airline_detect_paste=1
-let g:airline_theme='molokai' "cool molokai
+"let g:airline_theme='molokai' "cool molokai
+let g:airline_theme='badwolf' "cool molokai
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#formatter ='default'
+"let g:airline#extensions#tabline#buffer_nr_show = 1
 "let g:airline#extensions#tabline#left_sep = ' '
 "let g:airline#extensions#tabline#left_alt_sep = '|'
 "let g:airline#extensions#tabline#fnamemode = ':t'
