@@ -12,8 +12,6 @@ if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
     echo 'Usage: ./install.sh arg-one arg-two
 
 This is an awesome bash script to install all dotfile packages.
-
-'
     exit
 fi
 
@@ -78,39 +76,29 @@ git submodule update --init --recursive
 # Install missing dependencies
 if [[ "$OS" == *SuSE* ]]; then
     sudo zypper install git fd iputils-ping tmux nmap bash-completion \
-                bash-completion-extra bc bottom bat fd-find git-delta ripgrep lsd duf
+                bash-completion-extra bc duf
     ripgrep
     sudo zypper install xsel gvim
     sudo zypper install build-essential libssl-devel libevent-devel ncurses-devel
-    sudo zypper install ruby rubygems rubygem-rake ctags
     sudo zypper install --target kernel-devel
-    sudo zypper install ctags global ShellCheck
+    sudo zypper install ctags global shellcheck
 elif [[ "$OS" == *Debian*  || $OS == *Ubuntu* ]]; then
     sudo apt install git fd-find net-tools iputils-ping nmap bash-completion bc \
-                bash-completion-extra bc bottom bat fd-find git-delta ripgrep lsd duf
+                bash-completion-extra bc duf
     sudo apt install xsel vim-gtk3
     sudo apt install libssl-dev libevent-dev ncurses-dev
-    sudo apt install ruby-dev rake universal-ctags 
     sudo apt install cloud-guest-utils
     sudo apt install --target kernel-devel
-    sudo apt install ctags global shellcheck bat
+    sudo apt install ctags global shellcheck
     sudo apt install fonts-powerline
 elif [[ "$OS" == *CentOS* || "$OS" == *RedHat* ]]; then
     sudo yum install git iputils-ping tmux nmap bash-completion bc \
-                bash-completion-extra bc bottom bat fd-find git-delta ripgrep lsd duf
+                bash-completion-extra bc duf
     sudo yum install xsel gvim
     sudo yum install libssl-dev libevent-devel ncurses-devel
-    sudo yum install ruby rubygem-rake ruby-devel ctags git
     sudo yum install --target kernel-devel
     sudo yum install ctags global ShellCheck
 fi
-
-# Install Rust Cargo
-# Install rustup
-
-# Cargo installs
-# https://lib.rs/crates/lsd
-#cargo install fd-find lsd ripgrep
 
 # python system wide installs
 #sudo apt-get install python3-pip
@@ -120,7 +108,6 @@ fi
 # python user env install
 curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | python
 
-pip3 install tldr
 pip3 install autopep8   # python linter
 pip3 install vim-vint   # vim linter
 npm install -g fixjson  # json linter
@@ -165,7 +152,6 @@ if [[ ! "$PATH" == */dotfiles-local/bin* ]]; then
   export PATH="${PATH:+${PATH}:}/usr/local/bin"
   export PATH="${PATH:+${PATH}:}/usr/local/sbin"
   export PATH="${PATH:+${PATH}:}/sbin"
-#  export PATH="${PATH:+${PATH}:}$HOME/.cargo/bin"
   export PATH="${PATH:+${PATH}:}$HOME/.local/bin"
 fi
 
@@ -182,17 +168,36 @@ mkdir ~/Downloads
 cd ~/Downloads || exit
 
 # install the latest tmux from sources
+# apt install libevent-dev ncurses-dev bison byacc
 #wget https://github.com/tmux/tmux/releases/download/3.1b/tmux-3.1b.tar.gz
 #wget https://github.com/tmux/tmux/releases/download/3.1/tmux-3.1-rc.tar.gz
+
 # install eget
 curl https://zyedidia.github.io/eget.sh | sh
-# install latest tmux
-eget --to /usr/local/bin tmux/tmux
-# install latest zoxide
-eget --to /usr/local/bin ajeetdsouza/zoxide
-# install latedt ripgrep
-eget --to /usr/local/bin BurntSushi/ripgrep
-# install latest fd
-eget --to /usr/local/bin sharkdp/fd
+# install cd replacement zoxide
+./eget ajeetdsouza/zoxide --to ~/.local/bin
+# install grep replacement ripgrep
+./eget BurntSushi/ripgrep --to ~/.local/bin
+# install find replacement fd
+./eget sharkdp/fd --to ~/.local/bin
+# install cat replacement bat
+./eget sharkdp/bat --to ~/.local/bin
+# install diff replacement delta
+./eget dandavison/delta --to ~/.local/bin
+# shell script lineter checkshell
+./eget koalaman/shellcheck --to ~/.local/bin
+# install tldr client
+./eget tealdeer-rs/tealdeer --to ~/.local/bin
+# install ls replacement lsd
+./eget lsd-rs/lsd --to ~/.local/bin
+# install  htop replacement btm
+./eget ClementTsang/bottom --to ~/.local/bin
+# install  du replacement ncdu
+./eget rofl0r/ncdu --to ~/.local/bin
+# install  du replacement duf
+#./eget muesli/duf --to ~/.local/bin
+# install  git log replacement tig
+./eget jonas/tig --to ~/.local/bin
+# TBD hexyl(hex), visidata(csv), tv(sqlite), pandoc(pdf)
 #popd
 popd

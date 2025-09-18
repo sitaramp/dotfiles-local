@@ -126,8 +126,9 @@ alias ip='ip --color=auto'
 
 # then edit all of the files containng the pattern
 if _has rg; then
+  #chekc undofile settings
   vgrep() {
-      rg --vimgrep "$1" | vim -c cb! -c copen -c only -
+    rg --vimgrep "$1" | vim -c cb! -c copen -c only -
   }
   vack() {
     vim $(rg --color=never --smart-case -l "$@")
