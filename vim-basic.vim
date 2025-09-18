@@ -162,6 +162,7 @@ if has ('persistent_undo')
 endif
 
 set clipboard=unnamed,unnamedplus
+
 set showcmd
 set wildmenu
 " Ignore compiled files

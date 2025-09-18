@@ -456,23 +456,7 @@ function! VisualSelection(direction) range
   let @" = l:saved_reg
 endfunction
 
-" Numbers
-set number
-set numberwidth=5
-set relativenumber
-
-augroup linenumbers
-  autocmd!
-  autocmd BufEnter *    :set relativenumber
-  autocmd BufLeave *    :set number norelativenumber
-  autocmd WinEnter *    :set relativenumber
-  autocmd WinLeave *    :set number norelativenumber
-  autocmd InsertEnter * :set number norelativenumber
-  autocmd InsertLeave * :set relativenumber
-  autocmd FocusLost *   :set number norelativenumber
-  autocmd FocusGained * :set relativenumber
-augroup END
-
+" Numbers toggles
 nmap    <leader>tN :set invrelativenumber<CR>
 noremap <leader>tn :set invnumber invrelativenumber<CR>
 

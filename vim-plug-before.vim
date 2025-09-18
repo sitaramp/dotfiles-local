@@ -13,7 +13,7 @@ set nocompatible
 set t_Co=256
 
 " set fzf path before loading fzf.vim
-"set runtimepath+=~/.fzf
+set runtimepath+=~/.fzf
 set runtimepath+=/opt/homebrew/opt/fzf
 
 set directory=$HOME/.vim/swapfiles
@@ -79,6 +79,22 @@ autocmd FileType text,markdown,tex,html setlocal wrap linebreak
 if exists('+breakindent')
   set breakindent
 endif
+
+" Number
+set number
+set numberwidth=5
+set relativenumber
+augroup linenumbers
+  autocmd!
+  autocmd BufEnter *    :set relativenumber
+  autocmd BufLeave *    :set number norelativenumber
+  autocmd WinEnter *    :set relativenumber
+  autocmd WinLeave *    :set number norelativenumber
+  autocmd InsertEnter * :set number norelativenumber
+  autocmd InsertLeave * :set relativenumber
+  autocmd FocusLost *   :set number norelativenumber
+  autocmd FocusGained * :set relativenumber
+augroup END
 
 " Dont write backup amd swap files
 set nobackup

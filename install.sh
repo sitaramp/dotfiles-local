@@ -12,6 +12,8 @@ if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
     echo 'Usage: ./install.sh arg-one arg-two
 
 This is an awesome bash script to install all dotfile packages.
+
+'
     exit
 fi
 
@@ -76,7 +78,7 @@ git submodule update --init --recursive
 # Install missing dependencies
 if [[ "$OS" == *SuSE* ]]; then
     sudo zypper install git fd iputils-ping tmux nmap bash-completion \
-                bash-completion-extra bc duf
+                bash-completion-extra bc
     ripgrep
     sudo zypper install xsel gvim
     sudo zypper install build-essential libssl-devel libevent-devel ncurses-devel
@@ -168,7 +170,6 @@ mkdir ~/Downloads
 cd ~/Downloads || exit
 
 # install the latest tmux from sources
-# apt install libevent-dev ncurses-dev bison byacc
 #wget https://github.com/tmux/tmux/releases/download/3.1b/tmux-3.1b.tar.gz
 #wget https://github.com/tmux/tmux/releases/download/3.1/tmux-3.1-rc.tar.gz
 

@@ -113,7 +113,6 @@ if _has rg; then
   alias ag=rg
   alias rg='rg --smart-case --colors path:fg:green --colors match:fg:red'
   export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-  vgrep() { rg --vimgrep "$1" | vim -c cb! -c copen -c only - }
 elif _has ag; then
   alias ag='ag --color-path 1\;31 --color-match 1\;32 --color'
 elif _has ack; then
@@ -126,7 +125,6 @@ alias ip='ip --color=auto'
 
 # then edit all of the files containng the pattern
 if _has rg; then
-  #chekc undofile settings
   vgrep() {
     rg --vimgrep "$1" | vim -c cb! -c copen -c only -
   }

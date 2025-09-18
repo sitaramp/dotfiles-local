@@ -1,6 +1,7 @@
 #
 # Prereqs: install ripgrep, ag, ack, fzf
 #
+# brew config
 DISABLE_AUTO_UPDATE="true"
 DISABLE_MAGIC_FUNCTIONS="true"
 DISABLE_COMPFIX="true"
@@ -113,5 +114,4 @@ plugins=(
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#663399,standout"
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
 ZSH_AUTOSUGGEST_USE_ASYNC=1
-
 
