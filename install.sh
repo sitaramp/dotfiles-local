@@ -183,7 +183,10 @@ cd ~/Downloads || exit
 #wget https://github.com/tmux/tmux/releases/download/3.1/tmux-3.1-rc.tar.gz
 
 # install eget
-curl https://zyedidia.github.io/eget.sh | sh
+curl -o eget.sh https://zyedidia.github.io/eget.sh
+shasum -a 256 eget.sh
+bash eget.sh
+
 # install cd replacement zoxide
 ./eget ajeetdsouza/zoxide --to ~/.local/bin
 # install grep replacement ripgrep
