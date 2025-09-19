@@ -41,6 +41,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/promptline.vim'
+"In vim :PromptlineSnapshot ~/.promptline.sh airline
+"In bash/zsh source ~/.promptline.sh
 Plug 'plasticboy/vim-markdown'
 Plug 'rhysd/vim-clang-format'
 "Plug 'sjl/gundo.vim'

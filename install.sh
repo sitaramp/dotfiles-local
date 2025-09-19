@@ -119,7 +119,8 @@ PATH_DIR="$HOME/dotfiles-local/bin"  # or another directory on your $PATH
 curl https://cht.sh/:cht.sh > "$PATH_DIR/cht.sh"
 mod +x "$PATH_DIR/cht.sh"
 
-pip install powerline-shell flake8
+# Python linters
+pip install flake8 pylint mypy
 
 mkdir -p ~/.config/powerline-shell
 mv  ~/.config/powerline-shell/config.json  ~/.config/powerline-shell/config.json.bak
@@ -142,8 +143,13 @@ curl -fLo  ~/.vim/autoload/plug.vim --create-dirs \
 # Install scripts in ~/.bashrc
 # append the following lines to ~/.bashrc
 
+# Sto here if this is a non-interactive shell
+[ -z "$PS1" ] && return
 [[ $- == *i* ]] || return
+
+# disable C-s C-q
 stty -ixon
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f /etc/bash_completion ] && source /etc/bash_completion
 [ -f ~/dotfiles-local/sensible.bash ] && source ~/dotfiles-local/sensible.bash
@@ -157,16 +163,19 @@ if [[ ! "$PATH" == */dotfiles-local/bin* ]]; then
   export PATH="${PATH:+${PATH}:}$HOME/.local/bin"
 fi
 
-
-function _update_ps1() {
-    PS1=$(powerline-shell $?)
-}
-if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
+# Shell Prompt
+#pip install powerline-shell
+#function _update_ps1() {
+#    PS1=$(powerline-shell $?)
+#}
+#if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+#    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+#fi
 
 pushd .
-mkdir ~/Downloads
+
+# Download install other tools
+mkdir -p ~/Downloads
 cd ~/Downloads || exit
 
 # install the latest tmux from sources
