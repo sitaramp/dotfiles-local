@@ -8,7 +8,7 @@ alias dotfiles='cd ~/dotfiles-local'
 #alias gs='git status -sb'
 alias gf='git fetch'
 # For Git >= 2.25 and latter use --rebase=merges
-alias gpr='git pull --rebase=preserve'
+alias gpr='git pull --rebase-merges'
 alias grc='git rebase --continue'
 alias gss='git stash save'
 alias gsl='git stash list'
@@ -50,6 +50,8 @@ unalias rm > /dev/null 2>&1
 rm() { /bin/rm -vi "$@"; }
 unalias cp > /dev/null 2>&1
 cp() { /bin/cp -auvi "$@"; }
+unalias rsync > /dev/null 2>&1
+rsync() { /bin/rsync -auvhP "$@"; }
 unalias mv > /dev/null 2>&1
 mv() { /bin/mv -vi "$@" ; }
 mnt() { /bin/mount | column -t "$@" ; }

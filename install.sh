@@ -208,6 +208,9 @@ curl https://zyedidia.github.io/eget.sh | sh
 #./eget muesli/duf --to ~/.local/bin
 # install  git log replacement tig
 ./eget jonas/tig --to ~/.local/bin
+# install  git log replacement tig
+
+#starship preset gruvbox-rainbow -o ~/.config/starship.toml
 # TBD hexyl(hex), visidata(csv), tv(sqlite), pandoc(pdf)
 #popd
 popd
