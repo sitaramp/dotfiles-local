@@ -88,3 +88,8 @@ show logging
 
 # make a function call
 # print (int) getSplCount()
+
+# More usage at: 
+# https://csapp.cs.cmu.edu/3e/docs/gdbnotes-x86-64.txt
+# https://beej.us/guide/bggdb/
+#
