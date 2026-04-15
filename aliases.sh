@@ -1,6 +1,8 @@
 # Productivity
 alias todo='$EDITOR ~/.todo'
 alias dotfiles='cd ~/dotfiles-local'
+alias blinkon='echo -en "\e[1 q"'
+alias blinkoff='echo -en "\e[2 q"'
 
 # Git
 #alias git='hub'
@@ -8,7 +10,7 @@ alias dotfiles='cd ~/dotfiles-local'
 #alias gs='git status -sb'
 alias gf='git fetch'
 # For Git >= 2.25 and latter use --rebase=merges
-alias gpr='git pull --rebase-merges'
+alias gpr='git pull --rebase=merges'
 alias grc='git rebase --continue'
 alias gss='git stash save'
 alias gsl='git stash list'
@@ -41,7 +43,7 @@ ACKBIN=/usr/local/bin/ack
 ps() { /bin/ps auxf; }
 myps() { /bin/ps -fjH -u "$USER"; }
 ps1() { /bin/ps auxww | $ACKBIN -i --color "$1" | $ACKBIN -v ack; }
-#unalias beep
+unalias beep > /dev/null 2 2>&1
 beep() { echo -e '\a'; }
 
 # Zippin

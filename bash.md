@@ -70,13 +70,17 @@ wget http://www.gutenburg.com/files/4300/4300-0.txt
 ### Command line enditing
 
 ```
-Ctrl+a    # move cursor to start
+# Cursore movements
+Ctrl+a    # jump cursor to start of the line
 Alt+b     # move cursor back
 Alt+f     # move cursor forward
+Ctrl+e    # jump cursor to end of the line
+
+# Cut and paste
 Alt+d     # delete word
-Ctrl+w    # delete word+space
+Ctrl+w    # delete word + space
+Ctrl+u    # delete to the begining of line
 Ctrl+y    # paste delete word
-Ctrl+e    # move cursor to end
 ```
 
 ###  Command line re-use
@@ -87,7 +91,7 @@ cd -   # change to last directory
 cd     # change to home dir
 Ctr+r  # recall command history
 Ctr+d  # logout
-Ctrl-l # clear terminal
+Ctrl-l # clear screen
 ```
 
 ### Stream redirection
@@ -95,6 +99,7 @@ Ctrl-l # clear terminal
 ```
 >    # redirect stdout
 2>&1 # redirect both stdout and stderr
+command |& tee file.log # log both stdout and stderr
 ```
 
 ### Pipes
@@ -110,6 +115,9 @@ find . -name '*.html' | xarg mv {} web /
 # Execute commands in parallel, same as xarg
 find . -name '*.html' | parallel mv {} web /
 ```
+# find and execute
+fd -e zst -x sh -c 'cd "$1" && tar --zstf -xf "{/}"' sh {//}
+
 
 ###  find, grep awk and sed
 # lines before and after match
@@ -123,7 +131,14 @@ rg  # ripgrep grep replacement
 # Script
 set -e # stop on err
 set -x # debug
+set -u # fail if unset var is used
+set -o # ?
 use shellcheck
+
+# Background process
+Ctrl-z # suspend the process
+bg     # resume in the background 
+disown # detach from the shell
 
 # Copy files
 rsync -auvhP username@host:/pathname/ /pathname

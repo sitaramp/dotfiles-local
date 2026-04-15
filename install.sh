@@ -86,7 +86,7 @@ if [[ "$OS" == *SuSE* ]]; then
     sudo zypper install ctags global shellcheck
 elif [[ "$OS" == *Debian*  || $OS == *Ubuntu* ]]; then
     sudo apt install git fd-find net-tools iputils-ping nmap bash-completion bc \
-                bash-completion-extra bc duf
+                bash-completion-extra bc ncdu
     sudo apt install xsel vim-gtk3
     sudo apt install libssl-dev libevent-dev ncurses-dev
     sudo apt install cloud-guest-utils
@@ -95,7 +95,7 @@ elif [[ "$OS" == *Debian*  || $OS == *Ubuntu* ]]; then
     sudo apt install fonts-powerline
 elif [[ "$OS" == *CentOS* || "$OS" == *RedHat* ]]; then
     sudo yum install git iputils-ping tmux nmap bash-completion bc \
-                bash-completion-extra bc duf
+                bash-completion-extra bc ncdu
     sudo yum install xsel gvim
     sudo yum install libssl-dev libevent-devel ncurses-devel
     sudo yum install --target kernel-devel
@@ -188,32 +188,37 @@ shasum -a 256 eget.sh
 bash eget.sh
 
 # install cd replacement zoxide
-./eget ajeetdsouza/zoxide --to ~/.local/bin
+sudo ./eget ajeetdsouza/zoxide --to /usr/local/bin
 # install grep replacement ripgrep
-./eget BurntSushi/ripgrep --to ~/.local/bin
+sudo ./eget BurntSushi/ripgrep --to /usr/local/bin
 # install find replacement fd
-./eget sharkdp/fd --to ~/.local/bin
+sudo ./eget sharkdp/fd --to /usr/local/bin
 # install cat replacement bat
-./eget sharkdp/bat --to ~/.local/bin
+sudo ./eget sharkdp/bat --to /usr/local/bin
 # install diff replacement delta
-./eget dandavison/delta --to ~/.local/bin
+sudo ./eget dandavison/delta --to /usr/local/bin
 # shell script lineter checkshell
-./eget koalaman/shellcheck --to ~/.local/bin
+sudo ./eget koalaman/shellcheck --to /usr/local/bin
 # install tldr client
-./eget tealdeer-rs/tealdeer --to ~/.local/bin
+sudo ./eget tealdeer-rs/tealdeer --to /usr/local/bin
 # install ls replacement lsd
-./eget lsd-rs/lsd --to ~/.local/bin
+sudo ./eget lsd-rs/lsd --to /usr/local/bin
 # install  htop replacement btm
-./eget ClementTsang/bottom --to ~/.local/bin
-# install  du replacement ncdu
-./eget rofl0r/ncdu --to ~/.local/bin
+sudo ./eget ClementTsang/bottom --to /usr/local/bin
+ install  du replacement ncdu
+#./eget rofl0r/ncdu --to /usr/local/bin
 # install  du replacement duf
-#./eget muesli/duf --to ~/.local/bin
+#./eget muesli/duf --to /usr/local/bin
 # install  git log replacement tig
 ./eget jonas/tig --to ~/.local/bin
 # install  git log replacement tig
 
 #starship preset gruvbox-rainbow -o ~/.config/starship.toml
+# install  prompt
+sudo ./eget starship/starship --to /usr/local/bin
+starship preset catppuccin-powerline -o ~/.config/starship.toml
+# install  docker ctop
+sudo ./eget bcicen/ctop --to /usr/local/bin
 # TBD hexyl(hex), visidata(csv), tv(sqlite), pandoc(pdf)
 #popd
 popd
