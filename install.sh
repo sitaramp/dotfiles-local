@@ -194,31 +194,32 @@ sudo ./eget BurntSushi/ripgrep --to /usr/local/bin
 # install find replacement fd
 sudo ./eget sharkdp/fd --to /usr/local/bin
 # install cat replacement bat
-sudo ./eget sharkdp/bat --to /usr/local/bin
+./eget sharkdp/bat --to ~/.local/bin
+# install top replacement btop
+./eget aristoratos/btop --to ~/.local/bin
 # install diff replacement delta
-sudo ./eget dandavison/delta --to /usr/local/bin
+./eget dandavison/delta --to ~/.local/bin
 # shell script lineter checkshell
-sudo ./eget koalaman/shellcheck --to /usr/local/bin
+./eget koalaman/shellcheck --to ~/.local/bin
 # install tldr client
-sudo ./eget tealdeer-rs/tealdeer --to /usr/local/bin
+./eget tealdeer-rs/tealdeer --to ~/.local/bin
+ln -s ~/.local/bin/tealdeer ~/.local/bin/tldr
 # install ls replacement lsd
-sudo ./eget lsd-rs/lsd --to /usr/local/bin
+./eget lsd-rs/lsd --to ~/.local/bin
 # install  htop replacement btm
-sudo ./eget ClementTsang/bottom --to /usr/local/bin
- install  du replacement ncdu
-#./eget rofl0r/ncdu --to /usr/local/bin
-# install  du replacement duf
-#./eget muesli/duf --to /usr/local/bin
+./eget ClementTsang/bottom --to ~/.local/bin
 # install  git log replacement tig
 ./eget jonas/tig --to ~/.local/bin
-# install  git log replacement tig
 
-#starship preset gruvbox-rainbow -o ~/.config/starship.toml
 # install  prompt
-sudo ./eget starship/starship --to /usr/local/bin
+./eget starship/starship --to ~/.local/bin
+#starship preset gruvbox-rainbow -o ~/.config/starship.toml
 starship preset catppuccin-powerline -o ~/.config/starship.toml
+# install  du replacement duf
+./eget muesli/duf --to ~/.local/bin
 # install  docker ctop
-sudo ./eget bcicen/ctop --to /usr/local/bin
+./eget bcicen/ctop --to ~/.local/bin
+# install  git log replacement tig
 # TBD hexyl(hex), visidata(csv), tv(sqlite), pandoc(pdf)
 #popd
 popd
