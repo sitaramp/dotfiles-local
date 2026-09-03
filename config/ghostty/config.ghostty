@@ -1,0 +1,50 @@
+# === Appearance ===
+#theme = "Cobalt Next Dark"
+#theme = "iTerm2 Default"
+theme = "Argonaut"
+font-family = "MesloLGS Nerd Font Mono"
+font-size = 14
+font-thicken = false
+# adjust-cell-height = 10%
+
+# === Window ===
+window-padding-x = 12
+window-padding-y = 12
+background-opacity = 0.96
+macos-titlebar-style = tabs
+
+# === Cursor & Scrollback ===
+cursor-style = block
+cursor-style-blink = false
+scrollback-limit = 100000
+copy-on-select = clipboard
+
+# === macOS Integration ===
+macos-option-as-alt = true
+quit-after-last-window-closed = true
+confirm-close-surface = false
+
+keybind = cmd+a=text:\x01
+keybind = cmd+b=text:\x02
+keybind = cmd+c=text:\x03
+keybind = cmd+d=text:\x04
+keybind = cmd+e=text:\x05
+keybind = cmd+f=text:\x06
+keybind = cmd+g=text:\x07
+keybind = cmd+h=text:\x08
+keybind = cmd+i=text:\x09
+keybind = cmd+j=text:\x0A
+keybind = cmd+k=text:\x0B
+keybind = cmd+l=text:\x0C
+keybind = cmd+m=text:\x0D
+keybind = cmd+n=text:\x0E
+keybind = cmd+o=text:\x0F
+keybind = cmd+p=text:\x10
+keybind = cmd+q=text:\x11
+keybind = cmd+r=text:\x12
+keybind = cmd+s=text:\x13
+keybind = cmd+u=text:\x15
+keybind = cmd+w=text:\x17
+keybind = cmd+x=text:\x18
+keybind = cmd+y=text:\x19
+keybind = cmd+z=text:\x1A

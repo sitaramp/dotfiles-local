@@ -25,6 +25,7 @@ kill <pid>          # kill pid
 netstat -lntp                      # LISTEN and CONNECTED ports
 ss      -plat                      # -u for udp
 lsof    -iTCP -sTCP:LISTEN -p -n   # MacOS
+sudo lsof -i -P -n
 ```
 
 
